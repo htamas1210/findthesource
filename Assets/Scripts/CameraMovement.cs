@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour
     public void moveCameraToTarget(Transform target) {
         Debug.Log("Moved to " + target.name);
         mainCamera.transform.position = target.position + offset;
-        mainCamera.orthographicSize = 3f;
+        mainCamera.orthographicSize = 3.5f;
     }
 
     public void moveCameraBack() {
