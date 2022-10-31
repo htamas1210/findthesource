@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fejlesztés : MonoBehaviour
+public class Upgrade : MonoBehaviour
 {
     public readonly int[] energia = { 3, 3, 2, 2, 1 };
     public readonly int[] akcio = { 0, 0, 1, 1, 2 };
@@ -37,5 +37,4 @@ public class Fejlesztés : MonoBehaviour
     public void upgradeHack() {
         hack_index++;
     }
-
 }

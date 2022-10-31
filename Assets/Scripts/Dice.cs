@@ -39,7 +39,7 @@ public class Dice : MonoBehaviour {
             randomDiceSide = Random.Range(0, 5);
 
             rend.sprite = diceSides[Random.Range(0, 5)];
-            rend.size = new Vector2(40, 40);
+            rend.size = new Vector2(38, 38);
 
             yield return new WaitForSeconds(0.05f);
         }
