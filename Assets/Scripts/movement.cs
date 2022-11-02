@@ -2,17 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using Unity.Mathematics;
 
 public class movement : MonoBehaviour
 {
-    private static int w = 3; //ennyi oszlop van a mapon
-    private static int h = 4; //ennyi sor van a mapon
-
-
-    public GameObject[,] helyszinek = new GameObject[h, w];
-    public Collider2D[,] colliders = new Collider2D[h, w];
-
-
     public Camera THE_Camera;
 
     public GameObject oneone;
@@ -53,12 +47,11 @@ public class movement : MonoBehaviour
 
     public GameObject player;
 
-    private int jelenlegi_x = 1;
-    private int jelenlegi_y = 1;
-    private int akciopont = 6;
-    private int tavolsag = 0;
 
-    private string[,] helyek = new string[4, 3]//kell e meg?
+    int w = 2; //ennyi oszlop van a mapon
+    int h = 3; //ennyi sor van a mapon
+
+    string[,] helyek = new string[4, 3]
     {
         {"oneone", "twoone", "threeone" },
         {"onetwo", "twotwo", "threetwo" },
@@ -66,14 +59,22 @@ public class movement : MonoBehaviour
         {"onefour", "twofour", "threefour" }    
     };
 
-    private void Awake() {
-        
+    int jelenlegi_x = 1;
+    int jelenlegi_y = 1;
+    int akciopont = 12;
+    int tavolsag = 0;
+
+    private void Start() {
+        player.transform.position = oneone.transform.position;
     }
 
-    public void FixedUpdate()
+
+    // Update is called once per frame
+    public void Update()
     {
-        // player mozgatï¿½sa es konzolra iratas
-        //ha kattint nezze meg a tombbon hogy overlappol valamelyik colliderrel
+        tavolsag = math.abs(tavolsag);
+
+        // player mozgatása és konzolra iratás
         if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
             for (int x = 0; x < w; x++)
@@ -83,49 +84,333 @@ public class movement : MonoBehaviour
                     if (helyek[x,y].Equals("oneone"))
                     {
                         Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-                        tavolsag = x + y - jelenlegi_x + jelenlegi_y;
-                        if (tavolsag < 1)
-                        {
-                            tavolsag = -tavolsag;
-                            if (tavolsag == 1 && akciopont != 0)
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
                             {
-                                player.transform.position = oneone.transform.position;
-                                jelenlegi_x = 1;
-                                jelenlegi_y = 1;
+                            player.transform.position = oneone.transform.position;
+                            jelenlegi_x = 1;
+                            jelenlegi_y = 1;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
                             }
-                            else
+                        else
                             {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
+                                Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
                             }
-                        }
+                        
                     }
-                    //break; ??
                 }
             }
         }
-        ///////////////////////////
-        ///
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            for (int i = 0; i < colliders.GetLength(0); i++) {
-                for (int j = 0; j < colliders.GetLength(1); j++) {
-                    if (colliders[i, j].OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))){  
-                                    Debug.Log("Player clicked on the collider: " + colliders[i,j].gameObject.name);
-                                    tavolsag = i + j - jelenlegi_x + jelenlegi_y;
-                                    if (tavolsag < 1) {
-                                        tavolsag = -tavolsag;
-                                        if (tavolsag == 1 && akciopont != 0) {
-                                            player.transform.position = oneone.transform.position;
-                                            jelenlegi_x = 1;
-                                            jelenlegi_y = 1;
-                                        } else {
-                                            Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                                        }
-                                    }                            
-                            }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("twoone"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = twoone.transform.position;
+                            jelenlegi_x = 2;
+                            jelenlegi_y = 1;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
                         }
                     }
                 }
-            }       
+            }
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("threeone"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = threeone.transform.position;
+                            jelenlegi_x = 3;
+                            jelenlegi_y = 1;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("onetwo"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = onetwo.transform.position;
+                            jelenlegi_x = 1;
+                            jelenlegi_y = 2;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("twotwo"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = twotwo.transform.position;
+                            jelenlegi_x = 2;
+                            jelenlegi_y = 2;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("threetwo"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = threetwo.transform.position;
+                            jelenlegi_x = 3;
+                            jelenlegi_y = 2;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("onethree"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = onethree.transform.position;
+                            jelenlegi_x = 1;
+                            jelenlegi_y = 3;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("twothree"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = twothree.transform.position;
+                            jelenlegi_x = 2;
+                            jelenlegi_y = 3;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("threethree"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = threethree.transform.position;
+                            jelenlegi_x = 3;
+                            jelenlegi_y = 3;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("onefour"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = onefour.transform.position;
+                            jelenlegi_x = 1;
+                            jelenlegi_y = 4;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("twofour"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = twofour.transform.position;
+                            jelenlegi_x = 2;
+                            jelenlegi_y = 4;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x,y].Equals("threefour"))
+                    {
+                        Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
+                        tavolsag = math.abs((jelenlegi_x + jelenlegi_y) - ((x + 1) + (y + 1)));
+
+                        if (tavolsag == 1 && akciopont != 0)
+                        {
+                            player.transform.position = threefour.transform.position;
+                            jelenlegi_x = 3;
+                            jelenlegi_y = 4;
+                            akciopont = akciopont - 1;
+                            Debug.Log(akciopont);
+                        }
+                        else
+                        {
+                            Debug.Log("Nincs elég akciópontod vagy nem 1 mezõn belül akarsz lépni");
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
