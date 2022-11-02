@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Threading.Tasks;
-using System.Threading;
 
 public class Dice : MonoBehaviour {
 
@@ -11,70 +8,47 @@ public class Dice : MonoBehaviour {
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
 
-    public int[] diceResult = new int[2];
+    private int[] diceResult = { 0, 0 };
+    public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
 
-    private void Start() {
-        //renderer = go.GetComponent<SpriteRenderer>();
+    private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas
+
+    public void ertekValasztas(GameObject gomb) {      
+        if (diceResult[0] != 0 && diceResult[1] != 0 && !locked) { //megnezzuk hogy lett e mar dobva es nem valasztott meg a jatekos
+            if (gomb.name == "dice1btn") { 
+                valasztottErtek = diceResult[0];
+                locked = true;
+            }else if (gomb.name == "dice2btn") {
+                valasztottErtek = diceResult[1];
+                locked = true;
+            }
+        }
+
+        Debug.Log("valasztott ertek: " + valasztottErtek + "locked status: " + locked);
     }
 
-    // Ha rákattintassz meghívja a RollTheDice-ot
-    /*public void OnMouseDown()
-    {
-        StartCoroutine("RollTheDice");
-    }*/
-
-    // A RollTheDice
-    /*private IEnumerator RollTheDice()
-    {
-        
-        int randomDiceSide = 0;
-        int finalSide = 0;
+    public int[] getDices() { return diceResult; }
 
 
-        for (int i = 0; i < 20; i++)
-        {
-            randomDiceSide = Random.Range(0, 5);
+    private int RollDice(SpriteRenderer renderer) {
+        int randomDiceSide = Random.Range(0, 5);
+        int finalSide = randomDiceSide + 1;
 
-            rend.sprite = diceSides[Random.Range(0, 5)];
-            rend.size = new Vector2(38, 38);
-
-            yield return new WaitForSeconds(0.05f);
-        }
-
-        finalSide = randomDiceSide + 1;
-        Debug.Log(finalSide);
-    }*/
-
-    public int RollDice(SpriteRenderer renderer) {
-        int randomDiceSide = 0;
-        int finalSide = 0;
-
-        for (int i = 0; i < 20; i++) {
-            randomDiceSide = Random.Range(0, 5);
-
-            renderer.sprite = diceSides[Random.Range(0, 5)];
-            renderer.size = new Vector2(38, 38);
-
-            //yield return new WaitForSeconds(0.05f);
-            Thread.Sleep(500);
-        }
-
-        finalSide = randomDiceSide + 1;
         Debug.Log(finalSide);
 
         return finalSide;
     }
 
-    public void renderDice(GameObject go) {
+    public void renderDice() {
         do {
             diceResult[0] = RollDice(hely1);
             diceResult[1] = RollDice(hely2);
         } while (diceResult[0] == diceResult[1]);
 
-        hely1.sprite = diceSides[diceResult[0]];
+        hely1.sprite = diceSides[diceResult[0]-1];
         hely1.size = new Vector2(38, 38);
 
-        hely2.sprite = diceSides[diceResult[0]];
+        hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
     }
 }
