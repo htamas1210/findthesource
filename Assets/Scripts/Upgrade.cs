@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Upgrade : MonoBehaviour
 {
@@ -10,31 +12,57 @@ public class Upgrade : MonoBehaviour
     public readonly int[] ujradobas = { 0, 1, 2, 3, 4 };
     public readonly int[] hack = { 4, 3, 2, 1 };
 
-    private int energia_index, akcio_index, harc_index, ujradobas_index, hack_index = 0;
+    public TMP_Text[] energiatext;
+    public TMP_Text[] akciotext;
+    public TMP_Text[] harctext;
+    public TMP_Text[] ujradobastext;
+    public TMP_Text[] hacktext;
 
-    private int getEnergiaIndex() { return energia_index; }
-    private int getAkcioIndex() { return akcio_index; }
-    private int getHarcIndex() { return harc_index; }
-    private int getUjradobasIndex() { return ujradobas_index; }
-    private int getHackIndex() { return hack_index; }
+    private int energia_index, akcio_index, harc_index, ujradobas_index, hack_index = 0; //nem lehet nagyobb 4-nel | hack 3-nal
+
+    public int getEnergiaIndex() { return energia_index; }
+    public int getAkcioIndex() { return akcio_index; }
+    public int getHarcIndex() { return harc_index; }
+    public int getUjradobasIndex() { return ujradobas_index; }
+    public int getHackIndex() { return hack_index; }
 
     public void upgradeEnergia() {
-        energia_index++;
+        if(energia_index < 4) {
+            energiatext[energia_index].text = "X";
+            energia_index++;
+        }
+        Debug.Log("energia_i: " + energia_index);
     }
 
     public void upgradeAkcio() {
-        akcio_index++;
+        if (akcio_index < 4) {
+            akciotext[akcio_index].text = "X";
+            akcio_index++;
+        }
+        Debug.Log("akcio_i: " + akcio_index);
     }
 
     public void upgradeHarc() {
-        harc_index++;
+        if (harc_index < 4) {
+            harctext[harc_index].text = "X";
+            harc_index++;
+        }
+        Debug.Log("harc_i: " + harc_index);
     }
 
     public void upgradeUjradobas() {
-        ujradobas_index++;
+        if (ujradobas_index < 4) {
+            ujradobastext[ujradobas_index].text = "X";
+            ujradobas_index++;
+        }
+        Debug.Log("ujradobas_i: " + ujradobas_index);
     }
 
     public void upgradeHack() {
-        hack_index++;
+        if (hack_index < 3) {
+            hacktext[hack_index].text = "X";
+            hack_index++;
+        }
+        Debug.Log("hack_i: " + hack_index);
     }
 }
