@@ -5,7 +5,7 @@ public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
-    public SpriteRenderer hely3;
+    public SpriteRenderer akcioponthely;
 
     private int[] diceResult = { 0, 0 };
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
@@ -23,16 +23,16 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[0];
 
                 //a valasztott szam atirasa az akcio mezobe
-                hely3.sprite = diceSides[valasztottErtek-1];
-                hely3.size = new Vector2(38, 38);
+                akcioponthely.sprite = diceSides[valasztottErtek-1];
+                akcioponthely.size = new Vector2(38, 38);
 
                 locked = true;
             } else if (gomb.name == "dice2btn") {
                 valasztottErtek = diceResult[1];
                 
                 //a valasztott szam atirasa az akcio mezobe
-                hely3.sprite = diceSides[valasztottErtek-1];
-                hely3.size = new Vector2(38, 38);
+                akcioponthely.sprite = diceSides[valasztottErtek-1];
+                akcioponthely.size = new Vector2(38, 38);
 
                 locked = true;
             }
