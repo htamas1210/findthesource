@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Unity.Mathematics;
 
 public class movement : MonoBehaviour {
@@ -80,6 +79,10 @@ public class movement : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         player.transform.position = oneone.transform.position;
+    }
+
+    private void kezdoHelyMeghatarzoas() {
+        
     }
 
     // Update is called once per frame

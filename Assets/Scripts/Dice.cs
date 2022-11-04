@@ -5,7 +5,10 @@ public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
-    public SpriteRenderer akcioponthely;
+    //public SpriteRenderer akcioponthely;
+
+    private Upgrade upgrade;
+    private Akciopont ap;
 
     private int[] diceResult = { 0, 0 };
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
@@ -16,26 +19,39 @@ public class Dice : MonoBehaviour {
     public int getValasztottErtek() { return valasztottErtek; }
     public void setValasztottErtek(int ujErtek) { valasztottErtek = ujErtek; }
 
+    private void Start() {
+        upgrade = FindObjectOfType<Upgrade>();
+        ap = FindObjectOfType<Akciopont>();
+    }
+
 
     public void ertekValasztas(GameObject gomb) {
         if (diceResult[0] != 0 && diceResult[1] != 0 && !locked) { //megnezzuk hogy lett e mar dobva es nem valasztott meg a jatekos
             if (gomb.name == "dice1btn") {
                 valasztottErtek = diceResult[0];
+                if (diceResult[0] < diceResult[1]) {
+                    upgrade.canUpgrade = true;
+                }
 
                 //a valasztott szam atirasa az akcio mezobe
-                akcioponthely.sprite = diceSides[valasztottErtek-1];
-                akcioponthely.size = new Vector2(38, 38);
+                /*akcioponthely.sprite = diceSides[valasztottErtek-1];
+                akcioponthely.size = new Vector2(38, 38);*/
 
                 locked = true;
             } else if (gomb.name == "dice2btn") {
                 valasztottErtek = diceResult[1];
-                
-                //a valasztott szam atirasa az akcio mezobe
-                akcioponthely.sprite = diceSides[valasztottErtek-1];
-                akcioponthely.size = new Vector2(38, 38);
+                if (diceResult[1] < diceResult[0]) {
+                    upgrade.canUpgrade = true;
+                }
 
+                //a valasztott szam atirasa az akcio mezobe
+                /*akcioponthely.sprite = diceSides[valasztottErtek-1];
+                akcioponthely.size = new Vector2(38, 38);
+                */
                 locked = true;
             }
+
+            ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
         }
 
         Debug.Log("valasztott ertek: " + valasztottErtek + "locked status: " + locked);
