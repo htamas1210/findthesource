@@ -18,6 +18,8 @@ public class Dice : MonoBehaviour {
     public int[] getDices() { return diceResult; }
     public int getValasztottErtek() { return valasztottErtek; }
     public void setValasztottErtek(int ujErtek) { valasztottErtek = ujErtek; }
+    public bool getLocked() { return locked; }
+    public void setLocked(bool locked) { this.locked = locked; }
 
     private void Start() {
         upgrade = FindObjectOfType<Upgrade>();

@@ -24,4 +24,8 @@ public class Akciopont : MonoBehaviour
     public void UpdateAkciopont(int number) {
         akciopontok += number;
     }
+
+    public void resetAkciopont() {
+        akciopontok = 0;
+    }
 }

@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
 
     public void moveCameraBack() {
         Debug.Log("Moved back");
-        mainCamera.transform.position = new Vector3(0, 0, -10);
+        mainCamera.transform.position = new Vector3((float)-2.15, 0, -10);
         mainCamera.orthographicSize = 10.3f;
     }
 }
