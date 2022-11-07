@@ -9,6 +9,7 @@ public class Dice : MonoBehaviour {
 
     private Upgrade upgrade;
     private Akciopont ap;
+    private Energia energiasav;
 
     private int[] diceResult = { 0, 0 };
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
@@ -24,6 +25,7 @@ public class Dice : MonoBehaviour {
     private void Start() {
         upgrade = FindObjectOfType<Upgrade>();
         ap = FindObjectOfType<Akciopont>();
+        energiasav = FindObjectOfType<Energia>();
     }
 
 
@@ -32,7 +34,9 @@ public class Dice : MonoBehaviour {
             if (gomb.name == "dice1btn") {
                 valasztottErtek = diceResult[0];
                 if (diceResult[0] < diceResult[1]) {
-                    upgrade.canUpgrade = true;
+                    upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
+                } else {
+                    energiasav.csokkenEnergia(); //nagyobb szam valasztasa eseten -1 energia
                 }
 
                 //a valasztott szam atirasa az akcio mezobe
@@ -44,6 +48,8 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[1];
                 if (diceResult[1] < diceResult[0]) {
                     upgrade.canUpgrade = true;
+                } else {
+                    energiasav.csokkenEnergia();
                 }
 
                 //a valasztott szam atirasa az akcio mezobe
