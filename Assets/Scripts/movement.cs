@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
+using TMPro;
+
 
 public class movement : MonoBehaviour {
-
     public Camera THE_Camera;
+    public GameObject player;
 
     public GameObject oneone;
     public Collider2D oneone_Collider;
@@ -66,45 +68,40 @@ public class movement : MonoBehaviour {
     public GameObject threefour;
     public Collider2D threefour_Collider;
     public GameObject korhazlepes1;
-    public GameObject korhazlepes2;
+    public GameObject korhazlepes2;  
 
-    public GameObject player;
+    private Akciopont ap;
 
+    private int oneonecount = 0;
+    private int twoonecount = 0;
+    private int threeonecount = 0;
+    private int onetwocount = 0;
+    private int twotwocount = 0;
+    private int threetwocount = 0;
+    private int onethreecount = 0;
+    private int twothreecount = 0;
+    private int threethreecount = 0;
+    private int onefourcount = 0;
+    private int twofourcount = 0;
+    private int threefourcount = 0;
+    private int w = 3; //ennyi oszlop van a mapon
+    private int h = 4; //ennyi sor van a mapon
+    private int jelenlegi_x = 1;
+    private int jelenlegi_y = 1;
+    private int tavolsag = 0;
+    private int moveCounter = 1;
 
-    int oneonecount = 0;
-    int twoonecount = 0;
-    int threeonecount = 0;
-    int onetwocount = 0;
-    int twotwocount = 0;
-    int threetwocount = 0;
-    int onethreecount = 0;
-    int twothreecount = 0;
-    int threethreecount = 0;
-    int onefourcount = 0;
-    int twofourcount = 0;
-    int threefourcount = 0;
-
-    int w = 3; //ennyi oszlop van a mapon
-    int h = 4; //ennyi sor van a mapon
-
-    string[,] helyek =
+    private string[,] helyek =
     {
         {"oneone", "twoone", "threeone", "" },
         {"onetwo", "twotwo", "threetwo", "" },
         {"onethree", "twothree", "threethree", "" },
         {"onefour", "twofour", "threefour", "" },
         {"", "", "", "" }
-    };
+    };  
 
-    
-    int jelenlegi_x = 1;
-    int jelenlegi_y = 1;
-    int akciopont = 20;
-    int tavolsag = 0;
-
-    // Start is called before the first frame update
     void Start() {
-        player.transform.position = oneone.transform.position;
+        ap = FindObjectOfType<Akciopont>();      
 
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
@@ -141,15 +138,67 @@ public class movement : MonoBehaviour {
 
         korhazlepes1.SetActive(false);
         korhazlepes2.SetActive(false);
+
+        kezdoHelyMeghatarzoas();
     }
 
     private void kezdoHelyMeghatarzoas() {
-        
+        int random = UnityEngine.Random.Range(1,12);
+        Debug.Log("Random a kezdohelyszinhez: " + random);
+
+        if(random == 1) {
+            player.transform.position = oneone.transform.position;
+            eromulepes1.SetActive(true);
+            eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        }else if(random == 2) {
+            player.transform.position = twoone.transform.position;
+            feketepiaclepes1.SetActive(true);
+            feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 3) {
+            player.transform.position = threeone.transform.position;
+            metrolepes1.SetActive(true);
+            metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 4) {
+            player.transform.position = onetwo.transform.position;
+            szervereklepes1.SetActive(true);
+            szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 5) {
+            player.transform.position = twotwo.transform.position;
+            kingcasinolepes1.SetActive(true);
+            kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 6) {
+            player.transform.position = threetwo.transform.position;
+            feltoltolepes1.SetActive(true);
+            feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 7) {
+            player.transform.position = onethree.transform.position;
+            kutatolaborlepes1.SetActive(true);
+            kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 8) {
+            player.transform.position = twothree.transform.position;
+            kriptoklublepes1.SetActive(true);
+            kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 9) {
+            player.transform.position = threethree.transform.position;
+            cyberplazalepes1.SetActive(true);
+            cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 10) {
+            player.transform.position = onefour.transform.position;
+            hadiuzemlepes1.SetActive(true);
+            hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 11) {
+            player.transform.position = twofour.transform.position;
+            konyvtarlepes1.SetActive(true);
+            konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        } else if (random == 12) {
+            player.transform.position = threefour.transform.position;
+            korhazlepes1.SetActive(true);
+            korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+        }
     }
 
     // Update is called once per frame
     public void Update() {
-
         tavolsag = math.abs(tavolsag);
 
         // player mozgatása és konzolra iratás
@@ -164,21 +213,25 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                     player.transform.position = oneone.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 1;
-                                    akciopont = akciopont - 1;
+                                    ap.akciopont = ap.akciopont - 1;
                                     oneonecount = oneonecount + 1;
-                                    Debug.Log(akciopont);
+                                    Debug.Log(ap.akciopont);
                                 if (eromulepes1.activeSelf == true)
                                 {
                                     eromulepes2.SetActive(true);
+                                    moveCounter++;
+                                    eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                 }
                                 else
                                 {
                                     eromulepes1.SetActive(true);
+                                    moveCounter++;
+                                    eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                 }
                             }
                             else
@@ -203,23 +256,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (twoonecount < 2)
                                 {
                                     player.transform.position = twoone.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 1;
-                                    akciopont = akciopont - 1;
+                                    ap.akciopont = ap.akciopont - 1;
                                     twoonecount = twoonecount + 1;
-                                    Debug.Log(akciopont);
+                                    Debug.Log(ap.akciopont);
                                     if (feketepiaclepes1.activeSelf == true)
                                     {
                                         feketepiaclepes2.SetActive(true);
+                                        moveCounter++;
+                                        feketepiaclepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         feketepiaclepes1.SetActive(true);
+                                        moveCounter++;
+                                        feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -250,23 +307,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (threeonecount < 2)
                                 {
                                     player.transform.position = threeone.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 1;
-                                    akciopont = akciopont - 1;
+                                    ap.akciopont = ap.akciopont - 1;
                                     threeonecount++;
-                                    Debug.Log(akciopont);
+                                    Debug.Log(ap.akciopont);
                                     if (metrolepes1.activeSelf == true)
                                     {
                                         metrolepes2.SetActive(true);
+                                        moveCounter++;
+                                        metrolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         metrolepes1.SetActive(true);
+                                        moveCounter++;
+                                        metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -297,23 +358,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (onetwocount < 2)
                                 {
                                     player.transform.position = onetwo.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 2;
-                                    akciopont = akciopont - 1;
+                                    ap.akciopont = ap.akciopont - 1;
                                     onetwocount++;
-                                    Debug.Log(akciopont);
+                                    Debug.Log(ap.akciopont);
                                     if (szervereklepes1.activeSelf == true)
                                     {
                                         szervereklepes2.SetActive(true);
+                                        moveCounter++;
+                                        szervereklepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         szervereklepes1.SetActive(true);
+                                        moveCounter++;
+                                        szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -343,23 +408,27 @@ public class movement : MonoBehaviour {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         }
                         else {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (twotwocount < 2)
                                 {
                                     player.transform.position = twotwo.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 2;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true)
                                     {
                                         kingcasinolepes2.SetActive(true);
+                                        moveCounter++;
+                                        kingcasinolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         kingcasinolepes1.SetActive(true);
+                                        moveCounter++;
+                                        kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -391,23 +460,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (threetwocount < 2)
                                 {
                                     player.transform.position = threetwo.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 2;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true)
                                     {
                                         feltoltolepes2.SetActive(true);
+                                        moveCounter++;
+                                        feltoltolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         feltoltolepes1.SetActive(true);
+                                        moveCounter++;
+                                        feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -439,23 +512,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (onethreecount < 2)
                                 {
                                     player.transform.position = onethree.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 3;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true)
                                     {
                                         kutatolaborlepes2.SetActive(true);
+                                        moveCounter++;
+                                        kutatolaborlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         kutatolaborlepes1.SetActive(true);
+                                        moveCounter++;
+                                        kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -487,23 +564,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (twothreecount < 2)
                                 {
                                     player.transform.position = twothree.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 3;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true)
                                     {
                                         kriptoklublepes2.SetActive(true);
+                                        moveCounter++;
+                                        kriptoklublepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         kriptoklublepes1.SetActive(true);
+                                        moveCounter++;
+                                        kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -536,23 +617,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (threethreecount < 2)
                                 {
                                     player.transform.position = threethree.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 3;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true)
                                     {
                                         cyberplazalepes2.SetActive(true);
+                                        moveCounter++;
+                                        cyberplazalepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         cyberplazalepes1.SetActive(true);
+                                        moveCounter++;
+                                        cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -584,23 +669,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (onefourcount < 2)
                                 {
                                     player.transform.position = onefour.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 4;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true)
                                     {
                                         hadiuzemlepes2.SetActive(true);
+                                        moveCounter++;
+                                        hadiuzemlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         hadiuzemlepes1.SetActive(true);
+                                        moveCounter++;
+                                        hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -632,23 +721,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (twofourcount < 2)
                                 {
                                     player.transform.position = twofour.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 4;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true)
                                     {
                                         konyvtarlepes2.SetActive(true);
+                                        moveCounter++;
+                                        konyvtarlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         konyvtarlepes1.SetActive(true);
+                                        moveCounter++;
+                                        konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else
@@ -680,23 +773,27 @@ public class movement : MonoBehaviour {
                         }
                         else
                         {
-                            if (tavolsag == 1 && akciopont != 0)
+                            if (tavolsag == 1 && ap.akciopont != 0)
                             {
                                 if (threefourcount < 2)
                                 {
                                     player.transform.position = threefour.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 4;
-                                    akciopont = akciopont - 1;
-                                    Debug.Log(akciopont);
+                                    ap.akciopont = ap.akciopont - 1;
+                                    Debug.Log(ap.akciopont);
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true)
                                     {
                                         korhazlepes2.SetActive(true);
+                                        moveCounter++;
+                                        korhazlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                     else
                                     {
                                         korhazlepes1.SetActive(true);
+                                        moveCounter++;
+                                        korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
                                 }
                                 else

@@ -13,14 +13,10 @@ public class fps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*int current = (int)(1f / Time.unscaledDeltaTime);
-        fpsText.text = "Fps: " + current.ToString();*/
-
         if (Time.unscaledTime > _timer) {
             int fps = (int)(1f / Time.unscaledDeltaTime);
             fpsText.text = "FPS: " + fps;
             _timer = Time.unscaledTime + _hudRefreshRate;
         }
-
     }
 }
