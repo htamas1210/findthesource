@@ -152,50 +152,75 @@ public class movement : MonoBehaviour {
             player.transform.position = oneone.transform.position;
             eromulepes1.SetActive(true);
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-        }else if(random == 2) {
+            jelenlegi_x = 1;
+            jelenlegi_y = 1;
+        }
+        else if(random == 2) {
             player.transform.position = twoone.transform.position;
             feketepiaclepes1.SetActive(true);
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 2;
+            jelenlegi_y = 1;
         } else if (random == 3) {
             player.transform.position = threeone.transform.position;
             metrolepes1.SetActive(true);
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 3;
+            jelenlegi_y = 1;
         } else if (random == 4) {
             player.transform.position = onetwo.transform.position;
             szervereklepes1.SetActive(true);
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 1;
+            jelenlegi_y = 2;
         } else if (random == 5) {
             player.transform.position = twotwo.transform.position;
             kingcasinolepes1.SetActive(true);
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 2;
+            jelenlegi_y = 2;
         } else if (random == 6) {
             player.transform.position = threetwo.transform.position;
             feltoltolepes1.SetActive(true);
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 3;
+            jelenlegi_y = 2;
         } else if (random == 7) {
             player.transform.position = onethree.transform.position;
             kutatolaborlepes1.SetActive(true);
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 1;
+            jelenlegi_y = 3;
         } else if (random == 8) {
             player.transform.position = twothree.transform.position;
             kriptoklublepes1.SetActive(true);
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 2;
+            jelenlegi_y = 3;
         } else if (random == 9) {
             player.transform.position = threethree.transform.position;
             cyberplazalepes1.SetActive(true);
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 3;
+            jelenlegi_y = 3;
         } else if (random == 10) {
             player.transform.position = onefour.transform.position;
             hadiuzemlepes1.SetActive(true);
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 1;
+            jelenlegi_y = 4;
         } else if (random == 11) {
             player.transform.position = twofour.transform.position;
             konyvtarlepes1.SetActive(true);
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 2;
+            jelenlegi_y = 4;
         } else if (random == 12) {
             player.transform.position = threefour.transform.position;
             korhazlepes1.SetActive(true);
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+            jelenlegi_x = 3;
+            jelenlegi_y = 4;
         }
     }
 
