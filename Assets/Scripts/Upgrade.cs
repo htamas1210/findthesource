@@ -22,6 +22,7 @@ public class Upgrade : MonoBehaviour
     public bool canUpgrade = false;
 
     private int energia_index, akcio_index, harc_index, ujradobas_index, hack_index = 0; //nem lehet nagyobb 4-nel | hack 3-nal
+    public int fejlesztes_szamlalo = 0;
 
     public int getEnergiaIndex() { return energia_index; }
     public int getAkcioIndex() { return akcio_index; }
@@ -37,6 +38,7 @@ public class Upgrade : MonoBehaviour
             }
             Debug.Log("energia_i: " + energia_index);
             canUpgrade = false;
+            fejlesztes_szamlalo++;
         }
     }
 
@@ -48,6 +50,7 @@ public class Upgrade : MonoBehaviour
             }
             Debug.Log("akcio_i: " + akcio_index);
             canUpgrade = false;
+            fejlesztes_szamlalo++;
         }
     }
 
@@ -59,6 +62,7 @@ public class Upgrade : MonoBehaviour
             }
             Debug.Log("harc_i: " + harc_index);
             canUpgrade = false;
+            fejlesztes_szamlalo++;
         }
     }
 
@@ -70,6 +74,7 @@ public class Upgrade : MonoBehaviour
             }
             Debug.Log("ujradobas_i: " + ujradobas_index);
             canUpgrade = false;
+            fejlesztes_szamlalo++;
         }
     }
 
@@ -81,6 +86,7 @@ public class Upgrade : MonoBehaviour
             }
             Debug.Log("hack_i: " + hack_index);
             canUpgrade = false;
+            fejlesztes_szamlalo++;
         }
     }
 }
