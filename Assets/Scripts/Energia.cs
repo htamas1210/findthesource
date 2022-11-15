@@ -6,28 +6,25 @@ using TMPro;
 public class Energia : MonoBehaviour
 {
     public TMP_Text[] energiasav_text;
-    private int enegiasav_index = 0;
+    private int energiasav_index = 0;
 
-    public int getEnergiasavIndex() { return enegiasav_index; }
-    public void setEnegiasavIndex(int ertek) { enegiasav_index = ertek; }
+    public int getEnergiasavIndex() { return energiasav_index; }
+    public void setEnegiasavIndex(int ertek) { energiasav_index = ertek; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public void csokkenEnergia(int number) {
+        if (energiasav_index > 30) return;
+
+        for (int i = 0; i < number; i++) {
+            //if (number + enegiasav_index > energiasav_text.Length) break;
+            if (energiasav_index >= 30) {
+                energiasav_index = 29;
+                break;
+            }
+
+            energiasav_text[getEnergiasavIndex()].text = "X";
+            setEnegiasavIndex(getEnergiasavIndex() + 1);
+        }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void csokkenEnergia() {
-        if (enegiasav_index > 29) return;
-
-        energiasav_text[getEnergiasavIndex()].text = "X";
-        setEnegiasavIndex(getEnergiasavIndex() + 1);
 
         Debug.Log("energia csokkent");
     }

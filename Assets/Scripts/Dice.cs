@@ -36,7 +36,7 @@ public class Dice : MonoBehaviour {
                 if (diceResult[0] < diceResult[1]) {
                     upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
                 } else {
-                    energiasav.csokkenEnergia(); //nagyobb szam valasztasa eseten -1 energia
+                    energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
                 }
 
                 //a valasztott szam atirasa az akcio mezobe
@@ -49,7 +49,7 @@ public class Dice : MonoBehaviour {
                 if (diceResult[1] < diceResult[0]) {
                     upgrade.canUpgrade = true;
                 } else {
-                    energiasav.csokkenEnergia();
+                    energiasav.csokkenEnergia(1);
                 }
 
                 //a valasztott szam atirasa az akcio mezobe
