@@ -7,11 +7,13 @@ public class Energia : MonoBehaviour
 {
     public TMP_Text[] energiasav_text;
     private int energiasav_index = 0;
+    public bool granatAktivalva = false;
 
     public int getEnergiasavIndex() { return energiasav_index; }
     public void setEnegiasavIndex(int ertek) { energiasav_index = ertek; }
 
     public void csokkenEnergia(int number) {
+        if (granatAktivalva) return; //targy cucc aktivalva egesz korbe nem csokken az energia
         if (energiasav_index > 30) return;
 
         for (int i = 0; i < number; i++) {

@@ -224,6 +224,58 @@ public class movement : MonoBehaviour {
         }
     }
 
+    public void mozgasHelyre(int x, int y) {
+        if(x == 1 && y == 1) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = oneone.transform.position;
+        }else if(x == 1 && y == 2) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = onetwo.transform.position;
+        } else if (x == 1 && y == 3) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = onethree.transform.position;
+        } else if (x == 1 && y == 4) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = onefour.transform.position;
+        }else if (x == 2 && y == 1) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = twoone.transform.position;
+        } else if (x == 2 && y == 2) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = twotwo.transform.position;
+        } else if (x == 2 && y == 3) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = twothree.transform.position;
+        } else if (x == 2 && y == 4) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = twofour.transform.position;
+        }else if (x == 3 && y == 1) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = threeone.transform.position;
+        } else if (x == 3 && y == 2) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = threetwo.transform.position;
+        } else if (x == 3 && y == 3) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = threethree.transform.position;
+        } else if (x == 3 && y == 4) {
+            jelenlegi_x = x;
+            jelenlegi_y = y;
+            player.transform.position = threefour.transform.position;
+        }
+    }
+
     // Update is called once per frame
     public void Update() {
         tavolsag = math.abs(tavolsag);

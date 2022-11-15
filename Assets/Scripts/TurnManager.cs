@@ -23,6 +23,7 @@ public class TurnManager : MonoBehaviour
         dice.setLocked(false);
         akciopont.resetAkciopont();
         energia.csokkenEnergia(upgrade.energia[upgrade.getEnergiaIndex()]);
+        energia.granatAktivalva = false; //ha aktivalva lett a granat a korben deaktivalja
         turnCounter++;
         dice.hely1.sprite = null;
         dice.hely2.sprite = null;
