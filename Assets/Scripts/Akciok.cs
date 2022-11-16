@@ -13,8 +13,20 @@ public class Akciok : MonoBehaviour
     private Akciopont ap;
     //
 
+    //Nyomozashoz
+    private movement movement;
+    private string[,] nyomozasok =
+    {
+        {"ures", "ures", "ures", "" },
+        {"ures", "ures", "ures", "" },
+        {"ures", "ures", "ures", "" },
+        {"ures", "ures", "ures", "" },
+
+    };
+
     private void Start() {
         ap = FindObjectOfType<Akciopont>();
+        movement= FindObjectOfType<movement>();
 
         //kezdesnel karikazza be az elso harom adott toltenyt
         for (int i = 0; i < tolteny_index; i++) {
@@ -58,5 +70,34 @@ public class Akciok : MonoBehaviour
         } else {
             Debug.Log("Nincs eleg tolteny");
         }
-    }    
+    }
+
+
+    //Nyomozas
+    public void Nyomozas() {
+        if (ap.akciopont <= 0) {
+            Debug.Log("nincs eleg akciopont");
+            return;
+        }
+
+        ap.akciopont--;
+
+        int atirandox = (movement.jelenlegi_x - 1);
+        int atirandoy = (movement.jelenlegi_y - 1);
+
+        if (nyomozasok[atirandox, atirandoy] == "nyomozott") {
+            Debug.Log("Itt mar nyomoztal");
+            return;
+        } else {
+            nyomozasok[atirandoy, atirandox] = "nyomozott";
+        }
+
+        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
+            string sor = "";
+            for (int j = 0; j < nyomozasok.GetLength(1); j++) {
+                sor += nyomozasok[i, j] + " ";
+            }
+            Debug.Log(sor);
+        }
+    }
 }

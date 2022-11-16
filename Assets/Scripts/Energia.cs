@@ -25,8 +25,7 @@ public class Energia : MonoBehaviour
 
             energiasav_text[getEnergiasavIndex()].text = "X";
             setEnegiasavIndex(getEnergiasavIndex() + 1);
-        }
-        
+        }      
 
         Debug.Log("energia csokkent");
     }

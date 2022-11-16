@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Mathematics;
+
 
 public class vegpontozas : MonoBehaviour
 {
@@ -10,20 +10,18 @@ public class vegpontozas : MonoBehaviour
     private Upgrade FejlesztesPont;
     private Targyak targyak;
     private Akciok akciok;
-    public bool foundsource;
     private Elet elet;
+    public bool foundsource;
 
     int osszpont = 0;
-    int elhasznaltelet = 0;
-    int tolteny = 0;
-    int megszerzetttargyak = 0;
+    int tolteny;
+    int megszerzetttargyak;
     int fejlesztespont;
     int energiapont;
     int megmaradtelet;
-    // Start is called before the first frame update
+
     void Start()
     {
-        energia = FindObjectOfType<Energia>();
         energia = FindObjectOfType<Energia>();
         FejlesztesPont = FindObjectOfType<Upgrade>();
         targyak = FindObjectOfType<Targyak>();
@@ -32,15 +30,15 @@ public class vegpontozas : MonoBehaviour
         foundsource = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int OsszpontSzamalas()
     {
+        energiapont = energia.energiasav_text.Length - (energia.getEnergiasavIndex() + 1);
+        megmaradtelet = elet.elet;
         tolteny = akciok.betarazott_tolteny;
         megszerzetttargyak = targyak.targy_szamlalo;
-        energiapont = Convert.ToInt32(energia.energiasav_text) - energia.getEnergiasavIndex();
         fejlesztespont = FejlesztesPont.fejlesztes_szamlalo;
-        megmaradtelet = elet.elet;
 
         osszpont = (energiapont * 2) + (megmaradtelet * 2) + (fejlesztespont / 3) + (tolteny / 2) + megszerzetttargyak;
+        return osszpont;
     }
 }
