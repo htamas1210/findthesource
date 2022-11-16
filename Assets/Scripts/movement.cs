@@ -88,8 +88,8 @@ public class movement : MonoBehaviour {
     private int w = 3; //ennyi oszlop van a mapon
     private int h = 4; //ennyi sor van a mapon
 
-    private int jelenlegi_x = 1;
-    private int jelenlegi_y = 1;
+    public int jelenlegi_x = 1;
+    public int jelenlegi_y = 1;
     private int tavolsag = 0;
     private int moveCounter = 1;
 

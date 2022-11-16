@@ -6,9 +6,9 @@ using TMPro;
 public class Elet : MonoBehaviour
 {
     public TMP_Text[] elet_text;
-    public int elet = 5;
+    public int elet = 2;
     private int elet_vesztve = 0;
-    private int elet_megszerezve = 5;
+    private int elet_megszerezve = 2;
 
     private void Start() {
         for (int i = 0; i < elet_megszerezve; i++) {
@@ -19,6 +19,7 @@ public class Elet : MonoBehaviour
     public void Eletplusz() {
         if (elet > 4) return;
         if (elet_megszerezve > 4) return;
+        
         
         elet++;
         elet_megszerezve++;
@@ -32,6 +33,7 @@ public class Elet : MonoBehaviour
 
     public void Eletvesztes() {
         if(elet_vesztve > 4) return;
+        if (elet_megszerezve > elet +1) return;
         //if(elet < 0) return;
 
         elet_vesztve++;
