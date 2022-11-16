@@ -53,6 +53,7 @@ public class Akciok : MonoBehaviour
                 for (int i = 0; i < felhasznalt_tolteny; i++) {
                     toltenyek[i].text = "X";
                 }
+                betarazott_tolteny -= elhasznalt_toltenyek;
             }
         } else {
             Debug.Log("Nincs eleg tolteny");

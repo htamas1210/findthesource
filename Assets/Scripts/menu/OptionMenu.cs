@@ -38,9 +38,9 @@ public class OptionMenu : MonoBehaviour
     }
 
     //Audio
-    public AudioMixer mixer;
+    //public AudioMixer mixer;
 
-    public void SetMainVolume(float mainVolume) {
+    /*public void SetMainVolume(float mainVolume) {
         mixer.SetFloat("mainVolume", mainVolume);
     }
     public void SetMusicVolume(float musicVolume) {
@@ -48,7 +48,7 @@ public class OptionMenu : MonoBehaviour
     }
     public void SetSfxVolume(float sfxVolume) {
         mixer.SetFloat("sfxVolume", sfxVolume);
-    }
+    }*/
 
     //Quality
     public void setQuality(int qualityIndex) {
@@ -58,5 +58,17 @@ public class OptionMenu : MonoBehaviour
     //Fullscreen
     public void setFullscreen(bool isFullscreen) {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void setVsync(bool value) {
+        int num = 0;
+
+        if (value) num = 1;
+        else num = 0;
+
+        if (num > 0) Debug.Log("vsync on");
+        else Debug.Log("vsync off");
+
+        QualitySettings.vSyncCount = num;
     }
 }
