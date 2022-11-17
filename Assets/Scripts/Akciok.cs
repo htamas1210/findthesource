@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Diagnostics.Tracing;
+using System.Linq;
 
 public class Akciok : MonoBehaviour
 {
@@ -23,10 +25,21 @@ public class Akciok : MonoBehaviour
         {"ures", "ures", "ures", "" },
 
     };
+    //
+
+    //Hack
+    public TMP_Text elso_sor_text;
+    public TMP_Text[] masodik_sor;
+    public TMP_Text[] harmadik_sor;
+    public TMP_Text[] negyedik_sor;
+    private int[] hackelt_sorok;
+    private Upgrade upgrade;
+    //
 
     private void Start() {
         ap = FindObjectOfType<Akciopont>();
-        movement= FindObjectOfType<movement>();
+        movement = FindObjectOfType<movement>();
+        upgrade = FindObjectOfType<Upgrade>();
 
         //kezdesnel karikazza be az elso harom adott toltenyt
         for (int i = 0; i < tolteny_index; i++) {
@@ -79,9 +92,7 @@ public class Akciok : MonoBehaviour
             Debug.Log("nincs eleg akciopont");
             return;
         }
-
-        ap.akciopont--;
-
+     
         int atirandox = (movement.jelenlegi_x - 1);
         int atirandoy = (movement.jelenlegi_y - 1);
 
@@ -92,6 +103,8 @@ public class Akciok : MonoBehaviour
             nyomozasok[atirandoy, atirandox] = "nyomozott";
         }
 
+        ap.akciopont--;
+
         for (int i = 0; i < nyomozasok.GetLength(0); i++) {
             string sor = "";
             for (int j = 0; j < nyomozasok.GetLength(1); j++) {
@@ -99,5 +112,56 @@ public class Akciok : MonoBehaviour
             }
             Debug.Log(sor);
         }
+    }
+
+
+    public void Hack() {
+        int count = 0;
+        int rand;
+
+        if(ap.akciopont < upgrade.hack[upgrade.getHackIndex()]) { //van e eleg akicopont
+            Debug.Log("nincs eleg ap a hackeleshez");
+            return;
+        }
+
+        //egy sorban lett e ketszer nyomozva
+        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
+            if (nyomozasok[i, movement.jelenlegi_y] == "nyomozott") {
+                count++;
+            }
+        }
+
+        //forras helyenek bejelolese
+        if(count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y)){
+            if (movement.jelenlegi_y == 1){ 
+                elso_sor_text.text = "X";
+            }else {
+                rand = Random.Range(1, 7);
+                Debug.Log("sorsolt szam: " + rand);
+                if(movement.jelenlegi_y == 2) {
+                    if(rand < 4) {
+                        masodik_sor[0].text = "X";
+                    } else {
+                        masodik_sor[1].text = "X";
+                    }
+                }else if(movement.jelenlegi_y == 3) {
+                    if (rand < 4) {
+                        harmadik_sor[0].text = "X";
+                    } else {
+                        harmadik_sor[1].text = "X";
+                    }
+                }else if(movement.jelenlegi_y == 4) {
+                    if(rand < 3) {
+                        negyedik_sor[0].text = "X";
+                    }else if( rand < 5) {
+                        negyedik_sor[1].text = "X";
+                    } else {
+                        negyedik_sor[2].text = "X";
+                    }
+                }
+            }
+        }
+
+        ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
     }
 }
