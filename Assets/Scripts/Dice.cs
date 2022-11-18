@@ -65,7 +65,7 @@ public class Dice : MonoBehaviour {
         Debug.Log("valasztott ertek: " + valasztottErtek + "locked status: " + locked);
     }
 
-    private int RollDice(SpriteRenderer renderer) {
+    public int RollDice() {
         int randomDiceSide = Random.Range(0, 5);
         int finalSide = randomDiceSide + 1;
 
@@ -76,8 +76,8 @@ public class Dice : MonoBehaviour {
 
     public void renderDice() {
         do {
-            diceResult[0] = RollDice(hely1);
-            diceResult[1] = RollDice(hely2);
+            diceResult[0] = RollDice();
+            diceResult[1] = RollDice();
         } while (diceResult[0] == diceResult[1]);
 
         hely1.sprite = diceSides[diceResult[0]-1];

@@ -93,8 +93,8 @@ public class Akciok : MonoBehaviour
             return;
         }
      
-        int atirandox = (movement.jelenlegi_x - 1);
-        int atirandoy = (movement.jelenlegi_y - 1);
+        int atirandox = movement.jelenlegi_x - 1;
+        int atirandoy = movement.jelenlegi_y - 1;
 
         if (nyomozasok[atirandox, atirandoy] == "nyomozott") {
             Debug.Log("Itt mar nyomoztal");
@@ -125,14 +125,17 @@ public class Akciok : MonoBehaviour
         }
 
         //egy sorban lett e ketszer nyomozva
-        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
-            if (nyomozasok[i, movement.jelenlegi_y] == "nyomozott") {
+        for (int i = 0; i < 3; i++) {
+            Debug.Log("Belep for");
+            if (nyomozasok[movement.jelenlegi_y, i] == "nyomozott") {
                 count++;
+                Debug.Log("count: " + count);
             }
         }
 
         //forras helyenek bejelolese
         if(count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y)){
+            Debug.Log("belep");
             if (movement.jelenlegi_y == 1){ 
                 elso_sor_text.text = "X";
             }else {
