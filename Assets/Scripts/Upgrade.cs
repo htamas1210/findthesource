@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System;
+using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
+    private Akciopont akciopont;
     public readonly int[] energia = { 3, 3, 2, 2, 1 };
     public readonly int[] akcio = { 0, 0, 1, 1, 2 };
     public readonly int[] harc = { 1, 1, 2, 2, 3 };
@@ -30,6 +27,10 @@ public class Upgrade : MonoBehaviour
     public int getUjradobasIndex() { return ujradobas_index; }
     public int getHackIndex() { return hack_index; }
 
+    private void Start()
+    {
+        akciopont = FindObjectOfType<Akciopont>();
+    }
     public void upgradeEnergia() {
         if (canUpgrade) {
             if (energia_index < 4) {
@@ -39,6 +40,7 @@ public class Upgrade : MonoBehaviour
             Debug.Log("energia_i: " + energia_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
+            akciopont.akciopont--;
         }
     }
 
@@ -51,6 +53,7 @@ public class Upgrade : MonoBehaviour
             Debug.Log("akcio_i: " + akcio_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
+            akciopont.akciopont--;
         }
     }
 
@@ -63,6 +66,7 @@ public class Upgrade : MonoBehaviour
             Debug.Log("harc_i: " + harc_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
+            akciopont.akciopont--;
         }
     }
 
@@ -75,6 +79,7 @@ public class Upgrade : MonoBehaviour
             Debug.Log("ujradobas_i: " + ujradobas_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
+            akciopont.akciopont--;
         }
     }
 
@@ -87,6 +92,7 @@ public class Upgrade : MonoBehaviour
             Debug.Log("hack_i: " + hack_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
+            akciopont.akciopont--;
         }
     }
 }
