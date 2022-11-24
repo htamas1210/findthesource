@@ -38,17 +38,17 @@ public class OptionMenu : MonoBehaviour
     }
 
     //Audio
-    //public AudioMixer mixer;
+    public AudioMixer mixer;
 
-    /*public void SetMainVolume(float mainVolume) {
-        mixer.SetFloat("mainVolume", mainVolume);
+    public void SetMainVolume(float mainVolume) {
+        mixer.SetFloat("Master", mainVolume);
     }
     public void SetMusicVolume(float musicVolume) {
-        mixer.SetFloat("musicVolume", musicVolume);
+        mixer.SetFloat("Music", musicVolume);
     }
     public void SetSfxVolume(float sfxVolume) {
-        mixer.SetFloat("sfxVolume", sfxVolume);
-    }*/
+        mixer.SetFloat("Sfx", sfxVolume);
+    }
 
     //Quality
     public void setQuality(int qualityIndex) {
