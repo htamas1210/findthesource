@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Diagnostics.Tracing;
 using System.Linq;
 
 public class Akciok : MonoBehaviour
@@ -17,6 +16,7 @@ public class Akciok : MonoBehaviour
 
     //Nyomozashoz
     private movement movement;
+    public TMP_Text[] nyomozas_x;
     private string[,] nyomozasok =
     {
         {"ures", "ures", "ures", "" },
@@ -25,6 +25,8 @@ public class Akciok : MonoBehaviour
         {"ures", "ures", "ures", "" },
 
     };
+
+    
     //
 
     //Hack
@@ -103,6 +105,33 @@ public class Akciok : MonoBehaviour
             nyomozasok[atirandoy, atirandox] = "nyomozott";
         }
 
+
+        if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1) {
+            nyomozas_x[0].text = "X";
+        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2) {
+            nyomozas_x[1].text = "X";
+        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3) {
+            nyomozas_x[2].text = "X";
+        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4) {
+            nyomozas_x[3].text = "X";
+        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1) {
+            nyomozas_x[4].text = "X";
+        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2) {
+            nyomozas_x[5].text = "X";
+        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3) {
+            nyomozas_x[6].text = "X";
+        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4) {
+            nyomozas_x[7].text = "X";
+        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1) {
+            nyomozas_x[8].text = "X";
+        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2) {
+            nyomozas_x[9].text = "X";
+        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 3) {
+            nyomozas_x[10].text = "X";
+        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4) {
+            nyomozas_x[11].text = "X";
+        }
+
         ap.akciopont--;
 
         for (int i = 0; i < nyomozasok.GetLength(0); i++) {
@@ -139,7 +168,7 @@ public class Akciok : MonoBehaviour
             if (movement.jelenlegi_y == 1){ 
                 elso_sor_text.text = "X";
             }else {
-                rand = Random.Range(1, 7);
+                rand = UnityEngine.Random.Range(1, 7);
                 Debug.Log("sorsolt szam: " + rand);
                 if(movement.jelenlegi_y == 2) {
                     if(rand < 4) {
