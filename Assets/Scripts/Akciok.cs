@@ -105,8 +105,18 @@ public class Akciok : MonoBehaviour
             nyomozasok[atirandoy, atirandox] = "nyomozott";
         }
 
+        int counter = 0;
+        //egy sorral feljebb megy
+        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
+            for (int j = 0; j < nyomozasok.GetLength(1); j++) {
+                if (nyomozasok[i, j].Equals("nyomozott")) {
+                    nyomozas_x[counter].text = "X";
+                    counter++;
+                }
+            }
+        }
 
-        if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1) {
+        /*if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1) {
             nyomozas_x[0].text = "X";
         } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2) {
             nyomozas_x[1].text = "X";
@@ -130,7 +140,7 @@ public class Akciok : MonoBehaviour
             nyomozas_x[10].text = "X";
         } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4) {
             nyomozas_x[11].text = "X";
-        }
+        }*/
 
         ap.akciopont--;
 
