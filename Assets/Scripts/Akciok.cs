@@ -112,6 +112,9 @@ public class Akciok : MonoBehaviour
                 if (nyomozasok[i, j].Equals("nyomozott")) {
                     nyomozas_x[counter].text = "X";
                     counter++;
+                    Debug.Log("counter: "+ counter);
+                } else if (nyomozasok[i,j].Equals("ures")) {
+                    counter++;
                 }
             }
         }
