@@ -17,6 +17,7 @@ public class Akciok : MonoBehaviour
     //Nyomozashoz
     private movement movement;
     public TMP_Text[] nyomozas_x;
+    public TMP_Text[] nyomozas_oszlop;
     private string[,] nyomozasok =
     {
         {"ures", "ures", "ures", "" },
@@ -119,33 +120,9 @@ public class Akciok : MonoBehaviour
             }
         }
 
-        /*if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1) {
-            nyomozas_x[0].text = "X";
-        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2) {
-            nyomozas_x[1].text = "X";
-        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3) {
-            nyomozas_x[2].text = "X";
-        } else if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4) {
-            nyomozas_x[3].text = "X";
-        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1) {
-            nyomozas_x[4].text = "X";
-        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2) {
-            nyomozas_x[5].text = "X";
-        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3) {
-            nyomozas_x[6].text = "X";
-        } else if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4) {
-            nyomozas_x[7].text = "X";
-        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1) {
-            nyomozas_x[8].text = "X";
-        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2) {
-            nyomozas_x[9].text = "X";
-        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 3) {
-            nyomozas_x[10].text = "X";
-        } else if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4) {
-            nyomozas_x[11].text = "X";
-        }*/
-
         ap.akciopont--;
+
+        NyomozasOszlopCheck();
 
         for (int i = 0; i < nyomozasok.GetLength(0); i++) {
             string sor = "";
@@ -153,6 +130,26 @@ public class Akciok : MonoBehaviour
                 sor += nyomozasok[i, j] + " ";
             }
             Debug.Log(sor);
+        }
+    }
+
+    private void NyomozasOszlopCheck() {
+        int oszlop = movement.jelenlegi_x;
+        int nyomozas_counter = 0;
+
+        for (int i = 0; i < 4; i++) {
+            if (nyomozasok[i, oszlop].Equals("nyomozott")) {
+                nyomozas_counter++;
+                Debug.Log(nyomozasok[i, oszlop]);
+            }
+        }
+
+        Debug.Log("nyomozas counter: " + nyomozas_counter);
+
+        if(nyomozas_counter == 4) {
+            ap.akciopont += 2;
+            Debug.Log("Ap novelve");
+            nyomozas_oszlop[oszlop].text = "X";
         }
     }
 

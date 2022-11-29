@@ -3498,6 +3498,10 @@ MonoBehaviour:
   - {fileID: 970497337}
   - {fileID: 1363492852}
   - {fileID: 28410456}
+  nyomozas_oszlop:
+  - {fileID: 1538197611}
+  - {fileID: 995673070}
+  - {fileID: 720345110}
   elso_sor_text: {fileID: 1038029797}
   masodik_sor:
   - {fileID: 538133533}
