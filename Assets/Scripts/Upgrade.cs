@@ -40,7 +40,6 @@ public class Upgrade : MonoBehaviour
             Debug.Log("energia_i: " + energia_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
-            akciopont.akciopont--;
         }
     }
 
@@ -53,7 +52,6 @@ public class Upgrade : MonoBehaviour
             Debug.Log("akcio_i: " + akcio_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
-            akciopont.akciopont--;
         }
     }
 
@@ -66,7 +64,6 @@ public class Upgrade : MonoBehaviour
             Debug.Log("harc_i: " + harc_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
-            akciopont.akciopont--;
         }
     }
 
@@ -79,7 +76,6 @@ public class Upgrade : MonoBehaviour
             Debug.Log("ujradobas_i: " + ujradobas_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
-            akciopont.akciopont--;
         }
     }
 
@@ -92,7 +88,6 @@ public class Upgrade : MonoBehaviour
             Debug.Log("hack_i: " + hack_index);
             canUpgrade = false;
             fejlesztes_szamlalo++;
-            akciopont.akciopont--;
         }
     }
 }
