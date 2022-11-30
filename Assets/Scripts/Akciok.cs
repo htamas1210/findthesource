@@ -124,6 +124,7 @@ public class Akciok : MonoBehaviour
 
         NyomozasOszlopCheck();
 
+        Debug.Log("----------------");
         for (int i = 0; i < nyomozasok.GetLength(0); i++) {
             string sor = "";
             for (int j = 0; j < nyomozasok.GetLength(1); j++) {
@@ -131,16 +132,17 @@ public class Akciok : MonoBehaviour
             }
             Debug.Log(sor);
         }
+        Debug.Log("----------------");
     }
 
     private void NyomozasOszlopCheck() {
-        int oszlop = movement.jelenlegi_x;
+        int oszlop = movement.jelenlegi_x-1;
         int nyomozas_counter = 0;
 
         for (int i = 0; i < 4; i++) {
             if (nyomozasok[i, oszlop].Equals("nyomozott")) {
                 nyomozas_counter++;
-                Debug.Log(nyomozasok[i, oszlop]);
+                //Debug.Log(nyomozasok[i, oszlop]);
             }
         }
 
