@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System;
 
 public class Akciok : MonoBehaviour
 {
@@ -99,7 +100,7 @@ public class Akciok : MonoBehaviour
         int atirandox = movement.jelenlegi_x - 1;
         int atirandoy = movement.jelenlegi_y - 1;
 
-        if (nyomozasok[atirandox, atirandoy] == "nyomozott") {
+        if (nyomozasok[atirandoy, atirandox] == "nyomozott") {
             Debug.Log("Itt mar nyomoztal");
             return;
         } else {
@@ -165,17 +166,25 @@ public class Akciok : MonoBehaviour
             return;
         }
 
-        //egy sorban lett e ketszer nyomozva
-        for (int i = 0; i < 3; i++) {
-            Debug.Log("Belep for");
-            if (nyomozasok[movement.jelenlegi_y, i] == "nyomozott") {
-                count++;
-                Debug.Log("count: " + count);
+        int i2 = 0;
+        try {
+            //egy sorban lett e ketszer nyomozva          
+            for (int i = 0; i < 3; i++) {
+                //Debug.Log("Belep for");
+                if (nyomozasok[movement.jelenlegi_y-1, i] == "nyomozott") {
+                    count++;
+                    Debug.Log("count: " + count);
+                    i2= i;
+                }
             }
+        }catch(IndexOutOfRangeException e) {
+            Debug.Log("hiba volt");
+            Debug.Log("i: " + i2 + " y" + movement.jelenlegi_y);
         }
+        
 
         //forras helyenek bejelolese
-        if(count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y)){
+        if(count >= 2) { //&& !hackelt_sorok.Contains(movement.jelenlegi_y)
             Debug.Log("belep");
             if (movement.jelenlegi_y == 1){ 
                 elso_sor_text.text = "X";
@@ -204,8 +213,8 @@ public class Akciok : MonoBehaviour
                     }
                 }
             }
+            ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
         }
 
-        ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
     }
 }
