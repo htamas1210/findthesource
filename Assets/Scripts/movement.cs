@@ -645,11 +645,11 @@ public class movement : MonoBehaviour {
                         if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 player.transform.position = oneone.transform.position;
                                 jelenlegi_x = 1;
                                 jelenlegi_y = 1;
-                                ap.akciopont = ap.akciopont - 1;
+                                ap.akciopont = ap.akciopont - tavolsag;
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
                                 if (eromulepes1.activeSelf == true) {
@@ -679,12 +679,16 @@ public class movement : MonoBehaviour {
                         if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
+                                if (jelenlegi_x == 1 && jelenlegi_y == 2)
+                                {
+                                    tavolsag = 2;
+                                }
                                 if (twoonecount < 2) {
                                     player.transform.position = twoone.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 1;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont);
                                     if (feketepiaclepes1.activeSelf == true) {
@@ -718,12 +722,12 @@ public class movement : MonoBehaviour {
                         if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (threeonecount < 2) {
                                     player.transform.position = threeone.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 1;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     threeonecount++;
                                     Debug.Log(ap.akciopont);
                                     if (metrolepes1.activeSelf == true) {
@@ -757,12 +761,16 @@ public class movement : MonoBehaviour {
                         if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
+                                if (jelenlegi_x == 2 && jelenlegi_y == 1)
+                                {
+                                    tavolsag = 2;
+                                }
                                 if (onetwocount < 2) {
                                     player.transform.position = onetwo.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
                                     if (szervereklepes1.activeSelf == true) {
@@ -796,12 +804,12 @@ public class movement : MonoBehaviour {
                         if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (twotwocount < 2) {
                                     player.transform.position = twotwo.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true) {
@@ -836,12 +844,16 @@ public class movement : MonoBehaviour {
                         if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
+                                if (jelenlegi_x == 2 && jelenlegi_y == 3)
+                                {
+                                    tavolsag = 2;
+                                }
                                 if (threetwocount < 2) {
                                     player.transform.position = threetwo.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true) {
@@ -876,12 +888,12 @@ public class movement : MonoBehaviour {
                         if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (onethreecount < 2) {
                                     player.transform.position = onethree.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true) {
@@ -916,12 +928,16 @@ public class movement : MonoBehaviour {
                         if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
+                                if (jelenlegi_x == 3 && jelenlegi_y == 2)
+                                {
+                                    tavolsag = 2;
+                                }
                                 if (twothreecount < 2) {
                                     player.transform.position = twothree.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true) {
@@ -957,12 +973,12 @@ public class movement : MonoBehaviour {
                         if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (threethreecount < 2) {
                                     player.transform.position = threethree.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true) {
@@ -997,12 +1013,12 @@ public class movement : MonoBehaviour {
                         if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (onefourcount < 2) {
                                     player.transform.position = onefour.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true) {
@@ -1037,12 +1053,12 @@ public class movement : MonoBehaviour {
                         if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (twofourcount < 2) {
                                     player.transform.position = twofour.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true) {
@@ -1077,12 +1093,12 @@ public class movement : MonoBehaviour {
                         if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true) {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
-                            if (tavolsag == 1 && ap.akciopont != 0) {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
                                 if (threefourcount < 2) {
                                     player.transform.position = threefour.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - 1;
+                                    ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true) {
