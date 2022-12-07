@@ -36,14 +36,21 @@ public class Akciok : MonoBehaviour
     public TMP_Text[] masodik_sor;
     public TMP_Text[] harmadik_sor;
     public TMP_Text[] negyedik_sor;
-    private int[] hackelt_sorok;
+    private int[] hackelt_sorok = new int[4];
     private Upgrade upgrade;
+    //
+
+    //Source
+    private Source source;
+    private bool alpha = false;
+    private bool omega = false;
     //
 
     private void Start() {
         ap = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
+        source = FindObjectOfType<Source>();
 
         //kezdesnel karikazza be az elso harom adott toltenyt
         for (int i = 0; i < tolteny_index; i++) {
@@ -177,43 +184,63 @@ public class Akciok : MonoBehaviour
                     i2= i;
                 }
             }
-        }catch(IndexOutOfRangeException e) {
+        }catch(IndexOutOfRangeException) {
             Debug.Log("hiba volt");
             Debug.Log("i: " + i2 + " y" + movement.jelenlegi_y);
         }
         
 
         //forras helyenek bejelolese
-        if(count >= 2) { //&& !hackelt_sorok.Contains(movement.jelenlegi_y)
+        if(count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y)) { 
             Debug.Log("belep");
             if (movement.jelenlegi_y == 1){ 
                 elso_sor_text.text = "X";
+                hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
+                source.isNyitva = true;
             }else {
                 rand = UnityEngine.Random.Range(1, 7);
                 Debug.Log("sorsolt szam: " + rand);
-                if(movement.jelenlegi_y == 2) {
+                if(movement.jelenlegi_y == 2) { //alpha, omega
                     if(rand < 4) {
                         masodik_sor[0].text = "X";
+                        alpha = true;
+                        source.sor.Remove(3);//3. sor kiszedes
+                        source.sor.Remove(4);//4. sor kiszedes
                     } else {
                         masodik_sor[1].text = "X";
+                        omega = true;
+                        source.sor.Remove(1);//1. sor kiszedes
+                        source.sor.Remove(2);//2. sor kiszedes
                     }
-                }else if(movement.jelenlegi_y == 3) {
+                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
+                } else if(movement.jelenlegi_y == 3) {//sor
                     if (rand < 4) {
                         harmadik_sor[0].text = "X";
+                        source.sor.Remove(2);//2. sor kiszedes
+                        source.sor.Remove(4);//4. sor kiszedes
                     } else {
                         harmadik_sor[1].text = "X";
+                        source.sor.Remove(1);//2. sor kiszedes
+                        source.sor.Remove(3);//4. sor kiszedes
                     }
-                }else if(movement.jelenlegi_y == 4) {
+                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
+                } else if(movement.jelenlegi_y == 4) {
                     if(rand < 3) {
                         negyedik_sor[0].text = "X";
+                        source.oszlop = 1;
                     }else if( rand < 5) {
                         negyedik_sor[1].text = "X";
+                        source.oszlop = 2;
                     } else {
                         negyedik_sor[2].text = "X";
+                        source.oszlop = 3;
                     }
+                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
                 }
             }
             ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
+        } else {
+            Debug.Log("itt mar hackeltel");
         }
 
     }
