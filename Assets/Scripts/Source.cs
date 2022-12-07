@@ -11,6 +11,8 @@ public class Source : MonoBehaviour
     private movement movement;
     public GameObject sourceSprite;
 
+    private bool oneTime = false;
+
     private void Start() {
         movement = FindObjectOfType<movement>();
 
@@ -23,7 +25,10 @@ public class Source : MonoBehaviour
     private void Update() {
         if(isNyitva && oszlop != -1 && sor.Count == 1) {
             sourceRender(sor[0], oszlop);
-            printSourceLocation();
+            if (!oneTime) {
+                printSourceLocation();
+                oneTime = true;
+            }
         }
     }
 

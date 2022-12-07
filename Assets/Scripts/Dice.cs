@@ -62,7 +62,7 @@ public class Dice : MonoBehaviour {
             ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
         }
 
-        Debug.Log("valasztott ertek: " + valasztottErtek + "locked status: " + locked);
+        Debug.Log("valasztott ertek: " + valasztottErtek + " locked status: " + locked);
     }
 
     public int RollDice() {
