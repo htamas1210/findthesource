@@ -19,7 +19,7 @@ public class OptionMenu : MonoBehaviour
         int currentResIndex = 0;
 
         for (int i = 0; i < resolutions.Length; i++) {
-            string option = resolutions[i].width + " x " +  resolutions[i].height;
+            string option = resolutions[i].width + " x " +  resolutions[i].height + " @"+resolutions[i].refreshRate;
             options.Add(option);
 
             if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height) {
@@ -29,6 +29,7 @@ public class OptionMenu : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResIndex;
+        //resolutionDropdown.itemText.fontSize = 18;
         resolutionDropdown.RefreshShownValue();
     }
 
