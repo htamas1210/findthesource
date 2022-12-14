@@ -24,7 +24,7 @@ public class Source : MonoBehaviour
 
     private void Update() {
         if(isNyitva && oszlop != -1 && sor.Count == 1) {
-            sourceRender(sor[0], oszlop);
+            sourceRender(oszlop, sor[0]);
             if (!oneTime) {
                 printSourceLocation();
                 oneTime = true;

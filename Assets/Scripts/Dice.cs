@@ -66,7 +66,7 @@ public class Dice : MonoBehaviour {
     }
 
     public int RollDice() {
-        int randomDiceSide = Random.Range(0, 5);
+        int randomDiceSide = Random.Range(0, 6);
         int finalSide = randomDiceSide + 1;
 
         Debug.Log(finalSide);
