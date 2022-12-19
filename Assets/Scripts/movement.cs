@@ -71,6 +71,7 @@ public class movement : MonoBehaviour {
     public GameObject korhazlepes2;
 
     private Akciopont ap;
+    private Ugynok ugynok;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -104,6 +105,7 @@ public class movement : MonoBehaviour {
 
     void Start() {
         ap = FindObjectOfType<Akciopont>();
+        ugynok = FindObjectOfType<Ugynok>();
 
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
@@ -652,6 +654,7 @@ public class movement : MonoBehaviour {
                                 ap.akciopont = ap.akciopont - tavolsag;
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
+                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                 if (eromulepes1.activeSelf == true) {
                                     eromulepes2.SetActive(true);
                                     moveCounter++;
@@ -680,8 +683,7 @@ public class movement : MonoBehaviour {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
-                                if (jelenlegi_x == 1 && jelenlegi_y == 2)
-                                {
+                                if (jelenlegi_x == 1 && jelenlegi_y == 2) {
                                     tavolsag = 2;
                                 }
                                 if (twoonecount < 2) {
@@ -691,6 +693,7 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (feketepiaclepes1.activeSelf == true) {
                                         feketepiaclepes2.SetActive(true);
                                         moveCounter++;
@@ -730,6 +733,7 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     threeonecount++;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (metrolepes1.activeSelf == true) {
                                         metrolepes2.SetActive(true);
                                         moveCounter++;
@@ -762,8 +766,7 @@ public class movement : MonoBehaviour {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
-                                if (jelenlegi_x == 2 && jelenlegi_y == 1)
-                                {
+                                if (jelenlegi_x == 2 && jelenlegi_y == 1) {
                                     tavolsag = 2;
                                 }
                                 if (onetwocount < 2) {
@@ -773,6 +776,7 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (szervereklepes1.activeSelf == true) {
                                         szervereklepes2.SetActive(true);
                                         moveCounter++;
@@ -811,6 +815,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 2;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true) {
                                         kingcasinolepes2.SetActive(true);
@@ -845,8 +850,7 @@ public class movement : MonoBehaviour {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
-                                if (jelenlegi_x == 2 && jelenlegi_y == 3)
-                                {
+                                if (jelenlegi_x == 2 && jelenlegi_y == 3) {
                                     tavolsag = 2;
                                 }
                                 if (threetwocount < 2) {
@@ -855,6 +859,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 2;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true) {
                                         feltoltolepes2.SetActive(true);
@@ -895,6 +900,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true) {
                                         kutatolaborlepes2.SetActive(true);
@@ -929,8 +935,7 @@ public class movement : MonoBehaviour {
                             Debug.Log("Maximum kétszer léphetsz egy mezõre");
                         } else {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0) {
-                                if (jelenlegi_x == 3 && jelenlegi_y == 2)
-                                {
+                                if (jelenlegi_x == 3 && jelenlegi_y == 2) {
                                     tavolsag = 2;
                                 }
                                 if (twothreecount < 2) {
@@ -939,6 +944,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true) {
                                         kriptoklublepes2.SetActive(true);
@@ -980,6 +986,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true) {
                                         cyberplazalepes2.SetActive(true);
@@ -1020,6 +1027,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true) {
                                         hadiuzemlepes2.SetActive(true);
@@ -1060,6 +1068,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true) {
                                         konyvtarlepes2.SetActive(true);
@@ -1100,6 +1109,7 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true) {
                                         korhazlepes2.SetActive(true);

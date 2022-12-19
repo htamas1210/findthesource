@@ -5,7 +5,6 @@ public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
-    //public SpriteRenderer akcioponthely;
 
     private Upgrade upgrade;
     private Akciopont ap;
@@ -39,10 +38,6 @@ public class Dice : MonoBehaviour {
                     energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
                 }
 
-                //a valasztott szam atirasa az akcio mezobe
-                /*akcioponthely.sprite = diceSides[valasztottErtek-1];
-                akcioponthely.size = new Vector2(38, 38);*/
-
                 locked = true;
             } else if (gomb.name == "dice2btn") {
                 valasztottErtek = diceResult[1];
@@ -52,10 +47,6 @@ public class Dice : MonoBehaviour {
                     energiasav.csokkenEnergia(1);
                 }
 
-                //a valasztott szam atirasa az akcio mezobe
-                /*akcioponthely.sprite = diceSides[valasztottErtek-1];
-                akcioponthely.size = new Vector2(38, 38);
-                */
                 locked = true;
             }
 

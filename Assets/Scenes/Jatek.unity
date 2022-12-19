@@ -3186,6 +3186,7 @@ GameObject:
   - component: {fileID: 197904232}
   - component: {fileID: 197904233}
   - component: {fileID: 197904234}
+  - component: {fileID: 197904235}
   m_Layer: 0
   m_Name: Mangager
   m_TagString: Untagged
@@ -3574,6 +3575,66 @@ MonoBehaviour:
   oszlop: -1
   sor: 
   sourceSprite: {fileID: 1903169755}
+--- !u!114 &197904235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197904216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a137031cde8443a4db5eb302e26970ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneone:
+  - {fileID: 1326456196}
+  - {fileID: 144640423}
+  - {fileID: 833259107}
+  twoone:
+  - {fileID: 1201900458}
+  - {fileID: 605592371}
+  - {fileID: 1216668348}
+  threeone:
+  - {fileID: 1557522799}
+  - {fileID: 494324061}
+  - {fileID: 169295795}
+  onetwo:
+  - {fileID: 325852436}
+  - {fileID: 2139851218}
+  - {fileID: 1429282887}
+  twotwo:
+  - {fileID: 181786101}
+  - {fileID: 1323862075}
+  - {fileID: 2084459196}
+  threetwo:
+  - {fileID: 1677562173}
+  - {fileID: 1084869153}
+  - {fileID: 473458443}
+  onethree:
+  - {fileID: 280090609}
+  - {fileID: 1647177067}
+  - {fileID: 1995086240}
+  twothree:
+  - {fileID: 2107810768}
+  - {fileID: 2141320755}
+  - {fileID: 720969165}
+  threethree:
+  - {fileID: 1374738211}
+  - {fileID: 815573860}
+  - {fileID: 1962024232}
+  onefour:
+  - {fileID: 694600666}
+  - {fileID: 2026770335}
+  - {fileID: 1872052770}
+  twofour:
+  - {fileID: 981449535}
+  - {fileID: 716950397}
+  - {fileID: 1347432663}
+  threefour:
+  - {fileID: 939451652}
+  - {fileID: 1965172624}
+  - {fileID: 1054331718}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
