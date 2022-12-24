@@ -71,6 +71,7 @@ public class movement : MonoBehaviour {
     public GameObject korhazlepes2;
 
     private Akciopont ap;
+    private Ugynok ugynok;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -104,6 +105,7 @@ public class movement : MonoBehaviour {
 
     void Start() {
         ap = FindObjectOfType<Akciopont>();
+        ugynok = FindObjectOfType<Ugynok>();
 
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
@@ -154,72 +156,96 @@ public class movement : MonoBehaviour {
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 1;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 2) {
             player.transform.position = twoone.transform.position;
             feketepiaclepes1.SetActive(true);
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 1;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 3) {
             player.transform.position = threeone.transform.position;
             metrolepes1.SetActive(true);
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 1;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 4) {
             player.transform.position = onetwo.transform.position;
             szervereklepes1.SetActive(true);
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 2;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 5) {
             player.transform.position = twotwo.transform.position;
             kingcasinolepes1.SetActive(true);
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 2;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 6) {
             player.transform.position = threetwo.transform.position;
             feltoltolepes1.SetActive(true);
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 2;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 7) {
             player.transform.position = onethree.transform.position;
             kutatolaborlepes1.SetActive(true);
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 3;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 8) {
             player.transform.position = twothree.transform.position;
             kriptoklublepes1.SetActive(true);
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 3;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 9) {
             player.transform.position = threethree.transform.position;
             cyberplazalepes1.SetActive(true);
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 3;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 10) {
             player.transform.position = onefour.transform.position;
             hadiuzemlepes1.SetActive(true);
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 4;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 11) {
             player.transform.position = twofour.transform.position;
             konyvtarlepes1.SetActive(true);
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 4;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         } else if (random == 12) {
             player.transform.position = threefour.transform.position;
             korhazlepes1.SetActive(true);
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 4;
+            //Ugynokok sorsorlasa a helyre
+            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
     }
 
@@ -652,6 +678,8 @@ public class movement : MonoBehaviour {
                                 ap.akciopont = ap.akciopont - tavolsag;
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
+                                //Ugynokok sorsorlasa a helyre
+                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                 if (eromulepes1.activeSelf == true) {
                                     eromulepes2.SetActive(true);
                                     moveCounter++;
@@ -691,6 +719,8 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (feketepiaclepes1.activeSelf == true) {
                                         feketepiaclepes2.SetActive(true);
                                         moveCounter++;
@@ -730,6 +760,8 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     threeonecount++;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (metrolepes1.activeSelf == true) {
                                         metrolepes2.SetActive(true);
                                         moveCounter++;
@@ -773,6 +805,8 @@ public class movement : MonoBehaviour {
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     if (szervereklepes1.activeSelf == true) {
                                         szervereklepes2.SetActive(true);
                                         moveCounter++;
@@ -811,6 +845,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 2;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true) {
                                         kingcasinolepes2.SetActive(true);
@@ -855,6 +891,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 2;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true) {
                                         feltoltolepes2.SetActive(true);
@@ -895,6 +933,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true) {
                                         kutatolaborlepes2.SetActive(true);
@@ -939,6 +979,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true) {
                                         kriptoklublepes2.SetActive(true);
@@ -980,6 +1022,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 3;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true) {
                                         cyberplazalepes2.SetActive(true);
@@ -1020,6 +1064,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true) {
                                         hadiuzemlepes2.SetActive(true);
@@ -1060,6 +1106,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true) {
                                         konyvtarlepes2.SetActive(true);
@@ -1100,6 +1148,8 @@ public class movement : MonoBehaviour {
                                     jelenlegi_y = 4;
                                     ap.akciopont = ap.akciopont - tavolsag;
                                     Debug.Log(ap.akciopont);
+                                    //Ugynokok sorsorlasa a helyre
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true) {
                                         korhazlepes2.SetActive(true);

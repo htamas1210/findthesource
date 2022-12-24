@@ -64,7 +64,7 @@ public class Ugynok : MonoBehaviour
             }else if (oneone[1].text.Equals("")) {
                 oneone[1].text = UnityEngine.Random.Range(1, 7).ToString();
             }else if (oneone[2].text.Equals("")) {
-                oneone[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                oneone[2].text = UnityEngine.Random.Range(1, 7).ToString();
             }
         } else if (x == 1 && y == 2) {
             if (onetwo[0].text.Equals("")) {
@@ -156,7 +156,4 @@ public class Ugynok : MonoBehaviour
             }
         }
     }
-
-
-
 }
