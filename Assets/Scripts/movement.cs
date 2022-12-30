@@ -641,7 +641,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("oneone")) {
                         Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                         } else {
@@ -675,7 +675,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("twoone")) {
                         Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                         } else {
@@ -718,7 +718,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("threeone")) {
                         Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                         } else {
@@ -756,7 +756,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("onetwo")) {
                         Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -799,7 +799,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("twotwo")) {
                         Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -839,7 +839,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("threetwo")) {
                         Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -883,7 +883,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("onethree")) {
                         Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -923,7 +923,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("twothree")) {
                         Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -968,7 +968,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[x, y].Equals("threethree")) {
                         Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -1008,7 +1008,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("onefour")) {
                         Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -1048,7 +1048,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("twofour")) {
                         Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
@@ -1088,7 +1088,7 @@ public class movement : MonoBehaviour {
                 for (int y = 0; y < h; y++) {
                     if (helyek[y, x].Equals("threefour")) {
                         Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
-                        tavolsag = math.abs(((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y));
+                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
                         if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true) {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
