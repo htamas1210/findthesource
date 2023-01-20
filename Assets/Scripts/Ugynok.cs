@@ -18,6 +18,60 @@ public class Ugynok : MonoBehaviour
     public TMP_Text[] twofour;
     public TMP_Text[] threefour;
 
+    private void Start() {
+        for (int i = 0; i < oneone.Length; i++)
+        {
+            oneone[i].text = "";
+        }
+        for (int i = 0; i < onetwo.Length; i++)
+        {
+            onetwo[i].text = "";
+        }
+        for (int i = 0; i < onethree.Length; i++)
+        {
+            onethree[i].text = "";
+        }
+        for (int i = 0; i < onefour.Length; i++)
+        {
+            onefour[i].text = "";
+        }
+
+        for (int i = 0; i < twoone.Length; i++)
+        {
+            twoone[i].text = "";
+        }
+        for (int i = 0; i < twotwo.Length; i++)
+        {
+            twotwo[i].text = "";
+        }
+        for (int i = 0; i < twothree.Length; i++)
+        {
+            twothree[i].text = "";
+        }
+        for (int i = 0; i < twofour.Length; i++)
+        {
+            twofour[i].text = "";
+        }
+
+        for (int i = 0; i < threeone.Length; i++)
+        {
+            threeone[i].text = "";
+        }
+        for (int i = 0; i < threetwo.Length; i++)
+        {
+            threetwo[i].text = "";
+        }
+        for (int i = 0; i < threethree.Length; i++)
+        {
+            threethree[i].text = "";
+        }
+        for (int i = 0; i < threefour.Length; i++)
+        {
+            threefour[i].text = "";
+        }
+        
+    }
+
     public void UgynokSorsolas(int x, int y) {
         if (x == 1 && y == 1) {
             if (oneone[0].text.Equals("")) {
