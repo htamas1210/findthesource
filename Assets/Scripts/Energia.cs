@@ -13,7 +13,11 @@ public class Energia : MonoBehaviour
     public void setEnegiasavIndex(int ertek) { energiasav_index = ertek; }
 
     public void csokkenEnergia(int number) {
-        if (granatAktivalva) return; //targy cucc aktivalva egesz korbe nem csokken az energia
+        if (granatAktivalva) {
+            granatAktivalva = false;
+            return; //targy cucc aktivalva egesz korbe nem csokken az energia
+        }
+
         if (energiasav_index > 30) return;
 
         for (int i = 0; i < number; i++) {
