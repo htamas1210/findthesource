@@ -13,14 +13,13 @@ public class helyszinaktivalas : MonoBehaviour
     private Upgrade upgrade;
     private Akciopont akciopont;
     private movement movement;
-    //int movement.jelenlegi_x;
-    //int movement.movement.jelenlegi_y;
+
     bool canUpgrade = false;
+    public bool canKill = false;
     private int diceResult;
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
 
-    // Start is called before the first frame update
     void Start()
     {
         dice = FindObjectOfType<Dice>();
@@ -32,38 +31,31 @@ public class helyszinaktivalas : MonoBehaviour
         elet = FindObjectOfType<Elet>();
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        movement.jelenlegi_x = movement.jelenlegi_x;
-        movement.jelenlegi_y = movement.jelenlegi_y;
-        canUpgrade = false;
-    }*/
-
     public void HelyszinAktivalas()
     {
-        //1-es mezõ
+        //1-es mezï¿½
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
         {
-            //ügynökcsapat ölés bárhol töltény nélkül
+            //ugynokcsapat oles barhol tolteny nelkul
+            canKill = true; //megolhetunk egy csapatot
         }
-        //2-es mezõ -- KÉSZ
+        //2-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
         {
             canUpgrade = true;
             akciopont.akciopont++;
         }
-        //3-es mezõ -- KÉSZ
+        //3-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1)
         {
             movement.helyreTeleport();
         }
-        //4-es mezõ
+        //4-es mezï¿½
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
         {
-            //kapsz egy tárgyat
+            //kapsz egy tï¿½rgyat
         }
-        //5-es mezõ
+        //5-es mezï¿½
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2)
         {
             /*diceResult = RollDice();
@@ -71,19 +63,19 @@ public class helyszinaktivalas : MonoBehaviour
             hely1.size = new Vector2(38, 38);
             targyak.targy_szamlalo++;*/
         }
-        //6-es mezõ
+        //6-es mezï¿½
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2)
         {
-            //+1 akció
+            //+1 akciï¿½
         }
-        //7-es mezõ -- KÉSZ
+        //7-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3)
         {
-            //1 fejlesztés ingyen
+            //1 fejlesztï¿½s ingyen
             canUpgrade = true;
             akciopont.akciopont++;
         }
-        //8-es mezõ
+        //8-es mezï¿½
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3)
         {
 
@@ -93,32 +85,32 @@ public class helyszinaktivalas : MonoBehaviour
             targyak.targy_szamlalo++;*/
 
         }
-        //9-es mezõ -- KÉSZ
+        //9-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 3)
         {
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
         }
-        //10-es mezõ -- KÉSZ ?
+        //10-es mezï¿½ -- Kï¿½SZ ?
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4)
         {
-            //+4 töltény
+            //+4 tï¿½ltï¿½ny
             akciok.Betarazas(4);
         }
-        //11-es mezõ
+        //11-es mezï¿½
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4)
         {
-            //Dobj! Megkapod a tárgyat.
+            //Dobj! Megkapod a tï¿½rgyat.
             
            /* diceResult = RollDice();
             hely1.sprite = diceSides[diceResult - 1];
             hely1.size = new Vector2(38, 38);
             targyak.targy_szamlalo++;*/
         }
-        //12-es mezõ  -- KÉSZ
+        //12-es mezï¿½  -- Kï¿½SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4)
         {
-            //+1 élet
+            //+1 ï¿½let
             elet.Eletplusz();
         }
     }
