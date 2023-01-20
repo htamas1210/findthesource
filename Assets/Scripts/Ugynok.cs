@@ -18,45 +18,6 @@ public class Ugynok : MonoBehaviour
     public TMP_Text[] twofour;
     public TMP_Text[] threefour;
 
-    private void Start() {
-        foreach(var item in oneone) {
-            item.text = "";
-        }
-        foreach (var item in twoone) {
-            item.text = "";
-        }
-        foreach (var item in threeone) {
-            item.text = "";
-        }
-        foreach (var item in onetwo) {
-            item.text = "";
-        }
-        foreach (var item in twotwo) {
-            item.text = "";
-        }
-        foreach (var item in threetwo) {
-            item.text = "";
-        }
-        foreach (var item in onethree) {
-            item.text = "";
-        }
-        foreach (var item in twothree) {
-            item.text = "";
-        }
-        foreach (var item in threethree) {
-            item.text = "";
-        }
-        foreach (var item in onefour) {
-            item.text = "";
-        }
-        foreach (var item in twofour) {
-            item.text = "";
-        }
-        foreach (var item in threefour) {
-            item.text = "";
-        }
-    }
-
     public void UgynokSorsolas(int x, int y) {
         if (x == 1 && y == 1) {
             if (oneone[0].text.Equals("")) {
