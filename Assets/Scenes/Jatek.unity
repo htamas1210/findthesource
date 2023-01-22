@@ -3657,50 +3657,100 @@ MonoBehaviour:
   - {fileID: 1326456196}
   - {fileID: 144640423}
   - {fileID: 833259107}
+  oneoneCollider:
+  - {fileID: 416499492}
+  - {fileID: 1541006005}
+  - {fileID: 2013586993}
   twoone:
   - {fileID: 1201900458}
   - {fileID: 605592371}
   - {fileID: 1216668348}
+  twooneCollider:
+  - {fileID: 1624401003}
+  - {fileID: 1022299900}
+  - {fileID: 482097724}
   threeone:
   - {fileID: 1557522799}
   - {fileID: 494324061}
   - {fileID: 169295795}
+  threeoneCollider:
+  - {fileID: 508890158}
+  - {fileID: 1982496777}
+  - {fileID: 1374165778}
   onetwo:
   - {fileID: 325852436}
   - {fileID: 2139851218}
   - {fileID: 1429282887}
+  onetwoCollider:
+  - {fileID: 893820169}
+  - {fileID: 1328647951}
+  - {fileID: 236305771}
   twotwo:
   - {fileID: 181786101}
   - {fileID: 1323862075}
   - {fileID: 2084459196}
+  twotwoCollider:
+  - {fileID: 1615015558}
+  - {fileID: 1954876564}
+  - {fileID: 974343173}
   threetwo:
   - {fileID: 1677562173}
   - {fileID: 1084869153}
   - {fileID: 473458443}
+  threetwoCollider:
+  - {fileID: 1297498738}
+  - {fileID: 293544120}
+  - {fileID: 2137211082}
   onethree:
   - {fileID: 280090609}
   - {fileID: 1647177067}
   - {fileID: 1995086240}
+  onethreeCollider:
+  - {fileID: 706540132}
+  - {fileID: 683300588}
+  - {fileID: 1397901026}
   twothree:
   - {fileID: 2107810768}
   - {fileID: 2141320755}
   - {fileID: 720969165}
+  twothreeCollider:
+  - {fileID: 798647103}
+  - {fileID: 430026346}
+  - {fileID: 1570926430}
   threethree:
   - {fileID: 1374738211}
   - {fileID: 815573860}
   - {fileID: 1962024232}
+  threethreeCollider:
+  - {fileID: 1564652874}
+  - {fileID: 788057597}
+  - {fileID: 1002673360}
   onefour:
   - {fileID: 694600666}
   - {fileID: 2026770335}
   - {fileID: 1872052770}
+  onefourCollider:
+  - {fileID: 542154673}
+  - {fileID: 1678558476}
+  - {fileID: 421286395}
   twofour:
   - {fileID: 981449535}
   - {fileID: 716950397}
   - {fileID: 1347432663}
+  twofourCollider:
+  - {fileID: 1971118424}
+  - {fileID: 190452685}
+  - {fileID: 922632583}
   threefour:
   - {fileID: 939451652}
   - {fileID: 1965172624}
   - {fileID: 1054331718}
+  threefourCollider:
+  - {fileID: 1157172197}
+  - {fileID: 753661018}
+  - {fileID: 1240172719}
+  canKill: 0
+  maincamera: {fileID: 519420031}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
@@ -6768,9 +6818,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 197904230}
-        m_TargetAssemblyTypeName: Elet, Assembly-CSharp
-        m_MethodName: Eletvesztes
+      - m_Target: {fileID: 197904235}
+        m_TargetAssemblyTypeName: Ugynok, Assembly-CSharp
+        m_MethodName: setCanKillTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
