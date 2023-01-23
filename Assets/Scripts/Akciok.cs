@@ -79,11 +79,11 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public void Loves(int elhasznalt_toltenyek) {
+    public bool Loves(int elhasznalt_toltenyek) {
         if (felhasznalt_tolteny < betarazott_tolteny) {
             if (felhasznalt_tolteny + elhasznalt_toltenyek > betarazott_tolteny) {
                 Debug.Log("Nincs eleg tolteny betarazva, tul sok lenne egyszerre felhasznalva!");
-                return;
+                return false;
             } else {
                 felhasznalt_tolteny += elhasznalt_toltenyek;
                 for (int i = 0; i < felhasznalt_tolteny; i++) {
@@ -91,8 +91,10 @@ public class Akciok : MonoBehaviour
                 }
                 betarazott_tolteny -= elhasznalt_toltenyek;
             }
+            return true;
         } else {
             Debug.Log("Nincs eleg tolteny");
+            return false;
         }
     }
 

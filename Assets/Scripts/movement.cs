@@ -6,7 +6,8 @@ using Unity.Mathematics;
 using TMPro;
 
 
-public class movement : MonoBehaviour {
+public class movement : MonoBehaviour
+{
     public Camera THE_Camera;
     public GameObject player;
 
@@ -72,6 +73,7 @@ public class movement : MonoBehaviour {
 
     private Akciopont ap;
     private Ugynok ugynok;
+    private Targyak targyak;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -103,9 +105,11 @@ public class movement : MonoBehaviour {
         {"", "", "", "" }
     };
 
-    void Start() {
+    void Start()
+    {
         ap = FindObjectOfType<Akciopont>();
         ugynok = FindObjectOfType<Ugynok>();
+        targyak = FindObjectOfType<Targyak>();
 
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
@@ -146,88 +150,112 @@ public class movement : MonoBehaviour {
         kezdoHelyMeghatarzoas();
     }
 
-    private void kezdoHelyMeghatarzoas() {
+    private void kezdoHelyMeghatarzoas()
+    {
         int random = UnityEngine.Random.Range(1, 12);
         Debug.Log("Random a kezdohelyszinhez: " + random);
 
-        if (random == 1) {
+        if (random == 1)
+        {
             player.transform.position = oneone.transform.position;
             eromulepes1.SetActive(true);
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 1;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 2) {
+        }
+        else if (random == 2)
+        {
             player.transform.position = twoone.transform.position;
             feketepiaclepes1.SetActive(true);
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 1;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 3) {
+        }
+        else if (random == 3)
+        {
             player.transform.position = threeone.transform.position;
             metrolepes1.SetActive(true);
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 1;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 4) {
+        }
+        else if (random == 4)
+        {
             player.transform.position = onetwo.transform.position;
             szervereklepes1.SetActive(true);
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 2;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 5) {
+        }
+        else if (random == 5)
+        {
             player.transform.position = twotwo.transform.position;
             kingcasinolepes1.SetActive(true);
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 2;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 6) {
+        }
+        else if (random == 6)
+        {
             player.transform.position = threetwo.transform.position;
             feltoltolepes1.SetActive(true);
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 2;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 7) {
+        }
+        else if (random == 7)
+        {
             player.transform.position = onethree.transform.position;
             kutatolaborlepes1.SetActive(true);
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 3;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 8) {
+        }
+        else if (random == 8)
+        {
             player.transform.position = twothree.transform.position;
             kriptoklublepes1.SetActive(true);
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 3;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 9) {
+        }
+        else if (random == 9)
+        {
             player.transform.position = threethree.transform.position;
             cyberplazalepes1.SetActive(true);
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 3;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 10) {
+        }
+        else if (random == 10)
+        {
             player.transform.position = onefour.transform.position;
             hadiuzemlepes1.SetActive(true);
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 4;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 11) {
+        }
+        else if (random == 11)
+        {
             player.transform.position = twofour.transform.position;
             konyvtarlepes1.SetActive(true);
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 4;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-        } else if (random == 12) {
+        }
+        else if (random == 12)
+        {
             player.transform.position = threefour.transform.position;
             korhazlepes1.SetActive(true);
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
@@ -237,75 +265,107 @@ public class movement : MonoBehaviour {
         }
     }
 
-    public void mozgasHelyre(int x, int y) {
-        if (x == 1 && y == 1) {
+    public void mozgasHelyre(int x, int y)
+    {
+        if (x == 1 && y == 1)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = oneone.transform.position;
-        } else if (x == 1 && y == 2) {
+        }
+        else if (x == 1 && y == 2)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = onetwo.transform.position;
-        } else if (x == 1 && y == 3) {
+        }
+        else if (x == 1 && y == 3)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = onethree.transform.position;
-        } else if (x == 1 && y == 4) {
+        }
+        else if (x == 1 && y == 4)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = onefour.transform.position;
-        } else if (x == 2 && y == 1) {
+        }
+        else if (x == 2 && y == 1)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = twoone.transform.position;
-        } else if (x == 2 && y == 2) {
+        }
+        else if (x == 2 && y == 2)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = twotwo.transform.position;
-        } else if (x == 2 && y == 3) {
+        }
+        else if (x == 2 && y == 3)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = twothree.transform.position;
-        } else if (x == 2 && y == 4) {
+        }
+        else if (x == 2 && y == 4)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = twofour.transform.position;
-        } else if (x == 3 && y == 1) {
+        }
+        else if (x == 3 && y == 1)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = threeone.transform.position;
-        } else if (x == 3 && y == 2) {
+        }
+        else if (x == 3 && y == 2)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = threetwo.transform.position;
-        } else if (x == 3 && y == 3) {
+        }
+        else if (x == 3 && y == 3)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = threethree.transform.position;
-        } else if (x == 3 && y == 4) {
+        }
+        else if (x == 3 && y == 4)
+        {
             jelenlegi_x = x;
             jelenlegi_y = y;
             player.transform.position = threefour.transform.position;
         }
     }
 
-    public void helyreTeleport() {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+    public void helyreTeleport()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-            if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true) {
+            if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
                 player.transform.position = oneone.transform.position;
                 jelenlegi_x = 1;
                 jelenlegi_y = 1;
                 oneonecount = oneonecount + 1;
-                if (eromulepes1.activeSelf == true) {
+                if (eromulepes1.activeSelf == true)
+                {
                     eromulepes2.SetActive(true);
                     moveCounter++;
                     eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                } else {
+                }
+                else
+                {
                     eromulepes1.SetActive(true);
                     moveCounter++;
                     eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
@@ -313,28 +373,38 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
-            if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true) {
+            if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (twoonecount < 2) {
+                if (twoonecount < 2)
+                {
                     player.transform.position = twoone.transform.position;
                     jelenlegi_x = 2;
                     jelenlegi_y = 1;
                     twoonecount = twoonecount + 1;
-                    if (feketepiaclepes1.activeSelf == true) {
+                    if (feketepiaclepes1.activeSelf == true)
+                    {
                         feketepiaclepes2.SetActive(true);
                         moveCounter++;
                         feketepiaclepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         feketepiaclepes1.SetActive(true);
                         moveCounter++;
                         feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -343,22 +413,30 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
-            if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true) {
+            if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
-                if (threeonecount < 2) {
+            }
+            else
+            {
+                if (threeonecount < 2)
+                {
                     player.transform.position = threeone.transform.position;
                     jelenlegi_x = 3;
                     jelenlegi_y = 1;
                     threeonecount++;
-                    if (metrolepes1.activeSelf == true) {
+                    if (metrolepes1.activeSelf == true)
+                    {
                         metrolepes2.SetActive(true);
                         moveCounter++;
                         metrolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         metrolepes1.SetActive(true);
                         moveCounter++;
                         metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
@@ -372,112 +450,152 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
-            if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true) {
+            if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (onetwocount < 2) {
+                if (onetwocount < 2)
+                {
                     player.transform.position = onetwo.transform.position;
                     jelenlegi_x = 1;
                     jelenlegi_y = 2;
                     onetwocount++;
                     Debug.Log(ap.akciopont);
-                    if (szervereklepes1.activeSelf == true) {
+                    if (szervereklepes1.activeSelf == true)
+                    {
                         szervereklepes2.SetActive(true);
                         moveCounter++;
                         szervereklepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         szervereklepes1.SetActive(true);
                         moveCounter++;
                         szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
                 }
             }
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
             Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
-            if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true) {
+            if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (twotwocount < 2) {
+                if (twotwocount < 2)
+                {
                     player.transform.position = twotwo.transform.position;
                     jelenlegi_x = 2;
                     jelenlegi_y = 2;
                     twotwocount++;
-                    if (kingcasinolepes1.activeSelf == true) {
+                    if (kingcasinolepes1.activeSelf == true)
+                    {
                         kingcasinolepes2.SetActive(true);
                         moveCounter++;
                         kingcasinolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         kingcasinolepes1.SetActive(true);
                         moveCounter++;
                         kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
-            if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true) {
+            if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (threetwocount < 2) {
+                if (threetwocount < 2)
+                {
                     player.transform.position = threetwo.transform.position;
                     jelenlegi_x = 3;
                     jelenlegi_y = 2;
                     threetwocount++;
-                    if (feltoltolepes1.activeSelf == true) {
+                    if (feltoltolepes1.activeSelf == true)
+                    {
                         feltoltolepes2.SetActive(true);
                         moveCounter++;
                         feltoltolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         feltoltolepes1.SetActive(true);
                         moveCounter++;
                         feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
 
-            if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true) {
+            if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (onethreecount < 2) {
+                if (onethreecount < 2)
+                {
                     player.transform.position = onethree.transform.position;
                     jelenlegi_x = 1;
                     jelenlegi_y = 3;
                     onethreecount++;
-                    if (kutatolaborlepes1.activeSelf == true) {
+                    if (kutatolaborlepes1.activeSelf == true)
+                    {
                         kutatolaborlepes2.SetActive(true);
                         moveCounter++;
                         kutatolaborlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         kutatolaborlepes1.SetActive(true);
                         moveCounter++;
                         kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -486,29 +604,39 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
 
-            if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true) {
+            if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (twothreecount < 2) {
+                if (twothreecount < 2)
+                {
                     player.transform.position = twothree.transform.position;
                     jelenlegi_x = 2;
                     jelenlegi_y = 3;
                     twothreecount++;
-                    if (kriptoklublepes1.activeSelf == true) {
+                    if (kriptoklublepes1.activeSelf == true)
+                    {
                         kriptoklublepes2.SetActive(true);
                         moveCounter++;
                         kriptoklublepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         kriptoklublepes1.SetActive(true);
                         moveCounter++;
                         kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -518,29 +646,39 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
 
-            if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true) {
+            if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (threethreecount < 2) {
+                if (threethreecount < 2)
+                {
                     player.transform.position = threethree.transform.position;
                     jelenlegi_x = 3;
                     jelenlegi_y = 3;
                     threethreecount++;
-                    if (cyberplazalepes1.activeSelf == true) {
+                    if (cyberplazalepes1.activeSelf == true)
+                    {
                         cyberplazalepes2.SetActive(true);
                         moveCounter++;
                         cyberplazalepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         cyberplazalepes1.SetActive(true);
                         moveCounter++;
                         cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                 }
 
@@ -549,29 +687,39 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
 
-            if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true) {
+            if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (onefourcount < 2) {
+                if (onefourcount < 2)
+                {
                     player.transform.position = onefour.transform.position;
                     jelenlegi_x = 1;
                     jelenlegi_y = 4;
                     onefourcount++;
-                    if (hadiuzemlepes1.activeSelf == true) {
+                    if (hadiuzemlepes1.activeSelf == true)
+                    {
                         hadiuzemlepes2.SetActive(true);
                         moveCounter++;
                         hadiuzemlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         hadiuzemlepes1.SetActive(true);
                         moveCounter++;
                         hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -580,29 +728,39 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
 
-            if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true) {
+            if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (twofourcount < 2) {
+                if (twofourcount < 2)
+                {
                     player.transform.position = twofour.transform.position;
                     jelenlegi_x = 2;
                     jelenlegi_y = 4;
                     twofourcount++;
-                    if (konyvtarlepes1.activeSelf == true) {
+                    if (konyvtarlepes1.activeSelf == true)
+                    {
                         konyvtarlepes2.SetActive(true);
                         moveCounter++;
                         konyvtarlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         konyvtarlepes1.SetActive(true);
                         moveCounter++;
                         konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -611,29 +769,39 @@ public class movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
 
             Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
 
-            if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true) {
+            if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
+            {
                 Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-            } else {
+            }
+            else
+            {
 
-                if (threefourcount < 2) {
+                if (threefourcount < 2)
+                {
                     player.transform.position = threefour.transform.position;
                     jelenlegi_x = 3;
                     jelenlegi_y = 4;
                     threefourcount++;
-                    if (korhazlepes1.activeSelf == true) {
+                    if (korhazlepes1.activeSelf == true)
+                    {
                         korhazlepes2.SetActive(true);
                         moveCounter++;
                         korhazlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    } else {
+                    }
+                    else
+                    {
                         korhazlepes1.SetActive(true);
                         moveCounter++;
                         korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                 }
 
@@ -646,38 +814,67 @@ public class movement : MonoBehaviour {
 
 
     // Update is called once per frame
-    public void Update() {
+    public void Update()
+    {
         tavolsag = math.abs(tavolsag);
 
         // player mozgat�sa �s konzolra irat�s
-        if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("oneone")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("oneone"))
+                    {
                         Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
-                        if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true) {
+                        if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0) {
+                        }
+                        else
+                        {
+                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            {
                                 player.transform.position = oneone.transform.position;
                                 jelenlegi_x = 1;
                                 jelenlegi_y = 1;
-                                ap.akciopont = ap.akciopont - tavolsag;
+                                if (targyak.lathatatlanOltozetAktivalva)
+                                {
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    targyak.lathatatlanOltozetAktivalva = false;
+                                }
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
                                 Debug.Log("ugynok sorsolas");
                                 ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                if (eromulepes1.activeSelf == true) {
+                                if (eromulepes1.activeSelf == true)
+                                {
                                     eromulepes2.SetActive(true);
                                     moveCounter++;
                                     eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                } else {
+                                }
+                                else
+                                {
                                     eromulepes1.SetActive(true);
                                     moveCounter++;
                                     eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -686,42 +883,68 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("twoone")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("twoone"))
+                    {
                         Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
-                        if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true) {
+                        if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 1 && jelenlegi_y == 2)
                                 {
                                     tavolsag = 2;
                                 }
-                                if (twoonecount < 2) {
+                                if (twoonecount < 2)
+                                {
                                     player.transform.position = twoone.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 1;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
                                     twoonecount = twoonecount + 1;
-                                    Debug.Log(ap.akciopont);Debug.Log("ugynok sorsolas");
+                                    Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    if (feketepiaclepes1.activeSelf == true) {
+                                    if (feketepiaclepes1.activeSelf == true)
+                                    {
                                         feketepiaclepes2.SetActive(true);
                                         moveCounter++;
                                         feketepiaclepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         feketepiaclepes1.SetActive(true);
                                         moveCounter++;
                                         feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -731,38 +954,64 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("threeone")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("threeone"))
+                    {
                         Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
-                        if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true) {
+                        if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (threeonecount < 2) {
+                                if (threeonecount < 2)
+                                {
                                     player.transform.position = threeone.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 1;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
                                     threeonecount++;
-                                    Debug.Log(ap.akciopont);Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    if (metrolepes1.activeSelf == true) {
+                                    Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    if (metrolepes1.activeSelf == true)
+                                    {
                                         metrolepes2.SetActive(true);
                                         moveCounter++;
                                         metrolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         metrolepes1.SetActive(true);
                                         moveCounter++;
                                         metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -771,44 +1020,73 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("onetwo")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("onetwo"))
+                    {
                         Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true) {
+                        if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 2 && jelenlegi_y == 1)
                                 {
                                     tavolsag = 2;
                                 }
-                                if (onetwocount < 2) {
+                                if (onetwocount < 2)
+                                {
                                     player.transform.position = onetwo.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    if (szervereklepes1.activeSelf == true) {
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    if (szervereklepes1.activeSelf == true)
+                                    {
                                         szervereklepes2.SetActive(true);
                                         moveCounter++;
                                         szervereklepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         szervereklepes1.SetActive(true);
                                         moveCounter++;
                                         szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
                             }
                         }
@@ -817,40 +1095,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("twotwo")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("twotwo"))
+                    {
                         Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true) {
+                        if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (twotwocount < 2) {
+                                if (twotwocount < 2)
+                                {
                                     player.transform.position = twotwo.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twotwocount++;
-                                    if (kingcasinolepes1.activeSelf == true) {
+                                    if (kingcasinolepes1.activeSelf == true)
+                                    {
                                         kingcasinolepes2.SetActive(true);
                                         moveCounter++;
                                         kingcasinolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         kingcasinolepes1.SetActive(true);
                                         moveCounter++;
                                         kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
                             }
                         }
@@ -860,44 +1167,73 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("threetwo")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("threetwo"))
+                    {
                         Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true) {
+                        if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 2 && jelenlegi_y == 3)
                                 {
                                     tavolsag = 2;
                                 }
-                                if (threetwocount < 2) {
+                                if (threetwocount < 2)
+                                {
                                     player.transform.position = threetwo.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 2;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threetwocount++;
-                                    if (feltoltolepes1.activeSelf == true) {
+                                    if (feltoltolepes1.activeSelf == true)
+                                    {
                                         feltoltolepes2.SetActive(true);
                                         moveCounter++;
                                         feltoltolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         feltoltolepes1.SetActive(true);
                                         moveCounter++;
                                         feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -907,40 +1243,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("onethree")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("onethree"))
+                    {
                         Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true) {
+                        if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (onethreecount < 2) {
+                                if (onethreecount < 2)
+                                {
                                     player.transform.position = onethree.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onethreecount++;
-                                    if (kutatolaborlepes1.activeSelf == true) {
+                                    if (kutatolaborlepes1.activeSelf == true)
+                                    {
                                         kutatolaborlepes2.SetActive(true);
                                         moveCounter++;
                                         kutatolaborlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         kutatolaborlepes1.SetActive(true);
                                         moveCounter++;
                                         kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -950,44 +1315,73 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("twothree")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("twothree"))
+                    {
                         Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true) {
+                        if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 3 && jelenlegi_y == 2)
                                 {
                                     tavolsag = 2;
                                 }
-                                if (twothreecount < 2) {
+                                if (twothreecount < 2)
+                                {
                                     player.transform.position = twothree.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twothreecount++;
-                                    if (kriptoklublepes1.activeSelf == true) {
+                                    if (kriptoklublepes1.activeSelf == true)
+                                    {
                                         kriptoklublepes2.SetActive(true);
                                         moveCounter++;
                                         kriptoklublepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         kriptoklublepes1.SetActive(true);
                                         moveCounter++;
                                         kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -998,40 +1392,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[x, y].Equals("threethree")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[x, y].Equals("threethree"))
+                    {
                         Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true) {
+                        if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (threethreecount < 2) {
+                                if (threethreecount < 2)
+                                {
                                     player.transform.position = threethree.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 3;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threethreecount++;
-                                    if (cyberplazalepes1.activeSelf == true) {
+                                    if (cyberplazalepes1.activeSelf == true)
+                                    {
                                         cyberplazalepes2.SetActive(true);
                                         moveCounter++;
                                         cyberplazalepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         cyberplazalepes1.SetActive(true);
                                         moveCounter++;
                                         cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -1041,40 +1464,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("onefour")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("onefour"))
+                    {
                         Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true) {
+                        if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (onefourcount < 2) {
+                                if (onefourcount < 2)
+                                {
                                     player.transform.position = onefour.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     onefourcount++;
-                                    if (hadiuzemlepes1.activeSelf == true) {
+                                    if (hadiuzemlepes1.activeSelf == true)
+                                    {
                                         hadiuzemlepes2.SetActive(true);
                                         moveCounter++;
                                         hadiuzemlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         hadiuzemlepes1.SetActive(true);
                                         moveCounter++;
                                         hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -1084,40 +1536,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("twofour")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("twofour"))
+                    {
                         Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true) {
+                        if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (twofourcount < 2) {
+                                if (twofourcount < 2)
+                                {
                                     player.transform.position = twofour.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     twofourcount++;
-                                    if (konyvtarlepes1.activeSelf == true) {
+                                    if (konyvtarlepes1.activeSelf == true)
+                                    {
                                         konyvtarlepes2.SetActive(true);
                                         moveCounter++;
                                         konyvtarlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         konyvtarlepes1.SetActive(true);
                                         moveCounter++;
                                         konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }
@@ -1127,40 +1608,69 @@ public class movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition))) {
-            for (int x = 0; x < w; x++) {
-                for (int y = 0; y < h; y++) {
-                    if (helyek[y, x].Equals("threefour")) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    if (helyek[y, x].Equals("threefour"))
+                    {
                         Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
 
-                        if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true) {
+                        if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
+                        {
                             Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
-                        } else {
+                        }
+                        else
+                        {
                             if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
                             {
-                                if (threefourcount < 2) {
+                                if (threefourcount < 2)
+                                {
                                     player.transform.position = threefour.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 4;
-                                    ap.akciopont = ap.akciopont - tavolsag;
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        if (targyak.lathatatlanOltozetAktivalva)
+                                        {
+                                            targyak.lathatatlanOltozetAktivalva = false;
+                                        }
+                                        else
+                                        {
+                                            ap.akciopont = ap.akciopont - tavolsag;
+                                        }
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     threefourcount++;
-                                    if (korhazlepes1.activeSelf == true) {
+                                    if (korhazlepes1.activeSelf == true)
+                                    {
                                         korhazlepes2.SetActive(true);
                                         moveCounter++;
                                         korhazlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         korhazlepes1.SetActive(true);
                                         moveCounter++;
                                         korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
                                 }
-                            } else {
+                            }
+                            else
+                            {
                                 Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
                             }
                         }

@@ -31,6 +31,7 @@ public class Ugynok : MonoBehaviour
     public BoxCollider2D[] threefourCollider;
 
     public bool canKill = false;
+    public bool canShoot = false; //harchoz bool
     public void setCanKillTrue()
     {
         canKill = true;
@@ -94,6 +95,12 @@ public class Ugynok : MonoBehaviour
 
     private void Update()
     {
+        if(canShoot){
+            if(oneone[0].text.Equals("")){
+                
+            }
+        }
+
         if (canKill)
         {
             //check for collider onclick then x out tmp text then set canKill false

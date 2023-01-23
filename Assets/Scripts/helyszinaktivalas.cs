@@ -13,9 +13,9 @@ public class helyszinaktivalas : MonoBehaviour
     private Upgrade upgrade;
     private Akciopont akciopont;
     private movement movement;
+    private Ugynok ugynok;
 
     bool canUpgrade = false;
-    public bool canKill = false;
     private int diceResult;
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
@@ -29,6 +29,7 @@ public class helyszinaktivalas : MonoBehaviour
         targyak = FindObjectOfType<Targyak>();
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
+        ugynok = FindObjectOfType<Ugynok>();
     }
 
     public void HelyszinAktivalas()
@@ -37,7 +38,7 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
         {
             //ugynokcsapat oles barhol tolteny nelkul
-            canKill = true; //megolhetunk egy csapatot
+            ugynok.canKill = true; //megolhetunk egy csapatot
         }
         //2-es mez� -- K�SZ
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
