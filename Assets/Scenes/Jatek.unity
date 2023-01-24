@@ -490,7 +490,7 @@ Transform:
   - {fileID: 168362747}
   - {fileID: 255844035}
   m_Father: {fileID: 1620267093}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &53063408
 GameObject:
@@ -3254,6 +3254,7 @@ GameObject:
   - component: {fileID: 197904234}
   - component: {fileID: 197904235}
   - component: {fileID: 197904236}
+  - component: {fileID: 197904237}
   m_Layer: 0
   m_Name: Mangager
   m_TagString: Untagged
@@ -3312,6 +3313,7 @@ MonoBehaviour:
   hely1: {fileID: 1620774317}
   hely2: {fileID: 921900544}
   valasztottErtek: 0
+  dobott: 0
 --- !u!114 &197904222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,6 +3556,7 @@ MonoBehaviour:
   - {fileID: 1156037872}
   - {fileID: 193801832}
   betarazott_tolteny: 3
+  toltenyszamlalo: 0
   nyomozas_x:
   - {fileID: 120887879}
   - {fileID: 1573977806}
@@ -3773,6 +3776,79 @@ MonoBehaviour:
   matavtaviranyito: 0
   fustgranat: 0
   lathatatlanOltozetAktivalva: 0
+--- !u!114 &197904237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197904216}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6423cb96f98604ea1be2455ae7cff97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "energiafejleszt\xE9s": {fileID: 652887773}
+  "akciofejleszt\xE9s": {fileID: 767162772}
+  "harcfejleszt\xE9s": {fileID: 917471241}
+  "ujradobasfejleszt\xE9s": {fileID: 723782981}
+  "hackfejleszt\xE9s": {fileID: 1785481345}
+  kovetkezokor: {fileID: 1177305936}
+  betarazas: {fileID: 235549630}
+  nyomozas: {fileID: 83085749}
+  hackeles: {fileID: 191744299}
+  rolldice: {fileID: 1393612611}
+  test: {fileID: 401176105}
+  oneone:
+  - {fileID: 1326456196}
+  - {fileID: 144640423}
+  - {fileID: 833259107}
+  twoone:
+  - {fileID: 1201900458}
+  - {fileID: 605592371}
+  - {fileID: 1216668348}
+  threeone:
+  - {fileID: 1557522799}
+  - {fileID: 494324061}
+  - {fileID: 169295795}
+  onetwo:
+  - {fileID: 325852436}
+  - {fileID: 2139851218}
+  - {fileID: 1429282887}
+  twotwo:
+  - {fileID: 181786101}
+  - {fileID: 1323862075}
+  - {fileID: 2084459196}
+  threetwo:
+  - {fileID: 1677562173}
+  - {fileID: 1084869153}
+  - {fileID: 473458443}
+  onethree:
+  - {fileID: 280090609}
+  - {fileID: 1647177067}
+  - {fileID: 1995086240}
+  twothree:
+  - {fileID: 2107810768}
+  - {fileID: 2141320755}
+  - {fileID: 720969165}
+  threethree:
+  - {fileID: 1374738211}
+  - {fileID: 815573860}
+  - {fileID: 1962024232}
+  onefour:
+  - {fileID: 694600666}
+  - {fileID: 2026770335}
+  - {fileID: 1872052770}
+  twofour:
+  - {fileID: 981449535}
+  - {fileID: 716950397}
+  - {fileID: 1347432663}
+  threefour:
+  - {fileID: 939451652}
+  - {fileID: 1965172624}
+  - {fileID: 1054331718}
+  jatekosnyert: 0
+  jatekosvesztett: 0
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
@@ -23994,7 +24070,7 @@ Transform:
   - {fileID: 462887942}
   - {fileID: 53063409}
   m_Father: {fileID: 1620267093}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1240172717
 GameObject:
@@ -25467,7 +25543,7 @@ Transform:
   - {fileID: 1131695912}
   - {fileID: 710452255}
   m_Father: {fileID: 1620267093}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1340209353
 GameObject:
@@ -32095,9 +32171,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1117282719}
+  - {fileID: 1228659130}
   - {fileID: 1339188195}
   - {fileID: 45666889}
-  - {fileID: 1228659130}
   m_Father: {fileID: 85536136}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42381,47 +42457,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141320753}
   m_CullTransparentMesh: 1
---- !u!1 &2142951057
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2142951059}
-  - component: {fileID: 2142951058}
-  m_Layer: 0
-  m_Name: jatekmanager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2142951058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142951057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6423cb96f98604ea1be2455ae7cff97d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2142951059
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142951057}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5465274, y: -1.4268839, z: -0.07916484}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -13,6 +13,8 @@ public class Akciok : MonoBehaviour
     private int felhasznalt_tolteny = 0;
     public int betarazott_tolteny = 3;
     private Akciopont ap;
+
+    public int toltenyszamlalo = 0;
     //
 
     //Nyomozashoz
@@ -28,7 +30,7 @@ public class Akciok : MonoBehaviour
 
     };
 
-    
+
     //
 
     //Hack
@@ -46,27 +48,35 @@ public class Akciok : MonoBehaviour
     private bool omega = false;
     //
 
-    private void Start() {
+    private void Start()
+    {
         ap = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
         source = FindObjectOfType<Source>();
 
         //kezdesnel karikazza be az elso harom adott toltenyt
-        for (int i = 0; i < tolteny_index; i++) {
+        for (int i = 0; i < tolteny_index; i++)
+        {
             toltenyek[i].text = "O";
         }
     }
 
-    public void Betarazas(int betarazas) {
-        if (tolteny_index < 24 && ap.akciopont != 0) {
-            if(tolteny_index + betarazas > 23) {
+    public void Betarazas(int betarazas)
+    {
+        if (tolteny_index < 24 && ap.akciopont != 0)
+        {
+            if (tolteny_index + betarazas > 23)
+            {
                 tolteny_index = 23;
-            } else {
+            }
+            else
+            {
                 tolteny_index += betarazas;
             }
             //felhasznalt toltenytol megy hogy az ott levo x-et ne irja felul
-            for (int i = felhasznalt_tolteny; i < tolteny_index; i++) {
+            for (int i = felhasznalt_tolteny; i < tolteny_index; i++)
+            {
                 toltenyek[i].text = "O";
             }
 
@@ -79,20 +89,29 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public bool Loves(int elhasznalt_toltenyek) {
-        if (felhasznalt_tolteny < betarazott_tolteny) {
-            if (felhasznalt_tolteny + elhasznalt_toltenyek > betarazott_tolteny) {
+    public bool Loves(int elhasznalt_toltenyek)
+    {
+        if (felhasznalt_tolteny < betarazott_tolteny)
+        {
+            if (felhasznalt_tolteny + elhasznalt_toltenyek > betarazott_tolteny)
+            {
                 Debug.Log("Nincs eleg tolteny betarazva, tul sok lenne egyszerre felhasznalva!");
                 return false;
-            } else {
+            }
+            else
+            {
                 felhasznalt_tolteny += elhasznalt_toltenyek;
-                for (int i = 0; i < felhasznalt_tolteny; i++) {
+                for (int i = 0; i < felhasznalt_tolteny; i++)
+                {
                     toltenyek[i].text = "X";
                 }
                 betarazott_tolteny -= elhasznalt_toltenyek;
+                toltenyszamlalo = toltenyszamlalo + elhasznalt_toltenyek;
             }
             return true;
-        } else {
+        }
+        else
+        {
             Debug.Log("Nincs eleg tolteny");
             return false;
         }
@@ -100,31 +119,41 @@ public class Akciok : MonoBehaviour
 
 
     //Nyomozas
-    public void Nyomozas() {
-        if (ap.akciopont <= 0) {
+    public void Nyomozas()
+    {
+        if (ap.akciopont <= 0)
+        {
             Debug.Log("nincs eleg akciopont");
             return;
         }
-     
+
         int atirandox = movement.jelenlegi_x - 1;
         int atirandoy = movement.jelenlegi_y - 1;
 
-        if (nyomozasok[atirandoy, atirandox] == "nyomozott") {
+        if (nyomozasok[atirandoy, atirandox] == "nyomozott")
+        {
             Debug.Log("Itt mar nyomoztal");
             return;
-        } else {
+        }
+        else
+        {
             nyomozasok[atirandoy, atirandox] = "nyomozott";
         }
 
         int counter = 0;
         //egy sorral feljebb megy
-        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
-            for (int j = 0; j < nyomozasok.GetLength(1); j++) {
-                if (nyomozasok[i, j].Equals("nyomozott")) {
+        for (int i = 0; i < nyomozasok.GetLength(0); i++)
+        {
+            for (int j = 0; j < nyomozasok.GetLength(1); j++)
+            {
+                if (nyomozasok[i, j].Equals("nyomozott"))
+                {
                     nyomozas_x[counter].text = "X";
                     counter++;
-                    Debug.Log("counter: "+ counter);
-                } else if (nyomozasok[i,j].Equals("ures")) {
+                    Debug.Log("counter: " + counter);
+                }
+                else if (nyomozasok[i, j].Equals("ures"))
+                {
                     counter++;
                 }
             }
@@ -135,9 +164,11 @@ public class Akciok : MonoBehaviour
         NyomozasOszlopCheck();
 
         Debug.Log("----------------");
-        for (int i = 0; i < nyomozasok.GetLength(0); i++) {
+        for (int i = 0; i < nyomozasok.GetLength(0); i++)
+        {
             string sor = "";
-            for (int j = 0; j < nyomozasok.GetLength(1); j++) {
+            for (int j = 0; j < nyomozasok.GetLength(1); j++)
+            {
                 sor += nyomozasok[i, j] + " ";
             }
             Debug.Log(sor);
@@ -145,12 +176,15 @@ public class Akciok : MonoBehaviour
         Debug.Log("----------------");
     }
 
-    private void NyomozasOszlopCheck() {
-        int oszlop = movement.jelenlegi_x-1;
+    private void NyomozasOszlopCheck()
+    {
+        int oszlop = movement.jelenlegi_x - 1;
         int nyomozas_counter = 0;
 
-        for (int i = 0; i < 4; i++) {
-            if (nyomozasok[i, oszlop].Equals("nyomozott")) {
+        for (int i = 0; i < 4; i++)
+        {
+            if (nyomozasok[i, oszlop].Equals("nyomozott"))
+            {
                 nyomozas_counter++;
                 //Debug.Log(nyomozasok[i, oszlop]);
             }
@@ -158,7 +192,8 @@ public class Akciok : MonoBehaviour
 
         Debug.Log("nyomozas counter: " + nyomozas_counter);
 
-        if(nyomozas_counter == 4) {
+        if (nyomozas_counter == 4)
+        {
             ap.akciopont += 2;
             Debug.Log("Ap novelve");
             nyomozas_oszlop[oszlop].text = "X";
@@ -166,82 +201,111 @@ public class Akciok : MonoBehaviour
     }
 
 
-    public void Hack() {
+    public void Hack()
+    {
         int count = 0;
         int rand;
 
-        if(ap.akciopont < upgrade.hack[upgrade.getHackIndex()]) { //van e eleg akicopont
+        if (ap.akciopont < upgrade.hack[upgrade.getHackIndex()])
+        { //van e eleg akicopont
             Debug.Log("nincs eleg ap a hackeleshez");
             return;
         }
 
         int i2 = 0;
-        try {
+        try
+        {
             //egy sorban lett e ketszer nyomozva          
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
                 //Debug.Log("Belep for");
-                if (nyomozasok[movement.jelenlegi_y-1, i] == "nyomozott") {
+                if (nyomozasok[movement.jelenlegi_y - 1, i] == "nyomozott")
+                {
                     count++;
                     Debug.Log("count: " + count);
-                    i2= i;
+                    i2 = i;
                 }
             }
-        }catch(IndexOutOfRangeException) {
+        }
+        catch (IndexOutOfRangeException)
+        {
             Debug.Log("hiba volt");
             Debug.Log("i: " + i2 + " y" + movement.jelenlegi_y);
         }
-        
+
 
         //forras helyenek bejelolese
-        if(count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y)) { 
+        if (count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y))
+        {
             Debug.Log("belep");
-            if (movement.jelenlegi_y == 1){ 
+            if (movement.jelenlegi_y == 1)
+            {
                 elso_sor_text.text = "X";
-                hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
+                hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
                 source.isNyitva = true;
-            }else {
+            }
+            else
+            {
                 rand = UnityEngine.Random.Range(1, 7);
                 Debug.Log("sorsolt szam: " + rand);
-                if(movement.jelenlegi_y == 2) { //alpha, omega
-                    if(rand < 4) {
+                if (movement.jelenlegi_y == 2)
+                { //alpha, omega
+                    if (rand < 4)
+                    {
                         masodik_sor[0].text = "X";
                         alpha = true;
                         source.sor.Remove(3);//3. sor kiszedes
                         source.sor.Remove(4);//4. sor kiszedes
-                    } else {
+                    }
+                    else
+                    {
                         masodik_sor[1].text = "X";
                         omega = true;
                         source.sor.Remove(1);//1. sor kiszedes
                         source.sor.Remove(2);//2. sor kiszedes
                     }
-                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
-                } else if(movement.jelenlegi_y == 3) {//sor
-                    if (rand < 4) {
+                    hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
+                }
+                else if (movement.jelenlegi_y == 3)
+                {//sor
+                    if (rand < 4)
+                    {
                         harmadik_sor[0].text = "X";
                         source.sor.Remove(2);//2. sor kiszedes
                         source.sor.Remove(4);//4. sor kiszedes
-                    } else {
+                    }
+                    else
+                    {
                         harmadik_sor[1].text = "X";
                         source.sor.Remove(1);//2. sor kiszedes
                         source.sor.Remove(3);//4. sor kiszedes
                     }
-                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
-                } else if(movement.jelenlegi_y == 4) {
-                    if(rand < 3) {
+                    hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
+                }
+                else if (movement.jelenlegi_y == 4)
+                {
+                    if (rand < 3)
+                    {
                         negyedik_sor[0].text = "X";
                         source.oszlop = 1;
-                    }else if( rand < 5) {
+                    }
+                    else if (rand < 5)
+                    {
                         negyedik_sor[1].text = "X";
                         source.oszlop = 2;
-                    } else {
+                    }
+                    else
+                    {
                         negyedik_sor[2].text = "X";
                         source.oszlop = 3;
                     }
-                    hackelt_sorok[movement.jelenlegi_y-1] = movement.jelenlegi_y;
+                    hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
                 }
             }
             ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
-        } else {
+        }
+        else
+        {
             Debug.Log("itt mar hackeltel");
         }
 
