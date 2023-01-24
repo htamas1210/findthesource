@@ -21,6 +21,8 @@ public class Dice : MonoBehaviour {
     public bool getLocked() { return locked; }
     public void setLocked(bool locked) { this.locked = locked; }
 
+    public int dobott = 0;
+
     private void Start() {
         upgrade = FindObjectOfType<Upgrade>();
         ap = FindObjectOfType<Akciopont>();
@@ -76,5 +78,7 @@ public class Dice : MonoBehaviour {
 
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
+        dobott++;
+
     }
 }

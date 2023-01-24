@@ -9,8 +9,12 @@ public class Elet : MonoBehaviour
     public int elet = 2;
     private int elet_vesztve = 0;
     private int elet_megszerezve = 2;
+    private jatekmanager jatekmanager;
 
     private void Start() {
+        jatekmanager = FindObjectOfType<jatekmanager>();
+
+
         for (int i = 0; i < elet_megszerezve; i++) {
             elet_text[i].text = "O";
         }
@@ -32,7 +36,11 @@ public class Elet : MonoBehaviour
     }
 
     public void Eletvesztes() {
-        if(elet_vesztve > 4) return;
+        if (elet_vesztve > 4)
+        {
+            jatekmanager.jatekosvesztett = true;
+            return;
+         }
         if (elet_megszerezve > elet +1) return;
         //if(elet < 0) return;
 
