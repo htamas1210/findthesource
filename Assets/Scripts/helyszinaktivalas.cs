@@ -9,128 +9,122 @@ public class helyszinaktivalas : MonoBehaviour
     private Elet elet;
     private Akciok akciok;
     private Targyak targyak;
-    private Dice dice;
     private Upgrade upgrade;
     private Akciopont akciopont;
     private movement movement;
-    //int movement.jelenlegi_x;
-    //int movement.movement.jelenlegi_y;
-    bool canUpgrade = false;
-    private int diceResult;
-    public Sprite[] diceSides = new Sprite[6];
-    public SpriteRenderer hely1;
+    private Ugynok ugynok;
+    private Energia energia;
 
-    // Start is called before the first frame update
     void Start()
     {
-        dice = FindObjectOfType<Dice>();
         akciopont = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
         targyak = FindObjectOfType<Targyak>();
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
+        ugynok = FindObjectOfType<Ugynok>();
+        energia = FindObjectOfType<Energia>();
     }
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        movement.jelenlegi_x = movement.jelenlegi_x;
-        movement.jelenlegi_y = movement.jelenlegi_y;
-        canUpgrade = false;
-    }*/
 
     public void HelyszinAktivalas()
     {
-        //1-es mezõ
+        //1-es mezï¿½ kesz
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
         {
-            //ügynökcsapat ölés bárhol töltény nélkül
+            //ugynokcsapat oles barhol tolteny nelkul
+            ugynok.canKill = true; //megolhetunk egy csapatot
+            akciopont.UpdateAkciopont(-1);
+            energia.csokkenEnergia(1);
+
         }
-        //2-es mezõ -- KÉSZ
+        //2-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
         {
-            canUpgrade = true;
+            upgrade.canUpgrade = true;
             akciopont.akciopont++;
+            energia.csokkenEnergia(2);
         }
-        //3-es mezõ -- KÉSZ
+        //3-es mezï¿½ 
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1)
         {
-            movement.helyreTeleport();
+            movement.helyreTeleport(); //hogy teleportal
+            energia.csokkenEnergia(1);
         }
-        //4-es mezõ
+        //4-es mezï¿½ kesz
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
         {
-            //kapsz egy tárgyat
+            //kapsz egy tï¿½rgyat
+            targyak.RandomTargy();
+            targyak.targy_szamlalo++;
+            akciopont.UpdateAkciopont(-1);
+            energia.csokkenEnergia(1);
         }
-        //5-es mezõ
+        //5-es mezï¿½ kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2)
         {
-            /*diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
+            ///dobj paros +3 ap paratlan -1 energia
+            int eredmeny = UnityEngine.Random.Range(1,7);
+            Debug.Log("Dobas eredmeny: " + eredmeny);
+            if(eredmeny % 2 == 0)
+                akciopont.UpdateAkciopont(3); //+3ap
+            else
+                energia.csokkenEnergia(1);
+
+            akciopont.UpdateAkciopont(-1);
         }
-        //6-es mezõ
+        //6-es mezï¿½ kesz
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2)
         {
-            //+1 akció
+            //+1 akcio
+            akciopont.UpdateAkciopont(1);
         }
-        //7-es mezõ -- KÉSZ
+        //7-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3)
         {
-            //1 fejlesztés ingyen
-            canUpgrade = true;
-            akciopont.akciopont++;
+            //1 fejlesztï¿½s ingyen
+            upgrade.canUpgrade = true;
+            akciopont.UpdateAkciopont(-2);
         }
-        //8-es mezõ
+        //8-es mezï¿½ kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3)
         {
 
-            /*diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
-
+            //2 kocka dobas egyik +ap masik -energia
+            int eredmeny1 = UnityEngine.Random.Range(1,7); //+ap
+            int eredmeny2 = UnityEngine.Random.Range(1,7); //-energia
+            Debug.Log("Dobas eredmeny elso: "+eredmeny1+ " masodik: " + eredmeny2);
+            akciopont.UpdateAkciopont(eredmeny1);
+            energia.csokkenEnergia(eredmeny2);
         }
-        //9-es mezõ -- KÉSZ
+        //9-es mezï¿½ -- Kï¿½SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 3)
         {
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
+            akciopont.UpdateAkciopont(-2);
         }
-        //10-es mezõ -- KÉSZ ?
+        //10-es mezï¿½ -- Kï¿½SZ ?
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4)
         {
-            //+4 töltény
+            //+4 tï¿½ltï¿½ny
             akciok.Betarazas(4);
+            akciopont.UpdateAkciopont(-1);
         }
-        //11-es mezõ
+        //11-es mezï¿½ kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4)
         {
-            //Dobj! Megkapod a tárgyat.
-            
-           /* diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
+            //Dobj! Megkapod a tï¿½rgyat.
+            targyak.RandomTargy();
+            targyak.targy_szamlalo++;
+            energia.csokkenEnergia(1);
         }
-        //12-es mezõ  -- KÉSZ
+        //12-es mezï¿½  -- Kï¿½SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4)
         {
-            //+1 élet
+            //+1 elet
             elet.Eletplusz();
+            akciopont.UpdateAkciopont(-1);
         }
     }
-
-
-    /*private int RollDice()
-    {
-        int randomDiceSide = UnityEngine.Random.Range(0, 5);
-        int finalSide = randomDiceSide + 1;
-
-        Debug.Log(finalSide);
-
-        return finalSide;
-    }*/
 }

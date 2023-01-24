@@ -9,6 +9,7 @@ public class Targyak : MonoBehaviour
     private Akciopont akciopont;
     private movement movement;
     private Energia energia;
+    private Ugynok ugynok;
 
     public int targy_szamlalo = 0;
     public int adrenalinloket = 0;
@@ -17,6 +18,8 @@ public class Targyak : MonoBehaviour
     public int droidgepagyu = 0;
     public int matavtaviranyito = 0;
     public int fustgranat = 0;
+    public bool lathatatlanOltozetAktivalva = false;
+    private int randomszam;
 
     private void Start() {
         akciok = FindObjectOfType<Akciok>(); 
@@ -24,73 +27,84 @@ public class Targyak : MonoBehaviour
         akciopont = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         energia = FindObjectOfType<Energia>();
+        ugynok = FindObjectOfType<Ugynok>();
     }
 
     public void RandomTargy()
     {
-        int randomszam = UnityEngine.Random.Range(0, 5);
+        string[] elerheto_targyak = {"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"} ;
+        
+        do{
+            randomszam = UnityEngine.Random.Range(0, elerheto_targyak.Length);
+        }while(!elerheto_targyak[randomszam].Equals(""));
+
+        elerheto_targyak[randomszam] = "";
+
         if (randomszam == 0)
         {
             adrenalinloket++;
-            Debug.Log("Kaptál egy AdrenalinLöketet!");
+            Debug.Log("Kaptal egy AdrenalinLoketet!");
         }
         else if (randomszam == 1)
         {
             hackercsatlakozo++;
-            Debug.Log("Kaptál egy Hacker Csatlakozót!");
+            Debug.Log("Kaptal egy Hacker Csatlakozot!");
         }
         else if (randomszam == 2)
         {
             lathatatlanoltozet++;
-            Debug.Log("Kaptál egy Láthatatlan Öltözetet!");
+            Debug.Log("Kaptal egy Lathatatlan oltozetet!");
         }
         else if (randomszam == 3)
         {
             droidgepagyu++;
-            Debug.Log("Kaptál egy Droid-X2 Gépágyút!");
+            Debug.Log("Kaptal egy Droid-X2 Gepagyut!");
         }
         else if (randomszam == 4)
         {
             matavtaviranyito++;
-            Debug.Log("Kaptál egy Mata'v Távirányítót!");
+            Debug.Log("Kaptal egy Matav Taviranyitot!");
         }
         else if (randomszam == 5)
         {
             fustgranat++;
-            Debug.Log("Kaptál egy Álomhozó Füstgránátot!");
+            Debug.Log("Kaptal egy Alomhozo Fustgranatot!");
         }
     }
 
     public void AdrenalinLoket() {
-        targy_szamlalo++;
+        
     }
 
-    public void HackerCsatlakozo() { //Hogyan kell aktivalni?
+    public void HackerCsatlakozo() { //kesz
         //+2 tolteny
         akciok.Betarazas(2);
         //+1 elet
         elet.Eletplusz();
         //+1 akcio
         akciopont.akciopont++;
-        targy_szamlalo++;
+        
     }
 
-    public void LathatatlanOltozek() {
-        movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
-        targy_szamlalo++;
+    public void LathatatlanOltozek() { //kesz
+        //movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
+        lathatatlanOltozetAktivalva = true;
+        
     }
 
-    public void DroidGepagyu() {
-        targy_szamlalo++;
+    public void DroidGepagyu() { //kesz
+        
+        //ugynok cucc
+        ugynok.canKill = true; //barhol meg tud olni ha kattint
     }
 
     public void MatavTaviranyito() {
-        targy_szamlalo++;
+        
     }
 
     public void FustGranat() {
         energia.granatAktivalva = true;
-        targy_szamlalo++;
+        
     }
 
 }
