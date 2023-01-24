@@ -9,20 +9,14 @@ public class helyszinaktivalas : MonoBehaviour
     private Elet elet;
     private Akciok akciok;
     private Targyak targyak;
-    private Dice dice;
     private Upgrade upgrade;
     private Akciopont akciopont;
     private movement movement;
     private Ugynok ugynok;
-
-    bool canUpgrade = false;
-    private int diceResult;
-    public Sprite[] diceSides = new Sprite[6];
-    public SpriteRenderer hely1;
+    private Energia energia;
 
     void Start()
     {
-        dice = FindObjectOfType<Dice>();
         akciopont = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
@@ -30,100 +24,107 @@ public class helyszinaktivalas : MonoBehaviour
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
         ugynok = FindObjectOfType<Ugynok>();
+        energia = FindObjectOfType<Energia>();
     }
 
     public void HelyszinAktivalas()
     {
-        //1-es mez�
+        //1-es mez� kesz
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
         {
             //ugynokcsapat oles barhol tolteny nelkul
             ugynok.canKill = true; //megolhetunk egy csapatot
+            akciopont.UpdateAkciopont(-1);
+            energia.csokkenEnergia(1);
+
         }
         //2-es mez� -- K�SZ
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
         {
-            canUpgrade = true;
+            upgrade.canUpgrade = true;
             akciopont.akciopont++;
+            energia.csokkenEnergia(2);
         }
-        //3-es mez� -- K�SZ
+        //3-es mez� 
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1)
         {
-            movement.helyreTeleport();
+            movement.helyreTeleport(); //hogy teleportal
+            energia.csokkenEnergia(1);
         }
-        //4-es mez�
+        //4-es mez� kesz
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
         {
             //kapsz egy t�rgyat
+            targyak.RandomTargy();
+            targyak.targy_szamlalo++;
+            akciopont.UpdateAkciopont(-1);
+            energia.csokkenEnergia(1);
         }
-        //5-es mez�
+        //5-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2)
         {
-            /*diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
+            ///dobj paros +3 ap paratlan -1 energia
+            int eredmeny = UnityEngine.Random.Range(1,7);
+            Debug.Log("Dobas eredmeny: " + eredmeny);
+            if(eredmeny % 2 == 0)
+                akciopont.UpdateAkciopont(3); //+3ap
+            else
+                energia.csokkenEnergia(1);
+
+            akciopont.UpdateAkciopont(-1);
         }
-        //6-es mez�
+        //6-es mez� kesz
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2)
         {
-            //+1 akci�
+            //+1 akcio
+            akciopont.UpdateAkciopont(1);
         }
         //7-es mez� -- K�SZ
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3)
         {
             //1 fejleszt�s ingyen
-            canUpgrade = true;
-            akciopont.akciopont++;
+            upgrade.canUpgrade = true;
+            akciopont.UpdateAkciopont(-2);
         }
-        //8-es mez�
+        //8-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3)
         {
 
-            /*diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
-
+            //2 kocka dobas egyik +ap masik -energia
+            int eredmeny1 = UnityEngine.Random.Range(1,7); //+ap
+            int eredmeny2 = UnityEngine.Random.Range(1,7); //-energia
+            Debug.Log("Dobas eredmeny elso: "+eredmeny1+ " masodik: " + eredmeny2);
+            akciopont.UpdateAkciopont(eredmeny1);
+            energia.csokkenEnergia(eredmeny2);
         }
         //9-es mez� -- K�SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 3)
         {
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
+            akciopont.UpdateAkciopont(-2);
         }
         //10-es mez� -- K�SZ ?
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4)
         {
             //+4 t�lt�ny
             akciok.Betarazas(4);
+            akciopont.UpdateAkciopont(-1);
         }
-        //11-es mez�
+        //11-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4)
         {
             //Dobj! Megkapod a t�rgyat.
-            
-           /* diceResult = RollDice();
-            hely1.sprite = diceSides[diceResult - 1];
-            hely1.size = new Vector2(38, 38);
-            targyak.targy_szamlalo++;*/
+            targyak.RandomTargy();
+            targyak.targy_szamlalo++;
+            energia.csokkenEnergia(1);
         }
         //12-es mez�  -- K�SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4)
         {
-            //+1 �let
+            //+1 elet
             elet.Eletplusz();
+            akciopont.UpdateAkciopont(-1);
         }
     }
-
-
-    /*private int RollDice()
-    {
-        int randomDiceSide = UnityEngine.Random.Range(0, 5);
-        int finalSide = randomDiceSide + 1;
-
-        Debug.Log(finalSide);
-
-        return finalSide;
-    }*/
 }

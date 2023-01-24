@@ -19,6 +19,7 @@ public class Targyak : MonoBehaviour
     public int matavtaviranyito = 0;
     public int fustgranat = 0;
     public bool lathatatlanOltozetAktivalva = false;
+    private int randomszam;
 
     private void Start() {
         akciok = FindObjectOfType<Akciok>(); 
@@ -31,7 +32,14 @@ public class Targyak : MonoBehaviour
 
     public void RandomTargy()
     {
-        int randomszam = UnityEngine.Random.Range(0, 5);
+        string[] elerheto_targyak = {"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"} ;
+        
+        do{
+            randomszam = UnityEngine.Random.Range(0, elerheto_targyak.Length);
+        }while(!elerheto_targyak[randomszam].Equals(""));
+
+        elerheto_targyak[randomszam] = "";
+
         if (randomszam == 0)
         {
             adrenalinloket++;
@@ -65,38 +73,38 @@ public class Targyak : MonoBehaviour
     }
 
     public void AdrenalinLoket() {
-        targy_szamlalo++;
+        
     }
 
-    public void HackerCsatlakozo() {
+    public void HackerCsatlakozo() { //kesz
         //+2 tolteny
         akciok.Betarazas(2);
         //+1 elet
         elet.Eletplusz();
         //+1 akcio
         akciopont.akciopont++;
-        targy_szamlalo++;
+        
     }
 
-    public void LathatatlanOltozek() {
+    public void LathatatlanOltozek() { //kesz
         //movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
         lathatatlanOltozetAktivalva = true;
-        targy_szamlalo++;
+        
     }
 
-    public void DroidGepagyu() {
-        targy_szamlalo++;
+    public void DroidGepagyu() { //kesz
+        
         //ugynok cucc
         ugynok.canKill = true; //barhol meg tud olni ha kattint
     }
 
     public void MatavTaviranyito() {
-        targy_szamlalo++;
+        
     }
 
     public void FustGranat() {
         energia.granatAktivalva = true;
-        targy_szamlalo++;
+        
     }
 
 }

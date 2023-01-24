@@ -3253,6 +3253,7 @@ GameObject:
   - component: {fileID: 197904233}
   - component: {fileID: 197904234}
   - component: {fileID: 197904235}
+  - component: {fileID: 197904236}
   m_Layer: 0
   m_Name: Mangager
   m_TagString: Untagged
@@ -3750,7 +3751,28 @@ MonoBehaviour:
   - {fileID: 753661018}
   - {fileID: 1240172719}
   canKill: 0
+  canShoot: 0
   maincamera: {fileID: 519420031}
+--- !u!114 &197904236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197904216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2595afc692aed134ab895e537a2c9f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targy_szamlalo: 0
+  adrenalinloket: 0
+  hackercsatlakozo: 0
+  lathatatlanoltozet: 0
+  droidgepagyu: 0
+  matavtaviranyito: 0
+  fustgranat: 0
+  lathatatlanOltozetAktivalva: 0
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
