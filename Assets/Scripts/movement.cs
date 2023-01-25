@@ -831,7 +831,7 @@ public class movement : MonoBehaviour
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -840,10 +840,6 @@ public class movement : MonoBehaviour
                                 player.transform.position = oneone.transform.position;
                                 jelenlegi_x = 1;
                                 jelenlegi_y = 1;
-                                if (targyak.lathatatlanOltozetAktivalva)
-                                {
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
                                         if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
@@ -852,10 +848,8 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    targyak.lathatatlanOltozetAktivalva = false;
-                                }
+
+                                
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
                                 Debug.Log("ugynok sorsolas");
@@ -910,9 +904,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = twoone.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 1;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                   if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -920,8 +912,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -977,9 +967,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = threeone.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 1;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                   if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -987,8 +975,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
                                     threeonecount++;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1048,13 +1034,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = onetwo.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 2;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                 if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1062,7 +1042,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1119,13 +1098,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = twotwo.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 2;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                  if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1133,7 +1106,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1196,12 +1168,6 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 2;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1209,7 +1175,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1267,13 +1232,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = onethree.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 3;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                   if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1281,7 +1240,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1344,12 +1302,6 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 3;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1357,7 +1309,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1417,12 +1368,6 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 3;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1430,7 +1375,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1489,12 +1433,6 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 4;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1502,7 +1440,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1560,13 +1497,7 @@ public class movement : MonoBehaviour
                                     player.transform.position = twofour.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 4;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
+                                  if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1574,7 +1505,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
@@ -1633,12 +1563,6 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 4;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        if (targyak.lathatatlanOltozetAktivalva)
                                         {
                                             targyak.lathatatlanOltozetAktivalva = false;
                                         }
@@ -1646,7 +1570,6 @@ public class movement : MonoBehaviour
                                         {
                                             ap.akciopont = ap.akciopont - tavolsag;
                                         }
-                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);

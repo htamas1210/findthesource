@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class jatekmanager : MonoBehaviour
 {
@@ -66,8 +67,8 @@ public class jatekmanager : MonoBehaviour
     void Update()
     {
         //amig a játékos vesztett bool nem egyenlo true-val vagy a nyert bool nem egyenlo true-val
-        while (jatekosnyert != true || jatekosvesztett != true)
-        {
+        //while (jatekosnyert != true || jatekosvesztett != true)
+        //{
             //a jatekos mikor belép semmit ne tudjon csinálni csak dobni a kockával, hogy elkezdje a játékot
 
             //Itt a movement script kikapcsol
@@ -85,13 +86,13 @@ public class jatekmanager : MonoBehaviour
 
 
             //ez rossz!!!!
-            /*while (dice.dobott < upgrade.getUjradobasIndex() + 1 && dice.getLocked() != true)
+            /*while (dice.dobott < upgrade.getUjradobasIndex() && dice.getLocked() != true)
             {
 
                 //eddig újradobhat
             }*/
 
-            rolldice.SetActive(false);
+            //rolldice.SetActive(false);
 
             //a játékos választ a két érték között
 
@@ -126,7 +127,7 @@ public class jatekmanager : MonoBehaviour
                 harcfejlesztés.SetActive(false);
                 ujradobasfejlesztés.SetActive(false);
                 hackfejlesztés.SetActive(false);
-                rolldice.SetActive(false);
+                //rolldice.SetActive(false);
                 betarazas.SetActive(false);
                 nyomozas.SetActive(false);
                 hackeles.SetActive(false);
@@ -135,9 +136,12 @@ public class jatekmanager : MonoBehaviour
             }
             //amint rányom a kör vége gombra 0 legyen az akciópont és megint csak a dobás legyen elérhető
 
+            
 
-        }
+        //}
 
+        JatekosNyert();
+        JatekosVesztett();
 
     }
 
@@ -150,6 +154,7 @@ public class jatekmanager : MonoBehaviour
                 if (oneone[0].text.Equals("X") && oneone[1].text.Equals("X") && oneone[2].text.Equals("X"))
                 {
                     jatekosnyert = true;
+                    
                 }
             }
             if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
@@ -229,6 +234,10 @@ public class jatekmanager : MonoBehaviour
                     jatekosnyert = true;
                 }
             }
+        }
+
+        if(jatekosnyert){
+            SceneManager.LoadScene("JatekosNyert");
         }
 
     }
@@ -498,5 +507,8 @@ public class jatekmanager : MonoBehaviour
             }
         }
 
+        if(jatekosvesztett){
+            SceneManager.LoadScene("JatekosVesztett");
+        }
     }
 }
