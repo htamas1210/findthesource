@@ -60,7 +60,6 @@ public class jatekmanager : MonoBehaviour
         movement = FindObjectOfType<movement>();
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
-
     }
 
     // Update is called once per frame
@@ -84,11 +83,13 @@ public class jatekmanager : MonoBehaviour
             hackeles.SetActive(false);
             test.SetActive(false);
 
-            while (dice.dobott < upgrade.getUjradobasIndex() + 1 && dice.getLocked() != true)
+
+            //ez rossz!!!!
+            /*while (dice.dobott < upgrade.getUjradobasIndex() + 1 && dice.getLocked() != true)
             {
 
                 //eddig újradobhat
-            }
+            }*/
 
             rolldice.SetActive(false);
 
