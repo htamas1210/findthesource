@@ -11,6 +11,11 @@ public class Targyak : MonoBehaviour
     private Energia energia;
     private Ugynok ugynok;
 
+    public GameObject kocka1ertek;
+    public GameObject kocka2ertek;
+    public int ujertek1;
+    public int ujertek2;
+
     public int targy_szamlalo = 0;
     public int adrenalinloket = 0;
     public int hackercsatlakozo = 0;
@@ -19,6 +24,7 @@ public class Targyak : MonoBehaviour
     public int matavtaviranyito = 0;
     public int fustgranat = 0;
     public bool lathatatlanOltozetAktivalva = false;
+    public bool matavtaviranyitoAktivalva = false;
     private int randomszam;
 
     private void Start() {
@@ -73,7 +79,15 @@ public class Targyak : MonoBehaviour
     }
 
     public void AdrenalinLoket() {
-        
+        kocka1ertek.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
+        kocka2ertek.SetActive(true);
+        ujertek1 = int.Parse(kocka1ertek.text);
+        ujertek2 = int.Parse(kocka2ertek.text);
+        //uj ertek atadasa a dicenak
+
+        //input mezo deaktivalas
+        kocka1ertek.SetActive(false);
+        kocka2ertek.SetActive(false);
     }
 
     public void HackerCsatlakozo() { //kesz
@@ -99,7 +113,7 @@ public class Targyak : MonoBehaviour
     }
 
     public void MatavTaviranyito() {
-        
+        matavtaviranyitoAktivalva = true;
     }
 
     public void FustGranat() {

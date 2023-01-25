@@ -34,22 +34,28 @@ public class helyszinaktivalas : MonoBehaviour
         {
             //ugynokcsapat oles barhol tolteny nelkul
             ugynok.canKill = true; //megolhetunk egy csapatot
-            akciopont.UpdateAkciopont(-1);
-            energia.csokkenEnergia(1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-1);
+                energia.csokkenEnergia(1);
+            }
 
         }
         //2-es mez� -- K�SZ
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
         {
             upgrade.canUpgrade = true;
-            akciopont.akciopont++;
-            energia.csokkenEnergia(2);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.akciopont++;
+                energia.csokkenEnergia(2);
+            }
         }
         //3-es mez� 
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 1)
         {
             movement.helyreTeleport(); //hogy teleportal
-            energia.csokkenEnergia(1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                energia.csokkenEnergia(1);
+            }
         }
         //4-es mez� kesz
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
@@ -57,8 +63,10 @@ public class helyszinaktivalas : MonoBehaviour
             //kapsz egy t�rgyat
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
-            akciopont.UpdateAkciopont(-1);
-            energia.csokkenEnergia(1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-1);
+                energia.csokkenEnergia(1);
+            }
         }
         //5-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2)
@@ -71,7 +79,9 @@ public class helyszinaktivalas : MonoBehaviour
             else
                 energia.csokkenEnergia(1);
 
-            akciopont.UpdateAkciopont(-1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-1);
+            }
         }
         //6-es mez� kesz
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2)
@@ -84,7 +94,9 @@ public class helyszinaktivalas : MonoBehaviour
         {
             //1 fejleszt�s ingyen
             upgrade.canUpgrade = true;
-            akciopont.UpdateAkciopont(-2);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-2);
+            }
         }
         //8-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 3)
@@ -102,14 +114,18 @@ public class helyszinaktivalas : MonoBehaviour
         {
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
-            akciopont.UpdateAkciopont(-2);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-2);
+            }
         }
         //10-es mez� -- K�SZ ?
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 4)
         {
             //+4 t�lt�ny
-            akciok.Betarazas(4);
-            akciopont.UpdateAkciopont(-1);
+            akciok.Betarazas(4); //ha nincs negy darab tolteny toltse be a maradekot vagy ne lehessen aktivalni a helyszint?
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-1);
+            }
         }
         //11-es mez� kesz
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4)
@@ -117,14 +133,18 @@ public class helyszinaktivalas : MonoBehaviour
             //Dobj! Megkapod a t�rgyat.
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
-            energia.csokkenEnergia(1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                energia.csokkenEnergia(1);
+            }
         }
         //12-es mez�  -- K�SZ
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4)
         {
             //+1 elet
             elet.Eletplusz();
-            akciopont.UpdateAkciopont(-1);
+            if(!targyak.matavtaviranyitoAktivalva){
+                akciopont.UpdateAkciopont(-1);
+            }
         }
     }
 }

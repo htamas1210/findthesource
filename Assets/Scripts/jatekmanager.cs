@@ -70,9 +70,6 @@ public class jatekmanager : MonoBehaviour
         //while (jatekosnyert != true || jatekosvesztett != true)
         //{
             //a jatekos mikor belép semmit ne tudjon csinálni csak dobni a kockával, hogy elkezdje a játékot
-
-            //Itt a movement script kikapcsol
-
             energiafejlesztés.SetActive(false);
             akciofejlesztés.SetActive(false);
             harcfejlesztés.SetActive(false);
@@ -92,10 +89,7 @@ public class jatekmanager : MonoBehaviour
                 //eddig újradobhat
             }*/
 
-            //rolldice.SetActive(false);
-
             //a játékos választ a két érték között
-
             if (upgrade.canUpgrade == true)
             {
                 //ha a kisebbet választotta akkor jelennek meg a fejlesztés gombjai
@@ -120,7 +114,6 @@ public class jatekmanager : MonoBehaviour
 
             if (akciopont.akciopont == 0)
             {
-
                 //movement kikapcs
                 energiafejlesztés.SetActive(false);
                 akciofejlesztés.SetActive(false);
