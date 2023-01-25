@@ -79,7 +79,7 @@ public class Targyak : MonoBehaviour
     }
 
     public void AdrenalinLoket() {
-        kocka1ertek.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
+        /*kocka1ertek.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
         kocka2ertek.SetActive(true);
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text);
@@ -87,7 +87,7 @@ public class Targyak : MonoBehaviour
 
         //input mezo deaktivalas
         kocka1ertek.SetActive(false);
-        kocka2ertek.SetActive(false);
+        kocka2ertek.SetActive(false);*/
     }
 
     public void HackerCsatlakozo() { //kesz
