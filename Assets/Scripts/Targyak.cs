@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Targyak : MonoBehaviour
@@ -10,9 +11,10 @@ public class Targyak : MonoBehaviour
     private movement movement;
     private Energia energia;
     private Ugynok ugynok;
+    private Dice dice;
 
-    public GameObject kocka1ertek;
-    public GameObject kocka2ertek;
+    public TMP_InputField kocka1ertek;
+    public TMP_InputField kocka2ertek;
     public int ujertek1;
     public int ujertek2;
 
@@ -34,6 +36,7 @@ public class Targyak : MonoBehaviour
         movement = FindObjectOfType<movement>();
         energia = FindObjectOfType<Energia>();
         ugynok = FindObjectOfType<Ugynok>();
+        dice = FindObjectOfType<Dice>();
     }
 
     public void RandomTargy()
@@ -43,6 +46,7 @@ public class Targyak : MonoBehaviour
         do{
             randomszam = UnityEngine.Random.Range(0, elerheto_targyak.Length);
         }while(!elerheto_targyak[randomszam].Equals(""));
+
 
         elerheto_targyak[randomszam] = "";
 
@@ -78,16 +82,27 @@ public class Targyak : MonoBehaviour
         }
     }
 
-    public void AdrenalinLoket() {
-        /*kocka1ertek.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
-        kocka2ertek.SetActive(true);
-        ujertek1 = int.Parse(kocka1ertek.text);
-        ujertek2 = int.Parse(kocka2ertek.text);
-        //uj ertek atadasa a dicenak
+    public void addAdrenalin() {
+        adrenalinloket = 1;
+    }
 
-        //input mezo deaktivalas
-        kocka1ertek.SetActive(false);
-        kocka2ertek.SetActive(false);*/
+    public int[] AdrenalinLoket() {
+        kocka1ertek.text = dice.getDices()[0].ToString();
+        kocka2ertek.text = dice.getDices()[1].ToString();
+        kocka1ertek.gameObject.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
+        kocka2ertek.gameObject.SetActive(true);
+        ujertek1 = int.Parse(kocka1ertek.text);
+        ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
+        int[] eredmeny = {ujertek1, ujertek2};
+        return eredmeny;
+    }
+
+    public void deactivateInput1() {
+        kocka1ertek.gameObject.SetActive(false);
+    }
+
+    public void deactivateInput2(){
+        kocka2ertek.gameObject.SetActive(false);
     }
 
     public void HackerCsatlakozo() { //kesz

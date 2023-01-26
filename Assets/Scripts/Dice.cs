@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Dice : MonoBehaviour {
@@ -9,10 +10,14 @@ public class Dice : MonoBehaviour {
     private Upgrade upgrade;
     private Akciopont ap;
     private Energia energiasav;
+    private Targyak targyak;
 
     private int[] diceResult = { 0, 0 };
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
     private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas
+    
+    private bool adrenalinMegerosites = false;
+    public GameObject adrenalinHasznalat;
 
     //getters setters
     public int[] getDices() { return diceResult; }
@@ -27,6 +32,7 @@ public class Dice : MonoBehaviour {
         upgrade = FindObjectOfType<Upgrade>();
         ap = FindObjectOfType<Akciopont>();
         energiasav = FindObjectOfType<Energia>();
+        targyak = FindObjectOfType<Targyak>();
     }
 
 
@@ -71,6 +77,20 @@ public class Dice : MonoBehaviour {
         do {
             diceResult[0] = RollDice();
             diceResult[1] = RollDice();
+
+            if(targyak.adrenalinloket > 0) {
+                //text aktivalasa kerdesre hogy akarja e hasznalni a targyat
+                adrenalinHasznalat.SetActive(true);
+                //ha igen gomb -> valtozo igaz, targy fv meghivas, deaktivalas
+                if (adrenalinMegerosites) {
+                    int[] ujertek = targyak.AdrenalinLoket();
+                    diceResult[0] = ujertek[0];
+                    diceResult[1] = ujertek[1];
+                }
+                //deaktivalas
+                adrenalinHasznalat.gameObject.SetActive(false);
+                adrenalinMegerosites = false;
+            }
         } while (diceResult[0] == diceResult[1]);
 
         hely1.sprite = diceSides[diceResult[0]-1];
@@ -80,5 +100,9 @@ public class Dice : MonoBehaviour {
         hely2.size = new Vector2(38, 38);
         dobott++;
 
+    }
+
+    public void setAdrenalinMegerosites(bool adrenalinMegerosites) {
+        this.adrenalinMegerosites = adrenalinMegerosites; 
     }
 }

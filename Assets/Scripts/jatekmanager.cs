@@ -79,7 +79,7 @@ public class jatekmanager : MonoBehaviour
             betarazas.SetActive(false);
             nyomozas.SetActive(false);
             hackeles.SetActive(false);
-            test.SetActive(false);
+            //test.SetActive(false);
 
 
             //ez rossz!!!!
@@ -124,7 +124,7 @@ public class jatekmanager : MonoBehaviour
                 betarazas.SetActive(false);
                 nyomozas.SetActive(false);
                 hackeles.SetActive(false);
-                test.SetActive(false);
+                //test.SetActive(false);
                 kovetkezokor.SetActive(true);
             }
             //amint rányom a kör vége gombra 0 legyen az akciópont és megint csak a dobás legyen elérhető
