@@ -87,10 +87,12 @@ public class Targyak : MonoBehaviour
     }
 
     public int[] AdrenalinLoket() {
-        kocka1ertek.text = dice.getDices()[0].ToString();
-        kocka2ertek.text = dice.getDices()[1].ToString();
+        //kocka1ertek.text = dice.getDices()[0].ToString(); //maradjon uresen es jelenjen meg kepen a kocka ertekek, hogy while-al varakoztatni lehessen?
+        //kocka2ertek.text = dice.getDices()[1].ToString();
         kocka1ertek.gameObject.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
         kocka2ertek.gameObject.SetActive(true);
+        //ITT IS VARNI KELL?
+        
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
         int[] eredmeny = {ujertek1, ujertek2};

@@ -78,7 +78,7 @@ public class Dice : MonoBehaviour {
             diceResult[0] = RollDice();
             diceResult[1] = RollDice();
 
-            if(targyak.adrenalinloket > 0) {
+            /*if(targyak.adrenalinloket > 0) {
                 //text aktivalasa kerdesre hogy akarja e hasznalni a targyat
                 adrenalinHasznalat.SetActive(true);
                 //ha igen gomb -> valtozo igaz, targy fv meghivas, deaktivalas
@@ -90,8 +90,25 @@ public class Dice : MonoBehaviour {
                 //deaktivalas
                 adrenalinHasznalat.gameObject.SetActive(false);
                 adrenalinMegerosites = false;
-            }
+            }*/
         } while (diceResult[0] == diceResult[1]);
+
+        if(targyak.adrenalinloket > 0) {
+            Debug.Log("belep");
+            //text aktivalasa kerdesre hogy akarja e hasznalni a targyat
+            adrenalinHasznalat.SetActive(true);
+            //ha igen gomb -> valtozo igaz, targy fv meghivas, deaktivalas
+            //VARNIA KELL A GOMBRA
+            if (adrenalinMegerosites) {
+                int[] ujertek = targyak.AdrenalinLoket();
+                diceResult[0] = ujertek[0];
+                diceResult[1] = ujertek[1];
+            }
+            //deaktivalas
+            adrenalinHasznalat.gameObject.SetActive(false);
+            adrenalinMegerosites = false;
+        }
+
 
         hely1.sprite = diceSides[diceResult[0]-1];
         hely1.size = new Vector2(38, 38);
