@@ -12,13 +12,13 @@ public class Akciopont : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "Akciópontok: ";
+        text.text = "Akciopontok: ";
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Akciópontok: " + akciopont;
+        text.text = "Akciopontok: " + akciopont;
     }
 
     public void UpdateAkciopont(int number) {

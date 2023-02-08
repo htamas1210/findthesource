@@ -264,19 +264,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 16285952}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 197904220}
-        m_TargetAssemblyTypeName: Dice, Assembly-CSharp
-        m_MethodName: setAdrenalinMegerosites
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &16285952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3446,8 +3434,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d8a82287846c3d4892b15d8ab640d68, type: 3}
   hely1: {fileID: 1620774317}
   hely2: {fileID: 921900544}
+  diceResult: 0000000000000000
+  ujertek: 
   valasztottErtek: 0
+  adrenalinMegerosites: 0
   adrenalinHasznalat: {fileID: 274472943}
+  confirm: {fileID: 1617719567}
+  cancel: {fileID: 0}
+  colliders:
+  - {fileID: 987029841}
+  - {fileID: 1580358512}
+  - {fileID: 829877509}
+  - {fileID: 146512458}
+  - {fileID: 1872854}
+  - {fileID: 1173707738}
+  - {fileID: 711095008}
+  - {fileID: 1541045931}
+  - {fileID: 365563088}
+  - {fileID: 53063410}
+  - {fileID: 710452256}
+  - {fileID: 255844036}
   dobott: 0
 --- !u!114 &197904222
 MonoBehaviour:
@@ -3907,6 +3913,8 @@ MonoBehaviour:
   kocka2ertek: {fileID: 762817987}
   ujertek1: 0
   ujertek2: 0
+  confirmNewValue: {fileID: 815764584}
+  cancelNewValue: {fileID: 628297615}
   targy_szamlalo: 0
   adrenalinloket: 0
   hackercsatlakozo: 0
@@ -11386,7 +11394,7 @@ GameObject:
   - component: {fileID: 628297616}
   - component: {fileID: 628297615}
   m_Layer: 5
-  m_Name: deaktivateInput2
+  m_Name: cancelNewValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11410,8 +11418,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 163.36, y: 0}
-  m_SizeDelta: {x: 51.11, y: 30}
+  m_AnchoredPosition: {x: 180, y: -42}
+  m_SizeDelta: {x: 82.68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628297615
 MonoBehaviour:
@@ -11456,19 +11464,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 628297616}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 197904236}
-        m_TargetAssemblyTypeName: Targyak, Assembly-CSharp
-        m_MethodName: deactivateInput2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &628297616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13984,11 +13980,11 @@ RectTransform:
   m_Children:
   - {fileID: 1345558467}
   m_Father: {fileID: 891272366}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -42}
   m_SizeDelta: {x: 250, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762817987
@@ -15333,7 +15329,7 @@ GameObject:
   - component: {fileID: 815764585}
   - component: {fileID: 815764584}
   m_Layer: 5
-  m_Name: deaktivateInput1
+  m_Name: confirmNewValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15353,12 +15349,12 @@ RectTransform:
   m_Children:
   - {fileID: 1188450186}
   m_Father: {fileID: 891272366}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 163.36, y: 0}
-  m_SizeDelta: {x: 51.11, y: 30}
+  m_AnchoredPosition: {x: 180, y: 0}
+  m_SizeDelta: {x: 82.68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815764584
 MonoBehaviour:
@@ -15403,19 +15399,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 815764585}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 197904236}
-        m_TargetAssemblyTypeName: Targyak, Assembly-CSharp
-        m_MethodName: deactivateInput1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &815764585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17105,8 +17089,8 @@ RectTransform:
   - {fileID: 83085750}
   - {fileID: 191744300}
   - {fileID: 1569152954}
-  - {fileID: 815764583}
   - {fileID: 762817986}
+  - {fileID: 815764583}
   - {fileID: 628297614}
   - {fileID: 274472944}
   m_Father: {fileID: 0}
@@ -28682,7 +28666,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 197904220}
         m_TargetAssemblyTypeName: Dice, Assembly-CSharp
-        m_MethodName: renderDice
+        m_MethodName: CallRenderDice
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33757,19 +33741,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1617719568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 197904220}
-        m_TargetAssemblyTypeName: Dice, Assembly-CSharp
-        m_MethodName: setAdrenalinMegerosites
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1617719568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38086,7 +38058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OK
+  m_text: cancel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

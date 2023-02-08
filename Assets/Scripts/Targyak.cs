@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Targyak : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Targyak : MonoBehaviour
     public TMP_InputField kocka2ertek;
     public int ujertek1;
     public int ujertek2;
+    public Button confirmNewValue;
+    public Button cancelNewValue;
 
     public int targy_szamlalo = 0;
     public int adrenalinloket = 0;
@@ -86,26 +89,45 @@ public class Targyak : MonoBehaviour
         adrenalinloket = 1;
     }
 
-    public int[] AdrenalinLoket() {
-        //kocka1ertek.text = dice.getDices()[0].ToString(); //maradjon uresen es jelenjen meg kepen a kocka ertekek, hogy while-al varakoztatni lehessen?
-        //kocka2ertek.text = dice.getDices()[1].ToString();
+    public void CallAdrenalinLoket() => StartCoroutine(AdrenalinLoket());
+
+    public IEnumerator AdrenalinLoket() {
+        Debug.Log("nefefs");
+        kocka1ertek.text = dice.getDices()[0].ToString(); //maradjon uresen es jelenjen meg kepen a kocka ertekek, hogy while-al varakoztatni lehessen?
+        kocka2ertek.text = dice.getDices()[1].ToString();
+
         kocka1ertek.gameObject.SetActive(true); //aktivalja az input mezot hogy meg lehessen adni az uj erteket
-        kocka2ertek.gameObject.SetActive(true);
-        //ITT IS VARNI KELL?
-        
+        kocka2ertek.gameObject.SetActive(true);  
+
+        confirmNewValue.gameObject.SetActive(true);//aktivalja a gombot hozza
+        cancelNewValue.gameObject.SetActive(true);
+
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
-        int[] eredmeny = {ujertek1, ujertek2};
-        return eredmeny;
+        
+        //VARNIA KELL A GOMBRA
+        var waitForButton = new WaitForUIButtons(confirmNewValue, cancelNewValue);
+        yield return waitForButton.Reset();
+        
+        if(waitForButton.PressedButton == confirmNewValue){
+            deactivateInputOk(true);
+            dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
+            dice.ujertek[1] = ujertek2;
+        }else{
+            deactivateInputOk(false);
+        }           
     }
 
-    public void deactivateInput1() {
+    public void deactivateInputOk(bool targyelvesztes) {
         kocka1ertek.gameObject.SetActive(false);
+        kocka2ertek.gameObject.SetActive(false);
+        confirmNewValue.gameObject.SetActive(false);//deaktivalja a gombot hozza
+        cancelNewValue.gameObject.SetActive(false);
+        if(targyelvesztes)
+            adrenalinloket = 0; //targy elvesztese
     }
 
-    public void deactivateInput2(){
-        kocka2ertek.gameObject.SetActive(false);
-    }
+
 
     public void HackerCsatlakozo() { //kesz
         //+2 tolteny

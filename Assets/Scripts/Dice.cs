@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
@@ -12,12 +13,18 @@ public class Dice : MonoBehaviour {
     private Energia energiasav;
     private Targyak targyak;
 
-    private int[] diceResult = { 0, 0 };
+    public int[] diceResult = { 0, 0 };
+    public int[] ujertek;
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
     private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas
     
-    private bool adrenalinMegerosites = false;
+    public bool adrenalinMegerosites = false;
     public GameObject adrenalinHasznalat;
+    public Button confirm;
+    public Button cancel;  
+
+
+    public BoxCollider2D[] colliders;
 
     //getters setters
     public int[] getDices() { return diceResult; }
@@ -73,40 +80,49 @@ public class Dice : MonoBehaviour {
         return finalSide;
     }
 
-    public void renderDice() {
+    public void CallRenderDice() => StartCoroutine(renderDice());
+
+    public IEnumerator renderDice() {
         do {
             diceResult[0] = RollDice();
             diceResult[1] = RollDice();
-
-            /*if(targyak.adrenalinloket > 0) {
-                //text aktivalasa kerdesre hogy akarja e hasznalni a targyat
-                adrenalinHasznalat.SetActive(true);
-                //ha igen gomb -> valtozo igaz, targy fv meghivas, deaktivalas
-                if (adrenalinMegerosites) {
-                    int[] ujertek = targyak.AdrenalinLoket();
-                    diceResult[0] = ujertek[0];
-                    diceResult[1] = ujertek[1];
-                }
-                //deaktivalas
-                adrenalinHasznalat.gameObject.SetActive(false);
-                adrenalinMegerosites = false;
-            }*/
         } while (diceResult[0] == diceResult[1]);
 
+        //lassa a jatekos mit dobott
+        hely1.sprite = diceSides[diceResult[0]-1];
+        hely1.size = new Vector2(38, 38);
+
+        hely2.sprite = diceSides[diceResult[1]-1];
+        hely2.size = new Vector2(38, 38);
+
         if(targyak.adrenalinloket > 0) {
-            Debug.Log("belep");
+            //helyszin collider kikapcsolas a gomb miatt
+            HelyszinKiBekapcs(true);
             //text aktivalasa kerdesre hogy akarja e hasznalni a targyat
-            adrenalinHasznalat.SetActive(true);
+            adrenalinHasznalat.gameObject.SetActive(true);                    
             //ha igen gomb -> valtozo igaz, targy fv meghivas, deaktivalas
             //VARNIA KELL A GOMBRA
+            var waitForButton = new WaitForUIButtons(confirm, cancel);
+            yield return waitForButton.Reset();
+
+            if(waitForButton.PressedButton == confirm){
+                adrenalinMegerosites = true;
+            }else{
+                adrenalinMegerosites = false;
+            }
+
+            adrenalinHasznalat.gameObject.SetActive(false);
+
             if (adrenalinMegerosites) {
-                int[] ujertek = targyak.AdrenalinLoket();
+                Debug.Log("belep");
+                targyak.CallAdrenalinLoket();
                 diceResult[0] = ujertek[0];
                 diceResult[1] = ujertek[1];
             }
             //deaktivalas
-            adrenalinHasznalat.gameObject.SetActive(false);
+            Debug.Log("belep2");
             adrenalinMegerosites = false;
+            HelyszinKiBekapcs(false);
         }
 
 
@@ -117,6 +133,29 @@ public class Dice : MonoBehaviour {
         hely2.size = new Vector2(38, 38);
         dobott++;
 
+    }
+
+    public void HelyszinKiBekapcs(bool kikapcsolas){
+        if(kikapcsolas)
+            foreach(var item in colliders)
+                item.gameObject.SetActive(false);          
+        else
+            foreach(var item in colliders)
+                item.gameObject.SetActive(true);            
+    }
+    
+    public IEnumerator waitbutton(){
+        Debug.Log("belep wait");
+        var waitForButton = new WaitForUIButtons(confirm, cancel);
+            yield return waitForButton.Reset();
+
+            if(waitForButton.PressedButton == confirm){
+                adrenalinMegerosites = true;
+            }else{
+                adrenalinMegerosites = false;
+            }
+
+        adrenalinHasznalat.gameObject.SetActive(false);
     }
 
     public void setAdrenalinMegerosites(bool adrenalinMegerosites) {
