@@ -18,8 +18,6 @@ public class Targyak : MonoBehaviour
     public TMP_InputField kocka2ertek;
     public int ujertek1;
     public int ujertek2;
-    public Button confirmNewValue;
-    public Button cancelNewValue;
 
     public int targy_szamlalo = 0;
     public int adrenalinloket = 0;
@@ -31,6 +29,10 @@ public class Targyak : MonoBehaviour
     public bool lathatatlanOltozetAktivalva = false;
     public bool matavtaviranyitoAktivalva = false;
     private int randomszam;
+
+    public Button confirmNewValue;
+    public Button cancelNewValue;
+
 
     private void Start() {
         akciok = FindObjectOfType<Akciok>(); 
@@ -102,20 +104,27 @@ public class Targyak : MonoBehaviour
         confirmNewValue.gameObject.SetActive(true);//aktivalja a gombot hozza
         cancelNewValue.gameObject.SetActive(true);
 
+        //VARNIA KELL A GOMBRA || itt folytatja
+        var waitForButton = new WaitForUIButtons(confirmNewValue, cancelNewValue);
+        yield return waitForButton.Reset();
+
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
         
-        //VARNIA KELL A GOMBRA
-        var waitForButton = new WaitForUIButtons(confirmNewValue, cancelNewValue);
-        yield return waitForButton.Reset();
-        
         if(waitForButton.PressedButton == confirmNewValue){
             deactivateInputOk(true);
-            dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
-            dice.ujertek[1] = ujertek2;
+            //dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
+            //dice.ujertek[1] = ujertek2; //uj adat amit a user adott meg
+            dice.mehet = true;
+            dice.HelyszinKiBekapcs(false);
+            yield break; //kilepeshez
         }else{
             deactivateInputOk(false);
-        }           
+        }  
+
+        //ha nem lepett ki eddig
+        dice.ujertek[0] = dice.getDices()[0]; 
+        dice.ujertek[1] = dice.getDices()[1]; //regi adat, hogy ne legyen hibas       
     }
 
     public void deactivateInputOk(bool targyelvesztes) {

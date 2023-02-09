@@ -3362,6 +3362,7 @@ GameObject:
   - component: {fileID: 197904217}
   - component: {fileID: 197904218}
   - component: {fileID: 197904220}
+  - component: {fileID: 197904236}
   - component: {fileID: 197904222}
   - component: {fileID: 197904223}
   - component: {fileID: 197904224}
@@ -3375,7 +3376,6 @@ GameObject:
   - component: {fileID: 197904233}
   - component: {fileID: 197904234}
   - component: {fileID: 197904235}
-  - component: {fileID: 197904236}
   - component: {fileID: 197904237}
   m_Layer: 0
   m_Name: Mangager
@@ -3440,7 +3440,8 @@ MonoBehaviour:
   adrenalinMegerosites: 0
   adrenalinHasznalat: {fileID: 274472943}
   confirm: {fileID: 1617719567}
-  cancel: {fileID: 0}
+  cancel: {fileID: 16285951}
+  mehet: 0
   colliders:
   - {fileID: 987029841}
   - {fileID: 1580358512}
@@ -3913,8 +3914,6 @@ MonoBehaviour:
   kocka2ertek: {fileID: 762817987}
   ujertek1: 0
   ujertek2: 0
-  confirmNewValue: {fileID: 815764584}
-  cancelNewValue: {fileID: 628297615}
   targy_szamlalo: 0
   adrenalinloket: 0
   hackercsatlakozo: 0
@@ -3924,6 +3923,8 @@ MonoBehaviour:
   fustgranat: 0
   lathatatlanOltozetAktivalva: 0
   matavtaviranyitoAktivalva: 0
+  confirmNewValue: {fileID: 815764584}
+  cancelNewValue: {fileID: 628297615}
 --- !u!114 &197904237
 MonoBehaviour:
   m_ObjectHideFlags: 0

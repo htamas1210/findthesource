@@ -14,7 +14,7 @@ public class Dice : MonoBehaviour {
     private Targyak targyak;
 
     public int[] diceResult = { 0, 0 };
-    public int[] ujertek;
+    public int[] ujertek = {0,0};
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
     private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas
     
@@ -22,6 +22,7 @@ public class Dice : MonoBehaviour {
     public GameObject adrenalinHasznalat;
     public Button confirm;
     public Button cancel;  
+    public bool mehet = false;
 
 
     public BoxCollider2D[] colliders;
@@ -95,6 +96,7 @@ public class Dice : MonoBehaviour {
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
 
+        //ha megvan a targy
         if(targyak.adrenalinloket > 0) {
             //helyszin collider kikapcsolas a gomb miatt
             HelyszinKiBekapcs(true);
@@ -114,15 +116,18 @@ public class Dice : MonoBehaviour {
             adrenalinHasznalat.gameObject.SetActive(false);
 
             if (adrenalinMegerosites) {
-                Debug.Log("belep");
+                //Debug.Log("belep");
                 targyak.CallAdrenalinLoket();
-                diceResult[0] = ujertek[0];
-                diceResult[1] = ujertek[1];
+                if(mehet){
+                    Debug.Log("belep mehet");
+                    diceResult[0] = targyak.ujertek1;
+                    diceResult[1] = targyak.ujertek2;
+                }           
             }
             //deaktivalas
             Debug.Log("belep2");
             adrenalinMegerosites = false;
-            HelyszinKiBekapcs(false);
+            //HelyszinKiBekapcs(false);
         }
 
 
