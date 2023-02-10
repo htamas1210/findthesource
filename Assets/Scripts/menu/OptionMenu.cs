@@ -61,7 +61,7 @@ public class OptionMenu : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
-    public void setVsync(bool value) {
+    /*public void setVsync(bool value) {
         int num = 0;
 
         if (value) num = 1;
@@ -71,5 +71,5 @@ public class OptionMenu : MonoBehaviour
         else Debug.Log("vsync off");
 
         QualitySettings.vSyncCount = num;
-    }
+    }*/
 }

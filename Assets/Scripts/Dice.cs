@@ -127,6 +127,32 @@ public class Dice : MonoBehaviour {
                 if(mehet){
                     Debug.Log("belep mehet");
                     Debug.Log("List: 0: " + ujertek[0] + " 1: " + ujertek[1]);
+                    //ha tul nagy vagy tul kicsi erteket ad meg az elso kockanak valtsa at az erteket
+                    if(targyak.ujertek1 > 6 && diceResult[1] != 6 && targyak.ujertek2 != 6){ //ha tul nagy szamot adott meg legyen 6 az ertek
+                        targyak.ujertek1 = 6;
+                    }else if(targyak.ujertek1 > 6 && (diceResult[1] == 6 || targyak.ujertek2 == 6)){ //ha a masik ertek 6 akkor legyen az ertek 5
+                        targyak.ujertek1 = 5;
+                    }else if(targyak.ujertek1 < 1 && diceResult[1] != 1 && targyak.ujertek2 != 1){
+                        targyak.ujertek1 = 1;
+                    }else if(targyak.ujertek1 < 1 && (diceResult[1] == 1 || targyak.ujertek2 == 1)){
+                        targyak.ujertek1 = 2;
+                    }
+
+                    //
+
+                    //ha tul nagy vagy tul kicsi erteket ad meg az masodik kockanak valtsa at az erteket
+                    if(targyak.ujertek2 > 6 && diceResult[0] != 6 && targyak.ujertek1 != 6){ //ha tul nagy szamot adott meg legyen 6 az ertek
+                        targyak.ujertek2 = 6;
+                    }else if(targyak.ujertek2 > 6 && (diceResult[0] == 6 || targyak.ujertek1 == 6)){ //ha a masik ertek 6 akkor legyen az ertek 5
+                        targyak.ujertek2 = 5;
+                    }else if(targyak.ujertek2 < 1 && diceResult[0] != 1 && targyak.ujertek1 != 1){
+                        targyak.ujertek2 = 1;
+                    }else if(targyak.ujertek2 < 1 && (diceResult[0] == 1 || targyak.ujertek1 == 1)){
+                        targyak.ujertek2 = 2;
+                    }
+
+                    
+
                     diceResult[0] = targyak.ujertek1;
                     diceResult[1] = targyak.ujertek2;
                 }        

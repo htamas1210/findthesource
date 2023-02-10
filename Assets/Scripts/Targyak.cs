@@ -105,6 +105,8 @@ public class Targyak : MonoBehaviour
         var waitForButton = new WaitForUIButtons(confirmNewValue, cancelNewValue);
         yield return waitForButton.Reset();
 
+
+        //nem szam karakter levedes?
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
         
