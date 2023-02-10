@@ -94,7 +94,7 @@ public class Targyak : MonoBehaviour
     public void CallAdrenalinLoket() => StartCoroutine(AdrenalinLoket());
 
     public IEnumerator AdrenalinLoket() {
-        Debug.Log("nefefs");
+        Debug.Log("adrenalin ienumerator");
         kocka1ertek.text = dice.getDices()[0].ToString(); //maradjon uresen es jelenjen meg kepen a kocka ertekek, hogy while-al varakoztatni lehessen?
         kocka2ertek.text = dice.getDices()[1].ToString();
 
@@ -111,10 +111,12 @@ public class Targyak : MonoBehaviour
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
         
+        Debug.Log("ujertek1: " + ujertek1 + " ujertek2: " + ujertek2);
+
         if(waitForButton.PressedButton == confirmNewValue){
             deactivateInputOk(true);
-            //dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
-            //dice.ujertek[1] = ujertek2; //uj adat amit a user adott meg
+            dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
+            dice.ujertek[1] = ujertek2; //uj adat amit a user adott meg
             dice.mehet = true;
             dice.HelyszinKiBekapcs(false);
             yield break; //kilepeshez
