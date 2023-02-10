@@ -13,12 +13,10 @@ public class Targyak : MonoBehaviour
     private Energia energia;
     private Ugynok ugynok;
     private Dice dice;
-
     public TMP_InputField kocka1ertek;
     public TMP_InputField kocka2ertek;
     public int ujertek1;
     public int ujertek2;
-
     public int targy_szamlalo = 0;
     public int adrenalinloket = 0;
     public int hackercsatlakozo = 0;
@@ -29,12 +27,10 @@ public class Targyak : MonoBehaviour
     public bool lathatatlanOltozetAktivalva = false;
     public bool matavtaviranyitoAktivalva = false;
     private int randomszam;
-
     public Button confirmNewValue;
     public Button cancelNewValue;
 
-
-    private void Start() {
+    private void Awake() {
         akciok = FindObjectOfType<Akciok>(); 
         elet = FindObjectOfType<Elet>();
         akciopont = FindObjectOfType<Akciopont>();
@@ -95,6 +91,7 @@ public class Targyak : MonoBehaviour
 
     public IEnumerator AdrenalinLoket() {
         Debug.Log("adrenalin ienumerator");
+
         kocka1ertek.text = dice.getDices()[0].ToString(); //maradjon uresen es jelenjen meg kepen a kocka ertekek, hogy while-al varakoztatni lehessen?
         kocka2ertek.text = dice.getDices()[1].ToString();
 
@@ -115,8 +112,8 @@ public class Targyak : MonoBehaviour
 
         if(waitForButton.PressedButton == confirmNewValue){
             deactivateInputOk(true);
-            dice.ujertek[0] = ujertek1; //csak akkor adja at ha leokezta
-            dice.ujertek[1] = ujertek2; //uj adat amit a user adott meg
+            dice.ujertek.Add(ujertek1); //csak akkor adja at ha leokezta
+            dice.ujertek.Add(ujertek2); //uj adat amit a user adott meg
             dice.mehet = true;
             dice.HelyszinKiBekapcs(false);
             yield break; //kilepeshez
@@ -138,8 +135,6 @@ public class Targyak : MonoBehaviour
             adrenalinloket = 0; //targy elvesztese
     }
 
-
-
     public void HackerCsatlakozo() { //kesz
         //+2 tolteny
         akciok.Betarazas(2);
@@ -147,28 +142,29 @@ public class Targyak : MonoBehaviour
         elet.Eletplusz();
         //+1 akcio
         akciopont.akciopont++;
-        
+
+        hackercsatlakozo = 0; //targy elvesztese      
     }
 
     public void LathatatlanOltozek() { //kesz
         //movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
         lathatatlanOltozetAktivalva = true;
-        
+        lathatatlanoltozet  = 0; //targy elvesztese      
     }
 
-    public void DroidGepagyu() { //kesz
-        
+    public void DroidGepagyu() { //kesz       
         //ugynok cucc
         ugynok.canKill = true; //barhol meg tud olni ha kattint
+        droidgepagyu = 0; //targy elvesztese
     }
 
     public void MatavTaviranyito() {
         matavtaviranyitoAktivalva = true;
+        matavtaviranyito = 0; //targy elvesztese
     }
 
     public void FustGranat() {
         energia.granatAktivalva = true;
-        
+        fustgranat = 0; //targy elvesztese      
     }
-
 }

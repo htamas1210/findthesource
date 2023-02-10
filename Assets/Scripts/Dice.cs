@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class Dice : MonoBehaviour {
     private Targyak targyak;
 
     public int[] diceResult = { 0, 0 };
-    public int[] ujertek = {0,0};
+    public List<int> ujertek = new List<int>();
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
     private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas
     
@@ -35,6 +36,10 @@ public class Dice : MonoBehaviour {
     public void setLocked(bool locked) { this.locked = locked; }
 
     public int dobott = 0;
+
+    private void Awake() {
+        
+    }
 
     private void Start() {
         upgrade = FindObjectOfType<Upgrade>();
@@ -118,11 +123,13 @@ public class Dice : MonoBehaviour {
             if (adrenalinMegerosites) {
                 //Debug.Log("belep");
                 targyak.CallAdrenalinLoket();
+                yield return new WaitUntil(() => ujertek.Count > 0);
                 if(mehet){
                     Debug.Log("belep mehet");
+                    Debug.Log("List: 0: " + ujertek[0] + " 1: " + ujertek[1]);
                     diceResult[0] = targyak.ujertek1;
                     diceResult[1] = targyak.ujertek2;
-                }           
+                }        
             }
             //deaktivalas
             Debug.Log("belep2");
@@ -130,14 +137,12 @@ public class Dice : MonoBehaviour {
             //HelyszinKiBekapcs(false);
         }
 
-
         hely1.sprite = diceSides[diceResult[0]-1];
         hely1.size = new Vector2(38, 38);
 
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
         dobott++;
-
     }
 
     public void HelyszinKiBekapcs(bool kikapcsolas){
@@ -147,20 +152,6 @@ public class Dice : MonoBehaviour {
         else
             foreach(var item in colliders)
                 item.gameObject.SetActive(true);            
-    }
-    
-    public IEnumerator waitbutton(){
-        Debug.Log("belep wait");
-        var waitForButton = new WaitForUIButtons(confirm, cancel);
-            yield return waitForButton.Reset();
-
-            if(waitForButton.PressedButton == confirm){
-                adrenalinMegerosites = true;
-            }else{
-                adrenalinMegerosites = false;
-            }
-
-        adrenalinHasznalat.gameObject.SetActive(false);
     }
 
     public void setAdrenalinMegerosites(bool adrenalinMegerosites) {
