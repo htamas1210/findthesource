@@ -121,11 +121,12 @@ public class Targyak : MonoBehaviour
             yield break; //kilepeshez
         }else{
             deactivateInputOk(false);
+            dice.HelyszinKiBekapcs(false);
         }  
 
         //ha nem lepett ki eddig
-        dice.ujertek[0] = dice.getDices()[0]; 
-        dice.ujertek[1] = dice.getDices()[1]; //regi adat, hogy ne legyen hibas       
+        //dice.ujertek[0] = dice.getDices()[0]; 
+        //dice.ujertek[1] = dice.getDices()[1]; //regi adat, hogy ne legyen hibas       
     }
 
     public void deactivateInputOk(bool targyelvesztes) {
