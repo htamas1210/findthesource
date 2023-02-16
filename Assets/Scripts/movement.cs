@@ -105,12 +105,14 @@ public class movement : MonoBehaviour
         {"", "", "", "" }
     };
 
-    void Start()
-    {
+    private void Awake() {
         ap = FindObjectOfType<Akciopont>();
         ugynok = FindObjectOfType<Ugynok>();
-        targyak = FindObjectOfType<Targyak>();
+        targyak = FindObjectOfType<Targyak>();    
+    }
 
+    void Start()
+    {
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
 

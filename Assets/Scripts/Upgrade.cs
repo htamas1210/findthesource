@@ -27,10 +27,11 @@ public class Upgrade : MonoBehaviour
     public int getUjradobasIndex() { return ujradobas_index; }
     public int getHackIndex() { return hack_index; }
 
-    private void Start()
+    private void Awake()
     {
         akciopont = FindObjectOfType<Akciopont>();
     }
+
     public void upgradeEnergia() {
         if (canUpgrade) {
             if (energia_index < 4) {

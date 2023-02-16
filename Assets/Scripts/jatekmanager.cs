@@ -50,7 +50,7 @@ public class jatekmanager : MonoBehaviour
     public bool jatekosnyert = false;
     public bool jatekosvesztett = false;
 
-    private void Start()
+    private void Awake()
     {
         elet = FindObjectOfType<Elet>();
         akciok = FindObjectOfType<Akciok>();

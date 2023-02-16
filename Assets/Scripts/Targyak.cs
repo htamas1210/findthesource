@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,7 @@ public class Targyak : MonoBehaviour
         energia = FindObjectOfType<Energia>();
         ugynok = FindObjectOfType<Ugynok>();
         dice = FindObjectOfType<Dice>();
+
     }
 
     public void RandomTargy()
@@ -85,6 +87,27 @@ public class Targyak : MonoBehaviour
 
     public void addAdrenalin() {
         adrenalinloket = 1;
+    }
+
+    private void Update() {      
+        if(!kocka1ertek.text.Equals("")){ //megnezzuk hogy van e mar valami a szovegben
+            for(int i = 0; i < kocka1ertek.text.Length; i++) //vegig megyunk a szovegen
+            {              
+                if(!Char.IsDigit(kocka1ertek.text[i])){ //ha a betu nem szam torolje
+                    Debug.Log("updaate");
+                    kocka1ertek.text.Remove(i);
+                }
+            }
+        }
+
+        if(!kocka2ertek.text.Equals("")){ //megnezzuk hogy van e mar valami a szovegben
+            for(int i = 0; i < kocka2ertek.text.Length; i++) //vegig megyunk a szovegen
+            {
+                if(!Char.IsDigit(kocka2ertek.text[i])){ //ha a betu nem szam torolje
+                    kocka2ertek.text.Remove(i);
+                }
+            }
+        }
     }
 
     public void CallAdrenalinLoket() => StartCoroutine(AdrenalinLoket());

@@ -30,9 +30,6 @@ public class Akciok : MonoBehaviour
 
     };
 
-
-    //
-
     //Hack
     public TMP_Text elso_sor_text;
     public TMP_Text[] masodik_sor;
@@ -48,13 +45,14 @@ public class Akciok : MonoBehaviour
     private bool omega = false;
     //
 
-    private void Start()
-    {
+    private void Awake(){
         ap = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
-        source = FindObjectOfType<Source>();
+        source = FindObjectOfType<Source>();        
+    }
 
+    private void Start(){
         //kezdesnel karikazza be az elso harom adott toltenyt
         for (int i = 0; i < tolteny_index; i++)
         {
@@ -308,6 +306,5 @@ public class Akciok : MonoBehaviour
         {
             Debug.Log("itt mar hackeltel");
         }
-
     }
 }

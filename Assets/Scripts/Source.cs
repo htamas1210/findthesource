@@ -13,9 +13,11 @@ public class Source : MonoBehaviour
 
     private bool oneTime = false;
 
-    private void Start() {
+    private void Awake() {
         movement = FindObjectOfType<movement>();
+    }
 
+    private void Start() {
         sor = new List<int>();
         for (int i = 1; i < 5; i++) {
             sor.Add(i);

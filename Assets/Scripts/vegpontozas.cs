@@ -20,7 +20,7 @@ public class vegpontozas : MonoBehaviour
     int energiapont;
     int megmaradtelet;
 
-    void Start()
+    void Awake()
     {
         energia = FindObjectOfType<Energia>();
         FejlesztesPont = FindObjectOfType<Upgrade>();

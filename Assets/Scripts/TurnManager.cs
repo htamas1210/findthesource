@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
 
     public int turnCounter = 1;
 
-    void Start()
+    void Awake()
     {
         dice = FindObjectOfType<Dice>();
         akciopont = FindObjectOfType<Akciopont>();
@@ -21,6 +21,7 @@ public class TurnManager : MonoBehaviour
 
     public void nextTurn() {
         dice.setLocked(false);
+        dice.dobottEgyszer = false;
         akciopont.resetAkciopont();
         energia.csokkenEnergia(upgrade.energia[upgrade.getEnergiaIndex()]);
         energia.granatAktivalva = false; //ha aktivalva lett a granat a korben deaktivalja

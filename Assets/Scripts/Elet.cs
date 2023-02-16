@@ -11,10 +11,11 @@ public class Elet : MonoBehaviour
     private int elet_megszerezve = 2;
     private jatekmanager jatekmanager;
 
-    private void Start() {
+    private void Awake() {
         jatekmanager = FindObjectOfType<jatekmanager>();
+    }
 
-
+    private void Start() {
         for (int i = 0; i < elet_megszerezve; i++) {
             elet_text[i].text = "O";
         }
