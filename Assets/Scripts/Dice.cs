@@ -137,6 +137,14 @@ public class Dice : MonoBehaviour {
                         targyak.ujertek1 = 1;
                     }else if(targyak.ujertek1 < 1 && (diceResult[1] == 1 || targyak.ujertek2 == 1)){
                         targyak.ujertek1 = 2;
+                    }else if(targyak.ujertek1 == targyak.ujertek2 || targyak.ujertek1 == diceResult[1]){ //ha egyenlo a ket uj ertek vagy az elso egyenlo a mar meglevo masodik kockaval
+                        if(targyak.ujertek1 == 1){
+                            targyak.ujertek1++;
+                        }else if(targyak.ujertek1 == 6){
+                            targyak.ujertek1--;
+                        }else{
+                            targyak.ujertek1--;
+                        }
                     }
 
                     //
@@ -150,7 +158,15 @@ public class Dice : MonoBehaviour {
                         targyak.ujertek2 = 1;
                     }else if(targyak.ujertek2 < 1 && (diceResult[0] == 1 || targyak.ujertek1 == 1)){
                         targyak.ujertek2 = 2;
-                    }                 
+                    }/*else if(targyak.ujertek1 == targyak.ujertek2 || targyak.ujertek2 == diceResult[0]){ //ha egyenlo a ket uj ertek vagy a masodik egyenlo a mar meglevo elso kockaval
+                        if(targyak.ujertek2 == 1){
+                            targyak.ujertek2++;
+                        }else if(targyak.ujertek2 == 6){
+                            targyak.ujertek2--;
+                        }else{
+                            targyak.ujertek2--;
+                        }
+                    }   */            
 
                     diceResult[0] = targyak.ujertek1;
                     diceResult[1] = targyak.ujertek2;

@@ -31,6 +31,24 @@ public class Targyak : MonoBehaviour
     public Button confirmNewValue;
     public Button cancelNewValue;
 
+    //targy megszerezve ui
+    public TMP_Text adrenalinMegszerezve;
+    public TMP_Text hackerMegszerezve;
+    public TMP_Text lathatatlanMegszerezve;
+    public TMP_Text droidMegszerezve;
+    public TMP_Text matavMegszerezve;
+    public TMP_Text alomhozoMegszerezve;
+
+    //targy felhasznalva ui
+    public TMP_Text adrenalinFelhasznalva;
+    public TMP_Text hackerFelhasznalva;
+    public TMP_Text lathatatlanFelhasznalva;
+    public TMP_Text droidFelhasznalva;
+    public TMP_Text matavFelhasznalva;
+    public TMP_Text alomhozoFelhasznalva;
+
+    public List<string> elerheto_targyak = new List<string>{"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"};
+
     private void Awake() {
         akciok = FindObjectOfType<Akciok>(); 
         elet = FindObjectOfType<Elet>();
@@ -39,63 +57,56 @@ public class Targyak : MonoBehaviour
         energia = FindObjectOfType<Energia>();
         ugynok = FindObjectOfType<Ugynok>();
         dice = FindObjectOfType<Dice>();
-
     }
 
     public void RandomTargy()
     {
-        string[] elerheto_targyak = {"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"} ;
-        
-        do{
-            randomszam = UnityEngine.Random.Range(0, elerheto_targyak.Length);
-        }while(!elerheto_targyak[randomszam].Equals(""));
+        if(elerheto_targyak.Count == 0) return;
 
+            randomszam = UnityEngine.Random.Range(0, elerheto_targyak.Count);
 
-        elerheto_targyak[randomszam] = "";
-
-        if (randomszam == 0)
-        {
+        //megszerezve ui es beaddolas
+        if(elerheto_targyak[randomszam].Equals("Adrenalinloket")){
+            adrenalinMegszerezve.text = "X";
             adrenalinloket++;
             Debug.Log("Kaptal egy AdrenalinLoketet!");
-        }
-        else if (randomszam == 1)
-        {
+        }else if(elerheto_targyak[randomszam].Equals("Hacker csatlakozo")){
+            hackerMegszerezve.text = "X";
             hackercsatlakozo++;
             Debug.Log("Kaptal egy Hacker Csatlakozot!");
-        }
-        else if (randomszam == 2)
-        {
+        }else if(elerheto_targyak[randomszam].Equals("Lathatatlan oltozet")){
+            lathatatlanMegszerezve.text = "X";
             lathatatlanoltozet++;
             Debug.Log("Kaptal egy Lathatatlan oltozetet!");
-        }
-        else if (randomszam == 3)
-        {
+        }else if(elerheto_targyak[randomszam].Equals("Droid agyu")){
+            droidMegszerezve.text = "X";
             droidgepagyu++;
             Debug.Log("Kaptal egy Droid-X2 Gepagyut!");
-        }
-        else if (randomszam == 4)
-        {
+        }else if(elerheto_targyak[randomszam].Equals("Matav taviranyito")){
+            matavMegszerezve.text = "X";
             matavtaviranyito++;
             Debug.Log("Kaptal egy Matav Taviranyitot!");
-        }
-        else if (randomszam == 5)
-        {
+        }else if(elerheto_targyak[randomszam].Equals("Alomhozo fustgranat")){
+            alomhozoMegszerezve.text = "X";
             fustgranat++;
             Debug.Log("Kaptal egy Alomhozo Fustgranatot!");
         }
+
+        elerheto_targyak.RemoveAt(randomszam); //szedje ki a listabol
     }
 
     public void addAdrenalin() {
         adrenalinloket = 1;
     }
 
-    private void Update() {      
+    private void Update() {     
+        //betu kitorlese 
         if(!kocka1ertek.text.Equals("")){ //megnezzuk hogy van e mar valami a szovegben
             for(int i = 0; i < kocka1ertek.text.Length; i++) //vegig megyunk a szovegen
             {              
                 if(!Char.IsDigit(kocka1ertek.text[i])){ //ha a betu nem szam torolje
                     Debug.Log("updaate");
-                    kocka1ertek.text.Remove(i);
+                    kocka1ertek.text = kocka1ertek.text.Remove(i);
                 }
             }
         }
@@ -104,7 +115,7 @@ public class Targyak : MonoBehaviour
             for(int i = 0; i < kocka2ertek.text.Length; i++) //vegig megyunk a szovegen
             {
                 if(!Char.IsDigit(kocka2ertek.text[i])){ //ha a betu nem szam torolje
-                    kocka2ertek.text.Remove(i);
+                    kocka2ertek.text = kocka2ertek.text.Remove(i);
                 }
             }
         }
@@ -141,6 +152,7 @@ public class Targyak : MonoBehaviour
             dice.ujertek.Add(ujertek2); //uj adat amit a user adott meg
             dice.mehet = true;
             dice.HelyszinKiBekapcs(false);
+            adrenalinFelhasznalva.text = "X";
             yield break; //kilepeshez
         }else{
             deactivateInputOk(false);
@@ -169,28 +181,42 @@ public class Targyak : MonoBehaviour
         //+1 akcio
         akciopont.akciopont++;
 
-        hackercsatlakozo = 0; //targy elvesztese      
+        hackercsatlakozo = 0; //targy elvesztese 
+
+        //felhasznalva ui
+        hackerFelhasznalva.text = "X";     
     }
 
     public void LathatatlanOltozek() { //kesz
         //movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
         lathatatlanOltozetAktivalva = true;
-        lathatatlanoltozet  = 0; //targy elvesztese      
+        lathatatlanoltozet = 0; //targy elvesztese 
+
+        //felhasznalva ui
+        lathatatlanFelhasznalva.text = "X";  
     }
 
     public void DroidGepagyu() { //kesz       
         //ugynok cucc
         ugynok.canKill = true; //barhol meg tud olni ha kattint
         droidgepagyu = 0; //targy elvesztese
+
+        //felhasznalva ui
+        droidFelhasznalva.text = "X";
     }
 
     public void MatavTaviranyito() {
         matavtaviranyitoAktivalva = true;
         matavtaviranyito = 0; //targy elvesztese
+
+        //felhasznalva ui
+        matavFelhasznalva.text = "X";
     }
 
     public void FustGranat() {
         energia.granatAktivalva = true;
-        fustgranat = 0; //targy elvesztese      
+        fustgranat = 0; //targy elvesztese   
+        //felhasznalva ui
+        alomhozoFelhasznalva.text = "X";   
     }
 }
