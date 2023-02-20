@@ -15,7 +15,7 @@ public class helyszinaktivalas : MonoBehaviour
     private Ugynok ugynok;
     private Energia energia;
 
-    void Awake()
+    private void Awake()
     {
         akciopont = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();

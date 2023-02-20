@@ -179,9 +179,11 @@ public class Targyak : MonoBehaviour
         //+1 elet
         elet.Eletplusz();
         //+1 akcio
-        akciopont.akciopont++;
+        akciopont.UpdateAkciopont(2);
 
         hackercsatlakozo = 0; //targy elvesztese 
+
+        Debug.Log("hacker felhasznalva");
 
         //felhasznalva ui
         hackerFelhasznalva.text = "X";     
@@ -192,6 +194,8 @@ public class Targyak : MonoBehaviour
         lathatatlanOltozetAktivalva = true;
         lathatatlanoltozet = 0; //targy elvesztese 
 
+        Debug.Log("lathatatlan felhasznalva");
+
         //felhasznalva ui
         lathatatlanFelhasznalva.text = "X";  
     }
@@ -201,6 +205,8 @@ public class Targyak : MonoBehaviour
         ugynok.canKill = true; //barhol meg tud olni ha kattint
         droidgepagyu = 0; //targy elvesztese
 
+        Debug.Log("droid felhasznalva");
+
         //felhasznalva ui
         droidFelhasznalva.text = "X";
     }
@@ -209,6 +215,8 @@ public class Targyak : MonoBehaviour
         matavtaviranyitoAktivalva = true;
         matavtaviranyito = 0; //targy elvesztese
 
+        Debug.Log("matav felhasznalva");
+
         //felhasznalva ui
         matavFelhasznalva.text = "X";
     }
@@ -216,6 +224,9 @@ public class Targyak : MonoBehaviour
     public void FustGranat() {
         energia.granatAktivalva = true;
         fustgranat = 0; //targy elvesztese   
+
+        Debug.Log("granat felhasznalva");
+
         //felhasznalva ui
         alomhozoFelhasznalva.text = "X";   
     }
