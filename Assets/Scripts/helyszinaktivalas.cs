@@ -45,7 +45,8 @@ public class helyszinaktivalas : MonoBehaviour
         {
             upgrade.canUpgrade = true;
             if(!targyak.matavtaviranyitoAktivalva){
-                akciopont.akciopont++;
+                //akciopont.akciopont++;
+                akciopont.UpdateAkciopont(1);
                 energia.csokkenEnergia(2);
             }
         }

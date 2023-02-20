@@ -139,7 +139,6 @@ public class Targyak : MonoBehaviour
         var waitForButton = new WaitForUIButtons(confirmNewValue, cancelNewValue);
         yield return waitForButton.Reset();
 
-
         //nem szam karakter levedes?
         ujertek1 = int.Parse(kocka1ertek.text);
         ujertek2 = int.Parse(kocka2ertek.text); //hogy tunik el az elozo? || egymas melle kerul a ket input vagy gomb ami deaktivalja a inputot
@@ -175,11 +174,11 @@ public class Targyak : MonoBehaviour
 
     public void HackerCsatlakozo() { //kesz
         //+2 tolteny
-        akciok.Betarazas(2);
+        akciok.Betarazas(2, false);
         //+1 elet
         elet.Eletplusz();
         //+1 akcio
-        akciopont.UpdateAkciopont(2);
+        akciopont.UpdateAkciopont(1);
 
         hackercsatlakozo = 0; //targy elvesztese 
 
@@ -190,7 +189,6 @@ public class Targyak : MonoBehaviour
     }
 
     public void LathatatlanOltozek() { //kesz
-        //movement.mozgasHelyre(2, 2); //megadni inkabb a hely nevet ahova menni akar? | input field es nev megadas
         lathatatlanOltozetAktivalva = true;
         lathatatlanoltozet = 0; //targy elvesztese 
 

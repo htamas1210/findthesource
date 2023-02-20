@@ -60,7 +60,7 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public void Betarazas(int betarazas)
+    public void Betarazas(int betarazas, bool vonjonleapt = true)
     {
         if (tolteny_index < 24 && ap.akciopont != 0)
         {
@@ -80,8 +80,10 @@ public class Akciok : MonoBehaviour
 
             betarazott_tolteny += betarazas;
             //tolteny_index++;
-            ap.akciopont--;
-
+            
+            if(vonjonleapt)
+                ap.UpdateAkciopont(-1);
+        
             Debug.Log("Tolteny betarazva");
             Debug.Log("Betarazott toltenyek szama: " + betarazott_tolteny);
         }
@@ -157,7 +159,7 @@ public class Akciok : MonoBehaviour
             }
         }
 
-        ap.akciopont--;
+        ap.UpdateAkciopont(-1);
 
         NyomozasOszlopCheck();
 
@@ -192,7 +194,7 @@ public class Akciok : MonoBehaviour
 
         if (nyomozas_counter == 4)
         {
-            ap.akciopont += 2;
+            ap.UpdateAkciopont(2);
             Debug.Log("Ap novelve");
             nyomozas_oszlop[oszlop].text = "X";
         }
@@ -300,7 +302,8 @@ public class Akciok : MonoBehaviour
                     hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
                 }
             }
-            ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
+            //ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
+            ap.UpdateAkciopont(-upgrade.hack[upgrade.getHackIndex()]); //ap koltseg levonasa
         }
         else
         {

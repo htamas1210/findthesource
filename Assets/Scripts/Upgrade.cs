@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    private Akciopont akciopont;
     public readonly int[] energia = { 3, 3, 2, 2, 1 };
     public readonly int[] akcio = { 0, 0, 1, 1, 2 };
     public readonly int[] harc = { 1, 1, 2, 2, 3 };
@@ -26,11 +25,6 @@ public class Upgrade : MonoBehaviour
     public int getHarcIndex() { return harc_index; }
     public int getUjradobasIndex() { return ujradobas_index; }
     public int getHackIndex() { return hack_index; }
-
-    private void Awake()
-    {
-        akciopont = FindObjectOfType<Akciopont>();
-    }
 
     public void upgradeEnergia() {
         if (canUpgrade) {

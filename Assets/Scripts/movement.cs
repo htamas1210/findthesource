@@ -848,7 +848,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
 
                                 
@@ -912,7 +913,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
@@ -975,7 +977,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     threeonecount++;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
@@ -1042,7 +1045,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
@@ -1106,7 +1110,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1175,7 +1180,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1240,7 +1246,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1309,7 +1316,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1375,7 +1383,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1440,7 +1449,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1505,7 +1515,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
@@ -1570,7 +1581,8 @@ public class movement : MonoBehaviour
                                         }
                                         else
                                         {
-                                            ap.akciopont = ap.akciopont - tavolsag;
+                                            //ap.akciopont = ap.akciopont - tavolsag;
+                                            ap.UpdateAkciopont(-tavolsag);
                                         }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");

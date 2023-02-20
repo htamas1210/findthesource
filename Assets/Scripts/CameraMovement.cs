@@ -7,7 +7,6 @@ public class CameraMovement : MonoBehaviour
     public Camera mainCamera;
     public Vector3 offset;
 
-
     public void moveCameraToTarget(Transform target) {
         Debug.Log("Moved to " + target.name);
         mainCamera.transform.position = target.position + offset;

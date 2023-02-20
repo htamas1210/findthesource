@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
 
     public int turnCounter = 1;
 
-    void Awake()
+    private void Awake()
     {
         dice = FindObjectOfType<Dice>();
         akciopont = FindObjectOfType<Akciopont>();
