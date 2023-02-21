@@ -14,6 +14,7 @@ public class Targyak : MonoBehaviour
     private Energia energia;
     private Ugynok ugynok;
     private Dice dice;
+    private jatekmanager jatekmanager;
     public TMP_InputField kocka1ertek;
     public TMP_InputField kocka2ertek;
     public int ujertek1;
@@ -57,6 +58,7 @@ public class Targyak : MonoBehaviour
         energia = FindObjectOfType<Energia>();
         ugynok = FindObjectOfType<Ugynok>();
         dice = FindObjectOfType<Dice>();
+        jatekmanager = FindObjectOfType<jatekmanager>();
     }
 
     public void RandomTargy()
@@ -198,9 +200,15 @@ public class Targyak : MonoBehaviour
         lathatatlanFelhasznalva.text = "X";  
     }
 
-    public void DroidGepagyu() { //kesz       
-        //ugynok cucc
-        ugynok.canKill = true; //barhol meg tud olni ha kattint
+    public void DroidGepagyu() { 
+        //deaktivalni minden objectet kiveve a ugynok text boxokat es addig nem vissza aktivalni amig nem kattintott ra valamelyikre      
+        //ugynok.canKill = true; //barhol meg tud olni ha kattint
+        
+        //deaktivalas
+        jatekmanager.ugynokDeaktivalas(true);
+
+        Debug.Log("kattints egy ugynok csapatra!");
+
         droidgepagyu = 0; //targy elvesztese
 
         Debug.Log("droid felhasznalva");

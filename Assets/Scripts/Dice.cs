@@ -117,6 +117,7 @@ public class Dice : MonoBehaviour {
                 adrenalinMegerosites = true;
             }else{
                 adrenalinMegerosites = false;
+                HelyszinKiBekapcs(false); //nem hasznalja fel ezert visszakapcsoljuk
             }
 
             adrenalinHasznalat.gameObject.SetActive(false);

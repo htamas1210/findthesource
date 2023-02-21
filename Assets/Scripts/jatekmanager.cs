@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class jatekmanager : MonoBehaviour
 {
@@ -19,7 +17,6 @@ public class jatekmanager : MonoBehaviour
     public GameObject hackeles;
     public GameObject rolldice;
     public GameObject test;
-
 
     //script-ek implementalasa
     private Elet elet;
@@ -45,6 +42,7 @@ public class jatekmanager : MonoBehaviour
     public TMP_Text[] onefour;
     public TMP_Text[] twofour;
     public TMP_Text[] threefour;
+    public Button helyszinaktivalasBtn;
 
     //nyert es vesztett bool lethrehozas
     public bool jatekosnyert = false;
@@ -61,6 +59,48 @@ public class jatekmanager : MonoBehaviour
         movement = FindObjectOfType<movement>();
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
+    }
+
+    public void ugynokDeaktivalas(bool kikapcsolas){
+        energiafejlesztés.SetActive(kikapcsolas);
+        akciofejlesztés.SetActive(kikapcsolas);
+        harcfejlesztés.SetActive(kikapcsolas);
+        ujradobasfejlesztés.SetActive(kikapcsolas);
+        hackfejlesztés.SetActive(kikapcsolas);
+        kovetkezokor.SetActive(kikapcsolas);
+        betarazas.SetActive(kikapcsolas);
+        nyomozas.SetActive(kikapcsolas);
+        hackeles.SetActive(kikapcsolas);
+
+        //roll dice gomb
+        rolldice.SetActive(kikapcsolas);
+        //kovetkezo kor
+        kovetkezokor.SetActive(kikapcsolas);
+        //helyszinaktivalas
+        helyszinaktivalasBtn.gameObject.SetActive(kikapcsolas);
+
+
+        movement.oneone_Collider.gameObject.SetActive(kikapcsolas);
+        movement.onetwo_Collider.gameObject.SetActive(kikapcsolas);
+        movement.onethree_Collider.gameObject.SetActive(kikapcsolas);
+        movement.onefour_Collider.gameObject.SetActive(kikapcsolas);
+        movement.twoone_Collider.gameObject.SetActive(kikapcsolas);
+        movement.twotwo_Collider.gameObject.SetActive(kikapcsolas);
+        movement.twothree_Collider.gameObject.SetActive(kikapcsolas);
+        movement.twofour_Collider.gameObject.SetActive(kikapcsolas);
+        movement.threeone_Collider.gameObject.SetActive(kikapcsolas);
+        movement.threetwo_Collider.gameObject.SetActive(kikapcsolas);
+        movement.threethree_Collider.gameObject.SetActive(kikapcsolas);
+        movement.threefour_Collider.gameObject.SetActive(kikapcsolas);
+     
+        targyak.hackerFelhasznalva.GetComponent<Button>().gameObject.SetActive(kikapcsolas);
+        targyak.lathatatlanFelhasznalva.GetComponent<Button>().gameObject.SetActive(kikapcsolas);
+        targyak.droidFelhasznalva.GetComponent<Button>().gameObject.SetActive(kikapcsolas);
+        targyak.matavFelhasznalva.GetComponent<Button>().gameObject.SetActive(kikapcsolas);
+        targyak.alomhozoFelhasznalva.GetComponent<Button>().gameObject.SetActive(kikapcsolas);
+
+        dice.dice1btnBtn.gameObject.SetActive(kikapcsolas);
+        dice.dice2btnBtn.gameObject.SetActive(kikapcsolas);
     }
 
     // Update is called once per frame
