@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -8,6 +9,7 @@ public class Ugynok : MonoBehaviour
     private Akciok akciok;
     private Upgrade upgrade;
     private jatekmanager jatekmanager;
+    private movement movement;
 
     public TMP_Text[] oneone;
     //public BoxCollider2D[] oneoneCollider;
@@ -45,6 +47,7 @@ public class Ugynok : MonoBehaviour
         akciok = FindObjectOfType<Akciok>();
         upgrade = FindObjectOfType<Upgrade>();
         jatekmanager = FindObjectOfType<jatekmanager>();
+        movement = FindObjectOfType<movement>();
     }
 
     private void Start()
@@ -287,25 +290,38 @@ public class Ugynok : MonoBehaviour
     }
 
 
-    public void ugynokOles(TMP_Text ugynokText){
+    public void ugynokOles(TMP_Text ugynokText){       
+        //string tmp = ugynokText.gameObject.name;
+        int x = (int)Char.GetNumericValue(ugynokText.gameObject.name[7]);
+        int y = (int)Char.GetNumericValue(ugynokText.gameObject.name[8]);
+        Debug.Log("ugynok x: " + x + " y: "+y);
+        
         if(ugynokText.text.Equals("")){ //ha nincs ott ugynok csapat ne csinaljon semmit
             Debug.Log("itt nincs ugynok csapat!!");
             return;
         }
 
         if(!droidagyuAktivalva){ //toltenyek levonasa
+            //nincs aktivalva a targy csak azon a helyen olhet ahol van (x, y)
+            if(x != movement.jelenlegi_x && y != movement.jelenlegi_y){
+                Debug.Log("nem vagy azon a helyen es nincs aktivalva a targy!");
+                return;
+            }
+
             int ugynokcsapatletszama = int.Parse(ugynokText.text);
             if(ugynokcsapatletszama > akciok.betarazott_tolteny / upgrade.harc[upgrade.getHarcIndex()]){ //ha nincs eleg tolteny
                 Debug.Log("nincs eleg tolteny");
                 return;
             }
-            akciok.Loves(ugynokcsapatletszama / upgrade.hack[upgrade.getHackIndex()]);
+            akciok.Loves(ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
+            Debug.Log("tolteny szama:" + ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
         }
 
         ugynokText.text = "X"; //ugynok csapat megolve
 
         //minden vissza kapcsolasa 
         jatekmanager.ugynokDeaktivalas(false);
+        droidagyuAktivalva = false;
     }
 
 
