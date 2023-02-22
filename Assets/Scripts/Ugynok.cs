@@ -295,6 +295,7 @@ public class Ugynok : MonoBehaviour
         int x = (int)Char.GetNumericValue(ugynokText.gameObject.name[7]);
         int y = (int)Char.GetNumericValue(ugynokText.gameObject.name[8]);
         Debug.Log("ugynok x: " + x + " y: "+y);
+        Debug.Log("movement x: " + movement.jelenlegi_x +  " y: " + movement.jelenlegi_y);
         
         if(ugynokText.text.Equals("")){ //ha nincs ott ugynok csapat ne csinaljon semmit
             Debug.Log("itt nincs ugynok csapat!!");
@@ -320,7 +321,7 @@ public class Ugynok : MonoBehaviour
         ugynokText.text = "X"; //ugynok csapat megolve
 
         //minden vissza kapcsolasa 
-        jatekmanager.ugynokDeaktivalas(false);
+        jatekmanager.ugynokDeaktivalas(true);
         droidagyuAktivalva = false;
     }
 

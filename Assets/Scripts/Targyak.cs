@@ -205,7 +205,7 @@ public class Targyak : MonoBehaviour
         //ugynok.canKill = true; //barhol meg tud olni ha kattint
         
         //deaktivalas
-        jatekmanager.ugynokDeaktivalas(true);
+        jatekmanager.ugynokDeaktivalas(false);
         ugynok.droidagyuAktivalva = true;
 
         Debug.Log("kattints egy ugynok csapatra!");
