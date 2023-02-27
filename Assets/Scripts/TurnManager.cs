@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
     private Akciopont akciopont;
     private Energia energia;
     private Upgrade upgrade;
+    private jatekmanager jatekmanager;
 
     public int turnCounter = 1;
 
@@ -17,6 +18,7 @@ public class TurnManager : MonoBehaviour
         akciopont = FindObjectOfType<Akciopont>();
         energia = FindObjectOfType<Energia>();
         upgrade = FindObjectOfType<Upgrade>();
+        jatekmanager = FindObjectOfType<jatekmanager>();
     }
 
     public void nextTurn() {
@@ -28,6 +30,9 @@ public class TurnManager : MonoBehaviour
         turnCounter++;
         dice.hely1.sprite = null;
         dice.hely2.sprite = null;
+        jatekmanager.vanertelme = true;
+        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.KorKezdet); //a jatekmanager atvalt a korkezdet eventre
+
         Debug.Log("kovetkezo kor " + turnCounter);
     }
 }

@@ -4633,9 +4633,12 @@ MonoBehaviour:
   - {fileID: 939451652}
   - {fileID: 1965172624}
   - {fileID: 1054331718}
-  helyszinaktivalasBtn: {fileID: 824033280}
   jatekosnyert: 0
   jatekosvesztett: 0
+  vanertelme: 1
+  helyszinaktivalasBtn: {fileID: 824033280}
+  State: 0
+  RollDice: {fileID: 1393612613}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0

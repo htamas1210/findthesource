@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +8,8 @@ using UnityEngine.UI;
 
 public class jatekmanager : MonoBehaviour
 {
+    public static jatekmanager Instance;
+
     //game objectek implementálása
     public GameObject energiafejlesztés;
     public GameObject akciofejlesztés;
@@ -17,6 +22,7 @@ public class jatekmanager : MonoBehaviour
     public GameObject hackeles;
     public GameObject rolldice;
     public GameObject test;
+
 
     //script-ek implementalasa
     private Elet elet;
@@ -42,25 +48,13 @@ public class jatekmanager : MonoBehaviour
     public TMP_Text[] onefour;
     public TMP_Text[] twofour;
     public TMP_Text[] threefour;
-    public Button helyszinaktivalasBtn;
 
     //nyert es vesztett bool lethrehozas
     public bool jatekosnyert = false;
     public bool jatekosvesztett = false;
+    public bool vanertelme = true;
 
-    private void Awake()
-    {
-        elet = FindObjectOfType<Elet>();
-        akciok = FindObjectOfType<Akciok>();
-        targyak = FindObjectOfType<Targyak>();
-        dice = FindObjectOfType<Dice>();
-        upgrade = FindObjectOfType<Upgrade>();
-        akciopont = FindObjectOfType<Akciopont>();
-        movement = FindObjectOfType<movement>();
-        turnManager = FindObjectOfType<TurnManager>();
-        source = FindObjectOfType<Source>();
-    }
-
+    public Button helyszinaktivalasBtn;
     public void ugynokDeaktivalas(bool bekapcsolas){
         energiafejlesztés.SetActive(bekapcsolas);
         akciofejlesztés.SetActive(bekapcsolas);
@@ -103,13 +97,115 @@ public class jatekmanager : MonoBehaviour
         dice.dice2btnBtn.gameObject.SetActive(bekapcsolas);
     }
 
+    public GameState State;
+
+    public static event Action<GameState> OnGameStateChanged;
+
+    [SerializeField] private Button RollDice;
+
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+
+    private void Start()
+    {
+        elet = FindObjectOfType<Elet>();
+        akciok = FindObjectOfType<Akciok>();
+        targyak = FindObjectOfType<Targyak>();
+        dice = FindObjectOfType<Dice>();
+        upgrade = FindObjectOfType<Upgrade>();
+        akciopont = FindObjectOfType<Akciopont>();
+        movement = FindObjectOfType<movement>();
+        turnManager = FindObjectOfType<TurnManager>();
+        source = FindObjectOfType<Source>();
+
+        UpdateGameState(GameState.KorKezdet);
+       
+    }
+
+    public void UpdateGameState(GameState newState)
+    {
+        State = newState;
+
+        switch (newState)
+        {
+            case GameState.KorKezdet:
+                HandleKorkezdet();
+                break;
+            case GameState.Akcio:
+                HandleAkcio();
+                break;
+            case GameState.Fejlesztes:
+                HandleFejlesztes();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+
+        OnGameStateChanged?.Invoke(newState);
+    }
+
+    public enum GameState
+    {
+        KorKezdet,
+        Akcio,
+        Fejlesztes
+        //Nyert
+        //Vesztett
+    }
+
+    private async void HandleKorkezdet()
+    {
+        rolldice.SetActive(true);
+
+        energiafejlesztés.SetActive(false);
+        akciofejlesztés.SetActive(false);
+        harcfejlesztés.SetActive(false);
+        ujradobasfejlesztés.SetActive(false);
+        hackfejlesztés.SetActive(false);
+        kovetkezokor.SetActive(false);
+        betarazas.SetActive(false);
+        nyomozas.SetActive(false);
+        hackeles.SetActive(false);
+        //test.SetActive(false);
+
+        Debug.Log(dice.dobott + " ; ennyiszer dobtál már a körben");
+        Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");
+    }
+
+
+    private async void HandleFejlesztes()
+    {
+        energiafejlesztés.SetActive(true);
+        akciofejlesztés.SetActive(true);
+        harcfejlesztés.SetActive(true);
+        ujradobasfejlesztés.SetActive(true);
+        hackfejlesztés.SetActive(true);
+        kovetkezokor.SetActive(true);
+    }
+
+    private async void HandleAkcio()
+    {
+        //itt a movement bekapcsol
+        kovetkezokor.SetActive(true);
+        betarazas.SetActive(true);
+        nyomozas.SetActive(true);
+        hackeles.SetActive(true);
+    }
+
+
+    /*
+
     // Update is called once per frame
-    void Update()
+    IEnumerator MyCoroutine()
     {
         //amig a játékos vesztett bool nem egyenlo true-val vagy a nyert bool nem egyenlo true-val
         //while (jatekosnyert != true || jatekosvesztett != true)
         //{
-            //a jatekos mikor belép semmit ne tudjon csinálni csak dobni a kockával, hogy elkezdje a játékot
+        //a jatekos mikor belép semmit ne tudjon csinálni csak dobni a kockával, hogy elkezdje a játékot
             energiafejlesztés.SetActive(false);
             akciofejlesztés.SetActive(false);
             harcfejlesztés.SetActive(false);
@@ -122,38 +218,50 @@ public class jatekmanager : MonoBehaviour
             //test.SetActive(false);
 
 
+
+
+            //&& dice.getLocked() != true
+
             //ez rossz!!!!
-            /*while (dice.dobott < upgrade.getUjradobasIndex() && dice.getLocked() != true)
-            {
-
+            //while (dice.dobott < upgrade.getUjradobasIndex() + 1 )
+            //{
+            
                 //eddig újradobhat
-            }*/
+            //}
 
-            //a játékos választ a két érték között
-            if (upgrade.canUpgrade == true)
+            
+                yield return new WaitUntil(() => dice.getLocked() == true);
+            
+
+            while (vanertelme == true)
             {
-                //ha a kisebbet választotta akkor jelennek meg a fejlesztés gombjai
-                energiafejlesztés.SetActive(true);
-                akciofejlesztés.SetActive(true);
-                harcfejlesztés.SetActive(true);
-                ujradobasfejlesztés.SetActive(true);
-                hackfejlesztés.SetActive(true);
-                kovetkezokor.SetActive(true);
+                //a játékos választ a két érték között
+                if (upgrade.canUpgrade == true)
+                {
+                    //ha a kisebbet választotta akkor jelennek meg a fejlesztés gombjai
+                    energiafejlesztés.SetActive(true);
+                    akciofejlesztés.SetActive(true);
+                    harcfejlesztés.SetActive(true);
+                    ujradobasfejlesztés.SetActive(true);
+                    hackfejlesztés.SetActive(true);
+                    kovetkezokor.SetActive(true);
+                }
+                else
+                {
+                    //ha a nagyobbat választotta akkor jelennek meg az akciók gombjai
+
+                    //itt a movement bekapcsol
+                    kovetkezokor.SetActive(true);
+                    betarazas.SetActive(true);
+                    nyomozas.SetActive(true);
+                    hackeles.SetActive(true);
+                }
             }
-            else
-            {
-                //ha a nagyobbat választotta akkor jelennek meg az akciók gombjai
-
-                //itt a movement bekapcsol
-                kovetkezokor.SetActive(true);
-                betarazas.SetActive(true);
-                nyomozas.SetActive(true);
-                hackeles.SetActive(true);
-            }
+            
 
 
-            if (akciopont.akciopont == 0)
-            {
+
+            //itt az akciopont elérte a 0-át
                 //movement kikapcs
                 energiafejlesztés.SetActive(false);
                 akciofejlesztés.SetActive(false);
@@ -166,15 +274,15 @@ public class jatekmanager : MonoBehaviour
                 hackeles.SetActive(false);
                 //test.SetActive(false);
                 kovetkezokor.SetActive(true);
-            }
+            
             //amint rányom a kör vége gombra 0 legyen az akciópont és megint csak a dobás legyen elérhető
 
             
 
         //}
 
-        JatekosNyert();
-        JatekosVesztett();
+        //JatekosNyert();
+        //JatekosVesztett();
 
     }
 
@@ -544,4 +652,6 @@ public class jatekmanager : MonoBehaviour
             SceneManager.LoadScene("JatekosVesztett");
         }
     }
+*/
 }
+    
