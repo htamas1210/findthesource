@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static jatekmanager;
 
 public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
@@ -21,7 +22,9 @@ public class Dice : MonoBehaviour {
     public bool adrenalinMegerosites = false;
     public GameObject adrenalinHasznalat;
     public Button confirm;
-    public Button cancel;  
+    public Button cancel;
+
+    public GameObject rolldice;
 
 
     public BoxCollider2D[] colliders;
@@ -49,8 +52,10 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[0];
                 if (diceResult[0] < diceResult[1]) {
                     upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
+                    jatekmanager.Instance.UpdateGameState(GameState.Fejlesztes); //a jatekmanager atvalt a fejlesztes eventre
                 } else {
                     energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
+                    jatekmanager.Instance.UpdateGameState(GameState.Akcio); //a jatekmanager atvalt az akcio eventre
                 }
 
                 locked = true;
@@ -58,8 +63,10 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[1];
                 if (diceResult[1] < diceResult[0]) {
                     upgrade.canUpgrade = true;
+                    jatekmanager.Instance.UpdateGameState(GameState.Fejlesztes); //a jatekmanager atvalt a fejlesztes eventre
                 } else {
                     energiasav.csokkenEnergia(1);
+                    jatekmanager.Instance.UpdateGameState(GameState.Akcio); //a jatekmanager atvalt az akcio eventre
                 }
 
                 locked = true;
@@ -78,6 +85,8 @@ public class Dice : MonoBehaviour {
         Debug.Log(finalSide);
 
         return finalSide;
+
+
     }
 
     public void CallRenderDice() => StartCoroutine(renderDice());
@@ -95,7 +104,23 @@ public class Dice : MonoBehaviour {
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
 
-        if(targyak.adrenalinloket > 0) {
+        dobott++;
+        Debug.Log("Ennyit dobtál: " + dobott);
+        Debug.Log("Ennyi dobásod van még: " + ((upgrade.getUjradobasIndex() + 1) - dobott));
+
+        //jatemanager reszere
+        if (dobott < upgrade.getUjradobasIndex() + 1)
+        {
+            Debug.Log(dobott);
+        }
+        else
+        {
+            rolldice.SetActive(false);
+            Debug.Log("Nincs több dobásod a körben");
+        }
+
+
+        if (targyak.adrenalinloket > 0) {
             //helyszin collider kikapcsolas a gomb miatt
             HelyszinKiBekapcs(true);
             //text aktivalasa kerdesre hogy akarja e hasznalni a targyat

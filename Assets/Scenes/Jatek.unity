@@ -3441,6 +3441,7 @@ MonoBehaviour:
   adrenalinHasznalat: {fileID: 274472943}
   confirm: {fileID: 1617719567}
   cancel: {fileID: 0}
+  rolldice: {fileID: 1393612611}
   colliders:
   - {fileID: 987029841}
   - {fileID: 1580358512}
@@ -3997,6 +3998,9 @@ MonoBehaviour:
   - {fileID: 1054331718}
   jatekosnyert: 0
   jatekosvesztett: 0
+  vanertelme: 1
+  State: 0
+  RollDice: {fileID: 0}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
