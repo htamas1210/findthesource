@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,7 +55,13 @@ public class jatekmanager : MonoBehaviour
     public bool jatekosvesztett = false;
     public bool vanertelme = true;
 
+    public GameState State;
+
+    public static event Action<GameState> OnGameStateChanged;
+
+
     public Button helyszinaktivalasBtn;
+
     public void ugynokDeaktivalas(bool bekapcsolas){
         energiafejlesztés.SetActive(bekapcsolas);
         akciofejlesztés.SetActive(bekapcsolas);
@@ -96,12 +103,6 @@ public class jatekmanager : MonoBehaviour
         dice.dice1btnBtn.gameObject.SetActive(bekapcsolas);
         dice.dice2btnBtn.gameObject.SetActive(bekapcsolas);
     }
-
-    public GameState State;
-
-    public static event Action<GameState> OnGameStateChanged;
-
-    [SerializeField] private Button RollDice;
 
 
     void Awake()
@@ -170,7 +171,8 @@ public class jatekmanager : MonoBehaviour
         betarazas.SetActive(false);
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
-        //test.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
+        test.SetActive(false);
 
         Debug.Log(dice.dobott + " ; ennyiszer dobtál már a körben");
         Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");
@@ -185,6 +187,8 @@ public class jatekmanager : MonoBehaviour
         ujradobasfejlesztés.SetActive(true);
         hackfejlesztés.SetActive(true);
         kovetkezokor.SetActive(true);
+        rolldice.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
     }
 
     private async void HandleAkcio()
@@ -194,6 +198,17 @@ public class jatekmanager : MonoBehaviour
         betarazas.SetActive(true);
         nyomozas.SetActive(true);
         hackeles.SetActive(true);
+        helyszinaktivalasBtn.gameObject.SetActive(true);
+        energiafejlesztés.SetActive(false);
+        akciofejlesztés.SetActive(false);
+        harcfejlesztés.SetActive(false);
+        ujradobasfejlesztés.SetActive(false);
+        hackfejlesztés.SetActive(false);
+
+        
+        kovetkezokor.SetActive(true);
+
+        rolldice.SetActive(false);
     }
 
 

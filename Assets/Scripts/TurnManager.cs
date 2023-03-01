@@ -35,4 +35,12 @@ public class TurnManager : MonoBehaviour
 
         Debug.Log("kovetkezo kor " + turnCounter);
     }
+
+        /*
+          if (energiavesztese > 29)
+        {
+            jatekmanager.Instance.UpdateGameState(GameState.Vesztett); //a jatekmanager atvalt a vesztett eventre
+        }
+         */ 
+
 }

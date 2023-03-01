@@ -60,7 +60,7 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public void Betarazas(int betarazas, bool vonjonleapt = true)
+    public void Betarazas(int betarazas)
     {
         if (tolteny_index < 24 && ap.akciopont != 0)
         {
@@ -81,8 +81,8 @@ public class Akciok : MonoBehaviour
             betarazott_tolteny += betarazas;
             //tolteny_index++;
             
-            if(vonjonleapt)
-                ap.UpdateAkciopont(-1);
+
+            ap.UpdateAkciopont(-1);
         
             Debug.Log("Tolteny betarazva");
             Debug.Log("Betarazott toltenyek szama: " + betarazott_tolteny);

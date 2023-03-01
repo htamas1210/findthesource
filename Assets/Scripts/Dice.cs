@@ -46,8 +46,10 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[0];
                 if (diceResult[0] < diceResult[1]) {
                     upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
+                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
                 } else {
                     energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
+                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                 }
 
                 locked = true;
@@ -55,8 +57,10 @@ public class Dice : MonoBehaviour {
                 valasztottErtek = diceResult[1];
                 if (diceResult[1] < diceResult[0]) {
                     upgrade.canUpgrade = true;
+                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
                 } else {
                     energiasav.csokkenEnergia(1);
+                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                 }
 
                 locked = true;
