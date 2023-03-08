@@ -105,8 +105,7 @@ public class Ugynok : MonoBehaviour
 
     }
 
-    public void UgynokSorsolas(int x, int y)
-    {
+    public void UgynokSorsolas(int x, int y){
         if (x == 1 && y == 1)
         {
             if (oneone[0].text.Equals(""))
@@ -292,10 +291,22 @@ public class Ugynok : MonoBehaviour
 
     public void ugynokOles(TMP_Text ugynokText){       
         //string tmp = ugynokText.gameObject.name;
-        int x = (int)Char.GetNumericValue(ugynokText.gameObject.name[7]);
-        int y = (int)Char.GetNumericValue(ugynokText.gameObject.name[8]);
+        string s = ugynokText.gameObject.name;
+        //Debug.Log("gomb name: " + s);
+        string sx = Char.ToString(s[7]);
+        string sy = Char.ToString(s[8]);
+        //char cx = sx[7];
+        //char cy = sx[8];
+        int x = int.Parse(sx);
+        int y = int.Parse(sy);
         Debug.Log("ugynok x: " + x + " y: "+y);
         Debug.Log("movement x: " + movement.jelenlegi_x +  " y: " + movement.jelenlegi_y);
+
+        if(x != movement.jelenlegi_x || y != movement.jelenlegi_y){
+            Debug.Log("nem egyenlo a ketto");
+        }else{
+            Debug.Log("egyenlo");
+        }
         
         if(ugynokText.text.Equals("")){ //ha nincs ott ugynok csapat ne csinaljon semmit
             Debug.Log("itt nincs ugynok csapat!!");
@@ -304,7 +315,7 @@ public class Ugynok : MonoBehaviour
 
         if(!droidagyuAktivalva){ //toltenyek levonasa
             //nincs aktivalva a targy csak azon a helyen olhet ahol van (x, y)
-            if(x != movement.jelenlegi_x && y != movement.jelenlegi_y){
+            if(x != movement.jelenlegi_x || y != movement.jelenlegi_y){
                 Debug.Log("nem vagy azon a helyen es nincs aktivalva a targy!");
                 return;
             }

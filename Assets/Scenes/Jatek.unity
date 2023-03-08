@@ -4637,6 +4637,7 @@ MonoBehaviour:
   jatekosvesztett: 0
   vanertelme: 1
   State: 0
+  helyszinaktivalasBtn: {fileID: 824033280}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
