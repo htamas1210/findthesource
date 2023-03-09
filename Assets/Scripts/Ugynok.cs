@@ -332,7 +332,8 @@ public class Ugynok : MonoBehaviour
         ugynokText.text = "X"; //ugynok csapat megolve
 
         //minden vissza kapcsolasa 
-        jatekmanager.ugynokDeaktivalas(true);
+        //jatekmanager.ugynokDeaktivalas(true);
+        jatekmanager.UpdateGameState(jatekmanager.GameState.Akcio); //miutan vegzett menjen az akcio state-re
         droidagyuAktivalva = false;
     }
 

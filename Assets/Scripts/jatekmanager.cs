@@ -62,50 +62,8 @@ public class jatekmanager : MonoBehaviour
 
     public Button helyszinaktivalasBtn;
 
-    public void ugynokDeaktivalas(bool bekapcsolas){
-        energiafejlesztés.SetActive(bekapcsolas);
-        akciofejlesztés.SetActive(bekapcsolas);
-        harcfejlesztés.SetActive(bekapcsolas);
-        ujradobasfejlesztés.SetActive(bekapcsolas);
-        hackfejlesztés.SetActive(bekapcsolas);
-        kovetkezokor.SetActive(bekapcsolas);
-        betarazas.SetActive(bekapcsolas);
-        nyomozas.SetActive(bekapcsolas);
-        hackeles.SetActive(bekapcsolas);
 
-        //roll dice gomb
-        rolldice.SetActive(bekapcsolas);
-        //kovetkezo kor
-        kovetkezokor.SetActive(bekapcsolas);
-        //helyszinaktivalas
-        helyszinaktivalasBtn.gameObject.SetActive(bekapcsolas);
-
-
-        movement.oneone_Collider.gameObject.SetActive(bekapcsolas);
-        movement.onetwo_Collider.gameObject.SetActive(bekapcsolas);
-        movement.onethree_Collider.gameObject.SetActive(bekapcsolas);
-        movement.onefour_Collider.gameObject.SetActive(bekapcsolas);
-        movement.twoone_Collider.gameObject.SetActive(bekapcsolas);
-        movement.twotwo_Collider.gameObject.SetActive(bekapcsolas);
-        movement.twothree_Collider.gameObject.SetActive(bekapcsolas);
-        movement.twofour_Collider.gameObject.SetActive(bekapcsolas);
-        movement.threeone_Collider.gameObject.SetActive(bekapcsolas);
-        movement.threetwo_Collider.gameObject.SetActive(bekapcsolas);
-        movement.threethree_Collider.gameObject.SetActive(bekapcsolas);
-        movement.threefour_Collider.gameObject.SetActive(bekapcsolas);
-     
-        targyak.hackerFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
-        targyak.lathatatlanFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
-        targyak.droidFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
-        targyak.matavFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
-        targyak.alomhozoFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
-
-        dice.dice1btnBtn.gameObject.SetActive(bekapcsolas);
-        dice.dice2btnBtn.gameObject.SetActive(bekapcsolas);
-    }
-
-
-    void Awake()
+    private void Awake()
     {
         Instance = this;
     }
@@ -124,7 +82,6 @@ public class jatekmanager : MonoBehaviour
         source = FindObjectOfType<Source>();
 
         UpdateGameState(GameState.KorKezdet);
-       
     }
 
     public void UpdateGameState(GameState newState)
@@ -142,6 +99,9 @@ public class jatekmanager : MonoBehaviour
             case GameState.Fejlesztes:
                 HandleFejlesztes();
                 break;
+            case GameState.Ugynok:
+                ugynokDeaktivalas(false);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -153,7 +113,8 @@ public class jatekmanager : MonoBehaviour
     {
         KorKezdet,
         Akcio,
-        Fejlesztes
+        Fejlesztes,
+        Ugynok
         //Nyert
         //Vesztett
     }
@@ -205,10 +166,52 @@ public class jatekmanager : MonoBehaviour
         ujradobasfejlesztés.SetActive(false);
         hackfejlesztés.SetActive(false);
 
-        
         kovetkezokor.SetActive(true);
 
         rolldice.SetActive(false);
+    }
+
+    private async void ugynokDeaktivalas(bool bekapcsolas)
+    {
+        energiafejlesztés.SetActive(bekapcsolas);
+        akciofejlesztés.SetActive(bekapcsolas);
+        harcfejlesztés.SetActive(bekapcsolas);
+        ujradobasfejlesztés.SetActive(bekapcsolas);
+        hackfejlesztés.SetActive(bekapcsolas);
+        kovetkezokor.SetActive(bekapcsolas);
+        betarazas.SetActive(bekapcsolas);
+        nyomozas.SetActive(bekapcsolas);
+        hackeles.SetActive(bekapcsolas);
+
+        //roll dice gomb
+        rolldice.SetActive(bekapcsolas);
+        //kovetkezo kor
+        kovetkezokor.SetActive(bekapcsolas);
+        //helyszinaktivalas
+        helyszinaktivalasBtn.gameObject.SetActive(bekapcsolas);
+
+
+        movement.oneone_Collider.gameObject.SetActive(bekapcsolas);
+        movement.onetwo_Collider.gameObject.SetActive(bekapcsolas);
+        movement.onethree_Collider.gameObject.SetActive(bekapcsolas);
+        movement.onefour_Collider.gameObject.SetActive(bekapcsolas);
+        movement.twoone_Collider.gameObject.SetActive(bekapcsolas);
+        movement.twotwo_Collider.gameObject.SetActive(bekapcsolas);
+        movement.twothree_Collider.gameObject.SetActive(bekapcsolas);
+        movement.twofour_Collider.gameObject.SetActive(bekapcsolas);
+        movement.threeone_Collider.gameObject.SetActive(bekapcsolas);
+        movement.threetwo_Collider.gameObject.SetActive(bekapcsolas);
+        movement.threethree_Collider.gameObject.SetActive(bekapcsolas);
+        movement.threefour_Collider.gameObject.SetActive(bekapcsolas);
+
+        targyak.hackerFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
+        targyak.lathatatlanFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
+        targyak.droidFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
+        targyak.matavFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
+        targyak.alomhozoFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
+
+        dice.dice1btnBtn.gameObject.SetActive(bekapcsolas);
+        dice.dice2btnBtn.gameObject.SetActive(bekapcsolas);
     }
 
 
@@ -669,4 +672,3 @@ public class jatekmanager : MonoBehaviour
     }
 */
 }
-    
