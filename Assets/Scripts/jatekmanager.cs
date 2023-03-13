@@ -54,20 +54,14 @@ public class jatekmanager : MonoBehaviour
     public bool jatekosnyert = false;
     public bool jatekosvesztett = false;
     public bool vanertelme = true;
-
     public GameState State;
-
     public static event Action<GameState> OnGameStateChanged;
-
-
     public Button helyszinaktivalasBtn;
-
 
     private void Awake()
     {
         Instance = this;
     }
-
 
     private void Start()
     {
@@ -171,9 +165,13 @@ public class jatekmanager : MonoBehaviour
         harcfejlesztés.SetActive(true);
         ujradobasfejlesztés.SetActive(true);
         hackfejlesztés.SetActive(true);
-        kovetkezokor.SetActive(true);
+        kovetkezokor.SetActive(false);
         rolldice.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
+
+        betarazas.SetActive(false);
+        nyomozas.SetActive(false);
+        hackeles.SetActive(false);
     }
 
     private async void HandleAkcio()
