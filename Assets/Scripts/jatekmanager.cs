@@ -133,7 +133,31 @@ public class jatekmanager : MonoBehaviour
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
-        test.SetActive(false);
+        //test.SetActive(false);
+
+        //ha ugynok state-el vegezne kapcsoljon vissza mindent
+        movement.oneone_Collider.gameObject.SetActive(true);
+        movement.onetwo_Collider.gameObject.SetActive(true);
+        movement.onethree_Collider.gameObject.SetActive(true);
+        movement.onefour_Collider.gameObject.SetActive(true);
+        movement.twoone_Collider.gameObject.SetActive(true);
+        movement.twotwo_Collider.gameObject.SetActive(true);
+        movement.twothree_Collider.gameObject.SetActive(true);
+        movement.twofour_Collider.gameObject.SetActive(true);
+        movement.threeone_Collider.gameObject.SetActive(true);
+        movement.threetwo_Collider.gameObject.SetActive(true);
+        movement.threethree_Collider.gameObject.SetActive(true);
+        movement.threefour_Collider.gameObject.SetActive(true);
+
+        targyak.hackerFelhasznalva.GetComponent<Button>().gameObject.SetActive(true);
+        targyak.lathatatlanFelhasznalva.GetComponent<Button>().gameObject.SetActive(true);
+        targyak.droidFelhasznalva.GetComponent<Button>().gameObject.SetActive(true);
+        targyak.matavFelhasznalva.GetComponent<Button>().gameObject.SetActive(true);
+        targyak.alomhozoFelhasznalva.GetComponent<Button>().gameObject.SetActive(true);
+
+        dice.dice1btnBtn.gameObject.SetActive(true);
+        dice.dice2btnBtn.gameObject.SetActive(true);
+
 
         Debug.Log(dice.dobott + " ; ennyiszer dobtál már a körben");
         Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");

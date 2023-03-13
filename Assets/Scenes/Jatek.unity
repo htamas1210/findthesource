@@ -4051,6 +4051,7 @@ GameObject:
   - component: {fileID: 197904234}
   - component: {fileID: 197904235}
   - component: {fileID: 197904237}
+  - component: {fileID: 197904238}
   m_Layer: 0
   m_Name: Mangager
   m_TagString: Untagged
@@ -4638,6 +4639,42 @@ MonoBehaviour:
   vanertelme: 1
   State: 0
   helyszinaktivalasBtn: {fileID: 824033280}
+--- !u!114 &197904238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197904216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2bc596029f9bdf44afcb29a51607b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneoneText:
+  - {fileID: 1890576711}
+  - {fileID: 2039195717}
+  onetwoText: {fileID: 1125365413}
+  onethreeText:
+  - {fileID: 651045747}
+  - {fileID: 1783447577}
+  onefourText:
+  - {fileID: 76119655}
+  - {fileID: 424761688}
+  twooneText: {fileID: 310396765}
+  twotwoText:
+  - {fileID: 750410052}
+  - {fileID: 949439450}
+  twothreeText: {fileID: 1587079063}
+  twofourText: {fileID: 1731075644}
+  threeoneText: {fileID: 1223514251}
+  threetwoText:
+  - {fileID: 562899655}
+  - {fileID: 911677226}
+  threethreeText: {fileID: 86648684}
+  threefourText:
+  - {fileID: 663535674}
+  - {fileID: 1583842800}
 --- !u!1 &229807670
 GameObject:
   m_ObjectHideFlags: 0
@@ -17595,19 +17632,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 824033281}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 197904220}
-        m_TargetAssemblyTypeName: Dice, Assembly-CSharp
-        m_MethodName: CallRenderDice
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &824033281
 MonoBehaviour:
   m_ObjectHideFlags: 0
