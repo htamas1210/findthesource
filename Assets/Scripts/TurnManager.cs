@@ -19,6 +19,9 @@ public class TurnManager : MonoBehaviour
         energia = FindObjectOfType<Energia>();
         upgrade = FindObjectOfType<Upgrade>();
         jatekmanager = FindObjectOfType<jatekmanager>();
+
+        dice.ujradobasszamlalo = upgrade.ujradobas[upgrade.getUjradobasIndex()] + 1;
+        Debug.Log("ujradobasszamlalo: " + dice.ujradobasszamlalo);
     }
 
     public void nextTurn() {
@@ -30,6 +33,8 @@ public class TurnManager : MonoBehaviour
         turnCounter++;
         dice.hely1.sprite = null;
         dice.hely2.sprite = null;
+        dice.ujradobasszamlalo = upgrade.ujradobas[upgrade.getUjradobasIndex()] + 1;
+        Debug.Log("ujradobasszamlalo: " + dice.ujradobasszamlalo);
         jatekmanager.vanertelme = true;
         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.KorKezdet); //a jatekmanager atvalt a korkezdet eventre
 

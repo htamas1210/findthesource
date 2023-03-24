@@ -31,10 +31,10 @@ public class Upgrade : MonoBehaviour
             if (energia_index < 4) {
                 energiatext[energia_index].text = "X";
                 energia_index++;
+                canUpgrade = false;
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio); //a jatekmanager atvalt a korkezdet eventre
             }
             Debug.Log("energia_i: " + energia_index);
-            canUpgrade = false;
             fejlesztes_szamlalo++;
         }
     }
@@ -44,10 +44,10 @@ public class Upgrade : MonoBehaviour
             if (akcio_index < 4) {
                 akciotext[akcio_index].text = "X";
                 akcio_index++;
+                canUpgrade = false;
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio); //a jatekmanager atvalt a korkezdet eventre
             }
-            Debug.Log("akcio_i: " + akcio_index);
-            canUpgrade = false;
+            Debug.Log("akcio_i: " + akcio_index);          
             fejlesztes_szamlalo++;
         }
     }
@@ -57,10 +57,10 @@ public class Upgrade : MonoBehaviour
             if (harc_index < 4) {
                 harctext[harc_index].text = "X";
                 harc_index++;
+                canUpgrade = false;
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio); //a jatekmanager atvalt a korkezdet eventre
             }
-            Debug.Log("harc_i: " + harc_index);
-            canUpgrade = false;
+            Debug.Log("harc_i: " + harc_index);        
             fejlesztes_szamlalo++;
         }
     }
@@ -70,10 +70,10 @@ public class Upgrade : MonoBehaviour
             if (ujradobas_index < 4) {
                 ujradobastext[ujradobas_index].text = "X";
                 ujradobas_index++;
+                canUpgrade = false;
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio); //a jatekmanager atvalt a korkezdet eventre
             }
-            Debug.Log("ujradobas_i: " + ujradobas_index);
-            canUpgrade = false;
+            Debug.Log("ujradobas_i: " + ujradobas_index);    
             fejlesztes_szamlalo++;
         }
     }
@@ -83,10 +83,10 @@ public class Upgrade : MonoBehaviour
             if (hack_index < 3) {
                 hacktext[hack_index].text = "X";
                 hack_index++;
+                canUpgrade = false;
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio); //a jatekmanager atvalt a korkezdet eventre
             }
-            Debug.Log("hack_i: " + hack_index);
-            canUpgrade = false;
+            Debug.Log("hack_i: " + hack_index);           
             fejlesztes_szamlalo++;
         }
     }
