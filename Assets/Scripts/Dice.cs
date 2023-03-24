@@ -32,6 +32,7 @@ public class Dice : MonoBehaviour {
     public void setLocked(bool locked) { this.locked = locked; }
     public int dobott = 0;
     public bool dobottEgyszer = false; //tudjon ujra dobni vagy nem
+    public int ujradobasszamlalo;
 
     private void Awake() {
         upgrade = FindObjectOfType<Upgrade>();
@@ -104,7 +105,11 @@ public class Dice : MonoBehaviour {
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
 
-        dobottEgyszer = true;
+        ujradobasszamlalo--;
+        Debug.Log("ujradobasszamlalo: " + ujradobasszamlalo);
+        if(ujradobasszamlalo == 0){
+            dobottEgyszer = true;
+        }       
 
         //ha megvan a targy
         if(targyak.adrenalinloket > 0) {

@@ -166,7 +166,7 @@ public class jatekmanager : MonoBehaviour
         ujradobasfejlesztés.SetActive(true);
         hackfejlesztés.SetActive(true);
         kovetkezokor.SetActive(false);
-        rolldice.SetActive(false);
+        //rolldice.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
 
         betarazas.SetActive(false);
@@ -190,7 +190,7 @@ public class jatekmanager : MonoBehaviour
 
         kovetkezokor.SetActive(true);
 
-        rolldice.SetActive(false);
+        //rolldice.SetActive(false);
     }
 
     private async void ugynokDeaktivalas(bool bekapcsolas)
