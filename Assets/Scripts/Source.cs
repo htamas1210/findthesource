@@ -32,7 +32,7 @@ public class Source : MonoBehaviour
             if (!oneTime) {
                 for (int i = 0; i < 3; i++)
                 {
-                    ugynok.UgynokSorsolas(sor[0], oszlop);
+                    ugynok.UgynokSorsolas(oszlop, sor[0]);
                 }
                 printSourceLocation();
                 oneTime = true;
