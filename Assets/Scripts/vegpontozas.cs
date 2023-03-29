@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class vegpontozas : MonoBehaviour
@@ -11,7 +12,9 @@ public class vegpontozas : MonoBehaviour
     private Targyak targyak;
     private Akciok akciok;
     private Elet elet;
-    public bool foundsource;
+    
+
+    public GameObject szoveg;
 
     int osszpont = 0;
     int tolteny;
@@ -27,7 +30,6 @@ public class vegpontozas : MonoBehaviour
         targyak = FindObjectOfType<Targyak>();
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
-        foundsource = false;
     }
 
     public int OsszpontSzamalas()
@@ -39,6 +41,7 @@ public class vegpontozas : MonoBehaviour
         fejlesztespont = FejlesztesPont.fejlesztes_szamlalo;
 
         osszpont = (energiapont * 2) + (megmaradtelet * 2) + (fejlesztespont / 3) + (tolteny / 2) + megszerzetttargyak;
+        textMesh.text = "Összesen ennyi pontot szereztél:" + osszpont;
         return osszpont;
     }
 }
