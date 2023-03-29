@@ -36,9 +36,17 @@ public class TurnManager : MonoBehaviour
         dice.ujradobasszamlalo = upgrade.ujradobas[upgrade.getUjradobasIndex()] + 1;
         Debug.Log("ujradobasszamlalo: " + dice.ujradobasszamlalo);
         jatekmanager.vanertelme = true;
-        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.KorKezdet); //a jatekmanager atvalt a korkezdet eventre
+        jatekmanager.JatekosVesztett();
+        jatekmanager.JatekosNyert();
+        if (jatekmanager.jatekosnyert == false && jatekmanager.jatekosvesztett == false)
+        {
+            jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.KorKezdet); //a jatekmanager atvalt a korkezdet eventre
 
-        Debug.Log("kovetkezo kor " + turnCounter);
+            Debug.Log("kovetkezo kor " + turnCounter);
+        }
+        
+
+        
     }
 
         /*

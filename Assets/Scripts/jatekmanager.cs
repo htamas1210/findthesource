@@ -96,6 +96,9 @@ public class jatekmanager : MonoBehaviour
             case GameState.Ugynok:
                 ugynokDeaktivalas(false);
                 break;
+            case GameState.Vesztette:
+                HandleVesztette();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -108,9 +111,8 @@ public class jatekmanager : MonoBehaviour
         KorKezdet,
         Akcio,
         Fejlesztes,
-        Ugynok
-        //Nyert
-        //Vesztett
+        Ugynok,
+        Vesztette
     }
 
     private async void HandleKorkezdet()
@@ -191,6 +193,12 @@ public class jatekmanager : MonoBehaviour
         kovetkezokor.SetActive(true);
 
         //rolldice.SetActive(false);
+    }
+
+    private async void HandleVesztette()
+    {
+        JatekosNyert();
+        JatekosVesztett();
     }
 
     private async void ugynokDeaktivalas(bool bekapcsolas)
@@ -324,12 +332,19 @@ public class jatekmanager : MonoBehaviour
         //JatekosNyert();
         //JatekosVesztett();
 
-    }
+    } */
 
     public void JatekosNyert()
     {
-        if (source.isNyitva == true && source.oszlop == movement.jelenlegi_y && source.sor[0] == movement.jelenlegi_x) //+ ugynokcsapat oles a helyszinen
+        Debug.Log("Játékos nyerésének vizsgálata.");
+        Debug.Log("A forrás oszlopa:" + source.oszlop);
+        Debug.Log("A forrás sora:" + source.sor[0]);
+        Debug.Log("");
+        Debug.Log("A te jelenlegi oszlopod:" + movement.jelenlegi_y);
+        Debug.Log("A te jelenlegi sorod:" + movement.jelenlegi_x);
+        if (source.isNyitva == true && source.oszlop == movement.jelenlegi_x && source.sor[0] == movement.jelenlegi_y) //+ ugynokcsapat oles a helyszinen
         {
+            Debug.Log("A forrás ki van nyitva és ott állsz ahol a forrás is van.");
             if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
             {
                 if (oneone[0].text.Equals("X") && oneone[1].text.Equals("X") && oneone[2].text.Equals("X"))
@@ -420,11 +435,16 @@ public class jatekmanager : MonoBehaviour
         if(jatekosnyert){
             SceneManager.LoadScene("JatekosNyert");
         }
+        else
+        {
+            Debug.Log("Nem nyert a játékos ebben a körben");
+        }
 
     }
-
+     
     public void JatekosVesztett()
     {
+        Debug.Log("Játékos vesztésének vizsgálata.");
         //ha kinyilik a forras de mar voltal ott ketszer
         if (source.isNyitva == true)
         {
@@ -691,6 +711,9 @@ public class jatekmanager : MonoBehaviour
         if(jatekosvesztett){
             SceneManager.LoadScene("JatekosVesztett");
         }
-    }
-*/
+        else
+        {
+            Debug.Log("A játékos nem vesztett ebben a körben.");
+        }
+    } 
 }
