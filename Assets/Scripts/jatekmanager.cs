@@ -96,6 +96,9 @@ public class jatekmanager : MonoBehaviour
             case GameState.Ugynok:
                 ugynokDeaktivalas(false);
                 break;
+            case GameState.Vesztette:
+                HandleVesztette();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -108,9 +111,8 @@ public class jatekmanager : MonoBehaviour
         KorKezdet,
         Akcio,
         Fejlesztes,
-        Ugynok
-        //Nyert
-        //Vesztett
+        Ugynok,
+        Vesztette
     }
 
     private async void HandleKorkezdet()
@@ -191,6 +193,12 @@ public class jatekmanager : MonoBehaviour
         kovetkezokor.SetActive(true);
 
         //rolldice.SetActive(false);
+    }
+
+    private async void HandleVesztette()
+    {
+        JatekosNyert();
+        JatekosVesztett();
     }
 
     private async void ugynokDeaktivalas(bool bekapcsolas)
@@ -324,7 +332,7 @@ public class jatekmanager : MonoBehaviour
         //JatekosNyert();
         //JatekosVesztett();
 
-    }
+    } */
 
     public void JatekosNyert()
     {
@@ -422,7 +430,7 @@ public class jatekmanager : MonoBehaviour
         }
 
     }
-
+     
     public void JatekosVesztett()
     {
         //ha kinyilik a forras de mar voltal ott ketszer
@@ -691,6 +699,5 @@ public class jatekmanager : MonoBehaviour
         if(jatekosvesztett){
             SceneManager.LoadScene("JatekosVesztett");
         }
-    }
-*/
+    } 
 }
