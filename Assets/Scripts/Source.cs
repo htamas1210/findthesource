@@ -10,11 +10,13 @@ public class Source : MonoBehaviour
 
     private movement movement;
     public GameObject sourceSprite;
+    private Ugynok ugynok;
 
     private bool oneTime = false;
 
     private void Awake() {
         movement = FindObjectOfType<movement>();
+        ugynok = FindObjectOfType<Ugynok>();
     }
 
     private void Start() {
@@ -28,6 +30,10 @@ public class Source : MonoBehaviour
         if(isNyitva && oszlop != -1 && sor.Count == 1) {
             sourceRender(oszlop, sor[0]);
             if (!oneTime) {
+                for (int i = 0; i < 3; i++)
+                {
+                    ugynok.UgynokSorsolas(oszlop, sor[0]);
+                }
                 printSourceLocation();
                 oneTime = true;
             }
