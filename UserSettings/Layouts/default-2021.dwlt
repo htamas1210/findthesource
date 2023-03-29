@@ -198,7 +198,7 @@ MonoBehaviour:
     width: 1470
     height: 20
   m_MinSize: {x: 0, y: 0}
-  m_MaxSize: {x: 0, y: 0}
+  m_MaxSize: {x: 0, y: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
