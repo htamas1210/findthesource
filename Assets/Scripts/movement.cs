@@ -106,7 +106,8 @@ public class movement : MonoBehaviour
         {"", "", "", "" }
     };
 
-    private void Awake() {
+    private void Awake()
+    {
         ap = FindObjectOfType<Akciopont>();
         ugynok = FindObjectOfType<Ugynok>();
         targyak = FindObjectOfType<Targyak>();
@@ -267,6 +268,8 @@ public class movement : MonoBehaviour
             jelenlegi_y = 4;
             ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
+
+        ugynok.setElozoHelyszin(jelenlegi_x, jelenlegi_y);
     }
 
     public void mozgasHelyre(int x, int y)
@@ -353,7 +356,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
             if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -384,7 +387,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
             if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -410,7 +413,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -424,7 +427,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
             if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -461,7 +464,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
             if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -488,7 +491,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
+                    Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
 
@@ -499,7 +502,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
             if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -525,7 +528,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                 }
             }
         }
@@ -536,7 +539,7 @@ public class movement : MonoBehaviour
             Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
             if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -562,7 +565,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -575,7 +578,7 @@ public class movement : MonoBehaviour
 
             if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -601,7 +604,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -616,7 +619,7 @@ public class movement : MonoBehaviour
 
             if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -642,7 +645,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -658,7 +661,7 @@ public class movement : MonoBehaviour
 
             if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -684,7 +687,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                 }
 
             }
@@ -699,7 +702,7 @@ public class movement : MonoBehaviour
 
             if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -725,7 +728,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -740,7 +743,7 @@ public class movement : MonoBehaviour
 
             if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -766,7 +769,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -781,7 +784,7 @@ public class movement : MonoBehaviour
 
             if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
             {
-                Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
@@ -807,7 +810,7 @@ public class movement : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                 }
 
             }
@@ -823,7 +826,7 @@ public class movement : MonoBehaviour
     {
         tavolsag = math.abs(tavolsag);
 
-        // player mozgat�sa �s konzolra irat�s
+        // player mozgatasa es konzolra iratas
         if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
             for (int x = 0; x < w; x++)
@@ -845,21 +848,22 @@ public class movement : MonoBehaviour
                                 player.transform.position = oneone.transform.position;
                                 jelenlegi_x = 1;
                                 jelenlegi_y = 1;
-                                        if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                if (targyak.lathatatlanOltozetAktivalva)
+                                {
+                                    targyak.lathatatlanOltozetAktivalva = false;
+                                }
+                                else
+                                {
+                                    //ap.akciopont = ap.akciopont - tavolsag;
+                                    ap.UpdateAkciopont(-tavolsag);
+                                }
 
-                                
+
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
                                 Debug.Log("ugynok sorsolas");
                                 ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                ugynok.ugynokMegolveElozoHelyen();
                                 if (eromulepes1.activeSelf == true)
                                 {
                                     eromulepes2.SetActive(true);
@@ -876,7 +880,7 @@ public class movement : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                             }
                         }
                     }
@@ -896,7 +900,7 @@ public class movement : MonoBehaviour
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -911,18 +915,19 @@ public class movement : MonoBehaviour
                                     player.transform.position = twoone.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 1;
-                                   if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     if (feketepiaclepes1.activeSelf == true)
                                     {
                                         feketepiaclepes2.SetActive(true);
@@ -939,12 +944,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                             }
                         }
 
@@ -965,7 +970,7 @@ public class movement : MonoBehaviour
                         tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
                         if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -976,18 +981,20 @@ public class movement : MonoBehaviour
                                     player.transform.position = threeone.transform.position;
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 1;
-                                   if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     threeonecount++;
-                                    Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
+                                    Debug.Log(ap.akciopont);
+                                    Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     if (metrolepes1.activeSelf == true)
                                     {
                                         metrolepes2.SetActive(true);
@@ -1004,12 +1011,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                             }
                         }
                     }
@@ -1030,7 +1037,7 @@ public class movement : MonoBehaviour
 
                         if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1045,19 +1052,20 @@ public class movement : MonoBehaviour
                                     player.transform.position = onetwo.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 2;
-                                 if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     if (szervereklepes1.activeSelf == true)
                                     {
                                         szervereklepes2.SetActive(true);
@@ -1074,12 +1082,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
                     }
@@ -1100,7 +1108,7 @@ public class movement : MonoBehaviour
 
                         if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1111,18 +1119,19 @@ public class movement : MonoBehaviour
                                     player.transform.position = twotwo.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 2;
-                                  if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true)
                                     {
@@ -1140,12 +1149,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez�n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
@@ -1167,7 +1176,7 @@ public class movement : MonoBehaviour
 
                         if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1183,17 +1192,18 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 2;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true)
                                     {
@@ -1211,12 +1221,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
@@ -1238,7 +1248,7 @@ public class movement : MonoBehaviour
 
                         if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1249,18 +1259,19 @@ public class movement : MonoBehaviour
                                     player.transform.position = onethree.transform.position;
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 3;
-                                   if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true)
                                     {
@@ -1278,12 +1289,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                             }
                         }
 
@@ -1305,7 +1316,7 @@ public class movement : MonoBehaviour
 
                         if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1321,17 +1332,18 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 3;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true)
                                     {
@@ -1349,12 +1361,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
@@ -1377,7 +1389,7 @@ public class movement : MonoBehaviour
 
                         if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1389,17 +1401,18 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 3;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true)
                                     {
@@ -1417,12 +1430,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
@@ -1444,7 +1457,7 @@ public class movement : MonoBehaviour
 
                         if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1456,17 +1469,18 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 1;
                                     jelenlegi_y = 4;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true)
                                     {
@@ -1484,12 +1498,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                             }
                         }
 
@@ -1511,7 +1525,7 @@ public class movement : MonoBehaviour
 
                         if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1522,18 +1536,19 @@ public class movement : MonoBehaviour
                                     player.transform.position = twofour.transform.position;
                                     jelenlegi_x = 2;
                                     jelenlegi_y = 4;
-                                  if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    if (targyak.lathatatlanOltozetAktivalva)
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true)
                                     {
@@ -1551,12 +1566,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
@@ -1578,7 +1593,7 @@ public class movement : MonoBehaviour
 
                         if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
                         {
-                            Debug.Log("Maximum k�tszer l�phetsz egy mez�re");
+                            Debug.Log("Maximum ketszer lephetsz egy mezore");
                         }
                         else
                         {
@@ -1590,17 +1605,18 @@ public class movement : MonoBehaviour
                                     jelenlegi_x = 3;
                                     jelenlegi_y = 4;
                                     if (targyak.lathatatlanOltozetAktivalva)
-                                        {
-                                            targyak.lathatatlanOltozetAktivalva = false;
-                                        }
-                                        else
-                                        {
-                                            //ap.akciopont = ap.akciopont - tavolsag;
-                                            ap.UpdateAkciopont(-tavolsag);
-                                        }
+                                    {
+                                        targyak.lathatatlanOltozetAktivalva = false;
+                                    }
+                                    else
+                                    {
+                                        //ap.akciopont = ap.akciopont - tavolsag;
+                                        ap.UpdateAkciopont(-tavolsag);
+                                    }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
                                     ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    ugynok.ugynokMegolveElozoHelyen();
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true)
                                     {
@@ -1618,12 +1634,12 @@ public class movement : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Debug.Log("Maximum k�tszer l�phetsz egy mez?re");
+                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
                                 }
                             }
                             else
                             {
-                                Debug.Log("Nincs el�g akci�pontod vagy nem 1 mez?n bel�l akarsz l�pni");
+                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
 
