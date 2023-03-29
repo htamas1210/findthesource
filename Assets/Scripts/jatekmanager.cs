@@ -458,11 +458,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 2 && source.oszlop == 1)
+            if (source.sor[0] == 1 && source.oszlop == 2)
             {
                 if (movement.feketepiaclepes2.activeSelf == true)
                 {
@@ -472,11 +472,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 3 && source.oszlop == 1)
+            if (source.sor[0] == 1 && source.oszlop == 3)
             {
                 if (movement.metrolepes2.activeSelf == true)
                 {
@@ -486,11 +486,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 1 && source.oszlop == 2)
+            if (source.sor[0] == 2 && source.oszlop == 1)
             {
                 if (movement.szervereklepes2.activeSelf == true)
                 {
@@ -500,7 +500,7 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
@@ -514,11 +514,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 3 && source.oszlop == 2)
+            if (source.sor[0] == 2 && source.oszlop == 3)
             {
                 if (movement.feltoltolepes2.activeSelf == true)
                 {
@@ -528,11 +528,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 1 && source.oszlop == 3)
+            if (source.sor[0] == 3 && source.oszlop == 1)
             {
                 if (movement.kutatolaborlepes2.activeSelf == true)
                 {
@@ -542,11 +542,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 2 && source.oszlop == 3)
+            if (source.sor[0] == 3 && source.oszlop == 2)
             {
                 if (movement.kriptoklublepes2.activeSelf == true)
                 {
@@ -556,7 +556,7 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
@@ -570,11 +570,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 1 && source.oszlop == 4)
+            if (source.sor[0] == 4 && source.oszlop == 1)
             {
                 if (movement.hadiuzemlepes2.activeSelf == true)
                 {
@@ -584,11 +584,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 2 && source.oszlop == 4)
+            if (source.sor[0] == 4 && source.oszlop == 2)
             {
                 if (movement.konyvtarlepes2.activeSelf == true)
                 {
@@ -598,11 +598,11 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
-            if (source.sor[0] == 3 && source.oszlop == 4)
+            if (source.sor[0] == 4 && source.oszlop == 3)
             {
                 if (movement.korhazlepes2.activeSelf == true)
                 {
@@ -612,7 +612,7 @@ public class jatekmanager : MonoBehaviour
                     }
                     else
                     {
-                        jatekosvesztett = false;
+                        jatekosvesztett = true;
                     }
                 }
             }
@@ -713,6 +713,7 @@ public class jatekmanager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Jelenleg itt állsz: " + movement.jelenlegi_x + ". sor, " + movement.jelenlegi_y + ". oszlop" );
             Debug.Log("A játékos nem vesztett ebben a körben.");
         }
     } 

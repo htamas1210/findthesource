@@ -74,6 +74,7 @@ public class movement : MonoBehaviour
     private Akciopont ap;
     private Ugynok ugynok;
     private Targyak targyak;
+    private jatekmanager jatekmanager;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -108,7 +109,8 @@ public class movement : MonoBehaviour
     private void Awake() {
         ap = FindObjectOfType<Akciopont>();
         ugynok = FindObjectOfType<Ugynok>();
-        targyak = FindObjectOfType<Targyak>();    
+        targyak = FindObjectOfType<Targyak>();
+        jatekmanager = FindObjectOfType<jatekmanager>();
     }
 
     void Start()
@@ -371,6 +373,7 @@ public class movement : MonoBehaviour
                     eromulepes1.SetActive(true);
                     moveCounter++;
                     eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
+                    
                 }
             }
         }
@@ -869,6 +872,7 @@ public class movement : MonoBehaviour
                                     moveCounter++;
                                     eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                 }
+                                jatekmanager.JatekosVesztett();
                             }
                             else
                             {
@@ -931,6 +935,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -995,6 +1000,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1064,6 +1070,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1129,6 +1136,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1199,6 +1207,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1265,6 +1274,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1335,6 +1345,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1402,6 +1413,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1468,6 +1480,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1534,6 +1547,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {
@@ -1600,6 +1614,7 @@ public class movement : MonoBehaviour
                                         moveCounter++;
                                         korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                                     }
+                                    jatekmanager.JatekosVesztett();
                                 }
                                 else
                                 {

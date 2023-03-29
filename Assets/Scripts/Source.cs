@@ -11,6 +11,8 @@ public class Source : MonoBehaviour
     private movement movement;
     public GameObject sourceSprite;
     private Ugynok ugynok;
+    private jatekmanager jatekmanager;
+    
 
     private bool oneTime = false;
 
@@ -29,6 +31,7 @@ public class Source : MonoBehaviour
     private void Update() {
         if(isNyitva && oszlop != -1 && sor.Count == 1) {
             sourceRender(oszlop, sor[0]);
+            
             if (!oneTime) {
                 for (int i = 0; i < 3; i++)
                 {
@@ -36,6 +39,7 @@ public class Source : MonoBehaviour
                 }
                 printSourceLocation();
                 oneTime = true;
+                jatekmanager.JatekosVesztett();
             }
         }
     }
