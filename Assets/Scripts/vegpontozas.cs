@@ -41,7 +41,7 @@ public class vegpontozas : MonoBehaviour
         fejlesztespont = FejlesztesPont.fejlesztes_szamlalo;
 
         osszpont = (energiapont * 2) + (megmaradtelet * 2) + (fejlesztespont / 3) + (tolteny / 2) + megszerzetttargyak;
-        textMesh.text = "Összesen ennyi pontot szereztél:" + osszpont;
+        //textMesh.text = "Összesen ennyi pontot szereztél:" + osszpont;
         return osszpont;
     }
 }

@@ -9,6 +9,7 @@ public class Ugynok : MonoBehaviour
     private Akciok akciok;
     private Upgrade upgrade;
     private jatekmanager jatekmanager;
+    private Elet elet;
     private movement movement;
 
     public TMP_Text[] oneone;
@@ -43,11 +44,18 @@ public class Ugynok : MonoBehaviour
     public void setCanKillTrue(){ canKill = true; }
     public Camera maincamera;
 
+    private string[] previus_ugynok_csapatok;
+    private int elozo_x;
+    private int elozo_y ;
+
     private void Awake() {
         akciok = FindObjectOfType<Akciok>();
         upgrade = FindObjectOfType<Upgrade>();
         jatekmanager = FindObjectOfType<jatekmanager>();
         movement = FindObjectOfType<movement>();
+        elet = FindObjectOfType<Elet>();
+
+        previus_ugynok_csapatok = new string[3];
     }
 
     private void Start()
@@ -340,466 +348,150 @@ public class Ugynok : MonoBehaviour
     }
 
 
-
-
-
-      /*  private void Update()
-    {
-        if(canShoot){
-            if(oneone[0].text.Equals("")){
-                
+    public void ugynokMegolveElozoHelyen(){     
+        if(elozo_x != movement.jelenlegi_x || elozo_y != movement.jelenlegi_y){
+            foreach(var item in previus_ugynok_csapatok){
+                if(!item.Equals("")){
+                    //ha nem ures a text vagyis volt atirva szamra nezze meg hogy X-e
+                    if(!item.Equals("x")){
+                        //vonjon le egy eletet
+                        elet.Eletvesztes();
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if(elozo_x == 1 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = oneone[i].text;
+            }
+        }else if(elozo_x == 1 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = onetwo[i].text;
+            }
+        }else if(elozo_x == 1 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = onethree[i].text;
+            }
+        }else if(elozo_x == 1 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = onefour[i].text;
+            }
+        }else if(elozo_x == 2 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = twoone[i].text;
+            }
+        }else if(elozo_x == 2 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = twotwo[i].text;
+            }
+        }else if(elozo_x == 2 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = twothree[i].text;
+            }
+        }else if(elozo_x == 2 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = twofour[i].text;
+            }
+        }else if(elozo_x == 3 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = threeone[i].text;
+            }
+        }else if(elozo_x == 3 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = threetwo[i].text;
+            }
+        }else if(elozo_x == 3 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = threethree[i].text;
+            }
+        }else if(elozo_x == 3 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
+            {
+                previus_ugynok_csapatok[i] = threefour[i].text;
             }
         }
 
-        if (canKill)
-        {
-            //check for collider onclick then x out tmp text then set canKill false
-            //check if text field is empty
-            //oneone
-            if (Input.GetKeyDown(KeyCode.Mouse0) && oneoneCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        elozo_x = movement.jelenlegi_x;
+        elozo_y = movement.jelenlegi_y;
+    }
+
+    public void setElozoHelyszin(int x, int y){
+        elozo_x = x;
+        elozo_y = y;
+
+                if(elozo_x == 1 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
             {
-                if (!oneone[0].text.Equals(""))
-                {
-                    oneone[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = oneone[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && oneoneCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 1 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
             {
-                if (!oneone[1].text.Equals(""))
-                {
-                    oneone[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = onetwo[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && oneoneCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 1 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
             {
-                if (!oneone[2].text.Equals(""))
-                {
-                    oneone[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = onethree[i].text;
             }
-            //onetwo
-            if (Input.GetKeyDown(KeyCode.Mouse0) && onetwoCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 1 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onetwo[0].text.Equals(""))
-                {
-                    onetwo[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = onefour[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onetwoCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 2 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onetwo[1].text.Equals(""))
-                {
-                    onetwo[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = twoone[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onetwoCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 2 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onetwo[2].text.Equals(""))
-                {
-                    onetwo[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = twotwo[i].text;
             }
-            //onethree
-            if (Input.GetKeyDown(KeyCode.Mouse0) && onethreeCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 2 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onethree[0].text.Equals(""))
-                {
-                    onethree[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = twothree[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onethreeCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 2 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onethree[1].text.Equals(""))
-                {
-                    onethree[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = twofour[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onethreeCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 3 && elozo_y == 1){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onethree[2].text.Equals(""))
-                {
-                    onethree[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = threeone[i].text;
             }
-            //onefour
-            if (Input.GetKeyDown(KeyCode.Mouse0) && onefourCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 3 && elozo_y == 2){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onefour[0].text.Equals(""))
-                {
-                    onefour[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = threetwo[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onefourCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 3 && elozo_y == 3){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onefour[1].text.Equals(""))
-                {
-                    onefour[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = threethree[i].text;
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && onefourCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
+        }else if(elozo_x == 3 && elozo_y == 4){
+            for (int i = 0; i < 3; i++)
             {
-                if (!onefour[2].text.Equals(""))
-                {
-                    onefour[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //twoone
-            if (Input.GetKeyDown(KeyCode.Mouse0) && twooneCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twoone[0].text.Equals(""))
-                {
-                    twoone[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twooneCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twoone[1].text.Equals(""))
-                {
-                    twoone[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twooneCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twoone[2].text.Equals(""))
-                {
-                    twoone[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //twotwo
-            if (Input.GetKeyDown(KeyCode.Mouse0) && twotwoCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twotwo[0].text.Equals(""))
-                {
-                    twotwo[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twotwoCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twotwo[1].text.Equals(""))
-                {
-                    twotwo[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twotwoCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twotwo[2].text.Equals(""))
-                {
-                    twotwo[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //twothree
-            if (Input.GetKeyDown(KeyCode.Mouse0) && twothreeCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twothree[0].text.Equals(""))
-                {
-                    twothree[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twothreeCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twothree[1].text.Equals(""))
-                {
-                    twothree[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twothreeCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twothree[2].text.Equals(""))
-                {
-                    twothree[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //twofour
-            if (Input.GetKeyDown(KeyCode.Mouse0) && twofourCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twofour[0].text.Equals(""))
-                {
-                    twofour[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twofourCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twofour[1].text.Equals(""))
-                {
-                    twofour[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && twofourCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!twofour[2].text.Equals(""))
-                {
-                    twofour[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //threeone
-            if (Input.GetKeyDown(KeyCode.Mouse0) && threeoneCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threeone[0].text.Equals(""))
-                {
-                    threeone[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threeoneCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threeone[1].text.Equals(""))
-                {
-                    threeone[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threeoneCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threeone[2].text.Equals(""))
-                {
-                    threeone[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //threetwo
-            if (Input.GetKeyDown(KeyCode.Mouse0) && threetwoCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threetwo[0].text.Equals(""))
-                {
-                    threetwo[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threetwoCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threetwo[1].text.Equals(""))
-                {
-                    threetwo[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threetwoCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threetwo[2].text.Equals(""))
-                {
-                    threetwo[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //threethree
-            if (Input.GetKeyDown(KeyCode.Mouse0) && threethreeCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threethree[0].text.Equals(""))
-                {
-                    threethree[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threethreeCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threethree[1].text.Equals(""))
-                {
-                    threethree[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threethreeCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threethree[2].text.Equals(""))
-                {
-                    threethree[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            //threefour
-            if (Input.GetKeyDown(KeyCode.Mouse0) && threefourCollider[0].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threefour[0].text.Equals(""))
-                {
-                    threefour[0].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threefourCollider[1].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threefour[1].text.Equals(""))
-                {
-                    threefour[1].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && threefourCollider[2].OverlapPoint(maincamera.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                if (!threefour[2].text.Equals(""))
-                {
-                    threefour[2].text = "X";
-                    canKill = false;
-                }
-                else
-                {
-                    Debug.Log("itt nincs ugynok csapat!!!");
-                }
+                previus_ugynok_csapatok[i] = threefour[i].text;
             }
         }
     }
-*/
 }
