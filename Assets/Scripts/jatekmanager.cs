@@ -201,6 +201,15 @@ public class jatekmanager : MonoBehaviour
         JatekosVesztett();
     }
 
+    private void Update() {
+        if(jatekosvesztett){
+            SceneManager.LoadScene("JatekosVesztett");
+        }
+        if(jatekosnyert){
+            SceneManager.LoadScene("JatekosNyert");
+        }
+    }
+
     private async void ugynokDeaktivalas(bool bekapcsolas)
     {
         energiafejlesztés.SetActive(bekapcsolas);

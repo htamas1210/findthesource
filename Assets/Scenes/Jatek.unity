@@ -4438,7 +4438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c0315629436f34d8ba48f6d00b8302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foundsource: 0
+  szoveg: {fileID: 0}
 --- !u!114 &197904234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8294,9 +8294,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 197904236}
-        m_TargetAssemblyTypeName: Targyak, Assembly-CSharp
-        m_MethodName: RandomTargy
+      - m_Target: {fileID: 197904230}
+        m_TargetAssemblyTypeName: Elet, Assembly-CSharp
+        m_MethodName: Eletvesztes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

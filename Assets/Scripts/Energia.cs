@@ -9,6 +9,8 @@ public class Energia : MonoBehaviour
     private int energiasav_index = 0;
     public bool granatAktivalva = false;
 
+    private jatekmanager jatekmanager;
+
     public int getEnergiasavIndex() { return energiasav_index; }
     public void setEnegiasavIndex(int ertek) { energiasav_index = ertek; }
 
@@ -18,7 +20,7 @@ public class Energia : MonoBehaviour
             return; //targy cucc aktivalva egesz korbe nem csokken az energia
         }
 
-        if (energiasav_index > 30) return;
+        if (energiasav_index > 29) jatekmanager.Instance.jatekosvesztett = true; //ha nincs tobb energia vesztes
 
         for (int i = 0; i < number; i++) {
             //if (number + enegiasav_index > energiasav_text.Length) break;

@@ -21,6 +21,12 @@ public class Elet : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if(elet == 0){
+            jatekmanager.Instance.jatekosvesztett = true;
+        }
+    }
+
     public void Eletplusz() {
         if (elet > 4) return;
         if (elet_megszerezve > 4) return;
@@ -39,7 +45,7 @@ public class Elet : MonoBehaviour
     public void Eletvesztes() {
         if (elet_vesztve > 4)
         {
-            jatekmanager.jatekosvesztett = true;
+            //jatekmanager.jatekosvesztett = true;
             return;
          }
         if (elet_megszerezve > elet +1) return;
