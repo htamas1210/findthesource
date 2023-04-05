@@ -75,6 +75,7 @@ public class jatekmanager : MonoBehaviour
         movement = FindObjectOfType<movement>();
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
+        vegpontozas = FindObjectOfType<vegpontozas>();
 
         UpdateGameState(GameState.KorKezdet);
     }

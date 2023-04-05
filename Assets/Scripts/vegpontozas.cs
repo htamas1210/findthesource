@@ -15,7 +15,6 @@ public class vegpontozas : MonoBehaviour
     private Akciok akciok;
     private Elet elet;
     
-
     public TMP_Text szoveg;
 
     public int osszpont = 0;
@@ -52,7 +51,7 @@ public class vegpontozas : MonoBehaviour
     }
 
     public void pontkiiras(){
-        StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/pontszam.txt", false, Encoding.Default);
+        StreamWriter writer = new StreamWriter(""+Application.persistentDataPath + "/pontszam.txt", false, Encoding.Default);
 
         writer.Write(osszpont);
         writer.Close();
