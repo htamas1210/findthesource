@@ -35,6 +35,7 @@ public class jatekmanager : MonoBehaviour
     private movement movement;
     private TurnManager turnManager;
     private Source source;
+    private vegpontozas vegpontozas;
 
     //ügynökcsapatok implementálása
     public TMP_Text[] oneone;
@@ -197,17 +198,18 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleVesztette()
     {
+        //vegpontozas.pontkiiras();
         JatekosNyert();
         JatekosVesztett();
     }
 
     private void Update() {
-        if(jatekosvesztett){
+        /*if(jatekosvesztett){
             SceneManager.LoadScene("JatekosVesztett");
         }
         if(jatekosnyert){
             SceneManager.LoadScene("JatekosNyert");
-        }
+        }*/
     }
 
     private async void ugynokDeaktivalas(bool bekapcsolas)
@@ -442,6 +444,7 @@ public class jatekmanager : MonoBehaviour
         }
 
         if(jatekosnyert){
+            vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosNyert");
         }
         else
@@ -718,6 +721,7 @@ public class jatekmanager : MonoBehaviour
         }
 
         if(jatekosvesztett){
+            vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosVesztett");
         }
         else

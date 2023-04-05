@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System.IO;
+using System.Text;
+using UnityEngine.SceneManagement;
 
 public class vegpontozas : MonoBehaviour
 {
@@ -14,9 +16,9 @@ public class vegpontozas : MonoBehaviour
     private Elet elet;
     
 
-    public GameObject szoveg;
+    public TMP_Text szoveg;
 
-    int osszpont = 0;
+    public int osszpont = 0;
     int tolteny;
     int megszerzetttargyak;
     int fejlesztespont;
@@ -30,6 +32,10 @@ public class vegpontozas : MonoBehaviour
         targyak = FindObjectOfType<Targyak>();
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
+
+        if(SceneManager.GetActiveScene().name.Equals("JatekosNyert") || SceneManager.GetActiveScene().name.Equals("JatekosVesztett")){
+            szoveg.text = "Pontszam: " + pontbeolvas();
+        }
     }
 
     public int OsszpontSzamalas()
@@ -43,5 +49,22 @@ public class vegpontozas : MonoBehaviour
         osszpont = (energiapont * 2) + (megmaradtelet * 2) + (fejlesztespont / 3) + (tolteny / 2) + megszerzetttargyak;
         //textMesh.text = "Összesen ennyi pontot szereztél:" + osszpont;
         return osszpont;
+    }
+
+    public void pontkiiras(){
+        StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/pontszam.txt", false, Encoding.Default);
+
+        writer.Write(osszpont);
+        writer.Close();
+
+        Debug.Log("fajl kiirva");
+    }
+
+    public string pontbeolvas(){
+        StreamReader reader = new StreamReader(Application.persistentDataPath + "/pontszam.txt");
+        string pontszam = reader.ReadLine();
+        reader.Close();
+
+        return pontszam;        
     }
 }

@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 958920304}
   - component: {fileID: 958920307}
   - component: {fileID: 958920308}
+  - component: {fileID: 958920309}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -392,6 +393,19 @@ MonoBehaviour:
   MainMenuObj: {fileID: 0}
   OptionsMenu: {fileID: 0}
   VideoButton: {fileID: 0}
+--- !u!114 &958920309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958920303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c0315629436f34d8ba48f6d00b8302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  szoveg: {fileID: 1041644989}
 --- !u!1 &1041644987
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Pontszam: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
