@@ -75,6 +75,7 @@ public class movement : MonoBehaviour
     private Ugynok ugynok;
     private Targyak targyak;
     private jatekmanager jatekmanager;
+    private Dice dice;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -112,6 +113,7 @@ public class movement : MonoBehaviour
         ugynok = FindObjectOfType<Ugynok>();
         targyak = FindObjectOfType<Targyak>();
         jatekmanager = FindObjectOfType<jatekmanager>();
+        dice = FindObjectOfType<Dice>();
     }
 
     void Start()
@@ -166,8 +168,7 @@ public class movement : MonoBehaviour
             eromulepes1.SetActive(true);
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
-            jelenlegi_y = 1;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+            jelenlegi_y = 1;         
         }
         else if (random == 2)
         {
@@ -176,7 +177,6 @@ public class movement : MonoBehaviour
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 1;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 3)
         {
@@ -185,7 +185,6 @@ public class movement : MonoBehaviour
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 1;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 4)
         {
@@ -194,7 +193,6 @@ public class movement : MonoBehaviour
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 2;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 5)
         {
@@ -203,7 +201,6 @@ public class movement : MonoBehaviour
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 2;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 6)
         {
@@ -212,7 +209,6 @@ public class movement : MonoBehaviour
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 2;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 7)
         {
@@ -221,7 +217,6 @@ public class movement : MonoBehaviour
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 3;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 8)
         {
@@ -230,7 +225,6 @@ public class movement : MonoBehaviour
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 3;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 9)
         {
@@ -239,7 +233,6 @@ public class movement : MonoBehaviour
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 3;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 10)
         {
@@ -248,7 +241,6 @@ public class movement : MonoBehaviour
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 4;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 11)
         {
@@ -257,7 +249,6 @@ public class movement : MonoBehaviour
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 4;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
         else if (random == 12)
         {
@@ -266,9 +257,9 @@ public class movement : MonoBehaviour
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 4;
-            ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         }
 
+        //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         ugynok.setElozoHelyszin(jelenlegi_x, jelenlegi_y);
     }
 
@@ -825,6 +816,7 @@ public class movement : MonoBehaviour
     public void Update()
     {
         tavolsag = math.abs(tavolsag);
+        ugynok.ugynokMegolveElozoHelyen();
 
         // player mozgatasa es konzolra iratas
         if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
@@ -862,7 +854,9 @@ public class movement : MonoBehaviour
                                 oneonecount = oneonecount + 1;
                                 Debug.Log(ap.akciopont);
                                 Debug.Log("ugynok sorsolas");
-                                ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                dice.CallRenderDice(true);
                                 ugynok.ugynokMegolveElozoHelyen();
                                 if (eromulepes1.activeSelf == true)
                                 {
@@ -926,7 +920,9 @@ public class movement : MonoBehaviour
                                     }
                                     twoonecount = twoonecount + 1;
                                     Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     if (feketepiaclepes1.activeSelf == true)
                                     {
@@ -993,7 +989,9 @@ public class movement : MonoBehaviour
                                     threeonecount++;
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     if (metrolepes1.activeSelf == true)
                                     {
@@ -1064,7 +1062,9 @@ public class movement : MonoBehaviour
                                     onetwocount++;
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     if (szervereklepes1.activeSelf == true)
                                     {
@@ -1130,7 +1130,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     twotwocount++;
                                     if (kingcasinolepes1.activeSelf == true)
@@ -1202,7 +1204,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     threetwocount++;
                                     if (feltoltolepes1.activeSelf == true)
@@ -1270,7 +1274,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     onethreecount++;
                                     if (kutatolaborlepes1.activeSelf == true)
@@ -1342,7 +1348,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     twothreecount++;
                                     if (kriptoklublepes1.activeSelf == true)
@@ -1411,7 +1419,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     threethreecount++;
                                     if (cyberplazalepes1.activeSelf == true)
@@ -1479,7 +1489,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     onefourcount++;
                                     if (hadiuzemlepes1.activeSelf == true)
@@ -1547,7 +1559,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     twofourcount++;
                                     if (konyvtarlepes1.activeSelf == true)
@@ -1615,7 +1629,9 @@ public class movement : MonoBehaviour
                                     }
                                     Debug.Log(ap.akciopont);
                                     Debug.Log("ugynok sorsolas");
-                                    ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+                                    dice.CallRenderDice(true);
                                     ugynok.ugynokMegolveElozoHelyen();
                                     threefourcount++;
                                     if (korhazlepes1.activeSelf == true)

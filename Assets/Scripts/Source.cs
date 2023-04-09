@@ -19,6 +19,7 @@ public class Source : MonoBehaviour
     private void Awake() {
         movement = FindObjectOfType<movement>();
         ugynok = FindObjectOfType<Ugynok>();
+        jatekmanager = FindObjectOfType<jatekmanager>();
     }
 
     private void Start() {

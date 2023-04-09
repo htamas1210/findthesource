@@ -7,7 +7,7 @@ public class Elet : MonoBehaviour
 {
     public TMP_Text[] elet_text;
     public int elet = 2;
-    private int elet_vesztve = 0;
+    [SerializeField] private int elet_vesztve = 0;
     private int elet_megszerezve = 2;
     private jatekmanager jatekmanager;
 
@@ -49,7 +49,7 @@ public class Elet : MonoBehaviour
             //jatekmanager.jatekosvesztett = true;
             return;
          }
-        if (elet_megszerezve > elet +1) return;
+        //if (elet_megszerezve > elet +1) return;
         //if(elet < 0) return;
 
         elet_vesztve++;

@@ -13,6 +13,8 @@ public class Dice : MonoBehaviour {
     private Akciopont ap;
     private Energia energiasav;
     private Targyak targyak;
+    private Ugynok ugynok;
+    private movement movement;
     public int[] diceResult = { 0, 0 };
     public List<int> ujertek = new List<int>();
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
@@ -34,11 +36,15 @@ public class Dice : MonoBehaviour {
     public bool dobottEgyszer = false; //tudjon ujra dobni vagy nem
     public int ujradobasszamlalo;
 
+    private bool ugynokDobasErtek = false; //ertek valasztashoz hogy tudja az ugynok csapat miatt lett meghivva
+    private bool  elsoDobas = true;
     private void Awake() {
         upgrade = FindObjectOfType<Upgrade>();
         ap = FindObjectOfType<Akciopont>();
         energiasav = FindObjectOfType<Energia>();
         targyak = FindObjectOfType<Targyak>();
+        ugynok = FindObjectOfType<Ugynok>();
+        movement = FindObjectOfType<movement>();
     }
 
     public void ertekValasztas(GameObject gomb) {
@@ -46,28 +52,67 @@ public class Dice : MonoBehaviour {
             if (gomb.name == "dice1btn") {
                 valasztottErtek = diceResult[0];
                 if (diceResult[0] < diceResult[1]) {
-                    upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
-                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
+                    if(!ugynokDobasErtek){
+                        upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
+                    }else{
+                        //ugynok csapat szama
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);
+
+                        //-1 energia
+                        energiasav.csokkenEnergia(1);
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    }                 
                 } else {
-                    energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
-                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    if(!ugynokDobasErtek){
+                        energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    }else{
+                        //ugynok csapat szama
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    }                    
                 }
 
                 locked = true;
             } else if (gomb.name == "dice2btn") {
                 valasztottErtek = diceResult[1];
                 if (diceResult[1] < diceResult[0]) {
-                    upgrade.canUpgrade = true;
-                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
+                    if(!ugynokDobasErtek){
+                        upgrade.canUpgrade = true; //kisebb szam valasztasa eseten fejlesztes egyszer
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
+                    }else{
+                        //ugynok csapat szama
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);
+
+                        //-1 energia
+                        energiasav.csokkenEnergia(1);
+                        
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    } 
                 } else {
-                    energiasav.csokkenEnergia(1);
-                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    if(!ugynokDobasErtek){
+                        energiasav.csokkenEnergia(1); //nagyobb szam valasztasa eseten -1 energia
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    }else{
+                        //ugynok csapat szama
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);
+                        jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
+                    } 
                 }
 
                 locked = true;
             }
 
-            ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
+            if(!ugynokDobasErtek)
+                ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
+
+            if(elsoDobas){
+                //jatek kezdeskor elso dobas ugynok csapat meghatarozas kezdo helyszinen
+                jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas);
+                CallRenderDice(true);
+                elsoDobas = false;
+            }
         }
 
         Debug.Log("valasztott ertek: " + valasztottErtek + " locked status: " + locked);
@@ -82,11 +127,12 @@ public class Dice : MonoBehaviour {
         return finalSide;
     }
 
-    public void CallRenderDice() => StartCoroutine(renderDice());
+    public void CallRenderDice(bool ugynokDobas) => StartCoroutine(renderDice(ugynokDobas));
 
-    public IEnumerator renderDice() {
+    public IEnumerator renderDice(bool ugynokDobas) {
         //ha zarolva van akkor ne tudjon ujra dobni / csak egyszer dobhasson (amig nincs feloldva a kovetkezo dobashoz)
-        if(dobottEgyszer) yield break;
+        //ha ugynok miatt kell dobni mikor mar nincs ujradobas tudjon dobni
+        if(dobottEgyszer && !ugynokDobas) yield break;
 
         //dice gombok kikapcsolasa hogy amig nem vegez ne tudjon erteket valasztani
         dice1btnBtn.enabled = false;
@@ -97,7 +143,6 @@ public class Dice : MonoBehaviour {
             diceResult[1] = RollDice();
         } while (diceResult[0] == diceResult[1]);
 
-
         //lassa a jatekos mit dobott
         hely1.sprite = diceSides[diceResult[0]-1];
         hely1.size = new Vector2(38, 38);
@@ -105,11 +150,11 @@ public class Dice : MonoBehaviour {
         hely2.sprite = diceSides[diceResult[1]-1];
         hely2.size = new Vector2(38, 38);
 
-        ujradobasszamlalo--;
-        Debug.Log("ujradobasszamlalo: " + ujradobasszamlalo);
-        if(ujradobasszamlalo == 0){
-            dobottEgyszer = true;
-        }       
+        if(ugynokDobas){
+            ugynokDobasErtek = true;
+            setLocked(false);
+        }
+             
 
         //ha megvan a targy
         if(targyak.adrenalinloket > 0) {
@@ -181,6 +226,9 @@ public class Dice : MonoBehaviour {
                     diceResult[0] = targyak.ujertek1;
                     diceResult[1] = targyak.ujertek2;
                     dobottEgyszer = true;
+
+                    if(!ugynokDobas) //ha ugynok miatt van dobas ne vonjon le
+                        ujradobasszamlalo++; //elhasznal egyet fent
                 }        
             }
             //deaktivalas
@@ -197,6 +245,14 @@ public class Dice : MonoBehaviour {
         //ha vegzett mindennel kapcsolja vissza az ertekvalasztast
         dice1btnBtn.enabled = true;
         dice2btnBtn.enabled = true;
+
+        if(!ugynokDobas){ //ha ugynok miatt van dobas ne vonjon le
+            ujradobasszamlalo--;
+            Debug.Log("ujradobasszamlalo: " + ujradobasszamlalo);
+            if(ujradobasszamlalo == 0){
+                dobottEgyszer = true;
+            } 
+        } 
     }
 
     public void HelyszinKiBekapcs(bool kikapcsolas){

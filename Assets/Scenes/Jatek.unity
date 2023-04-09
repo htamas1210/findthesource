@@ -4427,6 +4427,7 @@ MonoBehaviour:
   - {fileID: 889062367}
   - {fileID: 1970422692}
   elet: 2
+  elet_vesztve: 0
 --- !u!114 &197904232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4440,6 +4441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   szoveg: {fileID: 0}
+  osszpont: 0
 --- !u!114 &197904234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,7 +4521,6 @@ MonoBehaviour:
   droidagyuAktivalva: 0
   canKill: 0
   canShoot: 0
-  maincamera: {fileID: 519420031}
 --- !u!114 &197904236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4642,6 +4643,7 @@ MonoBehaviour:
   vanertelme: 1
   State: 0
   helyszinaktivalasBtn: {fileID: 824033280}
+  nev: {fileID: 1509580805}
 --- !u!114 &197904238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8311,7 +8313,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 197904230}
         m_TargetAssemblyTypeName: Elet, Assembly-CSharp
-        m_MethodName: Eletvesztes
+        m_MethodName: Eletplusz
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15707,7 +15709,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 197904237}
+        m_TargetAssemblyTypeName: jatekmanager, Assembly-CSharp
+        m_MethodName: NevValasztasUtan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -31913,7 +31927,7 @@ MonoBehaviour:
       - m_Target: {fileID: 197904220}
         m_TargetAssemblyTypeName: Dice, Assembly-CSharp
         m_MethodName: CallRenderDice
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

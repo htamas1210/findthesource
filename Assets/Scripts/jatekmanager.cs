@@ -59,6 +59,8 @@ public class jatekmanager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
     public Button helyszinaktivalasBtn;
 
+    public TMP_Text nev;
+
     private void Awake()
     {
         Instance = this;
@@ -77,7 +79,11 @@ public class jatekmanager : MonoBehaviour
         source = FindObjectOfType<Source>();
         vegpontozas = FindObjectOfType<vegpontozas>();
 
-        UpdateGameState(GameState.KorKezdet);
+        UpdateGameState(GameState.Nev);
+        
+        #if !UNITY_EDITOR
+            test.SetActive(false);
+        #endif
     }
 
     public void UpdateGameState(GameState newState)
@@ -101,6 +107,12 @@ public class jatekmanager : MonoBehaviour
             case GameState.Vesztette:
                 HandleVesztette();
                 break;
+            case GameState.UgynokValasztas:
+                HandleUgynokValasztas();
+                break;
+            case GameState.Nev:
+                HandleUgynokNev();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -114,7 +126,9 @@ public class jatekmanager : MonoBehaviour
         Akcio,
         Fejlesztes,
         Ugynok,
-        Vesztette
+        Vesztette,
+        UgynokValasztas,
+        Nev
     }
 
     private async void HandleKorkezdet()
@@ -161,6 +175,55 @@ public class jatekmanager : MonoBehaviour
         Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");
     }
 
+    private async void HandleUgynokValasztas(){
+        //kapcsolja ki addig a mezoket amig nem valasztott ugynokcsapat szamot
+        movement.oneone_Collider.gameObject.SetActive(false);
+        movement.onetwo_Collider.gameObject.SetActive(false);
+        movement.onethree_Collider.gameObject.SetActive(false);
+        movement.onefour_Collider.gameObject.SetActive(false);
+        movement.twoone_Collider.gameObject.SetActive(false);
+        movement.twotwo_Collider.gameObject.SetActive(false);
+        movement.twothree_Collider.gameObject.SetActive(false);
+        movement.twofour_Collider.gameObject.SetActive(false);
+        movement.threeone_Collider.gameObject.SetActive(false);
+        movement.threetwo_Collider.gameObject.SetActive(false);
+        movement.threethree_Collider.gameObject.SetActive(false);
+        movement.threefour_Collider.gameObject.SetActive(false);
+    }
+
+    public void NevValasztasUtan(){
+        if(!nev.text.Equals(""))
+            Instance.UpdateGameState(GameState.KorKezdet);
+    }
+
+    private async void HandleUgynokNev(){
+        movement.oneone_Collider.gameObject.SetActive(false);
+        movement.onetwo_Collider.gameObject.SetActive(false);
+        movement.onethree_Collider.gameObject.SetActive(false);
+        movement.onefour_Collider.gameObject.SetActive(false);
+        movement.twoone_Collider.gameObject.SetActive(false);
+        movement.twotwo_Collider.gameObject.SetActive(false);
+        movement.twothree_Collider.gameObject.SetActive(false);
+        movement.twofour_Collider.gameObject.SetActive(false);
+        movement.threeone_Collider.gameObject.SetActive(false);
+        movement.threetwo_Collider.gameObject.SetActive(false);
+        movement.threethree_Collider.gameObject.SetActive(false);
+        movement.threefour_Collider.gameObject.SetActive(false);
+
+        energiafejlesztés.SetActive(false);
+        akciofejlesztés.SetActive(false);
+        harcfejlesztés.SetActive(false);
+        ujradobasfejlesztés.SetActive(false);
+        hackfejlesztés.SetActive(false);
+        kovetkezokor.SetActive(false);
+        betarazas.SetActive(false);
+        nyomozas.SetActive(false);
+        hackeles.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
+        //test.SetActive(false);
+        rolldice.SetActive(false);
+    }
+
 
     private async void HandleFejlesztes()
     {
@@ -193,6 +256,20 @@ public class jatekmanager : MonoBehaviour
         hackfejlesztés.SetActive(false);
 
         kovetkezokor.SetActive(true);
+
+        //ha ugynok valasztasbol jon kapcsolaja vissza a collidereket
+        movement.oneone_Collider.gameObject.SetActive(true);
+        movement.onetwo_Collider.gameObject.SetActive(true);
+        movement.onethree_Collider.gameObject.SetActive(true);
+        movement.onefour_Collider.gameObject.SetActive(true);
+        movement.twoone_Collider.gameObject.SetActive(true);
+        movement.twotwo_Collider.gameObject.SetActive(true);
+        movement.twothree_Collider.gameObject.SetActive(true);
+        movement.twofour_Collider.gameObject.SetActive(true);
+        movement.threeone_Collider.gameObject.SetActive(true);
+        movement.threetwo_Collider.gameObject.SetActive(true);
+        movement.threethree_Collider.gameObject.SetActive(true);
+        movement.threefour_Collider.gameObject.SetActive(true);
 
         //rolldice.SetActive(false);
     }
@@ -255,96 +332,6 @@ public class jatekmanager : MonoBehaviour
         dice.dice1btnBtn.gameObject.SetActive(bekapcsolas);
         dice.dice2btnBtn.gameObject.SetActive(bekapcsolas);
     }
-
-
-    /*
-
-    // Update is called once per frame
-    IEnumerator MyCoroutine()
-    {
-        //amig a játékos vesztett bool nem egyenlo true-val vagy a nyert bool nem egyenlo true-val
-        //while (jatekosnyert != true || jatekosvesztett != true)
-        //{
-        //a jatekos mikor belép semmit ne tudjon csinálni csak dobni a kockával, hogy elkezdje a játékot
-            energiafejlesztés.SetActive(false);
-            akciofejlesztés.SetActive(false);
-            harcfejlesztés.SetActive(false);
-            ujradobasfejlesztés.SetActive(false);
-            hackfejlesztés.SetActive(false);
-            kovetkezokor.SetActive(false);
-            betarazas.SetActive(false);
-            nyomozas.SetActive(false);
-            hackeles.SetActive(false);
-            //test.SetActive(false);
-
-
-
-
-            //&& dice.getLocked() != true
-
-            //ez rossz!!!!
-            //while (dice.dobott < upgrade.getUjradobasIndex() + 1 )
-            //{
-            
-                //eddig újradobhat
-            //}
-
-            
-                yield return new WaitUntil(() => dice.getLocked() == true);
-            
-
-            while (vanertelme == true)
-            {
-                //a játékos választ a két érték között
-                if (upgrade.canUpgrade == true)
-                {
-                    //ha a kisebbet választotta akkor jelennek meg a fejlesztés gombjai
-                    energiafejlesztés.SetActive(true);
-                    akciofejlesztés.SetActive(true);
-                    harcfejlesztés.SetActive(true);
-                    ujradobasfejlesztés.SetActive(true);
-                    hackfejlesztés.SetActive(true);
-                    kovetkezokor.SetActive(true);
-                }
-                else
-                {
-                    //ha a nagyobbat választotta akkor jelennek meg az akciók gombjai
-
-                    //itt a movement bekapcsol
-                    kovetkezokor.SetActive(true);
-                    betarazas.SetActive(true);
-                    nyomozas.SetActive(true);
-                    hackeles.SetActive(true);
-                }
-            }
-            
-
-
-
-            //itt az akciopont elérte a 0-át
-                //movement kikapcs
-                energiafejlesztés.SetActive(false);
-                akciofejlesztés.SetActive(false);
-                harcfejlesztés.SetActive(false);
-                ujradobasfejlesztés.SetActive(false);
-                hackfejlesztés.SetActive(false);
-                //rolldice.SetActive(false);
-                betarazas.SetActive(false);
-                nyomozas.SetActive(false);
-                hackeles.SetActive(false);
-                //test.SetActive(false);
-                kovetkezokor.SetActive(true);
-            
-            //amint rányom a kör vége gombra 0 legyen az akciópont és megint csak a dobás legyen elérhető
-
-            
-
-        //}
-
-        //JatekosNyert();
-        //JatekosVesztett();
-
-    } */
 
     public void JatekosNyert()
     {

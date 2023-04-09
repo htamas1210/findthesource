@@ -13,40 +13,25 @@ public class Ugynok : MonoBehaviour
     private movement movement;
 
     public TMP_Text[] oneone;
-    //public BoxCollider2D[] oneoneCollider;
     public TMP_Text[] twoone;
-    //public BoxCollider2D[] twooneCollider;
     public TMP_Text[] threeone;
-    //public BoxCollider2D[] threeoneCollider;
     public TMP_Text[] onetwo;
-    //public BoxCollider2D[] onetwoCollider;
     public TMP_Text[] twotwo;
-    //public BoxCollider2D[] twotwoCollider;
     public TMP_Text[] threetwo;
-    //public BoxCollider2D[] threetwoCollider;
     public TMP_Text[] onethree;
-    //public BoxCollider2D[] onethreeCollider;
     public TMP_Text[] twothree;
-    //public BoxCollider2D[] twothreeCollider;
     public TMP_Text[] threethree;
-    //public BoxCollider2D[] threethreeCollider;
     public TMP_Text[] onefour;
-    //public BoxCollider2D[] onefourCollider;
     public TMP_Text[] twofour;
-    //public BoxCollider2D[] twofourCollider;
     public TMP_Text[] threefour;
-    //public BoxCollider2D[] threefourCollider;
 
     public bool droidagyuAktivalva = false;
-
     public bool canKill = false;
     public bool canShoot = false; //harchoz bool
-    public void setCanKillTrue(){ canKill = true; }
-    public Camera maincamera;
-
     private string[] previus_ugynok_csapatok;
     private int elozo_x;
     private int elozo_y ;
+    public void setCanKillTrue(){ canKill = true; }
 
     private void Awake() {
         akciok = FindObjectOfType<Akciok>();
@@ -56,10 +41,8 @@ public class Ugynok : MonoBehaviour
         elet = FindObjectOfType<Elet>();
 
         previus_ugynok_csapatok = new string[3];
-    }
 
-    private void Start()
-    {
+        //ugynok csapat mezo szoveg kiurites
         for (int i = 0; i < oneone.Length; i++)
         {
             oneone[i].text = "";
@@ -110,188 +93,194 @@ public class Ugynok : MonoBehaviour
         {
             threefour[i].text = "";
         }
-
     }
 
-    public void UgynokSorsolas(int x, int y){
+    public void UgynokSorsolas(int x, int y, int ugynokSzam = 0){
+        int random;
+        if(ugynokSzam == 0){
+            random = UnityEngine.Random.Range(1,7);
+        }else{
+            random = ugynokSzam;
+        }
+
         if (x == 1 && y == 1)
         {
             if (oneone[0].text.Equals(""))
             {
-                oneone[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                oneone[0].text = random.ToString();
             }
             else if (oneone[1].text.Equals(""))
             {
-                oneone[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                oneone[1].text = random.ToString();
             }
             else if (oneone[2].text.Equals(""))
             {
-                oneone[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                oneone[2].text = random.ToString();
             }
         }
         else if (x == 1 && y == 2)
         {
             if (onetwo[0].text.Equals(""))
             {
-                onetwo[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                onetwo[0].text = random.ToString();
             }
             else if (onetwo[1].text.Equals(""))
             {
-                onetwo[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                onetwo[1].text = random.ToString();
             }
             else if (onetwo[2].text.Equals(""))
             {
-                onetwo[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                onetwo[2].text = random.ToString();
             }
         }
         else if (x == 1 && y == 3)
         {
             if (onethree[0].text.Equals(""))
             {
-                onethree[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                onethree[0].text = random.ToString();
             }
             else if (onethree[1].text.Equals(""))
             {
-                onethree[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                onethree[1].text = random.ToString();
             }
             else if (onethree[2].text.Equals(""))
             {
-                onethree[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                onethree[2].text = random.ToString();
             }
         }
         else if (x == 1 && y == 4)
         {
             if (onefour[0].text.Equals(""))
             {
-                onefour[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                onefour[0].text = random.ToString();
             }
             else if (onefour[1].text.Equals(""))
             {
-                onefour[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                onefour[1].text = random.ToString();
             }
             else if (onefour[2].text.Equals(""))
             {
-                onefour[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                onefour[2].text = random.ToString();
             }
         }
         else if (x == 2 && y == 1)
         {
             if (twoone[0].text.Equals(""))
             {
-                twoone[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                twoone[0].text = random.ToString();
             }
             else if (twoone[1].text.Equals(""))
             {
-                twoone[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                twoone[1].text = random.ToString();
             }
             else if (twoone[2].text.Equals(""))
             {
-                twoone[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                twoone[2].text = random.ToString();
             }
         }
         else if (x == 2 && y == 2)
         {
             if (twotwo[0].text.Equals(""))
             {
-                twotwo[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                twotwo[0].text = random.ToString();
             }
             else if (twotwo[1].text.Equals(""))
             {
-                twotwo[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                twotwo[1].text = random.ToString();
             }
             else if (twotwo[2].text.Equals(""))
             {
-                twotwo[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                twotwo[2].text = random.ToString();
             }
         }
         else if (x == 2 && y == 3)
         {
             if (twothree[0].text.Equals(""))
             {
-                twothree[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                twothree[0].text = random.ToString();
             }
             else if (twothree[1].text.Equals(""))
             {
-                twothree[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                twothree[1].text = random.ToString();
             }
             else if (twothree[2].text.Equals(""))
             {
-                twothree[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                twothree[2].text = random.ToString();
             }
         }
         else if (x == 2 && y == 4)
         {
             if (twofour[0].text.Equals(""))
             {
-                twofour[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                twofour[0].text = random.ToString();
             }
             else if (twofour[1].text.Equals(""))
             {
-                twofour[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                twofour[1].text = random.ToString();
             }
             else if (twofour[2].text.Equals(""))
             {
-                twofour[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                twofour[2].text = random.ToString();
             }
         }
         else if (x == 3 && y == 1)
         {
             if (threeone[0].text.Equals(""))
             {
-                threeone[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                threeone[0].text = random.ToString();
             }
             else if (threeone[1].text.Equals(""))
             {
-                threeone[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                threeone[1].text = random.ToString();
             }
             else if (threeone[2].text.Equals(""))
             {
-                threeone[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                threeone[2].text = random.ToString();
             }
         }
         else if (x == 3 && y == 2)
         {
             if (threetwo[0].text.Equals(""))
             {
-                threetwo[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                threetwo[0].text = random.ToString();
             }
             else if (threetwo[1].text.Equals(""))
             {
-                threetwo[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                threetwo[1].text = random.ToString();
             }
             else if (threetwo[2].text.Equals(""))
             {
-                threetwo[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                threetwo[2].text = random.ToString();
             }
         }
         else if (x == 3 && y == 3)
         {
             if (threethree[0].text.Equals(""))
             {
-                threethree[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                threethree[0].text = random.ToString();
             }
             else if (threethree[1].text.Equals(""))
             {
-                threethree[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                threethree[1].text = random.ToString();
             }
             else if (threethree[2].text.Equals(""))
             {
-                threethree[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                threethree[2].text = random.ToString();
             }
         }
         else if (x == 3 && y == 4)
         {
             if (threefour[0].text.Equals(""))
             {
-                threefour[0].text = UnityEngine.Random.Range(1, 7).ToString();
+                threefour[0].text = random.ToString();
             }
             else if (threefour[1].text.Equals(""))
             {
-                threefour[1].text = UnityEngine.Random.Range(1, 7).ToString();
+                threefour[1].text = random.ToString();
             }
             else if (threefour[2].text.Equals(""))
             {
-                threefour[2].text = UnityEngine.Random.Range(1, 7).ToString();
+                threefour[2].text = random.ToString();
             }
         }
     }
@@ -353,7 +342,7 @@ public class Ugynok : MonoBehaviour
             foreach(var item in previus_ugynok_csapatok){
                 if(!item.Equals("")){
                     //ha nem ures a text vagyis volt atirva szamra nezze meg hogy X-e
-                    if(!item.Equals("x")){
+                    if(!item.Equals("x") ||!item.Equals("X")){
                         //vonjon le egy eletet
                         elet.Eletvesztes();
                         break;
