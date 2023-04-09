@@ -1,2 +1,2 @@
 # findthesource
-Find the source (Találd meg a forrást) nevű játék digitális implementációja Unity-ben 
+Find the source nevű játék digitális implementációja Unity-ben 
