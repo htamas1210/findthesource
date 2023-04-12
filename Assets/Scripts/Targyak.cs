@@ -26,6 +26,9 @@ public class Targyak : MonoBehaviour
     public int droidgepagyu = 0;
     public int matavtaviranyito = 0;
     public int fustgranat = 0;
+
+    [SerializeField] private bool vanUgynok = false;
+
     public bool lathatatlanOltozetAktivalva = false;
     public bool matavtaviranyitoAktivalva = false;
     private int randomszam;
@@ -61,6 +64,15 @@ public class Targyak : MonoBehaviour
         jatekmanager = FindObjectOfType<jatekmanager>();
     }
 
+    private void Start() {
+        adrenalinFelhasznalva.gameObject.SetActive(false);
+        hackerFelhasznalva.gameObject.SetActive(false);
+        lathatatlanFelhasznalva.gameObject.SetActive(false);
+        droidFelhasznalva.gameObject.SetActive(false);
+        matavFelhasznalva.gameObject.SetActive(false);
+        alomhozoFelhasznalva.gameObject.SetActive(false);
+    }
+
     public void RandomTargy()
     {
         if(elerheto_targyak.Count == 0) return;
@@ -71,26 +83,32 @@ public class Targyak : MonoBehaviour
         if(elerheto_targyak[randomszam].Equals("Adrenalinloket")){
             adrenalinMegszerezve.text = "X";
             adrenalinloket++;
+            adrenalinFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy AdrenalinLoketet!");
         }else if(elerheto_targyak[randomszam].Equals("Hacker csatlakozo")){
             hackerMegszerezve.text = "X";
             hackercsatlakozo++;
+            hackerFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Hacker Csatlakozot!");
         }else if(elerheto_targyak[randomszam].Equals("Lathatatlan oltozet")){
             lathatatlanMegszerezve.text = "X";
             lathatatlanoltozet++;
+            lathatatlanFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Lathatatlan oltozetet!");
         }else if(elerheto_targyak[randomszam].Equals("Droid agyu")){
             droidMegszerezve.text = "X";
             droidgepagyu++;
+            droidFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Droid-X2 Gepagyut!");
         }else if(elerheto_targyak[randomszam].Equals("Matav taviranyito")){
             matavMegszerezve.text = "X";
             matavtaviranyito++;
+            matavFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Matav Taviranyitot!");
         }else if(elerheto_targyak[randomszam].Equals("Alomhozo fustgranat")){
             alomhozoMegszerezve.text = "X";
             fustgranat++;
+            alomhozoFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Alomhozo Fustgranatot!");
         }
 
@@ -203,10 +221,55 @@ public class Targyak : MonoBehaviour
 
     public void DroidGepagyu() { 
         //deaktivalni minden objectet kiveve a ugynok text boxokat es addig nem vissza aktivalni amig nem kattintott ra valamelyikre      
-        //ugynok.canKill = true; //barhol meg tud olni ha kattint
         
         //deaktivalas
         //jatekmanager.ugynokDeaktivalas(false);
+
+        vanUgynok = false;
+
+        //nezze meg hogy van ugynokcsapat valahol kulonben ne aktivalja
+        foreach(var item in ugynok.oneone){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.onetwo){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.onethree){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.onefour){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.twoone){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.twotwo){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.twothree){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.twofour){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.threeone){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.threetwo){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.threethree){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+        foreach(var item in ugynok.threefour){
+            if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6")) vanUgynok = true;
+        }
+
+        if(!vanUgynok){
+            Debug.Log("nincs sehol ugynok csapat");
+            return; //ha nincs sehol ugynok ne fussok le
+        } 
+
         jatekmanager.UpdateGameState(jatekmanager.GameState.Ugynok); //ugynok state (minden kikapcsolva);
         
         ugynok.droidagyuAktivalva = true;
