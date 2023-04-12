@@ -4544,6 +4544,7 @@ MonoBehaviour:
   droidgepagyu: 0
   matavtaviranyito: 0
   fustgranat: 0
+  vanUgynok: 0
   lathatatlanOltozetAktivalva: 0
   matavtaviranyitoAktivalva: 0
   confirmNewValue: {fileID: 815764584}
@@ -8311,9 +8312,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 197904230}
-        m_TargetAssemblyTypeName: Elet, Assembly-CSharp
-        m_MethodName: Eletplusz
+      - m_Target: {fileID: 197904236}
+        m_TargetAssemblyTypeName: Targyak, Assembly-CSharp
+        m_MethodName: RandomTargy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
