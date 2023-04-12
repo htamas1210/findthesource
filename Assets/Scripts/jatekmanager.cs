@@ -192,8 +192,10 @@ public class jatekmanager : MonoBehaviour
     }
 
     public void NevValasztasUtan(){
-        if(!nev.text.Equals(""))
-            Instance.UpdateGameState(GameState.KorKezdet);
+        if(!nev.text.Equals("")){
+            UpdateGameState(GameState.UgynokValasztas);
+            dice.CallRenderDice(true);
+        }          
     }
 
     private async void HandleUgynokNev(){
@@ -221,7 +223,7 @@ public class jatekmanager : MonoBehaviour
         hackeles.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
         //test.SetActive(false);
-        rolldice.SetActive(false);
+        rolldice.SetActive(false);      
     }
 
 
@@ -271,7 +273,7 @@ public class jatekmanager : MonoBehaviour
         movement.threethree_Collider.gameObject.SetActive(true);
         movement.threefour_Collider.gameObject.SetActive(true);
 
-        //rolldice.SetActive(false);
+        rolldice.SetActive(true);
     }
 
     private async void HandleVesztette()

@@ -7,6 +7,7 @@ using TMPro;
 public class Ugynok : MonoBehaviour
 {
     private Akciok akciok;
+    private Akciopont ap;
     private Upgrade upgrade;
     private jatekmanager jatekmanager;
     private Elet elet;
@@ -39,6 +40,7 @@ public class Ugynok : MonoBehaviour
         jatekmanager = FindObjectOfType<jatekmanager>();
         movement = FindObjectOfType<movement>();
         elet = FindObjectOfType<Elet>();
+        ap = FindObjectOfType<Akciopont>();
 
         previus_ugynok_csapatok = new string[3];
 
@@ -322,6 +324,14 @@ public class Ugynok : MonoBehaviour
                 Debug.Log("nincs eleg tolteny");
                 return;
             }
+
+            if(ap.akciopont < 2){
+                Debug.Log("nincs eleg ap az oleshez");
+                return;
+            }else{
+                ap.UpdateAkciopont(-2); //harc koltseg
+            }
+
             akciok.Loves(ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
             Debug.Log("tolteny szama:" + ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
         }
@@ -332,6 +342,7 @@ public class Ugynok : MonoBehaviour
 
         //minden vissza kapcsolasa 
         //jatekmanager.ugynokDeaktivalas(true);
+        
         jatekmanager.UpdateGameState(jatekmanager.GameState.Akcio); //miutan vegzett menjen az akcio state-re
         droidagyuAktivalva = false;
     }
@@ -421,7 +432,7 @@ public class Ugynok : MonoBehaviour
         elozo_x = x;
         elozo_y = y;
 
-                if(elozo_x == 1 && elozo_y == 1){
+        if(elozo_x == 1 && elozo_y == 1){
             for (int i = 0; i < 3; i++)
             {
                 previus_ugynok_csapatok[i] = oneone[i].text;

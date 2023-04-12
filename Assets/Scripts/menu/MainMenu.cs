@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject MainMenuObj;
     public GameObject OptionsMenu;
+    public GameObject CreditsMenuObj;
     public GameObject VideoButton;
 
     public void PlayGame()
@@ -35,5 +36,10 @@ public class MainMenu : MonoBehaviour
         {
             VideoButton.SetActive(true);
         }
+    }
+
+    public void CreditsMenu(){
+        MainMenuObj.SetActive(false);
+        CreditsMenuObj.SetActive(true);
     }
 }

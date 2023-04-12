@@ -64,9 +64,9 @@ public class Akciok : MonoBehaviour
     {
         if (tolteny_index < 24 && ap.akciopont != 0)
         {
-            if (tolteny_index + betarazas > 23)
+            if (tolteny_index + betarazas > 24)
             {
-                tolteny_index = 23;
+                tolteny_index = 24;
             }
             else
             {
@@ -79,8 +79,10 @@ public class Akciok : MonoBehaviour
             }
 
             betarazott_tolteny += betarazas;
-            //tolteny_index++;
-            
+            if(betarazott_tolteny > 24){
+                betarazott_tolteny = 24;
+            }
+            //tolteny_index++;           
 
             ap.UpdateAkciopont(-1);
         

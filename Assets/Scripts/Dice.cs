@@ -7,6 +7,8 @@ public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
+    public SpriteRenderer animacio1;
+    public SpriteRenderer animacio2;
     public Button dice1btnBtn; 
     public Button dice2btnBtn; 
     private Upgrade upgrade;
@@ -37,7 +39,7 @@ public class Dice : MonoBehaviour {
     public int ujradobasszamlalo;
 
     private bool ugynokDobasErtek = false; //ertek valasztashoz hogy tudja az ugynok csapat miatt lett meghivva
-    private bool  elsoDobas = true;
+    private bool elsoDobas = true;
     private void Awake() {
         upgrade = FindObjectOfType<Upgrade>();
         ap = FindObjectOfType<Akciopont>();
@@ -107,12 +109,12 @@ public class Dice : MonoBehaviour {
             if(!ugynokDobasErtek)
                 ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
 
-            if(elsoDobas){
+            /*if(elsoDobas){
                 //jatek kezdeskor elso dobas ugynok csapat meghatarozas kezdo helyszinen
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas);
                 CallRenderDice(true);
                 elsoDobas = false;
-            }
+            }*/
         }
 
         Debug.Log("valasztott ertek: " + valasztottErtek + " locked status: " + locked);
@@ -136,12 +138,16 @@ public class Dice : MonoBehaviour {
 
         //dice gombok kikapcsolasa hogy amig nem vegez ne tudjon erteket valasztani
         dice1btnBtn.enabled = false;
-        dice2btnBtn.enabled = false;
+        dice2btnBtn.enabled = false;       
 
         do {
             diceResult[0] = RollDice();
             diceResult[1] = RollDice();
         } while (diceResult[0] == diceResult[1]);
+
+        //dice porgo animacio
+        StartCoroutine(AnimateTheDice(hely1, diceResult[0]));
+        StartCoroutine(AnimateTheDice(hely2, diceResult[1]));
 
         //lassa a jatekos mit dobott
         hely1.sprite = diceSides[diceResult[0]-1];
@@ -266,5 +272,31 @@ public class Dice : MonoBehaviour {
 
     public void setAdrenalinMegerosites(bool adrenalinMegerosites) {
         this.adrenalinMegerosites = adrenalinMegerosites; 
+    }
+
+
+    private IEnumerator AnimateTheDice(SpriteRenderer rend, int diceErtek)
+    {
+        int randomDiceSide;
+        float time = 0f;
+        bool fusson = true;
+
+        while(fusson){
+            time += Time.time;
+            Debug.Log("time: " + time);
+
+
+            if(time >= 200f) fusson = false;
+
+            randomDiceSide = Random.Range(0, 5);
+
+            rend.sprite = diceSides[Random.Range(0, 5)];
+            rend.size = new Vector2(38, 38);
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        rend.sprite = diceSides[diceErtek - 1];
+        rend.size = new Vector2(38, 38);
     }
 }

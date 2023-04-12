@@ -78,7 +78,7 @@ public class helyszinaktivalas : MonoBehaviour
             jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
             if(!targyak.matavtaviranyitoAktivalva){
                 //akciopont.akciopont++;
-                akciopont.UpdateAkciopont(1);
+                //akciopont.UpdateAkciopont(1);
                 energia.csokkenEnergia(2);
             }
 
