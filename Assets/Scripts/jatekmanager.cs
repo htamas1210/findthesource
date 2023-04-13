@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,15 +59,14 @@ public class jatekmanager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
     public Button helyszinaktivalasBtn;
 
+    public GameObject pauseMenuUI;
+    public static bool GameIsPlaying = true;
+
     public TMP_Text nev;
 
     private void Awake()
     {
-        Instance = this;
-
-        //hatterzene lejatszas
-        audioManager = FindObjectOfType<AudioManager>();
-        audioManager.Play("BackgroundMusic");
+        Instance = this;   
     }
 
     private void Start()
@@ -83,6 +81,10 @@ public class jatekmanager : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
         vegpontozas = FindObjectOfType<vegpontozas>();
+
+        //hatterzene lejatszas
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.Play("BackgroundMusic");
 
         UpdateGameState(GameState.Nev);
         
@@ -118,6 +120,9 @@ public class jatekmanager : MonoBehaviour
             case GameState.Nev:
                 HandleUgynokNev();
                 break;
+            case GameState.Pause:
+                HandlePause();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -133,7 +138,28 @@ public class jatekmanager : MonoBehaviour
         Ugynok,
         Vesztette,
         UgynokValasztas,
-        Nev
+        Nev,
+        Pause
+    }
+
+    private async void HandlePause(){
+        //kikapcsolni minden gombot es collidert
+    }
+
+    public void Resume(){
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f; //normal ido visszainditasa
+        GameIsPlaying = true;
+        Instance.UpdateGameState(jatekmanager.GameState.Akcio); //akcio stare menjen vissza
+    }
+
+    public void Pause(){
+        pauseMenuUI.SetActive(true);
+        //ido megallitasa hogy megalljon a jatek
+        Time.timeScale = 0f;
+        GameIsPlaying = false;
+        //audioManager.audioMixer.volume = 0f; hangerot teljesen levenni a masteren
+        Instance.UpdateGameState(jatekmanager.GameState.Pause); //milyen statre menjen vissza? akcio?s
     }
 
     private async void HandleKorkezdet()
@@ -295,6 +321,16 @@ public class jatekmanager : MonoBehaviour
         if(jatekosnyert){
             SceneManager.LoadScene("JatekosNyert");
         }*/
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(GameIsPlaying){
+                Pause();
+                Debug.Log("Game is paused");
+            }else{
+                Resume();
+                Debug.Log("Game is playing");
+            }
+        }
     }
 
     private async void ugynokDeaktivalas(bool bekapcsolas)
