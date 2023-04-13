@@ -62,6 +62,8 @@ public class jatekmanager : MonoBehaviour
     public GameObject pauseMenuUI;
     public static bool GameIsPlaying = true;
 
+    private GameState previousGameState;
+
     public TMP_Text nev;
 
     private void Awake()
@@ -150,7 +152,8 @@ public class jatekmanager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; //normal ido visszainditasa
         GameIsPlaying = true;
-        Instance.UpdateGameState(jatekmanager.GameState.Akcio); //akcio stare menjen vissza
+        audioManager.SetMainVolume(0f);
+        Instance.UpdateGameState(previousGameState); //elozo statere menjen vissza
     }
 
     public void Pause(){
@@ -158,8 +161,13 @@ public class jatekmanager : MonoBehaviour
         //ido megallitasa hogy megalljon a jatek
         Time.timeScale = 0f;
         GameIsPlaying = false;
-        //audioManager.audioMixer.volume = 0f; hangerot teljesen levenni a masteren
-        Instance.UpdateGameState(jatekmanager.GameState.Pause); //milyen statre menjen vissza? akcio?s
+        audioManager.SetMainVolume(-80f); //hangerot teljesen levenni a masteren
+        previousGameState = State;
+        Instance.UpdateGameState(jatekmanager.GameState.Pause);
+    }
+
+    public void Quit(){
+        SceneManager.LoadScene("MainMenu");
     }
 
     private async void HandleKorkezdet()
