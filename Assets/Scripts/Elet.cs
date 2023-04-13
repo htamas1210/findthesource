@@ -22,7 +22,7 @@ public class Elet : MonoBehaviour
     }
 
     private void Update() {
-        if(elet == 0){
+        if(elet+1 == 0){
             jatekmanager.Instance.jatekosvesztett = true;
             jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Vesztette);
         }
@@ -44,7 +44,7 @@ public class Elet : MonoBehaviour
     }
 
     public void Eletvesztes() {
-        if (elet_vesztve > 4)
+        if (elet_vesztve > 5)
         {
             //jatekmanager.jatekosvesztett = true;
             return;

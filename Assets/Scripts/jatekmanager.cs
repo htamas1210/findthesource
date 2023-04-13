@@ -123,7 +123,6 @@ public class jatekmanager : MonoBehaviour
                 HandleUgynokNev();
                 break;
             case GameState.Pause:
-                HandlePause();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -142,10 +141,6 @@ public class jatekmanager : MonoBehaviour
         UgynokValasztas,
         Nev,
         Pause
-    }
-
-    private async void HandlePause(){
-        //kikapcsolni minden gombot es collidert
     }
 
     public void Resume(){
