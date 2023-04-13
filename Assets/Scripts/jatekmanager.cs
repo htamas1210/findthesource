@@ -227,8 +227,8 @@ public class jatekmanager : MonoBehaviour
 
     public void NevValasztasUtan(){
         if(!nev.text.Equals("")){
-            UpdateGameState(GameState.UgynokValasztas);
-            dice.CallRenderDice(true);
+            UpdateGameState(GameState.KorKezdet);
+            //dice.CallRenderDice(true);
         }          
     }
 
