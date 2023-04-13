@@ -38,19 +38,6 @@ public class OptionMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    //Audio
-    public AudioMixer mixer;
-
-    public void SetMainVolume(float mainVolume) {
-        mixer.SetFloat("Master", mainVolume);
-    }
-    public void SetMusicVolume(float musicVolume) {
-        mixer.SetFloat("Music", musicVolume);
-    }
-    public void SetSfxVolume(float sfxVolume) {
-        mixer.SetFloat("Sfx", sfxVolume);
-    }
-
     //Quality
     public void setQuality(int qualityIndex) {
         QualitySettings.SetQualityLevel(qualityIndex);

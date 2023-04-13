@@ -36,6 +36,7 @@ public class jatekmanager : MonoBehaviour
     private TurnManager turnManager;
     private Source source;
     private vegpontozas vegpontozas;
+    private AudioManager audioManager;
 
     //ügynökcsapatok implementálása
     public TMP_Text[] oneone;
@@ -64,6 +65,10 @@ public class jatekmanager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        //hatterzene lejatszas
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.Play("BackgroundMusic");
     }
 
     private void Start()

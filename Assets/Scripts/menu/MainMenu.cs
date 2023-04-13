@@ -10,6 +10,16 @@ public class MainMenu : MonoBehaviour
     public GameObject CreditsMenuObj;
     public GameObject VideoButton;
 
+    private AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
+    private void Start() {
+        audioManager.Play("MenuMusic");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

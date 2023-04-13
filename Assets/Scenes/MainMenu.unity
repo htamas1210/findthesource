@@ -4160,11 +4160,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1386328419}
   - component: {fileID: 1386328418}
-  - component: {fileID: 1386328417}
   - component: {fileID: 1386328422}
+  - component: {fileID: 1386328426}
   - component: {fileID: 1386328425}
   - component: {fileID: 1386328423}
-  - component: {fileID: 1386328426}
+  - component: {fileID: 1386328417}
+  - component: {fileID: 1386328427}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4284,7 +4285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 415922102}
-  mixer: {fileID: 24100000, guid: 833dc20f7f9e5b244a756827a43d874d, type: 2}
 --- !u!114 &1386328425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4313,6 +4313,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fa93b33fed1ce42a3e77548b03decc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1386328427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386328416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc69655c5f792d9dab9db9dc72d26e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 833dc20f7f9e5b244a756827a43d874d, type: 2}
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 0b3a32694c5ed5f4fad733a3945a4249, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    outputMixer: {fileID: -8278190956376925970, guid: 833dc20f7f9e5b244a756827a43d874d, type: 2}
 --- !u!1 &1421471717
 GameObject:
   m_ObjectHideFlags: 0
@@ -5591,8 +5611,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1386328423}
-        m_TargetAssemblyTypeName: OptionMenu, Assembly-CSharp
+      - m_Target: {fileID: 1386328427}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: SetSfxVolume
         m_Mode: 0
         m_Arguments:
@@ -6399,8 +6419,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1386328423}
-        m_TargetAssemblyTypeName: OptionMenu, Assembly-CSharp
+      - m_Target: {fileID: 1386328427}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -6638,8 +6658,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1386328423}
-        m_TargetAssemblyTypeName: OptionMenu, Assembly-CSharp
+      - m_Target: {fileID: 1386328427}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: SetMainVolume
         m_Mode: 0
         m_Arguments:
