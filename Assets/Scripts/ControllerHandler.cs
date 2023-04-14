@@ -15,6 +15,11 @@ public class ControllerHandler : MonoBehaviour
                 Debug.Log("Controller connected");
                 for(int i = 0; i < controllers.Length; i++){
                     Debug.Log(controllers[i]);
+
+                    //lock and disable mouse
+                    //Cursor.lockState = CursorLockMode.locked;
+                    //Cursor.visible = false;
+
                     //yield break;
                 }
             }else if(connected && controllers.Length == 0){

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class jatekmanager : MonoBehaviour
 {
@@ -143,6 +144,8 @@ public class jatekmanager : MonoBehaviour
         Pause
     }
 
+    //double click
+
     public void Resume(){
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; //normal ido visszainditasa
@@ -163,6 +166,24 @@ public class jatekmanager : MonoBehaviour
 
     public void Quit(){
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public IEnumerator atlatszo(Button gomb)
+    {
+        while (gomb.GetComponent<CanvasGroup>().alpha > 0.25f)
+        {
+            gomb.GetComponent<CanvasGroup>().alpha -= 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+
+    public IEnumerator megjelen(Button gomb)
+    {
+        while (gomb.GetComponent<CanvasGroup>().alpha < 1f)
+        {
+            gomb.GetComponent<CanvasGroup>().alpha += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
     }
 
     private async void HandleKorkezdet()
