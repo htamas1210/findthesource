@@ -5183,11 +5183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6423cb96f98604ea1be2455ae7cff97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "energiafejleszt\xE9s": {fileID: 652887773}
-  "akciofejleszt\xE9s": {fileID: 767162772}
-  "harcfejleszt\xE9s": {fileID: 917471241}
-  "ujradobasfejleszt\xE9s": {fileID: 723782981}
-  "hackfejleszt\xE9s": {fileID: 1785481345}
+  energiafejlesztes: {fileID: 652887773}
+  akciofejlesztes: {fileID: 767162772}
+  harcfejlesztes: {fileID: 917471241}
+  ujradobasfejlesztes: {fileID: 723782981}
+  hackfejlesztes: {fileID: 1785481345}
   kovetkezokor: {fileID: 1177305936}
   betarazas: {fileID: 235549630}
   nyomozas: {fileID: 83085749}
@@ -9093,6 +9093,7 @@ GameObject:
   - component: {fileID: 401176109}
   - component: {fileID: 401176108}
   - component: {fileID: 401176107}
+  - component: {fileID: 401176110}
   m_Layer: 5
   m_Name: TestGomb
   m_TagString: Untagged
@@ -9215,6 +9216,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401176105}
   m_CullTransparentMesh: 1
+--- !u!225 &401176110
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401176105}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &410263759
 GameObject:
   m_ObjectHideFlags: 0

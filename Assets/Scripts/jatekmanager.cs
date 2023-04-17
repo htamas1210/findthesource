@@ -12,17 +12,38 @@ public class jatekmanager : MonoBehaviour
     public static jatekmanager Instance;
 
     //game objectek implementálása
-    public GameObject energiafejlesztés;
-    public GameObject akciofejlesztés;
-    public GameObject harcfejlesztés;
-    public GameObject ujradobasfejlesztés;
-    public GameObject hackfejlesztés;
+    public GameObject energiafejlesztes;
+    private Button energiafejlesztesgomb;
+
+    public GameObject akciofejlesztes;
+    private Button akciofejlesztesgomb;
+
+    public GameObject harcfejlesztes;
+    private Button harcfejlesztesgomb;
+
+    public GameObject ujradobasfejlesztes;
+    private Button ujradobasfejlesztesgomb;
+
+    public GameObject hackfejlesztes;
+    private Button hackfejlesztesgomb;
+
     public GameObject kovetkezokor;
+    private Button kovetkezokorgomb;
+
     public GameObject betarazas;
+    private Button betarazasgomb;
+
     public GameObject nyomozas;
+    private Button nyomozasgomb;
+
     public GameObject hackeles;
+    private Button hackelesgomb;
+
     public GameObject rolldice;
+    private Button rolldicegomb;
+
     public GameObject test;
+    private Button testgomb;
 
 
     //script-ek implementalasa
@@ -84,6 +105,19 @@ public class jatekmanager : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
         vegpontozas = FindObjectOfType<vegpontozas>();
+        
+
+        energiafejlesztesgomb = energiafejlesztes.GetComponent<Button>();
+        akciofejlesztesgomb = akciofejlesztes.GetComponent<Button>();
+        harcfejlesztesgomb = harcfejlesztes.GetComponent<Button>();
+        ujradobasfejlesztesgomb = ujradobasfejlesztes.GetComponent<Button>();
+        hackfejlesztesgomb = hackfejlesztes.GetComponent<Button>();
+        kovetkezokorgomb = kovetkezokor.GetComponent<Button>();
+        betarazasgomb = betarazas.GetComponent<Button>();
+        nyomozasgomb = nyomozas.GetComponent<Button>();
+        hackelesgomb = hackeles.GetComponent<Button>();
+        rolldicegomb = rolldice.GetComponent<Button>();
+        testgomb = test.GetComponent<Button>();
 
         //hatterzene lejatszas
         audioManager = FindObjectOfType<AudioManager>();
@@ -188,18 +222,39 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleKorkezdet()
     {
-        rolldice.SetActive(true);
+        rolldicegomb.interactable = true;
+        megjelen(rolldicegomb);
 
-        energiafejlesztés.SetActive(false);
-        akciofejlesztés.SetActive(false);
-        harcfejlesztés.SetActive(false);
-        ujradobasfejlesztés.SetActive(false);
-        hackfejlesztés.SetActive(false);
-        kovetkezokor.SetActive(false);
-        betarazas.SetActive(false);
-        nyomozas.SetActive(false);
-        hackeles.SetActive(false);
-        helyszinaktivalasBtn.gameObject.SetActive(false);
+        energiafejlesztesgomb.interactable = false;
+        atlatszo(energiafejlesztesgomb);
+
+        akciofejlesztesgomb.interactable = false;
+        atlatszo(akciofejlesztesgomb);
+
+        hackfejlesztesgomb.interactable = false;
+        atlatszo(hackfejlesztesgomb);
+
+        ujradobasfejlesztesgomb.interactable = false;
+        atlatszo(ujradobasfejlesztesgomb);
+
+        hackfejlesztesgomb.interactable = false;
+        atlatszo(hackfejlesztesgomb);
+
+        kovetkezokorgomb.interactable = false;
+        atlatszo(kovetkezokorgomb);
+
+        betarazasgomb.interactable = false;
+        atlatszo(betarazasgomb);
+
+        nyomozasgomb.interactable = false;
+        atlatszo(nyomozasgomb);
+
+        hackelesgomb.interactable = false;
+        atlatszo(hackelesgomb);
+
+        helyszinaktivalasBtn.interactable = false;
+        atlatszo(helyszinaktivalasBtn);
+
         //test.SetActive(false);
 
         //ha ugynok state-el vegezne kapcsoljon vissza mindent
@@ -267,6 +322,7 @@ public class jatekmanager : MonoBehaviour
         movement.threethree_Collider.gameObject.SetActive(false);
         movement.threefour_Collider.gameObject.SetActive(false);
 
+<<<<<<< Updated upstream
         energiafejlesztés.SetActive(false);
         akciofejlesztés.SetActive(false);
         harcfejlesztés.SetActive(false);
@@ -279,40 +335,129 @@ public class jatekmanager : MonoBehaviour
         helyszinaktivalasBtn.gameObject.SetActive(false);
         //test.SetActive(false);
         rolldice.SetActive(false);      
+=======
+        energiafejlesztesgomb.interactable = false;
+        atlatszo(energiafejlesztesgomb);
+
+        akciofejlesztesgomb.interactable = false;
+        atlatszo(akciofejlesztesgomb);
+
+        harcfejlesztesgomb.interactable = false;
+        atlatszo(harcfejlesztesgomb);
+
+        ujradobasfejlesztesgomb.interactable = false;
+        atlatszo(ujradobasfejlesztesgomb);
+
+        hackfejlesztesgomb.interactable = false;
+        atlatszo(hackfejlesztesgomb);
+
+        kovetkezokorgomb.interactable = false;
+        atlatszo(kovetkezokorgomb);
+
+        betarazasgomb.interactable = false;
+        atlatszo(betarazasgomb);
+
+        nyomozasgomb.interactable = false;
+        atlatszo(nyomozasgomb);
+
+        hackelesgomb.interactable = false;
+        atlatszo(hackelesgomb);
+
+        helyszinaktivalasBtn.interactable = false;
+        atlatszo(helyszinaktivalasBtn);
+
+        testgomb.interactable = false;
+        atlatszo(testgomb);
+
+        rolldicegomb.interactable = false;
+        atlatszo(rolldicegomb);
+>>>>>>> Stashed changes
     }
 
 
     private async void HandleFejlesztes()
     {
-        energiafejlesztés.SetActive(true);
-        akciofejlesztés.SetActive(true);
-        harcfejlesztés.SetActive(true);
-        ujradobasfejlesztés.SetActive(true);
-        hackfejlesztés.SetActive(true);
-        kovetkezokor.SetActive(false);
-        //rolldice.SetActive(false);
-        helyszinaktivalasBtn.gameObject.SetActive(false);
-
         betarazas.SetActive(false);
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
+        betarazas.SetActive(false);
+
+        energiafejlesztesgomb.interactable = true;
+        megjelen(energiafejlesztesgomb);
+
+        akciofejlesztesgomb.interactable = true;
+        megjelen(akciofejlesztesgomb);
+
+        harcfejlesztesgomb.interactable = true;
+        megjelen(harcfejlesztesgomb);
+
+        ujradobasfejlesztesgomb.interactable = true;
+        megjelen(ujradobasfejlesztesgomb);
+
+        hackfejlesztesgomb.interactable = true;
+        megjelen(hackfejlesztesgomb);
+
+        kovetkezokorgomb.interactable = true;
+        megjelen(kovetkezokorgomb);
+
+        rolldicegomb.interactable = false;
+        atlatszo(rolldicegomb);
+
+        helyszinaktivalasBtn.interactable = false;
+        atlatszo(helyszinaktivalasBtn);
+
+        betarazasgomb.interactable = false;
+        atlatszo(betarazasgomb);
+
+        nyomozasgomb.interactable = false;
+        atlatszo(nyomozasgomb);
+
+        hackelesgomb.interactable = false;
+        atlatszo(hackelesgomb);
     }
 
     private async void HandleAkcio()
     {
-        //itt a movement bekapcsol
-        kovetkezokor.SetActive(true);
-        betarazas.SetActive(true);
-        nyomozas.SetActive(true);
-        hackeles.SetActive(true);
-        helyszinaktivalasBtn.gameObject.SetActive(true);
-        energiafejlesztés.SetActive(false);
-        akciofejlesztés.SetActive(false);
-        harcfejlesztés.SetActive(false);
-        ujradobasfejlesztés.SetActive(false);
-        hackfejlesztés.SetActive(false);
+        energiafejlesztes.SetActive(false);
+        hackfejlesztes.SetActive(false);
+        harcfejlesztes.SetActive(false);
+        ujradobasfejlesztes.SetActive(false);
+        akciofejlesztes.SetActive(false);
 
-        kovetkezokor.SetActive(true);
+        //itt a movement bekapcsol
+        kovetkezokorgomb.interactable = true;
+        megjelen(kovetkezokorgomb);
+
+        betarazasgomb.interactable = true;
+        megjelen(betarazasgomb);
+
+        nyomozasgomb.interactable = true;
+        megjelen(nyomozasgomb);
+
+        hackelesgomb.interactable = true;
+        megjelen(hackfejlesztesgomb);
+
+        helyszinaktivalasBtn.interactable = true;
+        megjelen(helyszinaktivalasBtn);
+
+        energiafejlesztesgomb.interactable = false;
+        atlatszo(energiafejlesztesgomb);
+
+        akciofejlesztesgomb.interactable = false;
+        atlatszo(akciofejlesztesgomb);
+
+        harcfejlesztesgomb.interactable = false;
+        atlatszo(harcfejlesztesgomb);
+
+        ujradobasfejlesztesgomb.interactable = false;
+        atlatszo(ujradobasfejlesztesgomb);
+
+        hackfejlesztesgomb.interactable = false;
+        atlatszo(hackfejlesztesgomb);
+
+        kovetkezokorgomb.interactable = true;
+        megjelen(kovetkezokorgomb);
+
 
         //ha ugynok valasztasbol jon kapcsolaja vissza a collidereket
         movement.oneone_Collider.gameObject.SetActive(true);
@@ -357,13 +502,32 @@ public class jatekmanager : MonoBehaviour
         }
     }
 
+    public IEnumerator atlatszo(Button gomb)
+    {
+        while (gomb.GetComponent<CanvasGroup>().alpha > 0.25f)
+        {
+            gomb.GetComponent<CanvasGroup>().alpha -= 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+
+    public IEnumerator megjelen(Button gomb)
+    {
+        while (gomb.GetComponent<CanvasGroup>().alpha < 1f)
+        {
+            gomb.GetComponent<CanvasGroup>().alpha += 0.5f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+
     private async void ugynokDeaktivalas(bool bekapcsolas)
     {
-        energiafejlesztés.SetActive(bekapcsolas);
-        akciofejlesztés.SetActive(bekapcsolas);
-        harcfejlesztés.SetActive(bekapcsolas);
-        ujradobasfejlesztés.SetActive(bekapcsolas);
-        hackfejlesztés.SetActive(bekapcsolas);
+
+        energiafejlesztes.SetActive(bekapcsolas);
+        akciofejlesztes.SetActive(bekapcsolas);
+        harcfejlesztes.SetActive(bekapcsolas);
+        ujradobasfejlesztes.SetActive(bekapcsolas);
+        hackfejlesztes.SetActive(bekapcsolas);
         kovetkezokor.SetActive(bekapcsolas);
         betarazas.SetActive(bekapcsolas);
         nyomozas.SetActive(bekapcsolas);
