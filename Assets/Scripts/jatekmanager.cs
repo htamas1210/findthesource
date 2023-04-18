@@ -67,9 +67,21 @@ public class jatekmanager : MonoBehaviour
 
     public TMP_Text nev;
 
+    public GameObject mainCanvas;
+    public GameObject helyszinCanvas;
+    public GameObject helyszinSorsolasCanvas;
+    public GameObject palyaSprite;
+    public GameObject playerSprite;
+
     private void Awake()
     {
         Instance = this;   
+
+        mainCanvas.SetActive(false); //helyszin sorsolas animacio miatt
+        helyszinCanvas.SetActive(false);
+        helyszinSorsolasCanvas.SetActive(true);
+        palyaSprite.SetActive(false);
+        playerSprite.SetActive(false);
     }
 
     private void Start()
@@ -405,7 +417,7 @@ public class jatekmanager : MonoBehaviour
         Debug.Log("Játékos nyerésének vizsgálata.");
         Debug.Log("A forrás oszlopa:" + source.oszlop);
         Debug.Log("A forrás sora:" + source.sor[0]);
-        Debug.Log("");
+        //Debug.Log("");
         Debug.Log("A te jelenlegi oszlopod:" + movement.jelenlegi_y);
         Debug.Log("A te jelenlegi sorod:" + movement.jelenlegi_x);
         if (source.isNyitva == true && source.oszlop == movement.jelenlegi_x && source.sor[0] == movement.jelenlegi_y) //+ ugynokcsapat oles a helyszinen

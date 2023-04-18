@@ -7,16 +7,19 @@ public class Dice : MonoBehaviour {
     public Sprite[] diceSides = new Sprite[6];
     public SpriteRenderer hely1;
     public SpriteRenderer hely2;
-    public SpriteRenderer animacio1;
-    public SpriteRenderer animacio2;
+    [SerializeField] private int spriteSize = 60;
+    private Vector2 diceSpriteSize;
+    
     public Button dice1btnBtn; 
     public Button dice2btnBtn; 
+
     private Upgrade upgrade;
     private Akciopont ap;
     private Energia energiasav;
     private Targyak targyak;
     private Ugynok ugynok;
     private movement movement;
+
     public int[] diceResult = { 0, 0 };
     public List<int> ujertek = new List<int>();
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
@@ -47,6 +50,8 @@ public class Dice : MonoBehaviour {
         targyak = FindObjectOfType<Targyak>();
         ugynok = FindObjectOfType<Ugynok>();
         movement = FindObjectOfType<movement>();
+
+        diceSpriteSize = new Vector2(spriteSize, spriteSize);
     }
 
     public void ertekValasztas(GameObject gomb) {
@@ -152,15 +157,15 @@ public class Dice : MonoBehaviour {
         } while (diceResult[0] == diceResult[1]);
 
         //dice porgo animacio
-        StartCoroutine(AnimateTheDice(hely1, diceResult[0]));
-        StartCoroutine(AnimateTheDice(hely2, diceResult[1]));
+        callAnimateDice(hely1, diceResult[0]);
+        callAnimateDice(hely2, diceResult[1]);
 
         //lassa a jatekos mit dobott
         hely1.sprite = diceSides[diceResult[0]-1];
-        hely1.size = new Vector2(38, 38);
+        hely1.size = diceSpriteSize;
 
         hely2.sprite = diceSides[diceResult[1]-1];
-        hely2.size = new Vector2(38, 38);
+        hely2.size = diceSpriteSize;
 
         if(ugynokDobas){
             ugynokDobasErtek = true;
@@ -247,10 +252,10 @@ public class Dice : MonoBehaviour {
         }
 
         hely1.sprite = diceSides[diceResult[0]-1];
-        hely1.size = new Vector2(38, 38);
+        hely1.size = diceSpriteSize;
 
         hely2.sprite = diceSides[diceResult[1]-1];
-        hely2.size = new Vector2(38, 38);
+        hely2.size = diceSpriteSize;
         dobott++;
 
         //ha vegzett mindennel kapcsolja vissza az ertekvalasztast
@@ -279,7 +284,7 @@ public class Dice : MonoBehaviour {
         this.adrenalinMegerosites = adrenalinMegerosites; 
     }
 
-
+    public void callAnimateDice(SpriteRenderer rend, int diceErtek) => StartCoroutine(AnimateTheDice(rend, diceErtek));
     private IEnumerator AnimateTheDice(SpriteRenderer rend, int diceErtek)
     {
         int randomDiceSide;
@@ -295,12 +300,12 @@ public class Dice : MonoBehaviour {
             randomDiceSide = Random.Range(0, 5);
 
             rend.sprite = diceSides[Random.Range(0, 5)];
-            rend.size = new Vector2(38, 38);
+            rend.size = diceSpriteSize;
 
             yield return new WaitForSeconds(0.05f);
         }
 
         rend.sprite = diceSides[diceErtek - 1];
-        rend.size = new Vector2(38, 38);
+        rend.size = diceSpriteSize;
     }
 }

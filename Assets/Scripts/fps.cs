@@ -6,7 +6,7 @@ using System.Threading;
 
 public class fps : MonoBehaviour
 {
-    public TMP_Text fpsText;
+    public TMP_Text fpsText; //ideiglenesen megvaltoztatva az uzenet boxra!!
     [SerializeField] private float _hudRefreshRate = 1f;
     private float _timer;
 
