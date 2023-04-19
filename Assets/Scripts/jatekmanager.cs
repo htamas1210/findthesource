@@ -23,6 +23,8 @@ public class jatekmanager : MonoBehaviour
     public GameObject hackeles;
     public GameObject rolldice;
     public GameObject test;
+    public GameObject harc;
+    public TMP_Text uzenetBox;
 
 
     //script-ek implementalasa
@@ -296,6 +298,7 @@ public class jatekmanager : MonoBehaviour
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
+        harc.SetActive(false);
         //test.SetActive(false);
         rolldice.SetActive(false);
     }
@@ -311,6 +314,7 @@ public class jatekmanager : MonoBehaviour
         kovetkezokor.SetActive(false);
         //rolldice.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
+        harc.SetActive(false);
 
         betarazas.SetActive(false);
         nyomozas.SetActive(false);
@@ -330,6 +334,7 @@ public class jatekmanager : MonoBehaviour
         harcfejlesztés.SetActive(false);
         ujradobasfejlesztés.SetActive(false);
         hackfejlesztés.SetActive(false);
+        harc.SetActive(true);
 
         kovetkezokor.SetActive(true);
 
@@ -413,6 +418,7 @@ public class jatekmanager : MonoBehaviour
         movement.threetwo_Collider.gameObject.SetActive(bekapcsolas);
         movement.threethree_Collider.gameObject.SetActive(bekapcsolas);
         movement.threefour_Collider.gameObject.SetActive(bekapcsolas);
+        harc.SetActive(bekapcsolas);
 
         targyak.hackerFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
         targyak.lathatatlanFelhasznalva.GetComponent<Button>().gameObject.SetActive(bekapcsolas);
