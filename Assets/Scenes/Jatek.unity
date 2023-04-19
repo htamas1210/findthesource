@@ -5124,6 +5124,7 @@ MonoBehaviour:
   droidagyuAktivalva: 0
   canKill: 0
   canShoot: 0
+  previus_ugynok_csapatok: []
 --- !u!114 &197904236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5183,11 +5184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6423cb96f98604ea1be2455ae7cff97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energiafejlesztes: {fileID: 652887773}
-  akciofejlesztes: {fileID: 767162772}
-  harcfejlesztes: {fileID: 917471241}
-  ujradobasfejlesztes: {fileID: 723782981}
-  hackfejlesztes: {fileID: 1785481345}
+  "energiafejleszt\xE9s": {fileID: 652887773}
+  "akciofejleszt\xE9s": {fileID: 767162772}
+  "harcfejleszt\xE9s": {fileID: 917471241}
+  "ujradobasfejleszt\xE9s": {fileID: 723782981}
+  "hackfejleszt\xE9s": {fileID: 1785481345}
   kovetkezokor: {fileID: 1177305936}
   betarazas: {fileID: 235549630}
   nyomozas: {fileID: 83085749}

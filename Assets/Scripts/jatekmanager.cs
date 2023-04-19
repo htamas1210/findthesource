@@ -12,38 +12,17 @@ public class jatekmanager : MonoBehaviour
     public static jatekmanager Instance;
 
     //game objectek implementálása
-    public GameObject energiafejlesztes;
-    private Button energiafejlesztesgomb;
-
-    public GameObject akciofejlesztes;
-    private Button akciofejlesztesgomb;
-
-    public GameObject harcfejlesztes;
-    private Button harcfejlesztesgomb;
-
-    public GameObject ujradobasfejlesztes;
-    private Button ujradobasfejlesztesgomb;
-
-    public GameObject hackfejlesztes;
-    private Button hackfejlesztesgomb;
-
+    public GameObject energiafejlesztés;
+    public GameObject akciofejlesztés;
+    public GameObject harcfejlesztés;
+    public GameObject ujradobasfejlesztés;
+    public GameObject hackfejlesztés;
     public GameObject kovetkezokor;
-    private Button kovetkezokorgomb;
-
     public GameObject betarazas;
-    private Button betarazasgomb;
-
     public GameObject nyomozas;
-    private Button nyomozasgomb;
-
     public GameObject hackeles;
-    private Button hackelesgomb;
-
     public GameObject rolldice;
-    private Button rolldicegomb;
-
     public GameObject test;
-    private Button testgomb;
 
 
     //script-ek implementalasa
@@ -96,7 +75,7 @@ public class jatekmanager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;   
+        Instance = this;
 
         mainCanvas.SetActive(false); //helyszin sorsolas animacio miatt
         helyszinCanvas.SetActive(false);
@@ -117,29 +96,16 @@ public class jatekmanager : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
         vegpontozas = FindObjectOfType<vegpontozas>();
-        
-
-        energiafejlesztesgomb = energiafejlesztes.GetComponent<Button>();
-        akciofejlesztesgomb = akciofejlesztes.GetComponent<Button>();
-        harcfejlesztesgomb = harcfejlesztes.GetComponent<Button>();
-        ujradobasfejlesztesgomb = ujradobasfejlesztes.GetComponent<Button>();
-        hackfejlesztesgomb = hackfejlesztes.GetComponent<Button>();
-        kovetkezokorgomb = kovetkezokor.GetComponent<Button>();
-        betarazasgomb = betarazas.GetComponent<Button>();
-        nyomozasgomb = nyomozas.GetComponent<Button>();
-        hackelesgomb = hackeles.GetComponent<Button>();
-        rolldicegomb = rolldice.GetComponent<Button>();
-        testgomb = test.GetComponent<Button>();
 
         //hatterzene lejatszas
         audioManager = FindObjectOfType<AudioManager>();
         audioManager.Play("BackgroundMusic");
 
         UpdateGameState(GameState.Nev);
-        
-        #if !UNITY_EDITOR
+
+#if !UNITY_EDITOR
             test.SetActive(false);
-        #endif
+#endif
     }
 
     public void UpdateGameState(GameState newState)
@@ -192,7 +158,8 @@ public class jatekmanager : MonoBehaviour
 
     //double click
 
-    public void Resume(){
+    public void Resume()
+    {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; //normal ido visszainditasa
         GameIsPlaying = true;
@@ -200,7 +167,8 @@ public class jatekmanager : MonoBehaviour
         Instance.UpdateGameState(previousGameState); //elozo statere menjen vissza
     }
 
-    public void Pause(){
+    public void Pause()
+    {
         pauseMenuUI.SetActive(true);
         //ido megallitasa hogy megalljon a jatek
         Time.timeScale = 0f;
@@ -210,7 +178,8 @@ public class jatekmanager : MonoBehaviour
         Instance.UpdateGameState(jatekmanager.GameState.Pause);
     }
 
-    public void Quit(){
+    public void Quit()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -234,39 +203,18 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleKorkezdet()
     {
-        rolldicegomb.interactable = true;
-        megjelen(rolldicegomb);
+        rolldice.SetActive(true);
 
-        energiafejlesztesgomb.interactable = false;
-        atlatszo(energiafejlesztesgomb);
-
-        akciofejlesztesgomb.interactable = false;
-        atlatszo(akciofejlesztesgomb);
-
-        hackfejlesztesgomb.interactable = false;
-        atlatszo(hackfejlesztesgomb);
-
-        ujradobasfejlesztesgomb.interactable = false;
-        atlatszo(ujradobasfejlesztesgomb);
-
-        hackfejlesztesgomb.interactable = false;
-        atlatszo(hackfejlesztesgomb);
-
-        kovetkezokorgomb.interactable = false;
-        atlatszo(kovetkezokorgomb);
-
-        betarazasgomb.interactable = false;
-        atlatszo(betarazasgomb);
-
-        nyomozasgomb.interactable = false;
-        atlatszo(nyomozasgomb);
-
-        hackelesgomb.interactable = false;
-        atlatszo(hackelesgomb);
-
-        helyszinaktivalasBtn.interactable = false;
-        atlatszo(helyszinaktivalasBtn);
-
+        energiafejlesztés.SetActive(false);
+        akciofejlesztés.SetActive(false);
+        harcfejlesztés.SetActive(false);
+        ujradobasfejlesztés.SetActive(false);
+        hackfejlesztés.SetActive(false);
+        kovetkezokor.SetActive(false);
+        betarazas.SetActive(false);
+        nyomozas.SetActive(false);
+        hackeles.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
         //test.SetActive(false);
 
         //ha ugynok state-el vegezne kapcsoljon vissza mindent
@@ -297,7 +245,8 @@ public class jatekmanager : MonoBehaviour
         Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");
     }
 
-    private async void HandleUgynokValasztas(){
+    private async void HandleUgynokValasztas()
+    {
         //kapcsolja ki addig a mezoket amig nem valasztott ugynokcsapat szamot
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
@@ -313,14 +262,17 @@ public class jatekmanager : MonoBehaviour
         movement.threefour_Collider.gameObject.SetActive(false);
     }
 
-    public void NevValasztasUtan(){
-        if(!nev.text.Equals("")){
+    public void NevValasztasUtan()
+    {
+        if (!nev.text.Equals(""))
+        {
             UpdateGameState(GameState.KorKezdet);
             //dice.CallRenderDice(true);
-        }          
+        }
     }
 
-    private async void HandleUgynokNev(){
+    private async void HandleUgynokNev()
+    {
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
         movement.onethree_Collider.gameObject.SetActive(false);
@@ -334,7 +286,6 @@ public class jatekmanager : MonoBehaviour
         movement.threethree_Collider.gameObject.SetActive(false);
         movement.threefour_Collider.gameObject.SetActive(false);
 
-<<<<<<< Updated upstream
         energiafejlesztés.SetActive(false);
         akciofejlesztés.SetActive(false);
         harcfejlesztés.SetActive(false);
@@ -346,130 +297,41 @@ public class jatekmanager : MonoBehaviour
         hackeles.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
         //test.SetActive(false);
-        rolldice.SetActive(false);      
-=======
-        energiafejlesztesgomb.interactable = false;
-        atlatszo(energiafejlesztesgomb);
-
-        akciofejlesztesgomb.interactable = false;
-        atlatszo(akciofejlesztesgomb);
-
-        harcfejlesztesgomb.interactable = false;
-        atlatszo(harcfejlesztesgomb);
-
-        ujradobasfejlesztesgomb.interactable = false;
-        atlatszo(ujradobasfejlesztesgomb);
-
-        hackfejlesztesgomb.interactable = false;
-        atlatszo(hackfejlesztesgomb);
-
-        kovetkezokorgomb.interactable = false;
-        atlatszo(kovetkezokorgomb);
-
-        betarazasgomb.interactable = false;
-        atlatszo(betarazasgomb);
-
-        nyomozasgomb.interactable = false;
-        atlatszo(nyomozasgomb);
-
-        hackelesgomb.interactable = false;
-        atlatszo(hackelesgomb);
-
-        helyszinaktivalasBtn.interactable = false;
-        atlatszo(helyszinaktivalasBtn);
-
-        testgomb.interactable = false;
-        atlatszo(testgomb);
-
-        rolldicegomb.interactable = false;
-        atlatszo(rolldicegomb);
->>>>>>> Stashed changes
+        rolldice.SetActive(false);
     }
 
 
     private async void HandleFejlesztes()
     {
+        energiafejlesztés.SetActive(true);
+        akciofejlesztés.SetActive(true);
+        harcfejlesztés.SetActive(true);
+        ujradobasfejlesztés.SetActive(true);
+        hackfejlesztés.SetActive(true);
+        kovetkezokor.SetActive(false);
+        //rolldice.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
+
         betarazas.SetActive(false);
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
-        betarazas.SetActive(false);
-
-        energiafejlesztesgomb.interactable = true;
-        megjelen(energiafejlesztesgomb);
-
-        akciofejlesztesgomb.interactable = true;
-        megjelen(akciofejlesztesgomb);
-
-        harcfejlesztesgomb.interactable = true;
-        megjelen(harcfejlesztesgomb);
-
-        ujradobasfejlesztesgomb.interactable = true;
-        megjelen(ujradobasfejlesztesgomb);
-
-        hackfejlesztesgomb.interactable = true;
-        megjelen(hackfejlesztesgomb);
-
-        kovetkezokorgomb.interactable = true;
-        megjelen(kovetkezokorgomb);
-
-        rolldicegomb.interactable = false;
-        atlatszo(rolldicegomb);
-
-        helyszinaktivalasBtn.interactable = false;
-        atlatszo(helyszinaktivalasBtn);
-
-        betarazasgomb.interactable = false;
-        atlatszo(betarazasgomb);
-
-        nyomozasgomb.interactable = false;
-        atlatszo(nyomozasgomb);
-
-        hackelesgomb.interactable = false;
-        atlatszo(hackelesgomb);
     }
 
     private async void HandleAkcio()
     {
-        energiafejlesztes.SetActive(false);
-        hackfejlesztes.SetActive(false);
-        harcfejlesztes.SetActive(false);
-        ujradobasfejlesztes.SetActive(false);
-        akciofejlesztes.SetActive(false);
-
         //itt a movement bekapcsol
-        kovetkezokorgomb.interactable = true;
-        megjelen(kovetkezokorgomb);
+        kovetkezokor.SetActive(true);
+        betarazas.SetActive(true);
+        nyomozas.SetActive(true);
+        hackeles.SetActive(true);
+        helyszinaktivalasBtn.gameObject.SetActive(true);
+        energiafejlesztés.SetActive(false);
+        akciofejlesztés.SetActive(false);
+        harcfejlesztés.SetActive(false);
+        ujradobasfejlesztés.SetActive(false);
+        hackfejlesztés.SetActive(false);
 
-        betarazasgomb.interactable = true;
-        megjelen(betarazasgomb);
-
-        nyomozasgomb.interactable = true;
-        megjelen(nyomozasgomb);
-
-        hackelesgomb.interactable = true;
-        megjelen(hackfejlesztesgomb);
-
-        helyszinaktivalasBtn.interactable = true;
-        megjelen(helyszinaktivalasBtn);
-
-        energiafejlesztesgomb.interactable = false;
-        atlatszo(energiafejlesztesgomb);
-
-        akciofejlesztesgomb.interactable = false;
-        atlatszo(akciofejlesztesgomb);
-
-        harcfejlesztesgomb.interactable = false;
-        atlatszo(harcfejlesztesgomb);
-
-        ujradobasfejlesztesgomb.interactable = false;
-        atlatszo(ujradobasfejlesztesgomb);
-
-        hackfejlesztesgomb.interactable = false;
-        atlatszo(hackfejlesztesgomb);
-
-        kovetkezokorgomb.interactable = true;
-        megjelen(kovetkezokorgomb);
-
+        kovetkezokor.SetActive(true);
 
         //ha ugynok valasztasbol jon kapcsolaja vissza a collidereket
         movement.oneone_Collider.gameObject.SetActive(true);
@@ -495,7 +357,8 @@ public class jatekmanager : MonoBehaviour
         JatekosVesztett();
     }
 
-    private void Update() {
+    private void Update()
+    {
         /*if(jatekosvesztett){
             SceneManager.LoadScene("JatekosVesztett");
         }
@@ -503,43 +366,28 @@ public class jatekmanager : MonoBehaviour
             SceneManager.LoadScene("JatekosNyert");
         }*/
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(GameIsPlaying){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPlaying)
+            {
                 Pause();
                 Debug.Log("Game is paused");
-            }else{
+            }
+            else
+            {
                 Resume();
                 Debug.Log("Game is playing");
             }
         }
     }
 
-    public IEnumerator atlatszo(Button gomb)
-    {
-        while (gomb.GetComponent<CanvasGroup>().alpha > 0.25f)
-        {
-            gomb.GetComponent<CanvasGroup>().alpha -= 0.5f;
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-    }
-
-    public IEnumerator megjelen(Button gomb)
-    {
-        while (gomb.GetComponent<CanvasGroup>().alpha < 1f)
-        {
-            gomb.GetComponent<CanvasGroup>().alpha += 0.5f;
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-    }
-
     private async void ugynokDeaktivalas(bool bekapcsolas)
     {
-
-        energiafejlesztes.SetActive(bekapcsolas);
-        akciofejlesztes.SetActive(bekapcsolas);
-        harcfejlesztes.SetActive(bekapcsolas);
-        ujradobasfejlesztes.SetActive(bekapcsolas);
-        hackfejlesztes.SetActive(bekapcsolas);
+        energiafejlesztés.SetActive(bekapcsolas);
+        akciofejlesztés.SetActive(bekapcsolas);
+        harcfejlesztés.SetActive(bekapcsolas);
+        ujradobasfejlesztés.SetActive(bekapcsolas);
+        hackfejlesztés.SetActive(bekapcsolas);
         kovetkezokor.SetActive(bekapcsolas);
         betarazas.SetActive(bekapcsolas);
         nyomozas.SetActive(bekapcsolas);
@@ -592,7 +440,7 @@ public class jatekmanager : MonoBehaviour
                 if (oneone[0].text.Equals("X") && oneone[1].text.Equals("X") && oneone[2].text.Equals("X"))
                 {
                     jatekosnyert = true;
-                    
+
                 }
             }
             if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
@@ -674,7 +522,8 @@ public class jatekmanager : MonoBehaviour
             }
         }
 
-        if(jatekosnyert){
+        if (jatekosnyert)
+        {
             vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosNyert");
         }
@@ -684,7 +533,7 @@ public class jatekmanager : MonoBehaviour
         }
 
     }
-     
+
     public void JatekosVesztett()
     {
         Debug.Log("Játékos vesztésének vizsgálata.");
@@ -951,14 +800,15 @@ public class jatekmanager : MonoBehaviour
             }
         }
 
-        if(jatekosvesztett){
+        if (jatekosvesztett)
+        {
             vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosVesztett");
         }
         else
         {
-            Debug.Log("Jelenleg itt állsz: " + movement.jelenlegi_x + ". sor, " + movement.jelenlegi_y + ". oszlop" );
+            Debug.Log("Jelenleg itt állsz: " + movement.jelenlegi_x + ". sor, " + movement.jelenlegi_y + ". oszlop");
             Debug.Log("A játékos nem vesztett ebben a körben.");
         }
-    } 
+    }
 }
