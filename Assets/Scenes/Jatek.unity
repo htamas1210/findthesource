@@ -1720,7 +1720,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &86648682
 GameObject:
@@ -4942,7 +4942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0547daa776d6894eb26f972bda2e52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsText: {fileID: 1479459479}
+  fpsText: {fileID: 947787407}
   _hudRefreshRate: 1
 --- !u!114 &197904229
 MonoBehaviour:
@@ -5124,6 +5124,7 @@ MonoBehaviour:
   droidagyuAktivalva: 0
   canKill: 0
   canShoot: 0
+  previus_ugynok_csapatok: []
 --- !u!114 &197904236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5194,6 +5195,8 @@ MonoBehaviour:
   hackeles: {fileID: 191744299}
   rolldice: {fileID: 1393612611}
   test: {fileID: 401176105}
+  harc: {fileID: 2108944971}
+  uzenetBox: {fileID: 1479459479}
   oneone:
   - {fileID: 1326456196}
   - {fileID: 144640423}
@@ -36581,7 +36584,7 @@ GameObject:
   - component: {fileID: 1479459480}
   - component: {fileID: 1479459479}
   m_Layer: 5
-  m_Name: fpsText
+  m_Name: uzenetText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52444,7 +52447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2063388576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52463,8 +52466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 208.85, y: -185.71}
-  m_SizeDelta: {x: 160.96, y: 29.98}
+  m_AnchoredPosition: {x: 208.85, y: -159.52}
+  m_SizeDelta: {x: 160.96, y: 25.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2063388577
 MonoBehaviour:
