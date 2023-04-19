@@ -29,7 +29,7 @@ public class Ugynok : MonoBehaviour
     public bool droidagyuAktivalva = false;
     public bool canKill = false;
     public bool canShoot = false; //harchoz bool
-    private string[] previus_ugynok_csapatok;
+    [SerializeField] private string[] previus_ugynok_csapatok;
     private int elozo_x;
     private int elozo_y ;
     public void setCanKillTrue(){ canKill = true; }
@@ -288,7 +288,12 @@ public class Ugynok : MonoBehaviour
     }
 
 
-    public void ugynokOles(TMP_Text ugynokText){       
+    public void ugynokOles(TMP_Text ugynokText){     
+        if(!canKill){
+            Debug.Log("Nem nyomtal a harc gombra!!");
+            return;
+        }  
+
         //string tmp = ugynokText.gameObject.name;
         string s = ugynokText.gameObject.name;
         //Debug.Log("gomb name: " + s);
@@ -333,6 +338,7 @@ public class Ugynok : MonoBehaviour
             }
 
             akciok.Loves(ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
+            canKill = false;
             Debug.Log("tolteny szama:" + ugynokcsapatletszama / upgrade.harc[upgrade.getHarcIndex()]);
         }
 
@@ -352,8 +358,12 @@ public class Ugynok : MonoBehaviour
         if(elozo_x != movement.jelenlegi_x || elozo_y != movement.jelenlegi_y){
             foreach(var item in previus_ugynok_csapatok){
                 if(!item.Equals("")){
+                    Debug.Log("|"+item+"|");
                     //ha nem ures a text vagyis volt atirva szamra nezze meg hogy X-e
-                    if(!item.Equals("x") ||!item.Equals("X")){
+                    //if(!item.Equals("x") || !item.Equals("X"))
+                    if(item.Equals("1") || item.Equals("2") || item.Equals("3") || item.Equals("4") || item.Equals("5") || item.Equals("6"))
+                    {
+                        Debug.Log("belep ugynok item: |"+item+"|");
                         //vonjon le egy eletet
                         elet.Eletvesztes();
                         break;

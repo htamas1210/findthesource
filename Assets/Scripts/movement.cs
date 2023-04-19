@@ -76,6 +76,7 @@ public class movement : MonoBehaviour
     private Targyak targyak;
     private jatekmanager jatekmanager;
     private Dice dice;
+    private Kezdohelyszin kezdohelyszin;
 
     private int oneonecount = 0;
     private int twoonecount = 0;
@@ -114,9 +115,10 @@ public class movement : MonoBehaviour
         targyak = FindObjectOfType<Targyak>();
         jatekmanager = FindObjectOfType<jatekmanager>();
         dice = FindObjectOfType<Dice>();
+        kezdohelyszin = FindObjectOfType<Kezdohelyszin>();
     }
 
-    void Start()
+    private void Start()
     {
         eromulepes1.SetActive(false);
         eromulepes2.SetActive(false);
@@ -168,7 +170,9 @@ public class movement : MonoBehaviour
             eromulepes1.SetActive(true);
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
-            jelenlegi_y = 1;         
+            jelenlegi_y = 1;   
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Erőmű");
+
         }
         else if (random == 2)
         {
@@ -177,6 +181,7 @@ public class movement : MonoBehaviour
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 1;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Fekete piac");
         }
         else if (random == 3)
         {
@@ -185,6 +190,7 @@ public class movement : MonoBehaviour
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 1;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Metró");
         }
         else if (random == 4)
         {
@@ -193,6 +199,7 @@ public class movement : MonoBehaviour
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 2;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Szerverek");
         }
         else if (random == 5)
         {
@@ -201,6 +208,7 @@ public class movement : MonoBehaviour
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 2;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "King Kaszinó");
         }
         else if (random == 6)
         {
@@ -209,6 +217,7 @@ public class movement : MonoBehaviour
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 2;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Feltöltő");
         }
         else if (random == 7)
         {
@@ -217,6 +226,7 @@ public class movement : MonoBehaviour
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 3;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kutatólabor");
         }
         else if (random == 8)
         {
@@ -225,6 +235,7 @@ public class movement : MonoBehaviour
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 3;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kripto club");
         }
         else if (random == 9)
         {
@@ -233,6 +244,7 @@ public class movement : MonoBehaviour
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 3;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Cyber pláza");
         }
         else if (random == 10)
         {
@@ -241,6 +253,7 @@ public class movement : MonoBehaviour
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 4;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Hadiüzem");
         }
         else if (random == 11)
         {
@@ -249,6 +262,7 @@ public class movement : MonoBehaviour
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 4;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Könyvtár");
         }
         else if (random == 12)
         {
@@ -257,6 +271,7 @@ public class movement : MonoBehaviour
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 4;
+            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kórház");
         }
 
         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);

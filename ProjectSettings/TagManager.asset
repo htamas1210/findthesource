@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Kezdohelyszin
+    uniqueID: 2685889865
+    locked: 0
