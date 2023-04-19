@@ -24,12 +24,12 @@ public class AspectRatioHandler : MonoBehaviour
 
         if(aspectRatio == 1.78 || aspectRatio == 2.33){
             if(Application.platform == RuntimePlatform.OSXPlayer)
-                mainCamera.orthographicSize = 13f; //mac aspect ratio fix???
+                mainCamera.orthographicSize = 11.5f; //mac aspect ratio fix???
             else
                 mainCamera.orthographicSize = 10.4f; //16:9, 21:9
         }else if(aspectRatio == 1.6){
             if(Application.platform == RuntimePlatform.OSXPlayer)
-                mainCamera.orthographicSize = 13f; //mac aspect ratio fix???
+                mainCamera.orthographicSize = 11.5f; //mac aspect ratio fix???
             else
                 mainCamera.orthographicSize = 11.43f; //16:9, 21:9 //16:10 11.43f
         }else if(aspectRatio == 1.33){

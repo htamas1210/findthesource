@@ -77,7 +77,7 @@ public class jatekmanager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;   
+        Instance = this;
 
         mainCanvas.SetActive(false); //helyszin sorsolas animacio miatt
         helyszinCanvas.SetActive(false);
@@ -104,10 +104,10 @@ public class jatekmanager : MonoBehaviour
         audioManager.Play("BackgroundMusic");
 
         UpdateGameState(GameState.Nev);
-        
-        #if !UNITY_EDITOR
+
+#if !UNITY_EDITOR
             test.SetActive(false);
-        #endif
+#endif
     }
 
     public void UpdateGameState(GameState newState)
@@ -160,7 +160,8 @@ public class jatekmanager : MonoBehaviour
 
     //double click
 
-    public void Resume(){
+    public void Resume()
+    {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; //normal ido visszainditasa
         GameIsPlaying = true;
@@ -168,7 +169,8 @@ public class jatekmanager : MonoBehaviour
         Instance.UpdateGameState(previousGameState); //elozo statere menjen vissza
     }
 
-    public void Pause(){
+    public void Pause()
+    {
         pauseMenuUI.SetActive(true);
         //ido megallitasa hogy megalljon a jatek
         Time.timeScale = 0f;
@@ -178,7 +180,8 @@ public class jatekmanager : MonoBehaviour
         Instance.UpdateGameState(jatekmanager.GameState.Pause);
     }
 
-    public void Quit(){
+    public void Quit()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -244,7 +247,8 @@ public class jatekmanager : MonoBehaviour
         Debug.Log((upgrade.getUjradobasIndex() + 1) + " ; ennyi dobásod van összesen");
     }
 
-    private async void HandleUgynokValasztas(){
+    private async void HandleUgynokValasztas()
+    {
         //kapcsolja ki addig a mezoket amig nem valasztott ugynokcsapat szamot
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
@@ -260,14 +264,17 @@ public class jatekmanager : MonoBehaviour
         movement.threefour_Collider.gameObject.SetActive(false);
     }
 
-    public void NevValasztasUtan(){
-        if(!nev.text.Equals("")){
+    public void NevValasztasUtan()
+    {
+        if (!nev.text.Equals(""))
+        {
             UpdateGameState(GameState.KorKezdet);
             //dice.CallRenderDice(true);
-        }          
+        }
     }
 
-    private async void HandleUgynokNev(){
+    private async void HandleUgynokNev()
+    {
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
         movement.onethree_Collider.gameObject.SetActive(false);
@@ -293,7 +300,7 @@ public class jatekmanager : MonoBehaviour
         helyszinaktivalasBtn.gameObject.SetActive(false);
         harc.SetActive(false);
         //test.SetActive(false);
-        rolldice.SetActive(false);      
+        rolldice.SetActive(false);
     }
 
 
@@ -355,7 +362,8 @@ public class jatekmanager : MonoBehaviour
         JatekosVesztett();
     }
 
-    private void Update() {
+    private void Update()
+    {
         /*if(jatekosvesztett){
             SceneManager.LoadScene("JatekosVesztett");
         }
@@ -363,11 +371,15 @@ public class jatekmanager : MonoBehaviour
             SceneManager.LoadScene("JatekosNyert");
         }*/
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(GameIsPlaying){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPlaying)
+            {
                 Pause();
                 Debug.Log("Game is paused");
-            }else{
+            }
+            else
+            {
                 Resume();
                 Debug.Log("Game is playing");
             }
@@ -434,7 +446,7 @@ public class jatekmanager : MonoBehaviour
                 if (oneone[0].text.Equals("X") && oneone[1].text.Equals("X") && oneone[2].text.Equals("X"))
                 {
                     jatekosnyert = true;
-                    
+
                 }
             }
             if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 2)
@@ -516,7 +528,8 @@ public class jatekmanager : MonoBehaviour
             }
         }
 
-        if(jatekosnyert){
+        if (jatekosnyert)
+        {
             vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosNyert");
         }
@@ -526,7 +539,7 @@ public class jatekmanager : MonoBehaviour
         }
 
     }
-     
+
     public void JatekosVesztett()
     {
         Debug.Log("Játékos vesztésének vizsgálata.");
@@ -793,14 +806,15 @@ public class jatekmanager : MonoBehaviour
             }
         }
 
-        if(jatekosvesztett){
+        if (jatekosvesztett)
+        {
             vegpontozas.pontkiiras();
             SceneManager.LoadScene("JatekosVesztett");
         }
         else
         {
-            Debug.Log("Jelenleg itt állsz: " + movement.jelenlegi_x + ". sor, " + movement.jelenlegi_y + ". oszlop" );
+            Debug.Log("Jelenleg itt állsz: " + movement.jelenlegi_x + ". sor, " + movement.jelenlegi_y + ". oszlop");
             Debug.Log("A játékos nem vesztett ebben a körben.");
         }
-    } 
+    }
 }

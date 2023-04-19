@@ -9206,6 +9206,7 @@ GameObject:
   - component: {fileID: 401176109}
   - component: {fileID: 401176108}
   - component: {fileID: 401176107}
+  - component: {fileID: 401176110}
   m_Layer: 5
   m_Name: TestGomb
   m_TagString: Untagged
@@ -9328,6 +9329,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401176105}
   m_CullTransparentMesh: 1
+--- !u!225 &401176110
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401176105}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &410263759
 GameObject:
   m_ObjectHideFlags: 0
