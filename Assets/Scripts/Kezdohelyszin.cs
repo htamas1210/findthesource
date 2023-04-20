@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,23 +10,20 @@ public class Kezdohelyszin : MonoBehaviour
     public TMP_Text eredmenyText;
     public Button nextButton;
 
-    private float time;
     private int random;
+    public static bool kesz = false;
 
     private Dice dice;
 
     private void Awake() {
         dice = FindObjectOfType<Dice>();
         nextButton.interactable = false;
-
-        #if !UNITY_EDITOR
-            time = 4f;
-        #else
-            time = 5f;
-        #endif
     }
 
     public void KezdoHelyszinSorsolas(int x, int y, string helynev){
+        eredmenyText.text = "";
+        nextButton.interactable = false;
+
         StartCoroutine(waitForDiceAnimation(helynev));
 
         dice.callAnimateDice(dice1, x);
@@ -35,14 +31,10 @@ public class Kezdohelyszin : MonoBehaviour
     }
 
     private IEnumerator waitForDiceAnimation(string helynev){
-        yield return new WaitForSeconds(time);
-
+        yield return new WaitUntil(() => kesz);
+        
         eredmenyText.text = "A kezdőhelyszíned: " + helynev;
-        nextButton.interactable = true;
+        nextButton.interactable = true; 
+        kesz = false;    
     }
-
-    public void Debugl(){
-        Debug.Log("clicked");
-    }
-
 }

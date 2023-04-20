@@ -163,6 +163,7 @@ public class movement : MonoBehaviour
     {
         int random = UnityEngine.Random.Range(1, 12);
         Debug.Log("Random a kezdohelyszinhez: " + random);
+        string helynev = "";
 
         if (random == 1)
         {
@@ -171,8 +172,7 @@ public class movement : MonoBehaviour
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 1;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Erőmű");
-
+            helynev = "Erőmű";
         }
         else if (random == 2)
         {
@@ -181,7 +181,7 @@ public class movement : MonoBehaviour
             feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 1;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Fekete piac");
+            helynev = "Fekete piac";
         }
         else if (random == 3)
         {
@@ -190,7 +190,7 @@ public class movement : MonoBehaviour
             metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 1;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Metró");
+            helynev = "Metró";
         }
         else if (random == 4)
         {
@@ -199,7 +199,7 @@ public class movement : MonoBehaviour
             szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 2;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Szerverek");
+            helynev = "Szerverek";
         }
         else if (random == 5)
         {
@@ -208,7 +208,7 @@ public class movement : MonoBehaviour
             kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 2;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "King Kaszinó");
+            helynev = "King Kaszinó";
         }
         else if (random == 6)
         {
@@ -217,7 +217,7 @@ public class movement : MonoBehaviour
             feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 2;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Feltöltő");
+            helynev = "Feltöltő";
         }
         else if (random == 7)
         {
@@ -226,7 +226,7 @@ public class movement : MonoBehaviour
             kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 3;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kutatólabor");
+            helynev = "Kutatólabor";
         }
         else if (random == 8)
         {
@@ -235,7 +235,7 @@ public class movement : MonoBehaviour
             kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 3;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kripto club");
+            helynev = "Kripto club";
         }
         else if (random == 9)
         {
@@ -244,7 +244,7 @@ public class movement : MonoBehaviour
             cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 3;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Cyber pláza");
+            helynev = "Cyber pláza";
         }
         else if (random == 10)
         {
@@ -253,7 +253,7 @@ public class movement : MonoBehaviour
             hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
             jelenlegi_y = 4;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Hadiüzem");
+            helynev = "Hadiüzem";
         }
         else if (random == 11)
         {
@@ -262,7 +262,7 @@ public class movement : MonoBehaviour
             konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 2;
             jelenlegi_y = 4;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Könyvtár");
+            helynev = "Könyvtár";
         }
         else if (random == 12)
         {
@@ -271,561 +271,13 @@ public class movement : MonoBehaviour
             korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 3;
             jelenlegi_y = 4;
-            kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Kórház");
+            helynev = "Kórház";
         }
 
+        kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, helynev);
         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
         ugynok.setElozoHelyszin(jelenlegi_x, jelenlegi_y);
     }
-
-    public void mozgasHelyre(int x, int y)
-    {
-        if (x == 1 && y == 1)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = oneone.transform.position;
-        }
-        else if (x == 1 && y == 2)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = onetwo.transform.position;
-        }
-        else if (x == 1 && y == 3)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = onethree.transform.position;
-        }
-        else if (x == 1 && y == 4)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = onefour.transform.position;
-        }
-        else if (x == 2 && y == 1)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = twoone.transform.position;
-        }
-        else if (x == 2 && y == 2)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = twotwo.transform.position;
-        }
-        else if (x == 2 && y == 3)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = twothree.transform.position;
-        }
-        else if (x == 2 && y == 4)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = twofour.transform.position;
-        }
-        else if (x == 3 && y == 1)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = threeone.transform.position;
-        }
-        else if (x == 3 && y == 2)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = threetwo.transform.position;
-        }
-        else if (x == 3 && y == 3)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = threethree.transform.position;
-        }
-        else if (x == 3 && y == 4)
-        {
-            jelenlegi_x = x;
-            jelenlegi_y = y;
-            player.transform.position = threefour.transform.position;
-        }
-    }
-
-    public void helyreTeleport()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-            if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                player.transform.position = oneone.transform.position;
-                jelenlegi_x = 1;
-                jelenlegi_y = 1;
-                oneonecount = oneonecount + 1;
-                if (eromulepes1.activeSelf == true)
-                {
-                    eromulepes2.SetActive(true);
-                    moveCounter++;
-                    eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                }
-                else
-                {
-                    eromulepes1.SetActive(true);
-                    moveCounter++;
-                    eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
-            if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (twoonecount < 2)
-                {
-                    player.transform.position = twoone.transform.position;
-                    jelenlegi_x = 2;
-                    jelenlegi_y = 1;
-                    twoonecount = twoonecount + 1;
-                    if (feketepiaclepes1.activeSelf == true)
-                    {
-                        feketepiaclepes2.SetActive(true);
-                        moveCounter++;
-                        feketepiaclepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        feketepiaclepes1.SetActive(true);
-                        moveCounter++;
-                        feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
-            if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-                if (threeonecount < 2)
-                {
-                    player.transform.position = threeone.transform.position;
-                    jelenlegi_x = 3;
-                    jelenlegi_y = 1;
-                    threeonecount++;
-                    if (metrolepes1.activeSelf == true)
-                    {
-                        metrolepes2.SetActive(true);
-                        moveCounter++;
-                        metrolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        metrolepes1.SetActive(true);
-                        moveCounter++;
-                        metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-
-
-
-
-            }
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
-            if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (onetwocount < 2)
-                {
-                    player.transform.position = onetwo.transform.position;
-                    jelenlegi_x = 1;
-                    jelenlegi_y = 2;
-                    onetwocount++;
-                    Debug.Log(ap.akciopont);
-                    if (szervereklepes1.activeSelf == true)
-                    {
-                        szervereklepes2.SetActive(true);
-                        moveCounter++;
-                        szervereklepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        szervereklepes1.SetActive(true);
-                        moveCounter++;
-                        szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                }
-            }
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-            Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
-            if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (twotwocount < 2)
-                {
-                    player.transform.position = twotwo.transform.position;
-                    jelenlegi_x = 2;
-                    jelenlegi_y = 2;
-                    twotwocount++;
-                    if (kingcasinolepes1.activeSelf == true)
-                    {
-                        kingcasinolepes2.SetActive(true);
-                        moveCounter++;
-                        kingcasinolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        kingcasinolepes1.SetActive(true);
-                        moveCounter++;
-                        kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
-            if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (threetwocount < 2)
-                {
-                    player.transform.position = threetwo.transform.position;
-                    jelenlegi_x = 3;
-                    jelenlegi_y = 2;
-                    threetwocount++;
-                    if (feltoltolepes1.activeSelf == true)
-                    {
-                        feltoltolepes2.SetActive(true);
-                        moveCounter++;
-                        feltoltolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        feltoltolepes1.SetActive(true);
-                        moveCounter++;
-                        feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
-
-            if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (onethreecount < 2)
-                {
-                    player.transform.position = onethree.transform.position;
-                    jelenlegi_x = 1;
-                    jelenlegi_y = 3;
-                    onethreecount++;
-                    if (kutatolaborlepes1.activeSelf == true)
-                    {
-                        kutatolaborlepes2.SetActive(true);
-                        moveCounter++;
-                        kutatolaborlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        kutatolaborlepes1.SetActive(true);
-                        moveCounter++;
-                        kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
-
-            if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (twothreecount < 2)
-                {
-                    player.transform.position = twothree.transform.position;
-                    jelenlegi_x = 2;
-                    jelenlegi_y = 3;
-                    twothreecount++;
-                    if (kriptoklublepes1.activeSelf == true)
-                    {
-                        kriptoklublepes2.SetActive(true);
-                        moveCounter++;
-                        kriptoklublepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        kriptoklublepes1.SetActive(true);
-                        moveCounter++;
-                        kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
-
-            if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (threethreecount < 2)
-                {
-                    player.transform.position = threethree.transform.position;
-                    jelenlegi_x = 3;
-                    jelenlegi_y = 3;
-                    threethreecount++;
-                    if (cyberplazalepes1.activeSelf == true)
-                    {
-                        cyberplazalepes2.SetActive(true);
-                        moveCounter++;
-                        cyberplazalepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        cyberplazalepes1.SetActive(true);
-                        moveCounter++;
-                        cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                }
-
-            }
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
-
-            if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (onefourcount < 2)
-                {
-                    player.transform.position = onefour.transform.position;
-                    jelenlegi_x = 1;
-                    jelenlegi_y = 4;
-                    onefourcount++;
-                    if (hadiuzemlepes1.activeSelf == true)
-                    {
-                        hadiuzemlepes2.SetActive(true);
-                        moveCounter++;
-                        hadiuzemlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        hadiuzemlepes1.SetActive(true);
-                        moveCounter++;
-                        hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
-
-            if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (twofourcount < 2)
-                {
-                    player.transform.position = twofour.transform.position;
-                    jelenlegi_x = 2;
-                    jelenlegi_y = 4;
-                    twofourcount++;
-                    if (konyvtarlepes1.activeSelf == true)
-                    {
-                        konyvtarlepes2.SetActive(true);
-                        moveCounter++;
-                        konyvtarlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        konyvtarlepes1.SetActive(true);
-                        moveCounter++;
-                        konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
-        {
-
-            Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
-
-            if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
-            {
-                Debug.Log("Maximum ketszer lephetsz egy mezore");
-            }
-            else
-            {
-
-                if (threefourcount < 2)
-                {
-                    player.transform.position = threefour.transform.position;
-                    jelenlegi_x = 3;
-                    jelenlegi_y = 4;
-                    threefourcount++;
-                    if (korhazlepes1.activeSelf == true)
-                    {
-                        korhazlepes2.SetActive(true);
-                        moveCounter++;
-                        korhazlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                    else
-                    {
-                        korhazlepes1.SetActive(true);
-                        moveCounter++;
-                        korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    }
-                }
-                else
-                {
-                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                }
-
-            }
-
-        }
-
-
-    }
-
 
     public void Update()
     {
@@ -1602,7 +1054,6 @@ public class movement : MonoBehaviour
                                 Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
-
                     }
                 }
             }
@@ -1672,11 +1123,9 @@ public class movement : MonoBehaviour
                                 Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                             }
                         }
-
                     }
                 }
             }
         }
-
     }
 }

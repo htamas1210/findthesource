@@ -292,8 +292,8 @@ public class Dice : MonoBehaviour {
         this.adrenalinMegerosites = adrenalinMegerosites; 
     }
 
-    public void callAnimateDice(SpriteRenderer rend, int diceErtek) => StartCoroutine(AnimateTheDice(rend, diceErtek));
-    private IEnumerator AnimateTheDice(SpriteRenderer rend, int diceErtek)
+    public void callAnimateDice(SpriteRenderer rend, int diceErtek, float waitTime = 500f) => StartCoroutine(AnimateTheDice(rend, diceErtek, waitTime));
+    private IEnumerator AnimateTheDice(SpriteRenderer rend, int diceErtek, float waitTime = 500f)
     {
         int randomDiceSide;
         float time = 0f;
@@ -303,17 +303,18 @@ public class Dice : MonoBehaviour {
             time += Time.time;
             //Debug.Log("time: " + time);
 
-            if(time >= 200f) fusson = false;
+            if(time >= waitTime) fusson = false;
 
             randomDiceSide = Random.Range(0, 5);
 
             rend.sprite = diceSides[Random.Range(0, 5)];
             rend.size = diceSpriteSize;
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSecondsRealtime(0.05f);
         }
 
         rend.sprite = diceSides[diceErtek - 1];
         rend.size = diceSpriteSize;
+        Kezdohelyszin.kesz = true;
     }
 }

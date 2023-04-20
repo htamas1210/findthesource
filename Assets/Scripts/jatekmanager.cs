@@ -72,6 +72,8 @@ public class jatekmanager : MonoBehaviour
     public GameObject mainCanvas;
     public GameObject helyszinCanvas;
     public GameObject helyszinSorsolasCanvas;
+    public TMP_Text helyszinEredmenyText;
+    public Button helyszinEredmenyBtn;
     public GameObject palyaSprite;
     public GameObject playerSprite;
 
@@ -167,7 +169,7 @@ public class jatekmanager : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f; //normal ido visszainditasa
+        SetTimeScale(1f); //normal ido visszainditasa
         GameIsPlaying = true;
         audioManager.SetMainVolume(0f);
         Instance.UpdateGameState(previousGameState); //elozo statere menjen vissza
@@ -177,7 +179,7 @@ public class jatekmanager : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         //ido megallitasa hogy megalljon a jatek
-        Time.timeScale = 0f;
+        SetTimeScale(0f);
         GameIsPlaying = false;
         audioManager.SetMainVolume(-80f); //hangerot teljesen levenni a masteren
         previousGameState = State;
@@ -186,7 +188,14 @@ public class jatekmanager : MonoBehaviour
 
     public void Quit()
     {
+        //helyszinEredmenyBtn.interactable = false;
+        //helyszinEredmenyText.gameObject.SetActive(false);
+        SetTimeScale(1f);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SetTimeScale(float time){
+        Time.timeScale = time;
     }
 
     public IEnumerator atlatszo(Button gomb)
