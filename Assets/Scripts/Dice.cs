@@ -23,7 +23,7 @@ public class Dice : MonoBehaviour {
     public int[] diceResult = { 0, 0 };
     public List<int> ujertek = new List<int>();
     public int valasztottErtek; //a jatekos altal valasztott dobott ertek helye
-    private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas  
+    [SerializeField] private bool locked = false; //ne lehessen ujra kivalasztani a masikat ha mar tortent egy valasztas  
     public bool adrenalinMegerosites = false;
     public GameObject adrenalinHasznalat;
     public Button confirm;
@@ -41,7 +41,7 @@ public class Dice : MonoBehaviour {
     public bool dobottEgyszer = false; //tudjon ujra dobni vagy nem
     public int ujradobasszamlalo;
 
-    private bool ugynokDobasErtek = false; //ertek valasztashoz hogy tudja az ugynok csapat miatt lett meghivva
+    [SerializeField] private bool ugynokDobasErtek = false; //ertek valasztashoz hogy tudja az ugynok csapat miatt lett meghivva
     private bool elsoDobas = true;
     private void Awake() {
         upgrade = FindObjectOfType<Upgrade>();
@@ -95,7 +95,6 @@ public class Dice : MonoBehaviour {
                     }else{
                         //ugynok csapat szama
                         ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);
-
                         //-1 energia
                         energiasav.csokkenEnergia(1);
                         
@@ -108,7 +107,7 @@ public class Dice : MonoBehaviour {
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                     }else{
                         //ugynok csapat szama
-                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);                   
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);                                         
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                     } 
                 }
@@ -119,6 +118,8 @@ public class Dice : MonoBehaviour {
 
             if(!ugynokDobasErtek)
                 ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
+            else
+                ugynokDobasErtek = false;
 
             if(elsoDobas){
                 //jatek kezdeskor elso dobas ugynok csapat meghatarozas kezdo helyszinen

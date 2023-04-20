@@ -27,33 +27,28 @@ public class TurnManager : MonoBehaviour
     public void nextTurn() {
         dice.setLocked(false);
         dice.dobottEgyszer = false;
-        akciopont.resetAkciopont();
-        energia.csokkenEnergia(upgrade.energia[upgrade.getEnergiaIndex()]);
-        energia.granatAktivalva = false; //ha aktivalva lett a granat a korben deaktivalja
-        turnCounter++;
         dice.hely1.sprite = null;
         dice.hely2.sprite = null;
         dice.ujradobasszamlalo = upgrade.ujradobas[upgrade.getUjradobasIndex()] + 1;
+        dice.diceResult = new int[2];
         Debug.Log("ujradobasszamlalo: " + dice.ujradobasszamlalo);
+
+        akciopont.resetAkciopont();
+
+        energia.csokkenEnergia(upgrade.energia[upgrade.getEnergiaIndex()]);
+        energia.granatAktivalva = false; //ha aktivalva lett a granat a korben deaktivalja
+        
+        turnCounter++;      
+        
         jatekmanager.vanertelme = true;
         jatekmanager.JatekosVesztett();
         jatekmanager.JatekosNyert();
+        
         if (jatekmanager.jatekosnyert == false && jatekmanager.jatekosvesztett == false)
         {
             jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.KorKezdet); //a jatekmanager atvalt a korkezdet eventre
 
             Debug.Log("kovetkezo kor " + turnCounter);
-        }
-        
-
-        
+        }        
     }
-
-        /*
-          if (energiavesztese > 29)
-        {
-            jatekmanager.Instance.UpdateGameState(GameState.Vesztett); //a jatekmanager atvalt a vesztett eventre
-        }
-         */ 
-
 }

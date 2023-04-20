@@ -170,7 +170,7 @@ public class movement : MonoBehaviour
             eromulepes1.SetActive(true);
             eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
             jelenlegi_x = 1;
-            jelenlegi_y = 1;   
+            jelenlegi_y = 1;
             kezdohelyszin.KezdoHelyszinSorsolas(jelenlegi_x, jelenlegi_y, "Erőmű");
 
         }
@@ -382,7 +382,7 @@ public class movement : MonoBehaviour
                     eromulepes1.SetActive(true);
                     moveCounter++;
                     eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                    
+
                 }
             }
         }
@@ -827,7 +827,6 @@ public class movement : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     public void Update()
     {
         tavolsag = math.abs(tavolsag);

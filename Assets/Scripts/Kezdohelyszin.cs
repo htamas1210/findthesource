@@ -11,6 +11,7 @@ public class Kezdohelyszin : MonoBehaviour
     public TMP_Text eredmenyText;
     public Button nextButton;
 
+    private float time;
     private int random;
 
     private Dice dice;
@@ -18,6 +19,12 @@ public class Kezdohelyszin : MonoBehaviour
     private void Awake() {
         dice = FindObjectOfType<Dice>();
         nextButton.interactable = false;
+
+        #if !UNITY_EDITOR
+            time = 4f;
+        #else
+            time = 5f;
+        #endif
     }
 
     public void KezdoHelyszinSorsolas(int x, int y, string helynev){
@@ -28,7 +35,7 @@ public class Kezdohelyszin : MonoBehaviour
     }
 
     private IEnumerator waitForDiceAnimation(string helynev){
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(time);
 
         eredmenyText.text = "A kezdőhelyszíned: " + helynev;
         nextButton.interactable = true;

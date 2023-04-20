@@ -75,6 +75,10 @@ public class jatekmanager : MonoBehaviour
     public GameObject palyaSprite;
     public GameObject playerSprite;
 
+    public GameObject eredmenyPanel;
+    public TMP_Text eredmenyText;
+    public TMP_Text pontszam;
+
     private void Awake()
     {
         Instance = this;
@@ -217,6 +221,7 @@ public class jatekmanager : MonoBehaviour
         nyomozas.SetActive(false);
         hackeles.SetActive(false);
         helyszinaktivalasBtn.gameObject.SetActive(false);
+        harc.SetActive(false);
         //test.SetActive(false);
 
         //ha ugynok state-el vegezne kapcsoljon vissza mindent
@@ -530,8 +535,11 @@ public class jatekmanager : MonoBehaviour
 
         if (jatekosnyert)
         {
-            vegpontozas.pontkiiras();
-            SceneManager.LoadScene("JatekosNyert");
+            //vegpontozas.pontkiiras();
+            //SceneManager.LoadScene("JatekosNyert");
+            eredmenyText.text = "Nyertél";
+            pontszam.text = "Pontszámod: " + vegpontozas.OsszpontSzamalas().ToString();
+            eredmenyPanel.SetActive(true);
         }
         else
         {
@@ -808,8 +816,11 @@ public class jatekmanager : MonoBehaviour
 
         if (jatekosvesztett)
         {
-            vegpontozas.pontkiiras();
-            SceneManager.LoadScene("JatekosVesztett");
+            //vegpontozas.pontkiiras();
+            //SceneManager.LoadScene("JatekosVesztett");
+            eredmenyText.text = "Vesztettél";
+            pontszam.text = "Pontszámod: " + vegpontozas.OsszpontSzamalas().ToString();
+            eredmenyPanel.SetActive(true);
         }
         else
         {
