@@ -107,7 +107,7 @@ public class Dice : MonoBehaviour {
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                     }else{
                         //ugynok csapat szama
-                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);                                         
+                        ugynok.UgynokSorsolas(movement.jelenlegi_x, movement.jelenlegi_y, valasztottErtek);                                        
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Akcio);
                     } 
                 }
@@ -118,15 +118,20 @@ public class Dice : MonoBehaviour {
 
             if(!ugynokDobasErtek)
                 ap.UpdateAkciopont(getValasztottErtek() + upgrade.akcio[upgrade.getAkcioIndex()]);
-            else
+            else{
                 ugynokDobasErtek = false;
+                setLocked(false); 
+            }
+                
+            dice1btnBtn.interactable = false;
+            dice2btnBtn.interactable = false;  
 
-            if(elsoDobas){
+            /*if(elsoDobas){
                 //jatek kezdeskor elso dobas ugynok csapat meghatarozas kezdo helyszinen
                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas);
                 CallRenderDice(true);
                 elsoDobas = false;
-            }
+            }*/
         }
 
         Debug.Log("valasztott ertek: " + valasztottErtek + " locked status: " + locked);
@@ -262,6 +267,8 @@ public class Dice : MonoBehaviour {
         //ha vegzett mindennel kapcsolja vissza az ertekvalasztast
         dice1btnBtn.enabled = true;
         dice2btnBtn.enabled = true;
+        dice1btnBtn.interactable = true;
+        dice2btnBtn.interactable = true;
 
         if(!ugynokDobas){ //ha ugynok miatt van dobas ne vonjon le
             ujradobasszamlalo--;

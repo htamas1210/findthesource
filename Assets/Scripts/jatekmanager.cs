@@ -105,13 +105,13 @@ public class jatekmanager : MonoBehaviour
 
         //hatterzene lejatszas
         audioManager = FindObjectOfType<AudioManager>();
-        audioManager.Play("BackgroundMusic");
+        //audioManager.Play("BackgroundMusic");
 
         UpdateGameState(GameState.Nev);
 
-#if !UNITY_EDITOR
+        #if !UNITY_EDITOR
             test.SetActive(false);
-#endif
+        #endif
     }
 
     public void UpdateGameState(GameState newState)
@@ -271,10 +271,10 @@ public class jatekmanager : MonoBehaviour
 
     public void NevValasztasUtan()
     {
-        if (!nev.text.Equals(""))
+        if (!nev.text.Equals("") && dice.diceResult[0] == 0) //dice result == 0 ne tudjon tobbszori nev beiras utan ujradobni
         {
             UpdateGameState(GameState.KorKezdet);
-            //dice.CallRenderDice(true);
+            dice.CallRenderDice(true);
         }
     }
 

@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     }
 
     private void Start() {
-        audioManager.Play("MenuMusic");
+        //audioManager.Play("MenuMusic");
     }
 
     public void PlayGame()

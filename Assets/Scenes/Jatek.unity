@@ -4743,6 +4743,7 @@ MonoBehaviour:
   diceResult: 0000000000000000
   ujertek: 
   valasztottErtek: 0
+  locked: 0
   adrenalinMegerosites: 0
   adrenalinHasznalat: {fileID: 274472943}
   confirm: {fileID: 1617719567}
@@ -4764,6 +4765,7 @@ MonoBehaviour:
   dobott: 0
   dobottEgyszer: 0
   ujradobasszamlalo: 0
+  ugynokDobasErtek: 0
 --- !u!114 &197904222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43233,8 +43235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -231.38, y: 91}
-  m_SizeDelta: {x: 262.751, y: 62.216}
+  m_AnchoredPosition: {x: 42.41, y: 91}
+  m_SizeDelta: {x: 810.33, y: 62.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667766886
 MonoBehaviour:
@@ -43265,8 +43267,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
