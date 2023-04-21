@@ -150,6 +150,7 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3)
         {
             if(helyszinAktivalasSzamlalo[6] == 2) return; //ketszer lehet aktivalni
+            if(akciopont.akciopont < 2) return;
 
             //1 fejlesztes ingyen
             upgrade.canUpgrade = true;

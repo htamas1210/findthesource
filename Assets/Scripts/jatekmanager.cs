@@ -141,7 +141,7 @@ public class jatekmanager : MonoBehaviour
                 HandleUgynokValasztas();
                 break;
             case GameState.Nev:
-                HandleUgynokNev();
+                HandleNev();
                 break;
             case GameState.Pause:
                 break;
@@ -287,7 +287,7 @@ public class jatekmanager : MonoBehaviour
         }
     }
 
-    private async void HandleUgynokNev()
+    private async void HandleNev()
     {
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
