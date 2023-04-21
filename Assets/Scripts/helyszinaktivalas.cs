@@ -58,6 +58,9 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 1)
         {
             if(helyszinAktivalasSzamlalo[0] == 2) return; //ketszer lehet aktivalni
+
+            if((akciopont.akciopont < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
+
             //ugynokcsapat oles barhol tolteny nelkul
             targyak.DroidGepagyu();
 
@@ -73,9 +76,12 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 1)
         {
             if(helyszinAktivalasSzamlalo[1] == 1) return; //egyszer lehet aktivalni
+            
+            if((energia.getEnergiasavIndex() > 27) && !targyak.matavtaviranyitoAktivalva) return;
 
             upgrade.canUpgrade = true;
             jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Fejlesztes);
+
             if(!targyak.matavtaviranyitoAktivalva){
                 //akciopont.akciopont++;
                 //akciopont.UpdateAkciopont(1);
@@ -90,7 +96,8 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[2] == 1) return; //egyszer lehet aktivalni
 
-            //movement.helyreTeleport(); //hogy teleportal (jo?)
+            if((energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
+
             targyak.lathatatlanOltozetAktivalva = true; //mint a targy
             if(!targyak.matavtaviranyitoAktivalva){
                 energia.csokkenEnergia(1);
@@ -104,9 +111,12 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[3] == 1) return; //egyszer lehet aktivalni
 
+            if((akciopont.akciopont < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
+
             //kapsz egy targyat
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
+
             if(!targyak.matavtaviranyitoAktivalva){
                 akciopont.UpdateAkciopont(-1);
                 energia.csokkenEnergia(1);
@@ -119,6 +129,8 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 2)
         {
             if(helyszinAktivalasSzamlalo[4] == 2) return; //ketszer lehet aktivalni
+
+            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             ///dobj paros +3 ap paratlan -1 energia
             int eredmeny = UnityEngine.Random.Range(1,7);
@@ -138,7 +150,7 @@ public class helyszinaktivalas : MonoBehaviour
         //6-es mezo
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 2)
         {
-            if(helyszinAktivalasSzamlalo[5] == 2) return; //ketszer lehet aktivalni
+            if(helyszinAktivalasSzamlalo[5] == 2) return; //ketszer lehet aktivalni           
 
             //+1 akcio
             akciopont.UpdateAkciopont(1);
@@ -150,7 +162,8 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 1 && movement.jelenlegi_y == 3)
         {
             if(helyszinAktivalasSzamlalo[6] == 2) return; //ketszer lehet aktivalni
-            if(akciopont.akciopont < 2) return;
+
+            if((akciopont.akciopont < 2) && !targyak.matavtaviranyitoAktivalva) return;
 
             //1 fejlesztes ingyen
             upgrade.canUpgrade = true;
@@ -182,6 +195,8 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[8] == 1) return; //egyszer lehet aktivalni
 
+            if((akciopont.akciopont < 2) && !targyak.matavtaviranyitoAktivalva) return;
+
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
             if(!targyak.matavtaviranyitoAktivalva){
@@ -196,8 +211,11 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[9] == 2) return; //ketszer lehet aktivalni
 
+            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
+
             //+4 tolteny
             akciok.Betarazas(4); //ha nincs negy darab tolteny toltse be a maradekot vagy ne lehessen aktivalni a helyszint?
+
             if(!targyak.matavtaviranyitoAktivalva){
                 akciopont.UpdateAkciopont(0); //betarazasba levon egyet (csak placeholder)
             }
@@ -209,6 +227,8 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 2 && movement.jelenlegi_y == 4)
         {
             if(helyszinAktivalasSzamlalo[10] == 1) return; //egyszer lehet aktivalni
+
+            if((energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
 
             //Dobj! Megkapod a targyat.
             targyak.RandomTargy();
@@ -224,6 +244,8 @@ public class helyszinaktivalas : MonoBehaviour
         if (movement.jelenlegi_x == 3 && movement.jelenlegi_y == 4)
         {
             if(helyszinAktivalasSzamlalo[11] == 2) return; //ketszer lehet aktivalni
+
+            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             //+1 elet
             elet.Eletplusz();
