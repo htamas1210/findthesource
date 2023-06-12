@@ -8,27 +8,24 @@ using System;
 public class Akciok : MonoBehaviour
 {
     //Betarazashoz
+    public int toltenyszamlalo = 0;
     public TMP_Text[] toltenyek;
+
     private int tolteny_index = 3;
     private int felhasznalt_tolteny = 0;
-    public int betarazott_tolteny = 3;
-    private Akciopont ap;
+    private int betarazott_tolteny = 3;
+    
+    public int getBetarazottTolteny(){ return betarazott_tolteny; }
 
-    public int toltenyszamlalo = 0;
+    //
+    private Akciopont ap;
     //
 
     //Nyomozashoz
     private movement movement;
     public TMP_Text[] nyomozas_x;
     public TMP_Text[] nyomozas_oszlop;
-    private string[,] nyomozasok =
-    {
-        {"ures", "ures", "ures", "" },
-        {"ures", "ures", "ures", "" },
-        {"ures", "ures", "ures", "" },
-        {"ures", "ures", "ures", "" },
-
-    };
+    private bool[,] nyomozas = new bool[4,4];
 
     //Hack
     public TMP_Text elso_sor_text;
@@ -62,7 +59,7 @@ public class Akciok : MonoBehaviour
 
     public void Betarazas(int betarazas)
     {
-        if (tolteny_index < 24 && ap.akciopont != 0)
+        if (tolteny_index < 24 && ap.getAkciopont() != 0)
         {
             if (tolteny_index + betarazas > 24)
             {
@@ -123,7 +120,7 @@ public class Akciok : MonoBehaviour
     //Nyomozas
     public void Nyomozas()
     {
-        if (ap.akciopont <= 0)
+        if (ap.getAkciopont() <= 0)
         {
             Debug.Log("nincs eleg akciopont");
             return;
@@ -132,29 +129,29 @@ public class Akciok : MonoBehaviour
         int atirandox = movement.jelenlegi_x - 1;
         int atirandoy = movement.jelenlegi_y - 1;
 
-        if (nyomozasok[atirandoy, atirandox] == "nyomozott")
+        if (nyomozas[atirandoy, atirandox])
         {
             Debug.Log("Itt mar nyomoztal");
             return;
         }
         else
         {
-            nyomozasok[atirandoy, atirandox] = "nyomozott";
+            nyomozas[atirandoy, atirandox] = true;
         }
 
         int counter = 0;
         //egy sorral feljebb megy
-        for (int i = 0; i < nyomozasok.GetLength(0); i++)
+        for (int i = 0; i < nyomozas.GetLength(0); i++)
         {
-            for (int j = 0; j < nyomozasok.GetLength(1); j++)
+            for (int j = 0; j < nyomozas.GetLength(1); j++)
             {
-                if (nyomozasok[i, j].Equals("nyomozott"))
+                if (nyomozas[i, j])
                 {
                     nyomozas_x[counter].text = "X";
                     counter++;
                     Debug.Log("counter: " + counter);
                 }
-                else if (nyomozasok[i, j].Equals("ures"))
+                else if (!nyomozas[i, j])
                 {
                     counter++;
                 }
@@ -164,18 +161,6 @@ public class Akciok : MonoBehaviour
         ap.UpdateAkciopont(-1);
 
         NyomozasOszlopCheck();
-
-        Debug.Log("----------------");
-        for (int i = 0; i < nyomozasok.GetLength(0); i++)
-        {
-            string sor = "";
-            for (int j = 0; j < nyomozasok.GetLength(1); j++)
-            {
-                sor += nyomozasok[i, j] + " ";
-            }
-            Debug.Log(sor);
-        }
-        Debug.Log("----------------");
     }
 
     private void NyomozasOszlopCheck()
@@ -185,10 +170,9 @@ public class Akciok : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if (nyomozasok[i, oszlop].Equals("nyomozott"))
+            if (nyomozas[i, oszlop])
             {
                 nyomozas_counter++;
-                //Debug.Log(nyomozasok[i, oszlop]);
             }
         }
 
@@ -208,8 +192,8 @@ public class Akciok : MonoBehaviour
         int count = 0;
         int rand;
 
-        if (ap.akciopont < upgrade.hack[upgrade.getHackIndex()])
-        { //van e eleg akicopont
+        if (ap.getAkciopont() < upgrade.hack[upgrade.getHackIndex()])
+        {   //van e eleg akicopont
             Debug.Log("nincs eleg ap a hackeleshez");
             return;
         }
@@ -220,8 +204,7 @@ public class Akciok : MonoBehaviour
             //egy sorban lett e ketszer nyomozva          
             for (int i = 0; i < 3; i++)
             {
-                //Debug.Log("Belep for");
-                if (nyomozasok[movement.jelenlegi_y - 1, i] == "nyomozott")
+                if (nyomozas[movement.jelenlegi_y - 1, i])
                 {
                     count++;
                     Debug.Log("count: " + count);
@@ -239,7 +222,6 @@ public class Akciok : MonoBehaviour
         //forras helyenek bejelolese
         if (count >= 2 && !hackelt_sorok.Contains(movement.jelenlegi_y))
         {
-            Debug.Log("belep");
             if (movement.jelenlegi_y == 1)
             {
                 elso_sor_text.text = "X";
@@ -250,6 +232,7 @@ public class Akciok : MonoBehaviour
             {
                 rand = UnityEngine.Random.Range(1, 7);
                 Debug.Log("sorsolt szam: " + rand);
+
                 if (movement.jelenlegi_y == 2)
                 { //alpha, omega
                     if (rand < 4)
@@ -304,7 +287,7 @@ public class Akciok : MonoBehaviour
                     hackelt_sorok[movement.jelenlegi_y - 1] = movement.jelenlegi_y;
                 }
             }
-            //ap.akciopont -= upgrade.hack[upgrade.getHackIndex()]; //ap koltseg levonasa
+
             ap.UpdateAkciopont(-upgrade.hack[upgrade.getHackIndex()]); //ap koltseg levonasa
         }
         else

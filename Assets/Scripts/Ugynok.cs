@@ -325,12 +325,12 @@ public class Ugynok : MonoBehaviour
             }
 
             int ugynokcsapatletszama = int.Parse(ugynokText.text);
-            if(ugynokcsapatletszama > akciok.betarazott_tolteny / upgrade.harc[upgrade.getHarcIndex()]){ //ha nincs eleg tolteny
+            if(ugynokcsapatletszama > akciok.getBetarazottTolteny() / upgrade.harc[upgrade.getHarcIndex()]){ //ha nincs eleg tolteny
                 Debug.Log("nincs eleg tolteny");
                 return;
             }
 
-            if(ap.akciopont < 2){
+            if(ap.getAkciopont() < 2){
                 Debug.Log("nincs eleg ap az oleshez");
                 return;
             }else{

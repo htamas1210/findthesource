@@ -107,7 +107,7 @@ public class jatekmanager : MonoBehaviour
 
         //hatterzene lejatszas
         audioManager = FindObjectOfType<AudioManager>();
-        //audioManager.Play("BackgroundMusic");
+        audioManager.Play("BackgroundMusic");
 
         UpdateGameState(GameState.Nev);
 

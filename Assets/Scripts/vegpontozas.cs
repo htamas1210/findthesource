@@ -31,39 +31,18 @@ public class vegpontozas : MonoBehaviour
         targyak = FindObjectOfType<Targyak>();
         akciok = FindObjectOfType<Akciok>();
         elet = FindObjectOfType<Elet>();
-
-        if(SceneManager.GetActiveScene().name.Equals("JatekosNyert") || SceneManager.GetActiveScene().name.Equals("JatekosVesztett")){
-            szoveg.text = "Pontszam: " + pontbeolvas();
-        }
     }
 
     public int OsszpontSzamalas()
     {
         energiapont = energia.energiasav_text.Length - (energia.getEnergiasavIndex() + 1);
         megmaradtelet = elet.elet;
-        tolteny = akciok.betarazott_tolteny;
+        tolteny = akciok.getBetarazottTolteny();
         megszerzetttargyak = targyak.targy_szamlalo;
         fejlesztespont = FejlesztesPont.fejlesztes_szamlalo;
 
         osszpont = (energiapont * 2) + (megmaradtelet * 2) + (fejlesztespont / 3) + (tolteny / 2) + megszerzetttargyak;
         //textMesh.text = "Összesen ennyi pontot szereztél:" + osszpont;
         return osszpont;
-    }
-
-    public void pontkiiras(){
-        StreamWriter writer = new StreamWriter(""+Application.persistentDataPath + "/pontszam.txt", false, Encoding.Default);
-
-        writer.Write(osszpont);
-        writer.Close();
-
-        Debug.Log("fajl kiirva");
-    }
-
-    public string pontbeolvas(){
-        StreamReader reader = new StreamReader(Application.persistentDataPath + "/pontszam.txt");
-        string pontszam = reader.ReadLine();
-        reader.Close();
-
-        return pontszam;        
     }
 }

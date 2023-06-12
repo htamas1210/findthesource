@@ -5,7 +5,7 @@ using TMPro;
 
 public class Kezdohelyszin : MonoBehaviour
 {
-    public SpriteRenderer dice1;    
+    public SpriteRenderer dice1;
     public SpriteRenderer dice2;
     public TMP_Text eredmenyText;
     public Button nextButton;

@@ -10,8 +10,8 @@ public class AspectRatioHandler : MonoBehaviour
     public Camera mainCamera;
     private StreamWriter writer;
 
-
     private void Awake() {
+        //to be removed when mac aspect ratio is fixed
         writer = new StreamWriter(Application.persistentDataPath + "/aspectratio.txt", false, Encoding.Default);
 
         double aspectRatio = (double)Screen.width / (double)Screen.height;
