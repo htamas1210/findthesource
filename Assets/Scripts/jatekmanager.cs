@@ -177,6 +177,7 @@ public class jatekmanager : MonoBehaviour
 
     public void Pause()
     {
+        uzenetBox.text = "A játék meg lett állítva";
         pauseMenuUI.SetActive(true);
         //ido megallitasa hogy megalljon a jatek
         SetTimeScale(0f);
@@ -263,6 +264,7 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleUgynokValasztas()
     {
+        uzenetBox.text = "Válaszd ki az ügynökcsapat létszámát, az egyik kockára nyomva. (a kisebb választása 1 energia vesztésével jár)";
         //kapcsolja ki addig a mezoket amig nem valasztott ugynokcsapat szamot
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
@@ -289,6 +291,8 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleNev()
     {
+        uzenetBox.text = "Írd be a neved a név mezőbe";
+
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
         movement.onethree_Collider.gameObject.SetActive(false);
@@ -320,6 +324,7 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleFejlesztes()
     {
+        uzenetBox.text = "Válassz fejlesztést";
         energiafejlesztés.SetActive(true);
         akciofejlesztés.SetActive(true);
         harcfejlesztés.SetActive(true);
@@ -337,6 +342,7 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleAkcio()
     {
+        uzenetBox.text = "Válassz akciókat!";
         //itt a movement bekapcsol
         kovetkezokor.SetActive(true);
         betarazas.SetActive(true);
