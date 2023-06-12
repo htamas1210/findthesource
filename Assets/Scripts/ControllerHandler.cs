@@ -28,7 +28,7 @@ public class ControllerHandler : MonoBehaviour
                 Debug.Log("not connected");
             }
 
-            yield return new WaitForSeconds(5f); //check every 5 seconds
+            yield return new WaitForSecondsRealtime(5f); //check every 5 seconds
         }
     }
 

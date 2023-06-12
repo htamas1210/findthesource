@@ -301,7 +301,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 player.transform.position = oneone.transform.position;
                                 jelenlegi_x = 1;
@@ -318,7 +318,7 @@ public class movement : MonoBehaviour
 
 
                                 oneonecount = oneonecount + 1;
-                                Debug.Log(ap.akciopont);
+                                Debug.Log(ap.getAkciopont());
                                 Debug.Log("ugynok sorsolas");
                                 //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                 jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -364,7 +364,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 1 && jelenlegi_y == 2)
                                 {
@@ -385,7 +385,7 @@ public class movement : MonoBehaviour
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
                                     twoonecount = twoonecount + 1;
-                                    Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
+                                    Debug.Log(ap.getAkciopont()); Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
                                     dice.CallRenderDice(true);
@@ -436,7 +436,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (threeonecount < 2)
                                 {
@@ -453,7 +453,7 @@ public class movement : MonoBehaviour
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
                                     threeonecount++;
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -505,7 +505,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 2 && jelenlegi_y == 1)
                                 {
@@ -526,7 +526,7 @@ public class movement : MonoBehaviour
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
                                     onetwocount++;
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -578,7 +578,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (twotwocount < 2)
                                 {
@@ -594,7 +594,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -648,7 +648,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 2 && jelenlegi_y == 3)
                                 {
@@ -668,7 +668,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -722,7 +722,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (onethreecount < 2)
                                 {
@@ -738,7 +738,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -792,7 +792,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (jelenlegi_x == 3 && jelenlegi_y == 2)
                                 {
@@ -812,7 +812,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -867,7 +867,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (threethreecount < 2)
                                 {
@@ -883,7 +883,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -937,7 +937,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (onefourcount < 2)
                                 {
@@ -953,7 +953,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1007,7 +1007,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (twofourcount < 2)
                                 {
@@ -1023,7 +1023,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1076,7 +1076,7 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
                             {
                                 if (threefourcount < 2)
                                 {
@@ -1092,7 +1092,7 @@ public class movement : MonoBehaviour
                                         //ap.akciopont = ap.akciopont - tavolsag;
                                         ap.UpdateAkciopont(-tavolsag);
                                     }
-                                    Debug.Log(ap.akciopont);
+                                    Debug.Log(ap.getAkciopont());
                                     Debug.Log("ugynok sorsolas");
                                     //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                                     jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott

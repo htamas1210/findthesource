@@ -20,7 +20,7 @@ public class Energia : MonoBehaviour
             return; //targy cucc aktivalva egesz korbe nem csokken az energia
         }
 
-        if (energiasav_index > 29) {
+        if (getEnergiasavIndex() > 29) {
             jatekmanager.Instance.jatekosvesztett = true;
             jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.Vesztette); 
             //ha nincs tobb energia vesztes
@@ -28,8 +28,8 @@ public class Energia : MonoBehaviour
 
         for (int i = 0; i < number; i++) {
             //if (number + enegiasav_index > energiasav_text.Length) break;
-            if (energiasav_index >= 30) {
-                energiasav_index = 29;
+            if (getEnergiasavIndex() >= 30) {
+                setEnegiasavIndex(29);
                 break;
             }
 

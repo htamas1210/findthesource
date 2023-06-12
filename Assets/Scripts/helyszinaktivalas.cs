@@ -47,9 +47,10 @@ public class helyszinaktivalas : MonoBehaviour
         energia = FindObjectOfType<Energia>();
 
         helyszinAktivalasSzamlalo = new int[12];
-        for (int i = 0; i < helyszinAktivalasSzamlalo.Length; i++){
+
+        /*for (int i = 0; i < helyszinAktivalasSzamlalo.Length; i++){
             helyszinAktivalasSzamlalo[i] = 0;
-        }
+        }*/
     }
 
     public void HelyszinAktivalas()
@@ -59,7 +60,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[0] == 2) return; //ketszer lehet aktivalni
 
-            if((akciopont.akciopont < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
 
             //ugynokcsapat oles barhol tolteny nelkul
             targyak.DroidGepagyu();
@@ -111,7 +112,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[3] == 1) return; //egyszer lehet aktivalni
 
-            if((akciopont.akciopont < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 1 || energia.getEnergiasavIndex() > 28) && !targyak.matavtaviranyitoAktivalva) return;
 
             //kapsz egy targyat
             targyak.RandomTargy();
@@ -130,7 +131,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[4] == 2) return; //ketszer lehet aktivalni
 
-            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             ///dobj paros +3 ap paratlan -1 energia
             int eredmeny = UnityEngine.Random.Range(1,7);
@@ -163,7 +164,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[6] == 2) return; //ketszer lehet aktivalni
 
-            if((akciopont.akciopont < 2) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 2) && !targyak.matavtaviranyitoAktivalva) return;
 
             //1 fejlesztes ingyen
             upgrade.canUpgrade = true;
@@ -195,7 +196,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[8] == 1) return; //egyszer lehet aktivalni
 
-            if((akciopont.akciopont < 2) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 2) && !targyak.matavtaviranyitoAktivalva) return;
 
             targyak.RandomTargy();
             targyak.targy_szamlalo++;
@@ -211,7 +212,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[9] == 2) return; //ketszer lehet aktivalni
 
-            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             //+4 tolteny
             akciok.Betarazas(4); //ha nincs negy darab tolteny toltse be a maradekot vagy ne lehessen aktivalni a helyszint?
@@ -245,7 +246,7 @@ public class helyszinaktivalas : MonoBehaviour
         {
             if(helyszinAktivalasSzamlalo[11] == 2) return; //ketszer lehet aktivalni
 
-            if((akciopont.akciopont < 1) && !targyak.matavtaviranyitoAktivalva) return;
+            if((akciopont.getAkciopont() < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             //+1 elet
             elet.Eletplusz();

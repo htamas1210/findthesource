@@ -6,26 +6,25 @@ using TMPro;
 public class Akciopont : MonoBehaviour
 {
     public TMP_Text text;    
+    private int akciopont = 0;
 
-    public int akciopont = 0;
+    public int getAkciopont(){ return akciopont; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        text.text = "Akciopontok: ";
+    private void Start(){
+        setText();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void setText(){
         text.text = "Akciopontok: " + akciopont;
     }
 
     public void UpdateAkciopont(int number) {
         akciopont += number;
+        setText();
     }
 
     public void resetAkciopont() {
         akciopont = 0;
+        setText();
     }
 }
