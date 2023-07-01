@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System;
+using UnityEngine.UI;
 
 public class Akciok : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Akciok : MonoBehaviour
     private int tolteny_index = 3;
     private int felhasznalt_tolteny = 0;
     private int betarazott_tolteny = 3;
+
+    public int betarazasDb = 2; 
     
     public int getBetarazottTolteny(){ return betarazott_tolteny; }
 
@@ -25,7 +28,7 @@ public class Akciok : MonoBehaviour
     private movement movement;
     public TMP_Text[] nyomozas_x;
     public TMP_Text[] nyomozas_oszlop;
-    private bool[,] nyomozas = new bool[4,4];
+    private bool[,] nyomozas = new bool[4,3];
 
     //Hack
     public TMP_Text elso_sor_text;
@@ -42,11 +45,18 @@ public class Akciok : MonoBehaviour
     private bool omega = false;
     //
 
+    private DoubleClick doubleClick;
+    private MessageBox messageBox;
+
+
     private void Awake(){
         ap = FindObjectOfType<Akciopont>();
         movement = FindObjectOfType<movement>();
         upgrade = FindObjectOfType<Upgrade>();
-        source = FindObjectOfType<Source>();        
+        source = FindObjectOfType<Source>(); 
+
+        doubleClick = FindObjectOfType<DoubleClick>();
+        messageBox = FindObjectOfType<MessageBox>();
     }
 
     private void Start(){
@@ -57,17 +67,30 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public void Betarazas(int betarazas)
+
+    public void CallBetarazas(){
+        doubleClick.AddEvent(Betarazas);
+        messageBox.SendMessageToBox("Biztos be akarsz tárazni 2 töltényt? (Ez 1 ap-ba kerül)");
+        doubleClick.ShowConfirmation();
+    }
+
+    public void Betarazas()
     {
-        if (tolteny_index < 24 && ap.getAkciopont() != 0)
+        //int betarazas = 2;
+        if(ap.getAkciopont() == 0){
+            messageBox.SendMessageToBox("Nincs elég ap-d az akcióhoz!");
+            return;
+        }
+
+        if (tolteny_index < 24)
         {
-            if (tolteny_index + betarazas > 24)
+            if (tolteny_index + betarazasDb > 24)
             {
                 tolteny_index = 24;
             }
             else
             {
-                tolteny_index += betarazas;
+                tolteny_index += betarazasDb;
             }
             //felhasznalt toltenytol megy hogy az ott levo x-et ne irja felul
             for (int i = felhasznalt_tolteny; i < tolteny_index; i++)
@@ -75,7 +98,7 @@ public class Akciok : MonoBehaviour
                 toltenyek[i].text = "O";
             }
 
-            betarazott_tolteny += betarazas;
+            betarazott_tolteny += betarazasDb;
             if(betarazott_tolteny > 24){
                 betarazott_tolteny = 24;
             }
@@ -88,7 +111,7 @@ public class Akciok : MonoBehaviour
         }
     }
 
-    public bool Loves(int elhasznalt_toltenyek)
+    public bool Loves(int elhasznalt_toltenyek) //confirm TODO
     {
         if (felhasznalt_tolteny < betarazott_tolteny)
         {
@@ -117,11 +140,17 @@ public class Akciok : MonoBehaviour
     }
 
 
+    public void CallNyomozas(){
+        doubleClick.AddEvent(Nyomozas);
+        messageBox.SendMessageToBox("Biztos nyomozni akarsz? (Ez 1 ap-ba kerül)");
+        doubleClick.ShowConfirmation();
+    }
     //Nyomozas
-    public void Nyomozas()
+    public void Nyomozas() //valami elromlott az indexelessel ha eventnek at van adva || ELVILEG JAVITVA TESZTELNI TOVABB NEM ART
     {
         if (ap.getAkciopont() <= 0)
         {
+            messageBox.SendMessageToBox("Nincs elég akciópontod!");
             Debug.Log("nincs eleg akciopont");
             return;
         }
@@ -187,13 +216,19 @@ public class Akciok : MonoBehaviour
     }
 
 
-    public void Hack()
+    public void CallHack(){
+        doubleClick.AddEvent(Hack);
+        messageBox.SendMessageToBox("Biztos hackelni akarsz? (Ez "+upgrade.hack[upgrade.getHackIndex()]+" ap-ba kerül)");
+        doubleClick.ShowConfirmation();
+    }
+    private void Hack()
     {
         int count = 0;
         int rand;
 
         if (ap.getAkciopont() < upgrade.hack[upgrade.getHackIndex()])
         {   //van e eleg akicopont
+            messageBox.SendMessageToBox("Nincs eleg akciopontod!");
             Debug.Log("nincs eleg ap a hackeleshez");
             return;
         }
@@ -293,6 +328,7 @@ public class Akciok : MonoBehaviour
         else
         {
             Debug.Log("itt mar hackeltel");
+            messageBox.SendMessageToBox("Itt már hackeltél!");
         }
     }
 }

@@ -28,7 +28,6 @@ public class helyszinaktivalas : MonoBehaviour
     public List<TMP_Text> twotwoText;
     public TMP_Text twothreeText;
     public TMP_Text twofourText;
-
     public TMP_Text threeoneText;
     public List<TMP_Text> threetwoText;
     public TMP_Text threethreeText;
@@ -47,10 +46,6 @@ public class helyszinaktivalas : MonoBehaviour
         energia = FindObjectOfType<Energia>();
 
         helyszinAktivalasSzamlalo = new int[12];
-
-        /*for (int i = 0; i < helyszinAktivalasSzamlalo.Length; i++){
-            helyszinAktivalasSzamlalo[i] = 0;
-        }*/
     }
 
     public void HelyszinAktivalas()
@@ -215,7 +210,8 @@ public class helyszinaktivalas : MonoBehaviour
             if((akciopont.getAkciopont() < 1) && !targyak.matavtaviranyitoAktivalva) return;
 
             //+4 tolteny
-            akciok.Betarazas(4); //ha nincs negy darab tolteny toltse be a maradekot vagy ne lehessen aktivalni a helyszint?
+            akciok.betarazasDb = 2;
+            akciok.Betarazas(); //ha nincs negy darab tolteny toltse be a maradekot vagy ne lehessen aktivalni a helyszint?
 
             if(!targyak.matavtaviranyitoAktivalva){
                 akciopont.UpdateAkciopont(0); //betarazasba levon egyet (csak placeholder)

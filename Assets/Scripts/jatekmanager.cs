@@ -24,8 +24,6 @@ public class jatekmanager : MonoBehaviour
     public GameObject rolldice;
     public GameObject test;
     public GameObject harc;
-    public TMP_Text uzenetBox;
-
 
     //script-ek implementalasa
     private Elet elet;
@@ -39,6 +37,7 @@ public class jatekmanager : MonoBehaviour
     private Source source;
     private vegpontozas vegpontozas;
     private AudioManager audioManager;
+    private MessageBox messageBox;
 
     //ügynökcsapatok implementálása
     public TMP_Text[] oneone;
@@ -83,6 +82,9 @@ public class jatekmanager : MonoBehaviour
 
     private void Awake()
     {
+        //ideiglenes amig rajovok kell e az uj helyszinaktivalas
+        FindObjectOfType<Helyszinaktivalas1>().enabled = false;
+
         Instance = this;
 
         mainCanvas.SetActive(false); //helyszin sorsolas animacio miatt
@@ -104,6 +106,7 @@ public class jatekmanager : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         source = FindObjectOfType<Source>();
         vegpontozas = FindObjectOfType<vegpontozas>();
+        messageBox = FindObjectOfType<MessageBox>();
 
         //hatterzene lejatszas
         audioManager = FindObjectOfType<AudioManager>();
@@ -118,7 +121,8 @@ public class jatekmanager : MonoBehaviour
 
     public void UpdateGameState(GameState newState)
     {
-        State = newState;
+        //State = newState;
+        Debug.Log("<color=orange>New state: " + newState + "</color>");
 
         switch (newState)
         {
@@ -164,8 +168,6 @@ public class jatekmanager : MonoBehaviour
         Pause
     }
 
-    //double click
-
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -177,7 +179,8 @@ public class jatekmanager : MonoBehaviour
 
     public void Pause()
     {
-        uzenetBox.text = "A játék meg lett állítva";
+        //uzenetBox.text = "A játék meg lett állítva";
+        messageBox.SendMessageToBox("A játék meg lett állítva");
         pauseMenuUI.SetActive(true);
         //ido megallitasa hogy megalljon a jatek
         SetTimeScale(0f);
@@ -219,6 +222,8 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleKorkezdet()
     {
+        messageBox.SendMessageToBox("Dobj a kockával");
+
         rolldice.SetActive(true);
 
         energiafejlesztés.SetActive(false);
@@ -264,7 +269,9 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleUgynokValasztas()
     {
-        uzenetBox.text = "Válaszd ki az ügynökcsapat létszámát, az egyik kockára nyomva. (a kisebb választása 1 energia vesztésével jár)";
+        //uzenetBox.text = "Válaszd ki az ügynökcsapat létszámát, az egyik kockára nyomva. (a kisebb választása 1 energia vesztésével jár)";
+        messageBox.SendMessageToBox("Válaszd ki az ügynökcsapat létszámát, az egyik kockára nyomva. (a kisebb választása 1 energia vesztésével jár)");
+        
         //kapcsolja ki addig a mezoket amig nem valasztott ugynokcsapat szamot
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
@@ -278,6 +285,14 @@ public class jatekmanager : MonoBehaviour
         movement.threetwo_Collider.gameObject.SetActive(false);
         movement.threethree_Collider.gameObject.SetActive(false);
         movement.threefour_Collider.gameObject.SetActive(false);
+
+        kovetkezokor.SetActive(false);
+        betarazas.SetActive(false);
+        nyomozas.SetActive(false);
+        hackeles.SetActive(false);
+        helyszinaktivalasBtn.gameObject.SetActive(false);
+        harc.SetActive(false);
+        rolldice.SetActive(false);
     }
 
     public void NevValasztasUtan()
@@ -286,12 +301,14 @@ public class jatekmanager : MonoBehaviour
         {
             UpdateGameState(GameState.KorKezdet);
             dice.CallRenderDice(true);
+            messageBox.SendMessageToBox("Válaszd ki az ügynökcsapat létszámát");
         }
     }
 
     private async void HandleNev()
     {
-        uzenetBox.text = "Írd be a neved a név mezőbe";
+        //uzenetBox.text = "Írd be a neved a név mezőbe";
+        messageBox.SendMessageToBox("Írd be a neved a név mezőbe");
 
         movement.oneone_Collider.gameObject.SetActive(false);
         movement.onetwo_Collider.gameObject.SetActive(false);
@@ -324,7 +341,9 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleFejlesztes()
     {
-        uzenetBox.text = "Válassz fejlesztést";
+        //uzenetBox.text = "Válassz fejlesztést";
+        messageBox.SendMessageToBox("Válassz fejlesztést");
+
         energiafejlesztés.SetActive(true);
         akciofejlesztés.SetActive(true);
         harcfejlesztés.SetActive(true);
@@ -342,7 +361,9 @@ public class jatekmanager : MonoBehaviour
 
     private async void HandleAkcio()
     {
-        uzenetBox.text = "Válassz akciókat!";
+        //uzenetBox.text = "Válassz akciókat!";
+        messageBox.SendMessageToBox("Válassz akciókat vagy dobj a kockával!");
+
         //itt a movement bekapcsol
         kovetkezokor.SetActive(true);
         betarazas.SetActive(true);

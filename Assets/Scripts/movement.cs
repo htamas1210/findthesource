@@ -99,15 +99,6 @@ public class movement : MonoBehaviour
     private int tavolsag = 0;
     private int moveCounter = 1;
 
-    private string[,] helyek =
-    {
-        {"oneone", "twoone", "threeone", "" },
-        {"onetwo", "twotwo", "threetwo", "" },
-        {"onethree", "twothree", "threethree", "" },
-        {"onefour", "twofour", "threefour", "" },
-        {"", "", "", "" }
-    };
-
     private void Awake()
     {
         ap = FindObjectOfType<Akciopont>();
@@ -279,78 +270,65 @@ public class movement : MonoBehaviour
         ugynok.setElozoHelyszin(jelenlegi_x, jelenlegi_y);
     }
 
-    public void Ujmovement()
+    private int Distance(int x, int y)
     {
+        return math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
+    }
+
+    public void Update()
+    {
+        //tavolsag = math.abs(tavolsag); //mindig abszolut
         ugynok.ugynokMegolveElozoHelyen();
 
         // player mozgatasa es konzolra iratas
         if (Input.GetKeyDown(KeyCode.Mouse0) && oneone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
+            //mivel tudom melyik colliderre kattintott ezert tudom a koordinatajat
+            int x = 0;
+            int y = 0;
+
             Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-            tavolsag = math.abs((1) - jelenlegi_x) + math.abs((1) - jelenlegi_y);
+
+            tavolsag = Distance(x, y);
+
             if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
             {
                 Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //ap.getAkciopont() > 0 || szukseges?
                 {
                     player.transform.position = oneone.transform.position;
                     jelenlegi_x = 1;
                     jelenlegi_y = 1;
                     if (targyak.lathatatlanOltozetAktivalva)
                     {
-                        Debug.Log("Player clicked on the collider: " + oneone_Collider.gameObject.name);
-                        tavolsag = math.abs((x + 1) - jelenlegi_x) + math.abs((y + 1) - jelenlegi_y);
-                        if (eromulepes1.activeSelf == true & eromulepes2.activeSelf == true)
-                        {
-                            Debug.Log("Maximum ketszer lephetsz egy mezore");
-                        }
-                        else
-                        {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                player.transform.position = oneone.transform.position;
-                                jelenlegi_x = 1;
-                                jelenlegi_y = 1;
-                                if (targyak.lathatatlanOltozetAktivalva)
-                                {
-                                    targyak.lathatatlanOltozetAktivalva = false;
-                                }
-                                else
-                                {
-                                    //ap.akciopont = ap.akciopont - tavolsag;
-                                    ap.UpdateAkciopont(-tavolsag);
-                                }
+                        targyak.lathatatlanOltozetAktivalva = false;
+                    }
+                    else
+                    {
+                        //ap.akciopont = ap.akciopont - tavolsag;
+                        ap.UpdateAkciopont(-tavolsag);
+                    }
 
 
-                                oneonecount = oneonecount + 1;
-                                Debug.Log(ap.getAkciopont());
-                                Debug.Log("ugynok sorsolas");
-                                //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                dice.CallRenderDice(true);
-                                ugynok.ugynokMegolveElozoHelyen();
-                                if (eromulepes1.activeSelf == true)
-                                {
-                                    eromulepes2.SetActive(true);
-                                    moveCounter++;
-                                    eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                }
-                                else
-                                {
-                                    eromulepes1.SetActive(true);
-                                    moveCounter++;
-                                    eromulepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                }
-                                jatekmanager.JatekosVesztett();
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
-                            }
-                        }
+                    oneonecount = oneonecount + 1;
+
+                    Debug.Log(ap.getAkciopont());
+                    Debug.Log("ugynok sorsolas");
+                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
+
+                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
+
+                    dice.CallRenderDice(true);
+                    ugynok.ugynokMegolveElozoHelyen();
+
+                    if (eromulepes1.activeSelf == true)
+                    {
+                        eromulepes2.SetActive(true);
+                        moveCounter++;
+                        eromulepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
                     }
                     else
                     {
@@ -365,20 +343,23 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                 }
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && twoone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
             Debug.Log("Player clicked on the collider: " + twoone_Collider.gameObject.name);
-            tavolsag = math.abs((2) - jelenlegi_x) + math.abs((1) - jelenlegi_y);
+
+            int x = 1;
+            int y = 0;
+            tavolsag = Distance(x, y);
+
             if (feketepiaclepes1.activeSelf == true & feketepiaclepes2.activeSelf == true)
             {
                 Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0
                 {
                     if (jelenlegi_x == 1 && jelenlegi_y == 2)
                     {
@@ -395,58 +376,11 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (jelenlegi_x == 1 && jelenlegi_y == 2)
-                                {
-                                    tavolsag = 2;
-                                }
-                                if (twoonecount < 2)
-                                {
-                                    player.transform.position = twoone.transform.position;
-                                    jelenlegi_x = 2;
-                                    jelenlegi_y = 1;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    twoonecount = twoonecount + 1;
-                                    Debug.Log(ap.getAkciopont()); Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    if (feketepiaclepes1.activeSelf == true)
-                                    {
-                                        feketepiaclepes2.SetActive(true);
-                                        moveCounter++;
-                                        feketepiaclepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        feketepiaclepes1.SetActive(true);
-                                        moveCounter++;
-                                        feketepiaclepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mez?re");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
                         twoonecount = twoonecount + 1;
-                        Debug.Log(ap.akciopont); Debug.Log("ugynok sorsolas");
+                        Debug.Log(ap.getAkciopont()); Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
                         dice.CallRenderDice(true);
@@ -479,16 +413,19 @@ public class movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && threeone_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + threeone_Collider.gameObject.name);
-            tavolsag = math.abs((3) - jelenlegi_x) + math.abs((1) - jelenlegi_y);
+
+            int x = 2;
+            int y = 0;
+            tavolsag = Distance(x, y);
+
             if (metrolepes1.activeSelf == true & metrolepes2.activeSelf == true)
             {
                 Debug.Log("Maximum ketszer lephetsz egy mezore");
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) // && ap.getAkciopont() > 0
                 {
                     if (threeonecount < 2)
                     {
@@ -501,54 +438,11 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (threeonecount < 2)
-                                {
-                                    player.transform.position = threeone.transform.position;
-                                    jelenlegi_x = 3;
-                                    jelenlegi_y = 1;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    threeonecount++;
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    if (metrolepes1.activeSelf == true)
-                                    {
-                                        metrolepes2.SetActive(true);
-                                        moveCounter++;
-                                        metrolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        metrolepes1.SetActive(true);
-                                        moveCounter++;
-                                        metrolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
+                        }
                         threeonecount++;
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -578,14 +472,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                 }
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && onetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + onetwo_Collider.gameObject.name);
-            tavolsag = math.abs((1) - jelenlegi_x) + math.abs((2) - jelenlegi_y);
+
+            int x = 0;
+            int y = 1;
+            tavolsag = Distance(x, y);
 
             if (szervereklepes1.activeSelf == true & szervereklepes2.activeSelf == true)
             {
@@ -593,7 +488,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) // && ap.getAkciopont() > 0
                 {
                     if (jelenlegi_x == 2 && jelenlegi_y == 1)
                     {
@@ -614,7 +509,7 @@ public class movement : MonoBehaviour
                             ap.UpdateAkciopont(-tavolsag);
                         }
                         onetwocount++;
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -628,56 +523,9 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (jelenlegi_x == 2 && jelenlegi_y == 1)
-                                {
-                                    tavolsag = 2;
-                                }
-                                if (onetwocount < 2)
-                                {
-                                    player.transform.position = onetwo.transform.position;
-                                    jelenlegi_x = 1;
-                                    jelenlegi_y = 2;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    onetwocount++;
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    if (szervereklepes1.activeSelf == true)
-                                    {
-                                        szervereklepes2.SetActive(true);
-                                        moveCounter++;
-                                        szervereklepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        szervereklepes1.SetActive(true);
-                                        moveCounter++;
-                                        szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            szervereklepes1.SetActive(true);
+                            moveCounter++;
+                            szervereklepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                         }
                         jatekmanager.JatekosVesztett();
                     }
@@ -691,14 +539,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && twotwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + twotwo_Collider.gameObject.name);
-            tavolsag = math.abs((2) - jelenlegi_x) + math.abs((2) - jelenlegi_y);
+
+            int x = 1;
+            int y = 1;
+            tavolsag = Distance(x, y);
 
             if (kingcasinolepes1.activeSelf == true & kingcasinolepes2.activeSelf == true)
             {
@@ -706,7 +555,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0 
                 {
                     if (twotwocount < 2)
                     {
@@ -719,54 +568,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (twotwocount < 2)
-                                {
-                                    player.transform.position = twotwo.transform.position;
-                                    jelenlegi_x = 2;
-                                    jelenlegi_y = 2;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    twotwocount++;
-                                    if (kingcasinolepes1.activeSelf == true)
-                                    {
-                                        kingcasinolepes2.SetActive(true);
-                                        moveCounter++;
-                                        kingcasinolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        kingcasinolepes1.SetActive(true);
-                                        moveCounter++;
-                                        kingcasinolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -797,15 +602,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && threetwo_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + threetwo_Collider.gameObject.name);
-            tavolsag = math.abs((3) - jelenlegi_x) + math.abs((2) - jelenlegi_y);
+
+            int x = 2;
+            int y = 1;
+            tavolsag = Distance(x, y);
 
             if (feltoltolepes1.activeSelf == true & feltoltolepes2.activeSelf == true)
             {
@@ -813,7 +618,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //ap.getAkciopont() > 0 && 
                 {
                     if (jelenlegi_x == 2 && jelenlegi_y == 3)
                     {
@@ -830,58 +635,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (jelenlegi_x == 2 && jelenlegi_y == 3)
-                                {
-                                    tavolsag = 2;
-                                }
-                                if (threetwocount < 2)
-                                {
-                                    player.transform.position = threetwo.transform.position;
-                                    jelenlegi_x = 3;
-                                    jelenlegi_y = 2;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    threetwocount++;
-                                    if (feltoltolepes1.activeSelf == true)
-                                    {
-                                        feltoltolepes2.SetActive(true);
-                                        moveCounter++;
-                                        feltoltolepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        feltoltolepes1.SetActive(true);
-                                        moveCounter++;
-                                        feltoltolepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -912,15 +669,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && onethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + onethree_Collider.gameObject.name);
-            tavolsag = math.abs((1) - jelenlegi_x) + math.abs((3) - jelenlegi_y);
+
+            int x = 0;
+            int y = 2;
+            tavolsag = Distance(x, y);
 
             if (kutatolaborlepes1.activeSelf == true & kutatolaborlepes2.activeSelf == true)
             {
@@ -928,7 +685,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0 
                 {
                     if (onethreecount < 2)
                     {
@@ -941,54 +698,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (onethreecount < 2)
-                                {
-                                    player.transform.position = onethree.transform.position;
-                                    jelenlegi_x = 1;
-                                    jelenlegi_y = 3;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    onethreecount++;
-                                    if (kutatolaborlepes1.activeSelf == true)
-                                    {
-                                        kutatolaborlepes2.SetActive(true);
-                                        moveCounter++;
-                                        kutatolaborlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        kutatolaborlepes1.SetActive(true);
-                                        moveCounter++;
-                                        kutatolaborlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1019,15 +732,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                 }
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && twothree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + twothree_Collider.gameObject.name);
-            tavolsag = math.abs((2) - jelenlegi_x) + math.abs((3) - jelenlegi_y);
+
+            int x = 1;
+            int y = 2;
+            tavolsag = Distance(x, y);
 
             if (kriptoklublepes1.activeSelf == true & kriptoklublepes2.activeSelf == true)
             {
@@ -1035,7 +748,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0 
                 {
                     if (jelenlegi_x == 3 && jelenlegi_y == 2)
                     {
@@ -1052,58 +765,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (jelenlegi_x == 3 && jelenlegi_y == 2)
-                                {
-                                    tavolsag = 2;
-                                }
-                                if (twothreecount < 2)
-                                {
-                                    player.transform.position = twothree.transform.position;
-                                    jelenlegi_x = 2;
-                                    jelenlegi_y = 3;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    twothreecount++;
-                                    if (kriptoklublepes1.activeSelf == true)
-                                    {
-                                        kriptoklublepes2.SetActive(true);
-                                        moveCounter++;
-                                        kriptoklublepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        kriptoklublepes1.SetActive(true);
-                                        moveCounter++;
-                                        kriptoklublepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1134,16 +799,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && threethree_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + threethree_Collider.gameObject.name);
-            tavolsag = math.abs((3) - jelenlegi_x) + math.abs((3) - jelenlegi_y);
+
+            int x = 2;
+            int y = 2;
+            tavolsag = Distance(x, y);
 
             if (cyberplazalepes1.activeSelf == true & cyberplazalepes2.activeSelf == true)
             {
@@ -1151,7 +815,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) // && ap.getAkciopont() > 0
                 {
                     if (threethreecount < 2)
                     {
@@ -1164,54 +828,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (threethreecount < 2)
-                                {
-                                    player.transform.position = threethree.transform.position;
-                                    jelenlegi_x = 3;
-                                    jelenlegi_y = 3;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    threethreecount++;
-                                    if (cyberplazalepes1.activeSelf == true)
-                                    {
-                                        cyberplazalepes2.SetActive(true);
-                                        moveCounter++;
-                                        cyberplazalepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        cyberplazalepes1.SetActive(true);
-                                        moveCounter++;
-                                        cyberplazalepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1242,15 +862,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && onefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + onefour_Collider.gameObject.name);
-            tavolsag = math.abs((1) - jelenlegi_x) + math.abs((4) - jelenlegi_y);
+
+            int x = 0;
+            int y = 3;
+            tavolsag = Distance(x, y);
 
             if (hadiuzemlepes1.activeSelf == true & hadiuzemlepes2.activeSelf == true)
             {
@@ -1258,7 +878,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //ap.getAkciopont() > 0 && 
                 {
                     if (onefourcount < 2)
                     {
@@ -1271,54 +891,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (onefourcount < 2)
-                                {
-                                    player.transform.position = onefour.transform.position;
-                                    jelenlegi_x = 1;
-                                    jelenlegi_y = 4;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    onefourcount++;
-                                    if (hadiuzemlepes1.activeSelf == true)
-                                    {
-                                        hadiuzemlepes2.SetActive(true);
-                                        moveCounter++;
-                                        hadiuzemlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        hadiuzemlepes1.SetActive(true);
-                                        moveCounter++;
-                                        hadiuzemlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1349,15 +925,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mez?n belul akarsz lepni");
                 }
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && twofour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
-
             Debug.Log("Player clicked on the collider: " + twofour_Collider.gameObject.name);
-            tavolsag = math.abs((2) - jelenlegi_x) + math.abs((4) - jelenlegi_y);
+
+            int x = 1;
+            int y = 3;
+            tavolsag = Distance(x, y);
 
             if (konyvtarlepes1.activeSelf == true & konyvtarlepes2.activeSelf == true)
             {
@@ -1365,7 +941,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0 
                 {
                     if (twofourcount < 2)
                     {
@@ -1378,54 +954,10 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (twofourcount < 2)
-                                {
-                                    player.transform.position = twofour.transform.position;
-                                    jelenlegi_x = 2;
-                                    jelenlegi_y = 4;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    twofourcount++;
-                                    if (konyvtarlepes1.activeSelf == true)
-                                    {
-                                        konyvtarlepes2.SetActive(true);
-                                        moveCounter++;
-                                        konyvtarlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        konyvtarlepes1.SetActive(true);
-                                        moveCounter++;
-                                        konyvtarlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            //ap.akciopont = ap.akciopont - tavolsag;
+                            ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1456,13 +988,15 @@ public class movement : MonoBehaviour
                     Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
                 }
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && threefour_Collider.OverlapPoint(THE_Camera.ScreenToWorldPoint(Input.mousePosition)))
         {
             Debug.Log("Player clicked on the collider: " + threefour_Collider.gameObject.name);
-            tavolsag = math.abs((3) - jelenlegi_x) + math.abs((4) - jelenlegi_y);
+
+            int x = 2;
+            int y = 3;
+            tavolsag = Distance(x, y);
 
             if (korhazlepes1.activeSelf == true & korhazlepes2.activeSelf == true)
             {
@@ -1470,7 +1004,7 @@ public class movement : MonoBehaviour
             }
             else
             {
-                if (tavolsag <= ap.akciopont && ap.akciopont > 0 && tavolsag != 0)
+                if (tavolsag <= ap.getAkciopont() && tavolsag != 0) //&& ap.getAkciopont() > 0 
                 {
                     if (threefourcount < 2)
                     {
@@ -1486,7 +1020,7 @@ public class movement : MonoBehaviour
                             //ap.akciopont = ap.akciopont - tavolsag;
                             ap.UpdateAkciopont(-tavolsag);
                         }
-                        Debug.Log(ap.akciopont);
+                        Debug.Log(ap.getAkciopont());
                         Debug.Log("ugynok sorsolas");
                         //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
                         jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
@@ -1501,52 +1035,9 @@ public class movement : MonoBehaviour
                         }
                         else
                         {
-                            if (tavolsag <= ap.getAkciopont() && ap.getAkciopont() > 0 && tavolsag != 0)
-                            {
-                                if (threefourcount < 2)
-                                {
-                                    player.transform.position = threefour.transform.position;
-                                    jelenlegi_x = 3;
-                                    jelenlegi_y = 4;
-                                    if (targyak.lathatatlanOltozetAktivalva)
-                                    {
-                                        targyak.lathatatlanOltozetAktivalva = false;
-                                    }
-                                    else
-                                    {
-                                        //ap.akciopont = ap.akciopont - tavolsag;
-                                        ap.UpdateAkciopont(-tavolsag);
-                                    }
-                                    Debug.Log(ap.getAkciopont());
-                                    Debug.Log("ugynok sorsolas");
-                                    //ugynok.UgynokSorsolas(jelenlegi_x, jelenlegi_y);
-                                    jatekmanager.Instance.UpdateGameState(jatekmanager.GameState.UgynokValasztas); //ne lepjen addig tovabb amig nem valasztott
-                                    dice.CallRenderDice(true);
-                                    ugynok.ugynokMegolveElozoHelyen();
-                                    threefourcount++;
-                                    if (korhazlepes1.activeSelf == true)
-                                    {
-                                        korhazlepes2.SetActive(true);
-                                        moveCounter++;
-                                        korhazlepes2.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    else
-                                    {
-                                        korhazlepes1.SetActive(true);
-                                        moveCounter++;
-                                        korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
-                                    }
-                                    jatekmanager.JatekosVesztett();
-                                }
-                                else
-                                {
-                                    Debug.Log("Maximum ketszer lephetsz egy mezore");
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Nincs eleg akciopontod vagy nem 1 mezon belul akarsz lepni");
-                            }
+                            korhazlepes1.SetActive(true);
+                            moveCounter++;
+                            korhazlepes1.GetComponent<TMP_Text>().text = moveCounter.ToString();
                         }
                         jatekmanager.JatekosVesztett();
                     }

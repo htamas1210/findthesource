@@ -194,7 +194,8 @@ public class Targyak : MonoBehaviour
 
     public void HackerCsatlakozo() { //kesz
         //+2 tolteny
-        akciok.Betarazas(2);
+        akciok.betarazasDb = 2;
+        akciok.Betarazas();
         akciopont.UpdateAkciopont(1); //betarazas miatt egy pont visszaadasa
         //+1 elet
         elet.Eletplusz();
