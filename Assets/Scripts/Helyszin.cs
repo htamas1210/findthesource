@@ -23,4 +23,16 @@ public class Helyszin
     public int EnergiaKoltseg { get{ return energiaKoltseg; }}
     public int AkciopontKoltseg{ get{ return akciopontKoltseg; }}
     public TMP_Text[] LepesSzamlalo { get{ return lepesSzamlalo; } set { lepesSzamlalo = value;}}
+
+
+
+    public virtual void Move(){
+        int x = 0;
+        int y = 0;
+
+    }
+
+    public virtual void Aktivalas(){
+
+    }
 }

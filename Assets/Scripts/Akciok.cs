@@ -147,7 +147,7 @@ public class Akciok : MonoBehaviour
     }
     //Nyomozas
     public void Nyomozas() //valami elromlott az indexelessel ha eventnek at van adva || ELVILEG JAVITVA TESZTELNI TOVABB NEM ART
-    {
+    {      
         if (ap.getAkciopont() <= 0)
         {
             messageBox.SendMessageToBox("Nincs elég akciópontod!");

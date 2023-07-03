@@ -4876,6 +4876,9 @@ MonoBehaviour:
   korhazlepes2: {fileID: 986735257}
   jelenlegi_x: 1
   jelenlegi_y: 1
+  confirmMove: {fileID: 1648095025}
+  cancelMove: {fileID: 1787074571}
+  parentMoveConfirm: {fileID: 812071046}
 --- !u!114 &197904224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19914,7 +19917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -889, y: -166}
+  m_AnchoredPosition: {x: -746, y: -180.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &815573858
@@ -43575,7 +43578,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1648095026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 197904223}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: setConfirmValue
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 197904223}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: EnableButtons
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1648095026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47748,7 +47775,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1787074572}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 197904223}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: setConfirmValue
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 197904223}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: EnableButtons
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1787074572
 MonoBehaviour:
   m_ObjectHideFlags: 0

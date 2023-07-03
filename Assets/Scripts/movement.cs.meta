@@ -3,7 +3,60 @@ guid: 413457e37755a704786899a2420c6b9a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - THE_Camera: {instanceID: 0}
+  - player: {instanceID: 0}
+  - oneone: {instanceID: 0}
+  - oneone_Collider: {instanceID: 0}
+  - eromulepes1: {instanceID: 0}
+  - eromulepes2: {instanceID: 0}
+  - twoone: {instanceID: 0}
+  - twoone_Collider: {instanceID: 0}
+  - feketepiaclepes1: {instanceID: 0}
+  - feketepiaclepes2: {instanceID: 0}
+  - threeone: {instanceID: 0}
+  - threeone_Collider: {instanceID: 0}
+  - metrolepes1: {instanceID: 0}
+  - metrolepes2: {instanceID: 0}
+  - onetwo: {instanceID: 0}
+  - onetwo_Collider: {instanceID: 0}
+  - szervereklepes1: {instanceID: 0}
+  - szervereklepes2: {instanceID: 0}
+  - twotwo: {instanceID: 0}
+  - twotwo_Collider: {instanceID: 0}
+  - kingcasinolepes1: {instanceID: 0}
+  - kingcasinolepes2: {instanceID: 0}
+  - threetwo: {instanceID: 0}
+  - threetwo_Collider: {instanceID: 0}
+  - feltoltolepes1: {instanceID: 0}
+  - feltoltolepes2: {instanceID: 0}
+  - onethree: {instanceID: 0}
+  - onethree_Collider: {instanceID: 0}
+  - kutatolaborlepes1: {instanceID: 0}
+  - kutatolaborlepes2: {instanceID: 0}
+  - twothree: {instanceID: 0}
+  - twothree_Collider: {instanceID: 0}
+  - kriptoklublepes1: {instanceID: 0}
+  - kriptoklublepes2: {instanceID: 0}
+  - threethree: {instanceID: 0}
+  - threethree_Collider: {instanceID: 0}
+  - cyberplazalepes1: {instanceID: 0}
+  - cyberplazalepes2: {instanceID: 0}
+  - onefour: {instanceID: 0}
+  - onefour_Collider: {instanceID: 0}
+  - hadiuzemlepes1: {instanceID: 0}
+  - hadiuzemlepes2: {instanceID: 0}
+  - twofour: {instanceID: 0}
+  - twofour_Collider: {instanceID: 0}
+  - konyvtarlepes1: {instanceID: 0}
+  - konyvtarlepes2: {instanceID: 0}
+  - threefour: {instanceID: 0}
+  - threefour_Collider: {instanceID: 0}
+  - korhazlepes1: {instanceID: 0}
+  - korhazlepes2: {instanceID: 0}
+  - confirmMove: {instanceID: 0}
+  - cancelMove: {instanceID: 0}
+  - parentMoveConfirm: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
