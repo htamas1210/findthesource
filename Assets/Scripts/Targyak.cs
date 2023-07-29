@@ -17,6 +17,7 @@ public class Targyak : MonoBehaviour
     private jatekmanager jatekmanager;
     public TMP_InputField kocka1ertek;
     public TMP_InputField kocka2ertek;
+
     public int ujertek1;
     public int ujertek2;
     public int targy_szamlalo = 0;
@@ -36,6 +37,7 @@ public class Targyak : MonoBehaviour
     public Button cancelNewValue;
 
     //targy megszerezve ui
+    //TODO: change to searialize field
     public TMP_Text adrenalinMegszerezve;
     public TMP_Text hackerMegszerezve;
     public TMP_Text lathatatlanMegszerezve;
@@ -44,6 +46,7 @@ public class Targyak : MonoBehaviour
     public TMP_Text alomhozoMegszerezve;
 
     //targy felhasznalva ui
+    //TODO: change to searialize field
     public TMP_Text adrenalinFelhasznalva;
     public TMP_Text hackerFelhasznalva;
     public TMP_Text lathatatlanFelhasznalva;
@@ -193,6 +196,11 @@ public class Targyak : MonoBehaviour
     }
 
     public void HackerCsatlakozo() { //kesz
+        if(hackercsatlakozo <= 0){
+            Debug.Log("Nincs ilyen targyad!!");
+            return;
+        }
+
         //+2 tolteny
         akciok.betarazasDb = 2;
         akciok.Betarazas();
@@ -211,6 +219,11 @@ public class Targyak : MonoBehaviour
     }
 
     public void LathatatlanOltozek() { //kesz
+        if(lathatatlanoltozet <= 0){
+            Debug.Log("Nincs ilyen targyad!!");
+            return;
+        }
+
         lathatatlanOltozetAktivalva = true;
         lathatatlanoltozet = 0; //targy elvesztese 
 
@@ -221,6 +234,10 @@ public class Targyak : MonoBehaviour
     }
 
     public void DroidGepagyu() { 
+        if(droidgepagyu <= 0){
+            Debug.Log("Nincs ilyen targyad!!");
+            return;
+        }
         //deaktivalni minden objectet kiveve a ugynok text boxokat es addig nem vissza aktivalni amig nem kattintott ra valamelyikre      
         
         //deaktivalas
@@ -286,6 +303,11 @@ public class Targyak : MonoBehaviour
     }
 
     public void MatavTaviranyito() {
+        if(matavtaviranyito <= 0){
+            Debug.Log("Nincs ilyen targyad!!");
+            return;
+        }
+
         matavtaviranyitoAktivalva = true;
         matavtaviranyito = 0; //targy elvesztese
 
@@ -296,6 +318,11 @@ public class Targyak : MonoBehaviour
     }
 
     public void FustGranat() {
+        if(fustgranat <= 0){
+            Debug.Log("Nincs ilyen targyad!!");
+            return;
+        }
+
         energia.granatAktivalva = true;
         fustgranat = 0; //targy elvesztese   
 
