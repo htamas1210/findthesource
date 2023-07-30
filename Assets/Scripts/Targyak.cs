@@ -15,6 +15,8 @@ public class Targyak : MonoBehaviour
     private Ugynok ugynok;
     private Dice dice;
     private jatekmanager jatekmanager;
+    private MessageBox messageBox;
+
     public TMP_InputField kocka1ertek;
     public TMP_InputField kocka2ertek;
 
@@ -38,12 +40,12 @@ public class Targyak : MonoBehaviour
 
     //targy megszerezve ui
     //TODO: change to searialize field
-    public TMP_Text adrenalinMegszerezve;
-    public TMP_Text hackerMegszerezve;
-    public TMP_Text lathatatlanMegszerezve;
-    public TMP_Text droidMegszerezve;
-    public TMP_Text matavMegszerezve;
-    public TMP_Text alomhozoMegszerezve;
+    [SerializeField] private TMP_Text adrenalinMegszerezve;
+    [SerializeField] private TMP_Text hackerMegszerezve;
+    [SerializeField] private TMP_Text lathatatlanMegszerezve;
+    [SerializeField] private TMP_Text droidMegszerezve;
+    [SerializeField] private TMP_Text matavMegszerezve;
+    [SerializeField] private TMP_Text alomhozoMegszerezve;
 
     //targy felhasznalva ui
     //TODO: change to searialize field
@@ -54,7 +56,7 @@ public class Targyak : MonoBehaviour
     public TMP_Text matavFelhasznalva;
     public TMP_Text alomhozoFelhasznalva;
 
-    public List<string> elerheto_targyak = new List<string>{"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"};
+    [SerializeField] private List<string> elerheto_targyak = new List<string>{"Adrenalinloket", "Hacker csatlakozo", "Lathatatlan oltozet", "Droid agyu", "Matav taviranyito", "Alomhozo fustgranat"};
 
     private void Awake() {
         akciok = FindObjectOfType<Akciok>(); 
@@ -65,6 +67,7 @@ public class Targyak : MonoBehaviour
         ugynok = FindObjectOfType<Ugynok>();
         dice = FindObjectOfType<Dice>();
         jatekmanager = FindObjectOfType<jatekmanager>();
+        messageBox = FindObjectOfType<MessageBox>();
     }
 
     private void Start() {
@@ -88,31 +91,37 @@ public class Targyak : MonoBehaviour
             adrenalinloket++;
             adrenalinFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy AdrenalinLoketet!");
+            messageBox.SendMessageToBox("Kaptal egy AdrenalinLoketet!");
         }else if(elerheto_targyak[randomszam].Equals("Hacker csatlakozo")){
             hackerMegszerezve.text = "X";
             hackercsatlakozo++;
             hackerFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Hacker Csatlakozot!");
+            messageBox.SendMessageToBox("Kaptal egy Hacker Csatlakozot!");
         }else if(elerheto_targyak[randomszam].Equals("Lathatatlan oltozet")){
             lathatatlanMegszerezve.text = "X";
             lathatatlanoltozet++;
             lathatatlanFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Lathatatlan oltozetet!");
+            messageBox.SendMessageToBox("Kaptal egy Lathatatlan oltozetet!");
         }else if(elerheto_targyak[randomszam].Equals("Droid agyu")){
             droidMegszerezve.text = "X";
             droidgepagyu++;
             droidFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Droid-X2 Gepagyut!");
+            messageBox.SendMessageToBox("Kaptal egy Droid-X2 Gepagyut!");
         }else if(elerheto_targyak[randomszam].Equals("Matav taviranyito")){
             matavMegszerezve.text = "X";
             matavtaviranyito++;
             matavFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Matav Taviranyitot!");
+            messageBox.SendMessageToBox("Kaptal egy Matav Taviranyitot!");
         }else if(elerheto_targyak[randomszam].Equals("Alomhozo fustgranat")){
             alomhozoMegszerezve.text = "X";
             fustgranat++;
             alomhozoFelhasznalva.gameObject.SetActive(true);
             Debug.Log("Kaptal egy Alomhozo Fustgranatot!");
+            messageBox.SendMessageToBox("Kaptal egy Alomhozo Fustgranatot!");
         }
 
         elerheto_targyak.RemoveAt(randomszam); //szedje ki a listabol
