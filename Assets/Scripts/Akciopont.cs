@@ -5,7 +5,7 @@ using TMPro;
 
 public class Akciopont : MonoBehaviour
 {
-    public TMP_Text text;    
+    [SerializeField] private TMP_Text _text;    
     private int akciopont = 0;
 
     public int getAkciopont(){ return akciopont; }
@@ -15,7 +15,7 @@ public class Akciopont : MonoBehaviour
     }
 
     private void setText(){
-        text.text = "Akciopontok: " + akciopont;
+        _text.text = "Akciopontok: " + akciopont;
     }
 
     public void UpdateAkciopont(int number) {

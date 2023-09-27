@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class FrameRateSetter : MonoBehaviour
 {
-    //mobil miatt volt (30fps) van ertelme? nincs sok mozgas es animacio \\ ha lesz animacio vissza rakhato
+
     private void Awake() {
+#if !UNITY_ANDROID || !UNITY_IOS
         Application.targetFrameRate = 60;
+#else
+        Application.targetFrameRate = 30;
+#endif
     }
 }

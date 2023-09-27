@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ControllerHandler : MonoBehaviour
 {
-    [SerializeField]private bool connected = false;
+    //if controller movement is detected hide the cursor and and spawn a ui object to act as a cursor for controller
+
+    [SerializeField] private bool connected = false;
     public string[] controllers;
 
     private IEnumerator detectControllers(){

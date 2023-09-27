@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    //not in use currently
     public Camera mainCamera;
     public Vector3 offset;
 
